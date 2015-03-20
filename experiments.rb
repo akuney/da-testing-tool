@@ -6,38 +6,36 @@ require 'highline/import'
   :host => 'localhost'
 })
 
-@default_schema='intent_media_log_data_development'
+@general_defaults = {:schema => 'intent_media_log_data_development',
+:requested_at_in_et => (Time.now - 3).to_s[0..-7]}
 
 def columns_to_insert(options)
 	keys = options.keys
 	
 	if keys.include?(:schema)
 		keys.delete(:schema)
-	else
-		unless keys.include?(:requested_at_in_et)
-			keys.push('requested_at_in_et') 
-		end
+	elsif !keys.include?(:schema) && !keys.include?(:requested_at_in_et)
+		keys.push('requested_at_in_et') 
 	end
 	
 	return keys.join(',')
 end
 
 def values_to_add(options)
-	default_date = options[:requested_at_in_et] ? options[:requested_at_in_et] : (Time.now - 3).to_s[0..-7] #getting rid of zone
+	default_date = options[:requested_at_in_et] ? options[:requested_at_in_et] : @general_defaults[:requested_at_in_et]
 	values = options.values
+	keys = options.keys
 	
-	if options.keys.include?(:schema)
+	if keys.include?(:schema)
 		values.delete(options[:schema])
-	else
-		unless options.keys.include?(:requested_at_in_et)
-			values.push(default_date)
-		end
+	elsif !keys.include?(:schema) && !keys.include?(:requested_at_in_et)
+		values.push(default_date)
 	end
 	
 	return "'" + values.join("','") + "'"
 end
 
-def truncate_tables(table_names, schema=@default_schema)
+def truncate_tables(table_names, schema=@general_defaults[:schema])
 	table_names.each do |table_name|
 		@connection.query("TRUNCATE TABLE #{schema}.#{table_name}; COMMIT;")
 	end
@@ -47,7 +45,7 @@ def insert_row(table_name, options = {})
 	if options[:schema]
 		schema = options[:schema]
 	else
-		schema = @default_schema
+		schema = @general_defaults[:schema]
 	end
 	
 	query_string = "INSERT INTO #{schema}.#{table_name} (#{columns_to_insert(options)}) VALUES (#{values_to_add(options)})"
@@ -66,7 +64,7 @@ insert_row('ad_calls', :request_id => 'a', :product_category_type => 'FLIGHTS',
 
 insert_row('clicks', :ad_call_request_id => 'a', :request_id => 'b',
 :requested_at_date_in_et => '2015-03-01', :ip_address_blacklisted => '0',
-:fraudulent => '0')
+:fraudulent => '0', :requested_at_in_et => '2015-03-01 02:02:02')
 
 insert_row('sites', :schema => 'intent_media_development', :display_name => 'EXPEDIA')
 
