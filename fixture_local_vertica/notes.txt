@@ -1,0 +1,7 @@
+Do I want to move stuff into multiple files?
+Anyway, what are some table specific defaults?
+Do I want some actual insertions in there?
+
+What are some questions I have about what should / shouldn't be defaults?
+
+Should things match up by default?
