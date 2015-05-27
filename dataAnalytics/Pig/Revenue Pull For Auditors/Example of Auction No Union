@@ -1,0 +1,71 @@
+REGISTER                    's3n://intentmedia-hadoop-production/jars/intentmedia.jar';
+REGISTER                    's3n://intentmedia-hadoop-production/jars/udfs.py' using streaming_python;
+IMPORT                      's3n://intentmedia-hadoop-production/macros.pig';
+
+SET default_parallel 55;
+
+
+
+%default ADVERTISEMENT_TYPE       'CtAdvertisement';
+%default CL_START_DATE         '20140101';
+%default CL_END_DATE           '20140101';
+--%default PRODUCT_CATEGORY   'FLIGHTS';
+
+%declare INPUT_PATH         's3n://intentmedia-hadoop-production/input/';
+%default STORE_PATH1        's3n://intentmedia-hawk-output/Eric_Abis/Revenue_For_Audit/specific_auction_example5';
+%default STORE_PATH2        's3n://intentmedia-hawk-output/Eric_Abis/Revenue_For_Audit/specific_auction_example6';
+
+--Revenue_For_Audit
+
+%declare REDUCERS 100;
+
+
+-------------Ad Calls
+ad_call1 = LOAD '$INPUT_PATH' USING com.intentmedia.pig.TypedDataJsonLoader('com.intentmedia.data.AdCallData', '$CL_START_DATE', '$CL_END_DATE', '', ''); 
+
+ad_call2 = FOREACH ad_call1 GENERATE 
+        request_id, 
+        requested_at,
+        org.apache.pig.piggybank.evaluation.datetime.convert.UnixToISO(requested_at) as ad_call_date_With_Hour;
+
+ad_call_filtered = FILTER ad_call2 BY 
+        	requested_at >= (long) org.apache.pig.piggybank.evaluation.datetime.convert.ISOToUnix(org.apache.pig.piggybank.evaluation.datetime.convert.CustomFormatToISO('2014-01-01 02:00:00','yyyy-MM-dd HH:mm:ss')) AND
+			requested_at < (long) org.apache.pig.piggybank.evaluation.datetime.convert.ISOToUnix(org.apache.pig.piggybank.evaluation.datetime.convert.CustomFormatToISO('2014-01-01 03:00:00','yyyy-MM-dd HH:mm:ss')) AND
+			request_id == '2f72e6bf-20ed-4242-a918-ba201f9d7535';
+
+
+
+impressions = LOAD '$INPUT_PATH' USING com.intentmedia.pig.TypedDataJsonLoader('com.intentmedia.data.ImpressionData', '$CL_START_DATE', '$CL_END_DATE', '', '');
+
+impressions_filtered = FILTER impressions BY 
+				request_id == '2f72e6bf-20ed-4242-a918-ba201f9d7535';
+
+impressions2 = FOREACH impressions_filtered GENERATE auction_position, actual_cpc, base_bid, effective_bid, jittered_quality_score, unrounded_cpc, request_id, advertiser_id;
+
+
+JOINED = JOIN impressions2 by request_id, ad_call_filtered BY request_id;
+
+
+Filtered_Ads = LOAD '$INPUT_PATH' USING com.intentmedia.pig.TypedDataJsonLoader('com.intentmedia.data.FilteredAdvertisementData', '$CL_START_DATE', '$CL_END_DATE', '', '');
+
+Filtered_Ads_filtered = FILTER Filtered_Ads BY 
+				request_id == '2f72e6bf-20ed-4242-a918-ba201f9d7535';
+
+Filtered_Ads2 = FOREACH Filtered_Ads_filtered GENERATE auction_position, actual_cpc, base_bid, effectiveBid as effective_bid, jittered_quality_score, unrounded_cpc, request_id, advertiser_id;
+
+JOINED_FILTERED = JOIN Filtered_Ads2 by request_id, ad_call_filtered BY request_id;
+
+--UNIONED = UNION JOINED, JOINED_FILTERED;
+
+ANSWER = FOREACH JOINED GENERATE
+	ad_call_date_With_Hour, ad_call_filtered::request_id, auction_position, advertiser_id, actual_cpc, base_bid, effective_bid, jittered_quality_score, unrounded_cpc;
+
+STORE ANSWER INTO '$STORE_PATH1' USING PigStorage('\t');
+
+ANSWER2 = FOREACH JOINED_FILTERED GENERATE
+	ad_call_date_With_Hour, ad_call_filtered::request_id, auction_position, advertiser_id, actual_cpc, base_bid, effective_bid, jittered_quality_score, unrounded_cpc;
+
+STORE ANSWER2 INTO '$STORE_PATH2' USING PigStorage('\t');
+
+
+

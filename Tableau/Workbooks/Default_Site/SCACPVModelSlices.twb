@@ -1,0 +1,2359 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.2' xml:base='http://production-tableau-server-1.internal.intentmedia.net' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8100.14.0914.1345                -->
+  <repository-location id='SCACPVModelSlices' path='/workbooks' revision='1.0' />
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource caption='sca_model_slices' inline='true' name='mysql.41569.433373101849' version='8.2'>
+      <connection class='mysql' dbname='intent_media_production' odbc-native-protocol='yes' port='3306' server='production-slave-db-server-1.internal.intentmedia.net' server-oauth='' username='tableau' workgroup-auth-mode='prompt'>
+        <relation name='TableauSQL' type='text'>select&#13;&#10;&#9;(d.Date + interval h.Hours HOUR) as DateTime,&#13;&#10;&#9;s.site_id as `Site ID`,&#13;&#10;&#9;(case p.product_category_type&#13;&#10;&#9;&#9;when &apos;FLIGHTS&apos; then &apos;Flights&apos;&#13;&#10;&#9;&#9;when &apos;HOTELS&apos; then &apos;Hotels&apos;&#13;&#10;&#9;end) as `Product Category Type`,&#13;&#10;&#9;m.Site,&#13;&#10;&#9;m.Slice,&#13;&#10;&#9;m.`Start Percentage`,&#13;&#10;&#9;m.`End Percentage`,&#13;&#10;&#9;m.`Start Date`,&#13;&#10;&#9;m.`Start Date Formatted`,&#13;&#10;&#9;m.`End Date`,&#13;&#10;&#9;m.`End Date Formatted`&#13;&#10;from&#13;&#10;(select &#13;&#10;&#9;distinct(date_in_et) as Date &#13;&#10;from historical_budgets&#13;&#10;where date_in_et &gt;&gt;= &apos;2013-10-25&apos;) d,&#13;&#10;(select 0 as Hours&#13;&#10;&#9;union select 1 as Hours&#13;&#10;&#9;union select 2 as Hours&#13;&#10;&#9;union select 3 as Hours&#13;&#10;&#9;union select 4 as Hours&#13;&#10;&#9;union select 5 as Hours&#13;&#10;&#9;union select 6 as Hours&#13;&#10;&#9;union select 7 as Hours&#13;&#10;&#9;union select 8 as Hours&#13;&#10;&#9;union select 9 as Hours&#13;&#10;&#9;union select 10 as Hours&#13;&#10;&#9;union select 11 as Hours&#13;&#10;&#9;union select 12 as Hours&#13;&#10;&#9;union select 13 as Hours&#13;&#10;&#9;union select 14 as Hours&#13;&#10;&#9;union select 15 as Hours&#13;&#10;&#9;union select 16 as Hours&#13;&#10;&#9;union select 17 as Hours&#13;&#10;&#9;union select 18 as Hours&#13;&#10;&#9;union select 19 as Hours&#13;&#10;&#9;union select 20 as Hours&#13;&#10;&#9;union select 21 as Hours&#13;&#10;&#9;union select 22 as Hours&#13;&#10;&#9;union select 23 as Hours) h,&#13;&#10;(select&#13;&#10;&#9;distinct(site_id) as site_id&#13;&#10;from model_slices) s,&#13;&#10;(select&#13;&#10;&#9;distinct(product_category_type) as product_category_type&#13;&#10;from model_slices) p,&#13;&#10;(select&#13;&#10;&#9;s.name as Site,&#13;&#10;&#9;s.id as site_id,&#13;&#10;&#9;product_category_type,&#13;&#10;&#9;concat(treatment,&quot; (&quot;,model_slices.id,&quot;)&quot;) as Slice, &#13;&#10;&#9;percent_from/100 as `Start Percentage`,&#13;&#10;&#9;percent_to/100 as `End Percentage`, &#13;&#10;&#9;model_slices.created_at as `Start Date`,&#13;&#10;&#9;date_format(model_slices.created_at, &apos;%Y-%m-%d %H:00:00&apos;) as `Start Date Formatted`,&#13;&#10;&#13;&#10;&#9;IF(deleted_at is null, CURRENT_TIMESTAMP(), deleted_at) as `End Date`,&#13;&#10;&#9;date_format(IF(deleted_at is null, CURRENT_TIMESTAMP(), deleted_at - interval 1 hour), &apos;%Y-%m-%d %H:00:00&apos;) as `End Date Formatted`&#13;&#10;from model_slices&#13;&#10;left join sites s on s.id = model_slices.site_id) m&#13;&#10;where m.`Start Date Formatted` &lt;&lt;= (d.Date + interval h.Hours HOUR)&#13;&#10;and m.`End Date Formatted` &gt;&gt;= (d.Date + interval h.Hours HOUR)&#13;&#10;and m.site_id = s.site_id&#13;&#10;and m.product_category_type = p.product_category_type&#13;&#10;</relation>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Slice Label with Site' datatype='string' name='[Calculation_2251022121506790]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='[Site] + &quot;: &quot; + [Slice]' scope-isolation='false' />
+      </column>
+      <column caption='Date' datatype='date' name='[Calculation_5111113143853018]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='DATE([DateTime])' scope-isolation='false' />
+      </column>
+      <column caption='Slice Label' datatype='string' name='[Calculation_8671022104524645]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='[Slice] + &quot; - &quot; + STR(ROUND([Percentage Difference]*100,1)) + &quot;%&quot;' scope-isolation='false' />
+      </column>
+      <column datatype='datetime' datatype-customized='true' name='[End Date Formatted]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='datetime' datatype-customized='true' name='[End Date]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='real' default-format='p0%' name='[End Percentage]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='real' default-format='p0%' name='[Percentage Difference]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[End Percentage] - [Start Percentage]' scope-isolation='false' />
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Site ID]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='string' name='[Site]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;BOOKIT&quot;' value='Bookit' />
+          <alias key='&quot;BUDGETAIR&quot;' value='BudgetAir' />
+          <alias key='&quot;CHEAPTICKETS&quot;' value='CheapTickets' />
+          <alias key='&quot;EXPEDIA&quot;' value='Expedia' />
+          <alias key='&quot;EXPEDIA_CA&quot;' value='Expedia.ca' />
+          <alias key='&quot;HOTWIRE&quot;' value='Hotwire' />
+          <alias key='&quot;HOTWIRE_MEDIA_FILL_IN&quot;' value='Hotwire Media Fill In' />
+          <alias key='&quot;KAYAK&quot;' value='Kayak' />
+          <alias key='&quot;LOWCOSTAIRLINES&quot;' value='LowCostAirlines' />
+          <alias key='&quot;ORBITZ_GLOBAL&quot;' value='Orbitz' />
+          <alias key='&quot;TRIPADVISOR&quot;' value='TripAdvisor' />
+          <alias key='&quot;TRIPDOTCOM&quot;' value='Trip.com' />
+          <alias key='&quot;VAYAMA&quot;' value='Vayama' />
+        </aliases>
+      </column>
+      <column datatype='string' name='[Slice]' role='dimension' type='nominal'>
+      </column>
+      <column aggregation='Count' datatype='datetime' datatype-customized='true' name='[Start Date Formatted]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='real' default-format='p0%' name='[Start Percentage]' role='measure' type='quantitative'>
+      </column>
+      <column-instance column='[Slice]' derivation='None' name='[none:Slice:nk]' pivot='key' type='nominal' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='E:\MS_Tableau_Repository\model_slices.tde' schema='Extract' tablename='Extract' update-time='10/17/2014 2:41:41 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Calculation_2251022121506790]' formula='[Site] + &quot;: &quot; + [Slice]' />
+            <calculation column='[Calculation_5111113143853018]' formula='DATE([DateTime])' />
+            <calculation column='[Calculation_8671022104524645]' formula='[Slice] + &quot; - &quot; + STR(ROUND([Percentage Difference]*100,1)) + &quot;%&quot;' />
+            <calculation column='[Number of Records]' formula='1' />
+            <calculation column='[Percentage Difference]' formula='[End Percentage] - [Start Percentage]' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='252584' timestamp-start='2014-10-17 14:41:41.291000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:Slice:nk]' type='palette'>
+            <map to='#17becf'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (251)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (293)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;ALTERED_CLASS_0.77 (236)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;BOOKER_0.83 (108)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;BOOKER_0.83 (115)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;BOOKER_0.83 (65)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;BTL_0.79 (70)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;DUMMY (10)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;HCLC_0.75 (11 )&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;HCLC_0.75 (11)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;HCLC_0.79 (190)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;HCLC_0.79 (192)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;HCLC_1.0 (147)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (325)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;HOTEL_BOOKER_0.79 (284)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;HOTEL_BOOKER_0.79 (348)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;PACKAGE_BOOKER_0.1 (376)&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;UPLIFT_0.7 (198)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (253)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;ALTERED_CLASS_0.77 (239)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER (39 )&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER (39)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER_0.01 (88)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER_0.695 (111)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER_0.82 (316)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER_0.82 (317)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER_0.83 (116)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER_0.83 (151)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.83 (49)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;BTL_0.79 (144)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;CLASSIFIER_0.04_PACKAGES (308)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;CLASSIFIER_0.7 (137)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;HCLC_0.75 (13 )&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;HCLC_0.75 (13)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;HCLC_0.79 (268)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;HCLC_1.0 (208)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;PACKAGE_BOOKER_0.1 (379)&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;UPLIFT_0.7 (202)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_0.75 (183)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_0.75 (45)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_0.815 (76)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_0.82 (344)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_0.82 (345)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_0.83 (167)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_0.83 (220)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.815 (78)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.98 (86)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;CLASSIFIER_0.77 (216)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;HCLC_0.5 (51)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;HCLC_0.7 (146)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;HCLC_0.75 (2 )&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;HCLC_0.75 (2)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;HCLC_0.75 (33 )&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;HCLC_0.79 (347)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;HOTEL_BOOKER_0.70 (160)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;PACKAGE_BOOKER_0.7 (381)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;RANDOM_AD_PCT (272)&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;UPLIFT_0.7 (214)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (267)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;BOOKER_0.70 (163)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;BOOKER_0.83 (103)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;BOOKER_0.83 (96)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;BOOKER_0.85 (315)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.98 (85)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;BTL_0.695 (97)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;BTL_0.75 (22)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;BTL_0.75 (31)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;CLASSIFIER_0.04_PACKAGES (304)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;CLASSIFIER_0.77 (246)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;HCLC_0.75 (20 )&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;HCLC_0.75 (20)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;HCLC_0.79 (283)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;HOTEL_BOOKER_0.78 (323)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;UPLIFT_0.7 (196)&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;UPLIFT_0.7 (215)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (263)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BOOKER_0.695 (112)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BOOKER_0.75 (37)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BOOKER_0.78 (231)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BOOKER_0.82 (362)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BOOKER_0.82 (363)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BOOKER_0.83 (64)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.815 (77)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BTL_0.695 (109)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;BTL_0.695 (118)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;CLASSIFIER_0.04_PACKAGES (305)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;CLASSIFIER_0.7 (158)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;HCLC_0.7 (145)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;HCLC_0.85 (27 )&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;HCLC_0.85 (27)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (332)&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;HOTEL_BOOKER_0.79 (271)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (261)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;BOOKER_0.75 (277)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;BOOKER_0.75 (280)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;BOOKER_0.81 (39)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;BOOKER_0.82 (357)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;BOOKER_0.82 (359)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;BOOKER_0.83 (95)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;BOOKER_0.98 (84)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;FLIGHTS_BOOKER (28 )&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;FLIGHTS_BOOKER (28)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;HCLC_0.75 (9 )&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;HCLC_0.75 (9)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;HCLC_1.0 (55)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (358)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;HOTEL_BOOKER_0.75 (188)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;HOTEL_BOOKER_0.78 (213)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;UPLIFT_0.7 (201)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;UPLIFT_0.77 (228)&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;UPLIFT_0.77 (230)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (255)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (258)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (289)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;BOOKER_0.75 (185)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;BOOKER_0.75 (46)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;BOOKER_0.82 (350)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;BOOKER_0.82 (351)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;BOOKER_0.83 (181)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;BTL_0.70 (165)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;CLASSIFIER_0.77 (222)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;DUMMY (4)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HCLC_0.5 (52)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HCLC_0.7 (156)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HCLC_0.75 (34 )&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HCLC_0.75 (4 )&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HCLC_0.75 (4)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HCLC_0.79 (269)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HCLC_0.79 (346)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HCLC_1.0 (148)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;HOTEL_BOOKER_0.78 (212)&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;UPLIFT_0.77 (218)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (252)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (303)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;ALTERED_CLASS_0.77 (237)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;BOOKER_0.75 (184)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;BOOKER_0.83 (114)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;BOOKER_0.83 (149)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.01 (90)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;BTL_0.79 (130)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;BTL_0.83 (62)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;CLASSIFIER_0.77 (250)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;DUMMY (11)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;HCLC_0.75 (12 )&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;HCLC_0.75 (12)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;HCLC_0.79 (191)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (333)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;PACKAGE_BOOKER_0.1 (377)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;PACKAGE_BOOKER_0.1 (378)&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;UPLIFT_0.7 (200)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (254)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;ALTERED_CLASS_0.77 (240)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER (40 )&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER (40)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER_0.695 (119)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER_0.70 (177)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER_0.82 (328)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER_0.82 (329)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER_0.83 (150)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER_0.83 (153)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.83 (50)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;CLASSIFIER_0.04_PACKAGES (320)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;CLASSIFIER_0.7 (157)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;CLASSIFIER_0.77 (234)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;HCLC_0.75 (14 )&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;HCLC_0.75 (14)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;HCLC_0.79 (282)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;PACKAGE_BOOKER_0.7 (382)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;RANDOM_AD_PCT (275)&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;UPLIFT_0.77 (225)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (247)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (287)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;BOOKER_0.70 (162)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;BOOKER_0.78 (300)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;BOOKER_0.78 (302)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;BOOKER_0.83 (104)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;BOOKER_0.83 (107)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.83 (94)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;BTL_0.70 (175)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;CLASSIFIER_0.04_PACKAGES (327)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;CLASSIFIER_0.77 (241)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;DUMMY (20)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;FLIGHTS_BOOKER (3 )&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;FLIGHTS_BOOKER (3)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;FLIGHTS_BOOKER_0.75 (28)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;HCLC_0.7 (69)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;HCLC_0.79 (129)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;HOTEL_BOOKER_0.70 (161)&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;HOTEL_BOOKER_0.78 (299)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (264)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BOOKER_0.695 (120)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BOOKER_0.75 (291)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BOOKER_0.75 (292)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BOOKER_0.75 (38)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BOOKER_0.78 (232)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BOOKER_0.78 (244)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BTL_0.695 (117)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BTL_0.695 (122)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;BTL_0.75 (58)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;CLASSIFIER_0.04_PACKAGES (309)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;CLASSIFIER_0.7 (67)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;DUMMY (14)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;HCLC_0.7 (155)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (339)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;HOTEL_BOOKER_0.79 (193)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;HOTEL_BOOKER_0.79 (285)&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;NO_SEGMENTATION (25 )&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;NO_SEGMENTATION (25)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (262)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BOOKER_0.695 (100)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BOOKER_0.75 (281)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BOOKER_0.81 (40)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BOOKER_0.82 (360)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BOOKER_0.82 (361)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BOOKER_0.83 (79)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BOOKER_0.98 (83)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.01 (89)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;BTL_0.695 (110)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;CLASSIFIER_0.7 (138)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;CLASSIFIER_0.77 (223)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;HCLC_0.65 (26 )&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;HCLC_0.65 (26)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;HCLC_0.8 (6 )&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;HCLC_0.8 (6)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;HCLC_1.0 (56)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (324)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (366)&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;HOTEL_BOOKER_0.79 (194)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (286)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BOOKER_0.75 (173)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BOOKER_0.78 (296)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BOOKER_0.78 (297)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BOOKER_0.83 (102)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BOOKER_0.83 (105)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BTL (8 )&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BTL (8)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BTL_0.70 (164)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BTL_0.70 (174)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BTL_0.75 (32)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;BTL_0.79 (71)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;CLASSIFIER_0.04_PACKAGES (321)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;CLASSIFIER_0.77 (248)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;DUMMY (16)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;HCLC_0.79 (59)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;HOTEL_BOOKER_0.78 (294)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;UPLIFT_0.7 (197)&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;UPLIFT_0.77 (219)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (256)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (259)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (290)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BOOKER_0.695 (99)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BOOKER_0.75 (209)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BOOKER_0.75 (41)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BOOKER_0.82 (352)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BOOKER_0.82 (353)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BOOKER_0.83 (221)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BOOKER_0.83 (80)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.83 (82)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BTL (31 )&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;BTL (31)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;CLASSIFIER_0.77 (233)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;DUMMY (12)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;DUMMY (5)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;HCLC_0.75 (5 )&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;HCLC_0.75 (5)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;HCLC_0.75 (53)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;HOTEL_BOKER_0.70 (178)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;PACKAGE_BOOKER_0.92 (384)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;RANDOM_AD_PCT (278)&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;RETARGETING (61)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (249)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (288)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;BOOKER_0.79 (318)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;BOOKER_0.79 (319)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;BOOKER_0.79 (73)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;BOOKER_0.83 (106)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;BOOKER_0.83 (113)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;BTL_0.75 (8)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;BTL_0.83 (63)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;CLASSIFIER_0.77 (226)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;CLASSIFIER_0.77 (298)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;FLIGHTS_BOOKER_0.75 (3)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;HCLC_0.75 (10 )&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;HCLC_0.75 (10)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;HCLC_0.75 (159)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;HCLC_0.79 (143)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;HOTEL_BOOKER_0.78 (322)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;HOTEL_BOOKER_0.79 (270)&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;UPLIFT_0.7 (199)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (257)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (265)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BOOKER_0.695 (124)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BOOKER_0.78 (245)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BOOKER_0.815 (75)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BOOKER_0.82 (365)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.83 (81)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BTL (22 )&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BTL (22)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BTL_0.695 (121)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BTL_0.695 (126)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;BTL_0.79 (60)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;DUMMY (15)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;FLIGHTS_BOOKER_0.75 (43)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;HCLC_0.7 (68)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;HCLC_0.75 (170)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;HCLC_0.75 (33)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (356)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;HOTEL_BOOKER_0.78 (295)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;HOTEL_BOOKER_0.79 (349)&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;RANDOM_AD_PCT (274)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (266)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BOOKER_0.695 (128)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BOOKER_0.79 (72)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BOOKER_0.82 (367)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BOOKER_0.83 (101)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BOOKER_0.85 (314)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BOOKER_FLIGHTS_0.83 (93)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BTL_0.695 (125)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BTL_0.695 (98)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BTL_0.8 (23 )&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;BTL_0.8 (23)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;CLASSIFIER_0.77 (235)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;CLASSIFIER_0.77 (238)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;DUMMY (25)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;FLIGHTS_BOOKER_0.75 (44)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;HCLC_0.75 (34)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;HCLC_0.75 (57)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (364)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;HOTEL_BOOKER_0.78 (301)&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;UPLIFT_0.7 (206)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER (37 )&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER (37)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER_0.01 (87)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER_0.695 (123)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER_0.75 (171)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER_0.82 (338)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER_0.82 (340)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER_0.83 (152)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER_0.83 (166)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;BOOKER_0.83 (47)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;CLASSIFIER_0.04_PACKAGES (326)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;CLASSIFIER_0.7 (203)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;CLASSIFIER_0.7 (204)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;HCLC_0.75 (15 )&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;HCLC_0.75 (15)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;PACKAGE_BOOKER_0.7 (383)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;RANDOM_AD_PCT (273)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;RANDOM_AD_PCT (279)&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;UPLIFT_0.77 (229)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;ALTERED_CLASS2_0.77 (260)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BOOKER_0.75 (211)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BOOKER_0.75 (276)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BOOKER_0.75 (42)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BOOKER_0.82 (354)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BOOKER_0.82 (355)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BOOKER_0.83 (91)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BOOKER_0.83 (92)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BTL (32 )&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;BTL (32)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;DUMMY (13)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;DUMMY (7)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;HCLC_0.7 (195)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;HCLC_0.75 (54)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;HCLC_0.75 (7 )&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;HCLC_0.75 (7)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;HOTEL_BOKER_0.70 (179)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;HOTEL_BOOKER_0.74 (341)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;HOTEL_BOOKER_0.75 (187)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;RETARGETING (74)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;UPLIFT_0.77 (224)&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;UPLIFT_0.77 (227)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER (38 )&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER (38)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER_0.695 (127)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER_0.70 (176)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER_0.75 (186)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER_0.82 (342)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER_0.82 (343)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER_0.83 (154)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER_0.83 (180)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;BOOKER_0.83 (48)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;CLASSIFIER_0.7 (66)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;CLASSIFIER_0.77 (217)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;HCLC_0.75 (16 )&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;HCLC_0.75 (16)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;HCLC_0.75 (172)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;HCLC_1.0 (207)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;PACKAGE_BOOKER_0.7 (380)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;PACKAGE_BOOKER_0.92 (385)&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;UPLIFT_0.7 (205)&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='mysql.41569.433373101849'>
+      <datasources>
+        <datasource caption='sca_model_slices' name='mysql.41569.433373101849' />
+      </datasources>
+      <datasource-dependencies datasource='mysql.41569.433373101849'>
+        <column datatype='datetime' name='[DateTime]' role='dimension' type='ordinal'>
+        </column>
+        <column datatype='string' name='[Product Category Type]' role='dimension' type='nominal'>
+        </column>
+        <column datatype='string' name='[Site]' role='dimension' type='nominal'>
+          <aliases>
+            <alias key='&quot;BOOKIT&quot;' value='Bookit' />
+            <alias key='&quot;BUDGETAIR&quot;' value='BudgetAir' />
+            <alias key='&quot;CHEAPTICKETS&quot;' value='CheapTickets' />
+            <alias key='&quot;EXPEDIA&quot;' value='Expedia' />
+            <alias key='&quot;EXPEDIA_CA&quot;' value='Expedia.ca' />
+            <alias key='&quot;HOTWIRE&quot;' value='Hotwire' />
+            <alias key='&quot;HOTWIRE_MEDIA_FILL_IN&quot;' value='Hotwire Media Fill In' />
+            <alias key='&quot;KAYAK&quot;' value='Kayak' />
+            <alias key='&quot;LOWCOSTAIRLINES&quot;' value='LowCostAirlines' />
+            <alias key='&quot;ORBITZ_GLOBAL&quot;' value='Orbitz' />
+            <alias key='&quot;TRIPADVISOR&quot;' value='TripAdvisor' />
+            <alias key='&quot;TRIPDOTCOM&quot;' value='Trip.com' />
+            <alias key='&quot;VAYAMA&quot;' value='Vayama' />
+          </aliases>
+        </column>
+        <column-instance column='[DateTime]' derivation='None' name='[none:DateTime:qk]' pivot='key' type='quantitative' />
+        <column-instance column='[Product Category Type]' derivation='None' name='[none:Product Category Type:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Site]' derivation='None' name='[none:Site:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <filter class='quantitative' column='[mysql.41569.433373101849].[none:DateTime:qk]' included-values='all'>
+      </filter>
+      <filter class='categorical' column='[mysql.41569.433373101849].[none:Product Category Type:nk]'>
+        <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+          <groupfilter function='member' level='[none:Product Category Type:nk]' member='&quot;Flights&quot;' />
+          <groupfilter function='member' level='[none:Product Category Type:nk]' member='&quot;Hotels&quot;' />
+        </groupfilter>
+      </filter>
+      <filter class='categorical' column='[mysql.41569.433373101849].[none:Site:nk]'>
+        <groupfilter function='union' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+          <groupfilter function='member' level='[none:Site:nk]' member='&quot;CHEAPTICKETS&quot;' />
+          <groupfilter function='member' level='[none:Site:nk]' member='&quot;EXPEDIA&quot;' />
+          <groupfilter function='member' level='[none:Site:nk]' member='&quot;EXPEDIA_CA&quot;' />
+          <groupfilter function='member' level='[none:Site:nk]' member='&quot;HOTWIRE&quot;' />
+          <groupfilter function='member' level='[none:Site:nk]' member='&quot;ORBITZ_GLOBAL&quot;' />
+        </groupfilter>
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='Data'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sca_model_slices' name='mysql.41569.433373101849' />
+          </datasources>
+          <datasource-dependencies datasource='mysql.41569.433373101849'>
+            <column datatype='datetime' name='[DateTime]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='datetime' datatype-customized='true' name='[End Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='real' default-format='p0%' name='[Percentage Difference]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[End Percentage] - [Start Percentage]' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Product Category Type]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Site]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;BOOKIT&quot;' value='Bookit' />
+                <alias key='&quot;BUDGETAIR&quot;' value='BudgetAir' />
+                <alias key='&quot;CHEAPTICKETS&quot;' value='CheapTickets' />
+                <alias key='&quot;EXPEDIA&quot;' value='Expedia' />
+                <alias key='&quot;EXPEDIA_CA&quot;' value='Expedia.ca' />
+                <alias key='&quot;HOTWIRE&quot;' value='Hotwire' />
+                <alias key='&quot;HOTWIRE_MEDIA_FILL_IN&quot;' value='Hotwire Media Fill In' />
+                <alias key='&quot;KAYAK&quot;' value='Kayak' />
+                <alias key='&quot;LOWCOSTAIRLINES&quot;' value='LowCostAirlines' />
+                <alias key='&quot;ORBITZ_GLOBAL&quot;' value='Orbitz' />
+                <alias key='&quot;TRIPADVISOR&quot;' value='TripAdvisor' />
+                <alias key='&quot;TRIPDOTCOM&quot;' value='Trip.com' />
+                <alias key='&quot;VAYAMA&quot;' value='Vayama' />
+              </aliases>
+            </column>
+            <column datatype='string' name='[Slice]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='datetime' name='[Start Date]' role='dimension' type='ordinal'>
+            </column>
+            <column-instance column='[Percentage Difference]' derivation='Max' name='[max:Percentage Difference:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Start Date]' derivation='Min' name='[min:Start Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[DateTime]' derivation='None' name='[none:DateTime:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[DateTime]' derivation='None' name='[none:DateTime:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[End Date]' derivation='None' name='[none:End Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Product Category Type]' derivation='None' name='[none:Product Category Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Site]' derivation='None' name='[none:Site:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Slice]' derivation='None' name='[none:Slice:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Start Date]' derivation='None' name='[none:Start Date:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <sort class='computed' column='[mysql.41569.433373101849].[none:Slice:nk]' direction='ASC' using='[mysql.41569.433373101849].[min:Start Date:qk]'>
+          </sort>
+          <slices>
+            <column>[mysql.41569.433373101849].[none:Site:nk]</column>
+            <column>[mysql.41569.433373101849].[none:Product Category Type:nk]</column>
+            <column>[mysql.41569.433373101849].[none:DateTime:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[mysql.41569.433373101849].[none:DateTime:ok]' value='89' />
+            <format attr='text-format' field='[mysql.41569.433373101849].[max:Percentage Difference:qk]' value='p0.000000%' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[mysql.41569.433373101849].[none:Slice:nk]' value='156' />
+            <format attr='width' field='[mysql.41569.433373101849].[none:Site:nk]' value='156' />
+            <format attr='width' field='[mysql.41569.433373101849].[none:Product Category Type:nk]' value='88' />
+            <format attr='height' field='[mysql.41569.433373101849].[none:DateTime:ok]' value='40' />
+          </style-rule>
+          <style-rule element='field-labels-decoration'>
+            <format attr='text-align' value='center' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-format' field='[mysql.41569.433373101849].[max:Percentage Difference:qk]' value='p0.0%' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='band-size' scope='rows' value='1' />
+            <format attr='band-level' scope='rows' value='1' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+          <style-rule element='quick-filter'>
+            <format attr='title' field='[mysql.41569.433373101849].[none:DateTime:qk]' value='Date'>
+              <formatted-text>
+                <run>Date</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[mysql.41569.433373101849].[max:Percentage Difference:qk]' />
+              <lod column='[mysql.41569.433373101849].[none:End Date:qk]' />
+              <lod column='[mysql.41569.433373101849].[none:Start Date:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>Date:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[tdy:DateTime:ok]&gt;&#10;</run>
+                <run fontcolor='#787878'>Site:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:Site:nk]&gt;</run>
+                <run fontcolor='#787878'>&#10;Product Category Type:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:Product Category Type:nk]&gt;&#10;</run>
+                <run fontcolor='#787878'>&#10;Slice:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:Slice:nk]&gt;&#10;</run>
+                <run fontcolor='#787878'>Slice Percentage:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[max:Percentage Difference:qk]&gt;&#10;&#10;</run>
+                <run fontcolor='#787878'>Start Date:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:Start Date:qk]&gt;&#10;</run>
+                <run fontcolor='#787878'>End Date:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:End Date:qk]&gt;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([mysql.41569.433373101849].[none:Product Category Type:nk] / ([mysql.41569.433373101849].[none:Site:nk] / [mysql.41569.433373101849].[none:Slice:nk]))</rows>
+        <cols>[mysql.41569.433373101849].[none:DateTime:ok]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Plots'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sca_model_slices' name='mysql.41569.433373101849' />
+          </datasources>
+          <datasource-dependencies datasource='mysql.41569.433373101849'>
+            <column caption='Slice Label' datatype='string' name='[Calculation_8671022104524645]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[Slice] + &quot; - &quot; + STR(ROUND([Percentage Difference]*100,1)) + &quot;%&quot;' scope-isolation='false' />
+            </column>
+            <column datatype='datetime' name='[DateTime]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='datetime' datatype-customized='true' name='[End Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='real' default-format='p0%' name='[End Percentage]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='p0%' name='[Percentage Difference]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[End Percentage] - [Start Percentage]' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Product Category Type]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Site]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;BOOKIT&quot;' value='Bookit' />
+                <alias key='&quot;BUDGETAIR&quot;' value='BudgetAir' />
+                <alias key='&quot;CHEAPTICKETS&quot;' value='CheapTickets' />
+                <alias key='&quot;EXPEDIA&quot;' value='Expedia' />
+                <alias key='&quot;EXPEDIA_CA&quot;' value='Expedia.ca' />
+                <alias key='&quot;HOTWIRE&quot;' value='Hotwire' />
+                <alias key='&quot;HOTWIRE_MEDIA_FILL_IN&quot;' value='Hotwire Media Fill In' />
+                <alias key='&quot;KAYAK&quot;' value='Kayak' />
+                <alias key='&quot;LOWCOSTAIRLINES&quot;' value='LowCostAirlines' />
+                <alias key='&quot;ORBITZ_GLOBAL&quot;' value='Orbitz' />
+                <alias key='&quot;TRIPADVISOR&quot;' value='TripAdvisor' />
+                <alias key='&quot;TRIPDOTCOM&quot;' value='Trip.com' />
+                <alias key='&quot;VAYAMA&quot;' value='Vayama' />
+              </aliases>
+            </column>
+            <column datatype='string' name='[Slice]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='datetime' name='[Start Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='real' default-format='p0%' name='[Start Percentage]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Start Percentage]' derivation='Min' name='[min:Start Percentage:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_8671022104524645]' derivation='None' name='[none:Calculation_8671022104524645:nk]' pivot='key' type='nominal' />
+            <column-instance column='[DateTime]' derivation='None' name='[none:DateTime:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[End Date]' derivation='None' name='[none:End Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Product Category Type]' derivation='None' name='[none:Product Category Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Site]' derivation='None' name='[none:Site:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Slice]' derivation='None' name='[none:Slice:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Start Date]' derivation='None' name='[none:Start Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[End Percentage]' derivation='Sum' name='[sum:End Percentage:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Percentage Difference]' derivation='Sum' name='[sum:Percentage Difference:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Start Percentage]' derivation='Sum' name='[sum:Start Percentage:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <sort class='computed' column='[mysql.41569.433373101849].[none:Slice:nk]' direction='DESC' using='[mysql.41569.433373101849].[min:Start Percentage:qk]'>
+          </sort>
+          <slices>
+            <column>[mysql.41569.433373101849].[none:DateTime:qk]</column>
+            <column>[mysql.41569.433373101849].[none:Site:nk]</column>
+            <column>[mysql.41569.433373101849].[none:Product Category Type:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='subtitle' class='0' field='[mysql.41569.433373101849].[sum:Percentage Difference:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[mysql.41569.433373101849].[sum:Percentage Difference:qk]' scope='rows' value='true' />
+            <format attr='title' class='0' field='[mysql.41569.433373101849].[sum:Percentage Difference:qk]' scope='rows' value='' />
+            <format attr='width' field='[mysql.41569.433373101849].[sum:Percentage Difference:qk]' value='48' />
+            <encoding attr='space' class='0' field='[mysql.41569.433373101849].[sum:Percentage Difference:qk]' field-type='quantitative' major-origin='0.0' major-spacing='0.20000000000000001' range-type='independent' scope='rows' type='space' />
+            <format attr='title' class='0' field='[mysql.41569.433373101849].[none:DateTime:qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[mysql.41569.433373101849].[none:DateTime:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[mysql.41569.433373101849].[none:DateTime:qk]' scope='cols' value='true' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[mysql.41569.433373101849].[sum:End Percentage:qk]' value='p0.000000%' />
+            <format attr='text-format' field='[mysql.41569.433373101849].[sum:Start Percentage:qk]' value='p0.000000%' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[mysql.41569.433373101849].[none:Site:nk]' value='116' />
+            <format attr='height-header' value='30' />
+            <format attr='width' field='[mysql.41569.433373101849].[none:Product Category Type:nk]' value='84' />
+          </style-rule>
+          <style-rule element='field-labels'>
+            <format attr='color' value='#000000' />
+          </style-rule>
+          <style-rule element='field-labels-decoration'>
+            <format attr='text-align' value='center' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='color' field='[mysql.41569.433373101849].[none:Calculation_8671022104524645:nk]' value='#1b1b1b' />
+            <format attr='text-format' field='[mysql.41569.433373101849].[none:DateTime:qk]' value='*m/d/yyyy h:nn:ss AMPM' />
+            <format attr='text-format' field='[mysql.41569.433373101849].[sum:Percentage Difference:qk]' value='p0.000000%' />
+            <format attr='text-format' field='[mysql.41569.433373101849].[sum:End Percentage:qk]' value='p0.000000%' />
+            <format attr='text-format' field='[mysql.41569.433373101849].[sum:Start Percentage:qk]' value='p0.000000%' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='div-level' scope='rows' value='2' />
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='stroke-color' scope='rows' value='#353535' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+          <style-rule element='quick-filter'>
+            <format attr='title' field='[mysql.41569.433373101849].[none:DateTime:qk]' value='Date'>
+              <formatted-text>
+                <run>Date</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[mysql.41569.433373101849].[none:Slice:nk]' />
+              <text column='[mysql.41569.433373101849].[none:Calculation_8671022104524645:nk]' />
+              <lod column='[mysql.41569.433373101849].[none:End Date:ok]' />
+              <lod column='[mysql.41569.433373101849].[none:Start Date:ok]' />
+              <lod column='[mysql.41569.433373101849].[sum:End Percentage:qk]' />
+              <lod column='[mysql.41569.433373101849].[sum:Start Percentage:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>Date:</run>
+                <run bold='true'>&#9;&lt;[mysql.41569.433373101849].[none:DateTime:qk]&gt;&#10;</run>
+                <run fontcolor='#787878'>Site:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:Site:nk]&gt;&#10;</run>
+                <run fontcolor='#787878'>Product Category Type:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:Product Category Type:nk]&gt;&#10;</run>
+                <run fontcolor='#787878'>&#10;Slice:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:Slice:nk]&gt;&#10;</run>
+                <run fontcolor='#787878'>Slice Percentage:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[sum:Percentage Difference:qk]&gt; &#10;</run>
+                <run fontcolor='#787878'>Slice Start:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[sum:Start Percentage:qk]&gt;&#10;</run>
+                <run fontcolor='#787878'>Slice End:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[sum:End Percentage:qk]&gt;&#10;</run>
+                <run fontcolor='#787878'>&#10;Start Date:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:Start Date:ok]&gt;</run>
+                <run fontcolor='#787878'>&#10;End Date:&#9;</run>
+                <run bold='true'>&lt;[mysql.41569.433373101849].[none:End Date:ok]&gt;&#10;&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>(([mysql.41569.433373101849].[none:Site:nk] / [mysql.41569.433373101849].[none:Product Category Type:nk]) * [mysql.41569.433373101849].[sum:Percentage Difference:qk])</rows>
+        <cols>[mysql.41569.433373101849].[none:DateTime:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Graph'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Model Slice Percentages</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style>
+      </style>
+      <size maxheight='1200' maxwidth='1200' minheight='1200' minwidth='1200' />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='11' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='3332' id='10' type='title' w='100000' x='0' y='0'>
+            </zone>
+            <zone h='96668' id='5' param='horz' type='layout-flow' w='100000' x='0' y='3332'>
+              <zone fixed-size='160' h='96668' id='4' is-fixed='true' param='vert' type='layout-flow' w='13333' x='0' y='3332'>
+                <zone h='5499' id='13' name='Plots' param='[mysql.41569.433373101849].[none:DateTime:qk]' type='filter' w='13333' x='0' y='3332'>
+                </zone>
+                <zone h='6916' id='7' name='Plots' param='[mysql.41569.433373101849].[none:Product Category Type:nk]' type='filter' w='13333' x='0' y='8831'>
+                </zone>
+                <zone h='24916' id='8' name='Plots' param='[mysql.41569.433373101849].[none:Site:nk]' type='filter' w='13333' x='0' y='15747'>
+                </zone>
+              </zone>
+              <zone h='96668' id='3' type='layout-basic' w='86334' x='13333' y='3332'>
+                <zone h='96668' id='14' name='Plots' show-title='true' w='73001' x='13333' y='3332'>
+                </zone>
+                <zone h='96668' id='15' name='Plots' param='[mysql.41569.433373101849].[none:Slice:nk]' type='color' w='13333' x='86334' y='3332'>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+    <dashboard name='Table'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Model Slice Percentages</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style>
+      </style>
+      <size maxheight='800' maxwidth='1500' minheight='800' minwidth='1500' />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='11' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='5000' id='10' type='title' w='100000' x='0' y='0'>
+            </zone>
+            <zone h='94500' id='9' type='layout-basic' w='100000' x='0' y='5000'>
+              <zone h='94500' id='5' param='horz' type='layout-flow' w='80733' x='19267' y='5000'>
+                <zone h='94500' id='3' type='layout-basic' w='80466' x='19267' y='5000'>
+                  <zone h='94500' id='1' name='Data' w='80466' x='19267' y='5000'>
+                  </zone>
+                </zone>
+              </zone>
+              <zone fixed-size='160' h='94500' id='4' is-fixed='true' param='vert' type='layout-flow' w='19267' x='0' y='5000'>
+                <zone h='8250' id='12' name='Data' param='[mysql.41569.433373101849].[none:DateTime:qk]' type='filter' w='19267' x='0' y='5000'>
+                </zone>
+                <zone h='10375' id='7' name='Data' param='[mysql.41569.433373101849].[none:Product Category Type:nk]' type='filter' w='19267' x='0' y='13250'>
+                </zone>
+                <zone h='37375' id='8' name='Data' param='[mysql.41569.433373101849].[none:Site:nk]' type='filter' w='19267' x='0' y='23625'>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Plots'>
+      <cards>
+        <edge name='left'>
+          <strip size='249'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[mysql.41569.433373101849].[none:Slice:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[mysql.41569.433373101849].[none:Product Category Type:nk]' type='filter' />
+            <card param='[mysql.41569.433373101849].[none:Site:nk]' type='filter' />
+            <card param='[mysql.41569.433373101849].[none:DateTime:qk]' show-null-ctrls='false' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel.41561.599406041663].[none:Date:qk]</field>
+          <field>[excel.41561.599406041663].[yr:Date:ok]</field>
+          <field>[excel.41561.607507928238].[yr:Date:ok]</field>
+          <field>[mysql.41569.433373101849].[none:Calculation_8671022104524645:nk]</field>
+          <field>[mysql.41569.433373101849].[none:Date:qk]</field>
+          <field>[mysql.41569.433373101849].[none:DateTime:qk]</field>
+          <field>[mysql.41569.433373101849].[none:Product Category Type:nk]</field>
+          <field>[mysql.41569.433373101849].[none:Site:nk]</field>
+          <field>[mysql.41569.433373101849].[none:Slice:nk]</field>
+          <field>[mysql.41569.433373101849].[yr:Calculation_5111113143853018:ok]</field>
+          <field>[mysql.41569.433373101849].[yr:DateTime:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='0' name='Graph'>
+      <zones>
+        <zone name='Plots' param='[mysql.41569.433373101849].[none:DateTime:qk]' show-null-ctrls='false' type='filter' />
+        <zone name='Plots'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+          <highlight>
+            <color-one-way>
+              <field>[mysql.41569.433373101849].[none:Slice:nk]</field>
+            </color-one-way>
+          </highlight>
+        </zone>
+        <zone name='Plots' pane-specification-id='0' param='[mysql.41569.433373101849].[none:Slice:nk]' type='color' />
+      </zones>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Data'>
+      <cards>
+        <edge name='left'>
+          <strip size='196'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[mysql.41569.433373101849].[none:Product Category Type:nk]' type='filter' />
+            <card param='[mysql.41569.433373101849].[none:Site:nk]' type='filter' />
+            <card param='[mysql.41569.433373101849].[none:DateTime:qk]' show-null-ctrls='false' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[mysql.41569.433373101849].[yr:DateTime:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='0' name='Table'>
+      <active id='1' />
+      <zones>
+        <zone name='Data' param='[mysql.41569.433373101849].[none:DateTime:qk]' show-null-ctrls='false' type='filter' />
+      </zones>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Plots' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='Graph' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='Data' width='192'>
+      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
+      AEpslf8HeF/W5jNgj3IAAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='Table' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>

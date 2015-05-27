@@ -1,0 +1,1673 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook locale='en_US' version='8.2' xml:base='http://production-tableau-server-1.internal.intentmedia.net' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8100.14.0914.1345                -->
+  <repository-location derived-from='http://production-tableau-server-1.internal.intentmedia.net/workbooks/AfTPlacementReport?rev=2.7' id='SCAPlacementReport' path='/workbooks' revision='1.6' />
+  <preferences>
+  </preferences>
+  <style-theme name='modern' />
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='8.2'>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[Aggregated By]' param-domain-type='list' role='measure' type='nominal' value='&quot;Day&quot;'>
+        <calculation class='tableau' formula='&quot;Day&quot;' />
+        <members>
+          <member value='&quot;Day&quot;' />
+          <member value='&quot;Week&quot;' />
+          <member value='&quot;Month&quot;' />
+        </members>
+      </column>
+      <column caption='Product Category' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Total&quot;'>
+        <calculation class='tableau' formula='&quot;Total&quot;' />
+        <members>
+          <member value='&quot;Total&quot;' />
+          <member value='&quot;Flights&quot;' />
+          <member value='&quot;Hotels&quot;' />
+        </members>
+      </column>
+      <column datatype='date' name='[Reference Day]' param-domain-type='any' role='measure' type='quantitative' value='#2012-03-23#'>
+        <calculation class='tableau' formula='#2012-03-23#' />
+      </column>
+      <column datatype='string' name='[Table Time]' param-domain-type='list' role='measure' type='nominal' value='&quot;Week&quot;'>
+        <calculation class='tableau' formula='&quot;Week&quot;' />
+        <members>
+          <member value='&quot;Week&quot;' />
+          <member value='&quot;MTD&quot;' />
+          <member value='&quot;YTD&quot;' />
+        </members>
+      </column>
+      <column datatype='string' name='[Yesterday or Reference Day]' param-domain-type='list' role='measure' type='nominal' value='&quot;Yesterday&quot;'>
+        <calculation class='tableau' formula='&quot;Yesterday&quot;' />
+        <members>
+          <member value='&quot;Yesterday&quot;' />
+          <member value='&quot;Reference Day&quot;' />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption='sca_placement_report' inline='true' name='placement_data' version='8.2'>
+      <connection class='vertica' dbname='intent_media' expected-driver-version='7.0' odbc-connect-string-extras='ConnectionLoadBalance=1' odbc-native-protocol='yes' one-time-sql='' port='5433' server='production-vertica-cluster-1.internal.intentmedia.net' server-oauth='' username='tableau' workgroup-auth-mode='prompt'>
+        <relation name='TableauSQL' type='text'>/* FLIGHTS by Placement */&#13;&#10;select&#13;&#10;&#9;&apos;Flights&apos; as &apos;Product Category Type&apos;,&#13;&#10;&#9;i.date_in_et as Date,&#13;&#10;&#9;(case&#13;&#10;&#9;  when e.name = &apos;Air Fast Tickets&apos; then &apos;AirFastTickets&apos;&#13;&#10;&#9;  when e.name = &apos;Amoma&apos; then &apos;AMOMA.com&apos;&#13;&#10;&#9;  when e.name = &apos;Bookit&apos; then &apos;BookIt.com&apos;&#13;&#10;&#9;  when e.name = &apos;Expedia&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Hotwire&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Travelocity on Expedia&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Kayak Software Corporation&apos; then &apos;KAYAK&apos;&#13;&#10;&#9;  when e.name = &apos;lastminute.com&apos; then &apos;Sabre Holdings&apos;&#13;&#10;&#9;  when e.name = &apos;Orbitz&apos; then &apos;Orbitz Worldwide, Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Oversee&apos; then &apos;Oversee.net&apos;&#13;&#10;    else e.name&#13;&#10;  end) as Publisher,&#13;&#10;&#9;s.display_name as &quot;Site&quot;,&#13;&#10;&#9;au.name as &quot;Ad Unit&quot;,&#13;&#10;&#9;p.&quot;Placement&quot;,&#13;&#10;&#9;p.is_prechecked as &quot;Placement is Prechecked&quot;,&#13;&#10;&#9;p.click_count as &quot;Clicks&quot;,&#13;&#10;&#9;p.click_conversion_count as &quot;Conversions&quot;,&#13;&#10;&#9;p.actual_cpc_sum as &quot;Gross Media Revenue&quot;,&#13;&#10;&#9;case when i.gross_revenue_sum &gt;&gt; 0 then (p.actual_cpc_sum / i.gross_revenue_sum) else cast(null as float) end as &quot;Revenue Proportion&quot;,&#13;&#10;&#9;p.click_conversion_value_sum as &quot;Conversion Value Sum&quot;,&#13;&#10;&#9;p.interaction_count as &quot;Interactions&quot;,&#13;&#10;&#9;i.ad_call_count as &quot;Page Views&quot;,&#13;&#10;&#9;i.not_pure_ad_call_count as &quot;Not Pure Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_ad_call_count as &quot;Not Pure Low Value Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_addressable_ad_call_count as &quot;Addressable Page Views&quot;,&#13;&#10;&#9;i.pure_ad_call_count as &quot;Pure Page Views&quot;,&#13;&#10;&#9;i.pure_low_converting_ad_call_count as &quot;Pure Low Value Page Views&quot;,&#13;&#10;&#9;i.low_converting_ad_call_count as &quot;Low Value Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_ad_call_with_ads_count as &quot;Fillable Pages&quot;,&#13;&#10;&#9;i.ad_unit_served_count as &quot;Pages Served&quot;,&#13;&#10;&#9;i.impression_count as &quot;Impressions&quot;,&#13;&#10;&#9;i.available_impression_count as &quot;Available Impressions&quot;,&#13;&#10;&#9;case when i.gross_revenue_sum &gt;&gt; 0 then i.net_revenue_sum * (p.actual_cpc_sum / i.gross_revenue_sum) else cast(null as float) end as &quot;Net Media Revenue&quot;,&#13;&#10;&#9;i.suppressed_by_route as &quot;Suppressed by Route&quot;,&#13;&#10;&#9;i.suppressed_by_unknown_hotel_city as &quot;Suppressed by Unknown Hotel City&quot;,&#13;&#10;&#9;i.suppressed_by_c13n_segment as &quot;Suppressed by Cannibalization Segment&quot;,&#13;&#10;&#9;i.suppressed_by_click_blackout as &quot;Suppressed by Click Blackout&quot;,&#13;&#10;&#9;i.suppressed_by_no_valid_layout as &quot;Suppressed by No Valid Layout&quot;,&#13;&#10;&#9;i.suppressed_by_publisher_traffic_share as &quot;Suppressed by Publisher Traffic Share&quot;,&#13;&#10;&#9;i.suppressed_by_c13n_above_threshold as &quot;Suppressed by Cannibalization Threshold&quot;,&#13;&#10;&#9;i.not_pure_low_converting_intentmedia_traffic_share_ad_call_count as &quot;Not Pure Low Value Intent Media Traffic Page Views&quot;,&#13;&#10;&#9;i.number_of_prechecks_served as &quot;Number of Prechecks Served&quot;,&#13;&#10;&#9;i.requested_number_of_prechecks as &quot;Requested Number of Prechecks&quot;&#13;&#10;from&#13;&#10;&#9;(&#13;&#10;    select&#13;&#10;      aggregation_level_date_in_et as date_in_et,&#13;&#10;      ad_unit_id,&#13;&#10;      sum(ad_call_count) as ad_call_count,&#13;&#10;      sum(not_pure_ad_call_count) as not_pure_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_ad_call_count) as not_pure_low_converting_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_addressable_ad_call_count) as not_pure_low_converting_addressable_ad_call_count,&#13;&#10;      sum(pure_ad_call_count) as pure_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_ad_call_with_ads_count) as not_pure_low_converting_ad_call_with_ads_count,&#13;&#10;      sum(ad_unit_served_count) as ad_unit_served_count,&#13;&#10;      sum(impression_count) as impression_count,&#13;&#10;      sum(interaction_count) as interaction_count,&#13;&#10;      sum(click_count) as click_count,&#13;&#10;      sum(gross_revenue_sum) as gross_revenue_sum,&#13;&#10;      sum(available_impression_count) as available_impression_count,&#13;&#10;      sum(net_revenue_sum) as net_revenue_sum,&#13;&#10;      sum(pure_low_converting_ad_call_count) as pure_low_converting_ad_call_count,&#13;&#10;      sum(low_converting_ad_call_count) as low_converting_ad_call_count,&#13;&#10;      sum(suppressed_by_route) as suppressed_by_route,&#13;&#10;      0 as suppressed_by_unknown_hotel_city,&#13;&#10;      sum(suppressed_by_c13n_segment) as suppressed_by_c13n_segment,&#13;&#10;      sum(suppressed_by_click_blackout) as suppressed_by_click_blackout,&#13;&#10;      sum(suppressed_by_no_valid_layout) as suppressed_by_no_valid_layout,&#13;&#10;      sum(suppressed_by_publisher_traffic_share) as suppressed_by_publisher_traffic_share,&#13;&#10;      sum(suppressed_by_c13n_above_threshold) as suppressed_by_c13n_above_threshold,&#13;&#10;      sum(not_pure_low_converting_intentmedia_traffic_share_ad_call_count) as not_pure_low_converting_intentmedia_traffic_share_ad_call_count,&#13;&#10;      sum(number_of_prechecks_served) as number_of_prechecks_served,&#13;&#10;      sum(requested_number_of_prechecks) as requested_number_of_prechecks&#13;&#10;    from intent_media_production.air_ct_media_performance_aggregations acmpa&#13;&#10;    left join intent_media_production.ad_units au on au.id = acmpa.ad_unit_id&#13;&#10;    left join intent_media_production.sites s on s.id = au.site_id&#13;&#10;    where aggregation_level_date_in_et &gt;&gt;= au.reporting_start_date&#13;&#10;      and aggregation_level_date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;    group by&#13;&#10;      aggregation_level_date_in_et,&#13;&#10;      ad_unit_id&#13;&#10;&#9;) i&#13;&#10;left join&#13;&#10;&#9;(&#13;&#10;    select&#13;&#10;      acptpa.date_in_et,&#13;&#10;      acptpa.ad_unit_id,&#13;&#10;      (case acptpa.placement_type&#13;&#10;        when &apos;CLIENT_DEFINED&apos; then &apos;Client Defined&apos;&#13;&#10;        when &apos;DIALOG&apos; then &apos;Dialog&apos;&#13;&#10;        when &apos;EXIT_OVERLAY&apos; then &apos;Exit Overlay&apos;&#13;&#10;        when &apos;EXIT_UNIT&apos; then &apos;Exit Unit&apos;&#13;&#10;        when &apos;FOOTER&apos; then &apos;Footer&apos;&#13;&#10;        when &apos;FORM_COMPARE&apos; then &apos;Form Compare&apos;&#13;&#10;        when &apos;INTER_CARD&apos; then &apos;Inter Card&apos;&#13;&#10;        when &apos;MAP&apos; then &apos;Map&apos;&#13;&#10;        when &apos;MINI_CARD&apos; then &apos;Mini Card&apos;&#13;&#10;        when &apos;RIGHT_RAIL&apos; then &apos;Right Rail&apos;&#13;&#10;        when &apos;SEARCH_FORM&apos; then &apos;Search Form&apos;&#13;&#10;        when &apos;TOASTER&apos; then &apos;Toaster&apos;&#13;&#10;        when &apos;TOP_CARD&apos; then &apos;Top Card&apos;&#13;&#10;        else acptpa.placement_type&#13;&#10;      end) as &quot;Placement&quot;,&#13;&#10;      case is_prechecked when true then &apos;Precheck&apos; else &apos;Non-Precheck&apos; end as is_prechecked,&#13;&#10;      sum(acptpa.interaction_count) as interaction_count,&#13;&#10;      sum(acptpa.click_count) as click_count,&#13;&#10;      sum(acptpa.click_conversion_count) as click_conversion_count,&#13;&#10;      sum(acptpa.actual_cpc_sum) as actual_cpc_sum,&#13;&#10;      sum(acptpa.click_conversion_value_sum) as click_conversion_value_sum&#13;&#10;    from intent_media_production.air_ct_placement_type_performance_aggregations acptpa&#13;&#10;    left join intent_media_production.ad_units au on au.id = acptpa.ad_unit_id&#13;&#10;    left join intent_media_production.sites s on s.id = au.site_id&#13;&#10;    where date_in_et &gt;&gt;= au.reporting_start_date&#13;&#10;      and date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;    group by&#13;&#10;      acptpa.date_in_et,&#13;&#10;      acptpa.ad_unit_id,&#13;&#10;      (case acptpa.placement_type&#13;&#10;        when &apos;CLIENT_DEFINED&apos; then &apos;Client Defined&apos;&#13;&#10;        when &apos;DIALOG&apos; then &apos;Dialog&apos;&#13;&#10;        when &apos;EXIT_OVERLAY&apos; then &apos;Exit Overlay&apos;&#13;&#10;        when &apos;EXIT_UNIT&apos; then &apos;Exit Unit&apos;&#13;&#10;        when &apos;FOOTER&apos; then &apos;Footer&apos;&#13;&#10;        when &apos;FORM_COMPARE&apos; then &apos;Form Compare&apos;&#13;&#10;        when &apos;INTER_CARD&apos; then &apos;Inter Card&apos;&#13;&#10;        when &apos;MAP&apos; then &apos;Map&apos;&#13;&#10;        when &apos;MINI_CARD&apos; then &apos;Mini Card&apos;&#13;&#10;        when &apos;RIGHT_RAIL&apos; then &apos;Right Rail&apos;&#13;&#10;        when &apos;SEARCH_FORM&apos; then &apos;Search Form&apos;&#13;&#10;        when &apos;TOASTER&apos; then &apos;Toaster&apos;&#13;&#10;        when &apos;TOP_CARD&apos; then &apos;Top Card&apos;&#13;&#10;        else acptpa.placement_type&#13;&#10;      end),&#13;&#10;      case is_prechecked when true then &apos;Precheck&apos; else &apos;Non-Precheck&apos; end&#13;&#10;  ) p&#13;&#10;on i.date_in_et = p.date_in_et and i.ad_unit_id = p.ad_unit_id&#13;&#10;left join intent_media_production.ad_units au on p.ad_unit_id = au.id&#13;&#10;left join intent_media_production.sites s on au.site_id = s.id&#13;&#10;left join intent_media_production.entities e on e.id = s.publisher_id&#13;&#10;&#13;&#10;union&#13;&#10;&#13;&#10;/* FLIGHTS by Total */&#13;&#10;select&#13;&#10;&#9;&apos;Flights&apos; as &apos;Product Category Type&apos;,&#13;&#10;&#9;i.date_in_et as Date,&#13;&#10;&#9;(case&#13;&#10;&#9;  when e.name = &apos;Air Fast Tickets&apos; then &apos;AirFastTickets&apos;&#13;&#10;&#9;  when e.name = &apos;Amoma&apos; then &apos;AMOMA.com&apos;&#13;&#10;&#9;  when e.name = &apos;Bookit&apos; then &apos;BookIt.com&apos;&#13;&#10;&#9;  when e.name = &apos;Expedia&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Hotwire&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Travelocity on Expedia&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Kayak Software Corporation&apos; then &apos;KAYAK&apos;&#13;&#10;&#9;  when e.name = &apos;lastminute.com&apos; then &apos;Sabre Holdings&apos;&#13;&#10;&#9;  when e.name = &apos;Orbitz&apos; then &apos;Orbitz Worldwide, Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Oversee&apos; then &apos;Oversee.net&apos;&#13;&#10;    else e.name&#13;&#10;  end) as Publisher,&#13;&#10;&#9;s.display_name as &quot;Site&quot;,&#13;&#10;&#9;au.name as &quot;Ad Unit&quot;,&#13;&#10;&#9;&apos;Total by Ad Unit&apos; as Placement,&#13;&#10;&#9;&apos;Total Ad Unit&apos; as &quot;Placement is Prechecked&quot;,&#13;&#10;&#9;p.click_count as &quot;Clicks&quot;,&#13;&#10;&#9;p.click_conversion_count as &quot;Conversions&quot;,&#13;&#10;&#9;p.actual_cpc_sum as &quot;Gross Media Revenue&quot;,&#13;&#10;&#9;case when i.gross_revenue_sum &gt;&gt; 0 then (p.actual_cpc_sum / i.gross_revenue_sum) else cast(null as float) end as &quot;Revenue Proportion&quot;,&#13;&#10;&#9;p.click_conversion_value_sum as &quot;Conversion Value Sum&quot;,&#13;&#10;&#9;p.interaction_count as &quot;Interactions&quot;,&#13;&#10;&#9;i.ad_call_count as &quot;Page Views&quot;,&#13;&#10;&#9;i.not_pure_ad_call_count as &quot;Not Pure Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_ad_call_count as &quot;Not Pure Low Value Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_addressable_ad_call_count as &quot;Addressable Page Views&quot;,&#13;&#10;&#9;i.pure_ad_call_count as &quot;Pure Page Views&quot;,&#13;&#10;&#9;i.pure_low_converting_ad_call_count as &quot;Pure Low Value Page Views&quot;,&#13;&#10;&#9;i.low_converting_ad_call_count as &quot;Low Value Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_ad_call_with_ads_count as &quot;Fillable Pages&quot;,&#13;&#10;&#9;i.ad_unit_served_count as &quot;Pages Served&quot;,&#13;&#10;&#9;i.impression_count as &quot;Impressions&quot;,&#13;&#10;&#9;i.available_impression_count as &quot;Available Impressions&quot;,&#13;&#10;&#9;case when i.gross_revenue_sum &gt;&gt; 0 then i.net_revenue_sum * (p.actual_cpc_sum / i.gross_revenue_sum) else cast(null as float) end as &quot;Net Media Revenue&quot;,&#13;&#10;&#9;i.suppressed_by_route as &quot;Suppressed by Route&quot;,&#13;&#10;&#9;i.suppressed_by_unknown_hotel_city as &quot;Suppressed by Unknown Hotel City&quot;,&#13;&#10;&#9;i.suppressed_by_c13n_segment as &quot;Suppressed by Cannibalization Segment&quot;,&#13;&#10;&#9;i.suppressed_by_click_blackout as &quot;Suppressed by Click Blackout&quot;,&#13;&#10;&#9;i.suppressed_by_no_valid_layout as &quot;Suppressed by No Valid Layout&quot;,&#13;&#10;&#9;i.suppressed_by_publisher_traffic_share as &quot;Suppressed by Publisher Traffic Share&quot;,&#13;&#10;&#9;i.suppressed_by_c13n_above_threshold as &quot;Suppressed by Cannibalization Threshold&quot;,&#13;&#10;&#9;i.not_pure_low_converting_intentmedia_traffic_share_ad_call_count as &quot;Not Pure Low Value Intent Media Traffic Page Views&quot;,&#13;&#10;&#9;i.number_of_prechecks_served as &quot;Number of Prechecks Served&quot;,&#13;&#10;&#9;i.requested_number_of_prechecks as &quot;Requested Number of Prechecks&quot;&#13;&#10;from&#13;&#10;  (&#13;&#10;    select&#13;&#10;      aggregation_level_date_in_et as date_in_et,&#13;&#10;      ad_unit_id,&#13;&#10;      sum(ad_call_count) as ad_call_count,&#13;&#10;      sum(not_pure_ad_call_count) as not_pure_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_ad_call_count) as not_pure_low_converting_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_addressable_ad_call_count) as not_pure_low_converting_addressable_ad_call_count,&#13;&#10;      sum(pure_ad_call_count) as pure_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_ad_call_with_ads_count) as not_pure_low_converting_ad_call_with_ads_count,&#13;&#10;      sum(ad_unit_served_count) as ad_unit_served_count,&#13;&#10;      sum(impression_count) as impression_count,&#13;&#10;      sum(interaction_count) as interaction_count,&#13;&#10;      sum(click_count) as click_count,&#13;&#10;      sum(gross_revenue_sum) as gross_revenue_sum,&#13;&#10;      sum(available_impression_count) as available_impression_count,&#13;&#10;      sum(net_revenue_sum) as net_revenue_sum,&#13;&#10;      sum(pure_low_converting_ad_call_count) as pure_low_converting_ad_call_count,&#13;&#10;      sum(low_converting_ad_call_count) as low_converting_ad_call_count,&#13;&#10;      sum(suppressed_by_route) as suppressed_by_route,&#13;&#10;      0 as suppressed_by_unknown_hotel_city,&#13;&#10;      sum(suppressed_by_c13n_segment) as suppressed_by_c13n_segment,&#13;&#10;      sum(suppressed_by_click_blackout) as suppressed_by_click_blackout,&#13;&#10;      sum(suppressed_by_no_valid_layout) as suppressed_by_no_valid_layout,&#13;&#10;      sum(suppressed_by_publisher_traffic_share) as suppressed_by_publisher_traffic_share,&#13;&#10;      sum(suppressed_by_c13n_above_threshold) as suppressed_by_c13n_above_threshold,&#13;&#10;      sum(not_pure_low_converting_intentmedia_traffic_share_ad_call_count) as not_pure_low_converting_intentmedia_traffic_share_ad_call_count,&#13;&#10;      sum(number_of_prechecks_served) as number_of_prechecks_served,&#13;&#10;      sum(requested_number_of_prechecks) as requested_number_of_prechecks&#13;&#10;    from intent_media_production.air_ct_media_performance_aggregations acmpa&#13;&#10;    left join intent_media_production.ad_units au on acmpa.ad_unit_id = au.id&#13;&#10;    left join intent_media_production.sites s on s.id = au.site_id&#13;&#10;    where aggregation_level_date_in_et &gt;&gt;= au.reporting_start_date&#13;&#10;      and aggregation_level_date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;    group by&#13;&#10;      aggregation_level_date_in_et,&#13;&#10;      ad_unit_id&#13;&#10;  ) i&#13;&#10;left join&#13;&#10;&#9;(&#13;&#10;    select&#13;&#10;      acptpa.date_in_et,&#13;&#10;      acptpa.ad_unit_id,&#13;&#10;      sum(acptpa.click_count) as click_count,&#13;&#10;      sum(acptpa.click_conversion_count) as click_conversion_count,&#13;&#10;      sum(acptpa.actual_cpc_sum) as actual_cpc_sum,&#13;&#10;      sum(acptpa.click_conversion_value_sum) as click_conversion_value_sum,&#13;&#10;      sum(acptpa.interaction_count) as interaction_count&#13;&#10;    from intent_media_production.air_ct_placement_type_performance_aggregations acptpa&#13;&#10;    left join intent_media_production.ad_units au on au.id = acptpa.ad_unit_id&#13;&#10;    left join intent_media_production.sites s on s.id = au.site_id&#13;&#10;    where date_in_et &gt;&gt;= au.reporting_start_date&#13;&#10;      and date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;    group by&#13;&#10;      acptpa.date_in_et,&#13;&#10;      acptpa.ad_unit_id&#13;&#10;  ) p&#13;&#10;on i.date_in_et = p.date_in_et and i.ad_unit_id = p.ad_unit_id&#13;&#10;left join intent_media_production.ad_units au on p.ad_unit_id = au.id&#13;&#10;left join intent_media_production.sites s on au.site_id = s.id&#13;&#10;left join intent_media_production.entities e on e.id = s.publisher_id&#13;&#10;&#13;&#10;union&#13;&#10;&#13;&#10;/* HOTELS by Placement */&#13;&#10;select&#13;&#10;&#9;&apos;Hotels&apos; as &apos;Product Category Type&apos;,&#13;&#10;&#9;i.date_in_et as Date,&#13;&#10;&#9;(case&#13;&#10;&#9;  when e.name = &apos;Air Fast Tickets&apos; then &apos;AirFastTickets&apos;&#13;&#10;&#9;  when e.name = &apos;Amoma&apos; then &apos;AMOMA.com&apos;&#13;&#10;&#9;  when e.name = &apos;Bookit&apos; then &apos;BookIt.com&apos;&#13;&#10;&#9;  when e.name = &apos;Expedia&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Hotwire&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Travelocity on Expedia&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Kayak Software Corporation&apos; then &apos;KAYAK&apos;&#13;&#10;&#9;  when e.name = &apos;lastminute.com&apos; then &apos;Sabre Holdings&apos;&#13;&#10;&#9;  when e.name = &apos;Orbitz&apos; then &apos;Orbitz Worldwide, Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Oversee&apos; then &apos;Oversee.net&apos;&#13;&#10;    else e.name&#13;&#10;  end) as &quot;Publisher&quot;,&#13;&#10;&#9;s.display_name as &quot;Site&quot;,&#13;&#10;&#9;au.name as &quot;Ad Unit&quot;,&#13;&#10;&#9;p.&quot;Placement&quot;,&#13;&#10;&#9;p.is_prechecked as &quot;Placement is Prechecked&quot;,&#13;&#10;&#9;p.click_count as &quot;Clicks&quot;,&#13;&#10;&#9;p.click_conversion_count as &quot;Conversions&quot;,&#13;&#10;&#9;p.actual_cpc_sum as &quot;Gross Media Revenue&quot;,&#13;&#10;&#9;case when i.gross_revenue_sum &gt;&gt; 0 then (p.actual_cpc_sum / i.gross_revenue_sum) else cast(null as float) end as &quot;Revenue Proportion&quot;,&#13;&#10;&#9;p.click_conversion_value_sum as &quot;Conversion Value Sum&quot;,&#13;&#10;&#9;p.interaction_count as &quot;Interactions&quot;,&#13;&#10;&#9;i.ad_call_count as &quot;Page Views&quot;,&#13;&#10;&#9;i.not_pure_ad_call_count as &quot;Not Pure Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_ad_call_count as &quot;Not Pure Low Value Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_addressable_ad_call_count as &quot;Addressable Page Views&quot;,&#13;&#10;&#9;i.pure_ad_call_count as &quot;Pure Page Views&quot;,&#13;&#10;&#9;i.pure_low_converting_ad_call_count as &quot;Pure Low Value Page Views&quot;,&#13;&#10;&#9;i.low_converting_ad_call_count as &quot;Low Value Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_ad_call_with_ads_count as &quot;Fillable Pages&quot;,&#13;&#10;&#9;i.ad_unit_served_count as &quot;Pages Served&quot;,&#13;&#10;&#9;i.impression_count as &quot;Impressions&quot;,&#13;&#10;&#9;i.available_impression_count as &quot;Available Impressions&quot;,&#13;&#10;&#9;case when i.gross_revenue_sum &gt;&gt; 0 then i.net_revenue_sum * (p.actual_cpc_sum / i.gross_revenue_sum) else cast(null as float) end as &quot;Net Media Revenue&quot;,&#13;&#10;&#9;i.suppressed_by_route as &quot;Suppressed by Route&quot;,&#13;&#10;&#9;i.suppressed_by_unknown_hotel_city as &quot;Suppressed by Unknown Hotel City&quot;,&#13;&#10;&#9;i.suppressed_by_c13n_segment as &quot;Suppressed by Cannibalization Segment&quot;,&#13;&#10;&#9;i.suppressed_by_click_blackout as &quot;Suppressed by Click Blackout&quot;,&#13;&#10;&#9;i.suppressed_by_no_valid_layout as &quot;Suppressed by No Valid Layout&quot;,&#13;&#10;&#9;i.suppressed_by_publisher_traffic_share as &quot;Suppressed by Publisher Traffic Share&quot;,&#13;&#10;&#9;i.suppressed_by_c13n_above_threshold as &quot;Suppressed by Cannibalization Threshold&quot;,&#13;&#10;&#9;i.not_pure_low_converting_intentmedia_traffic_share_ad_call_count as &quot;Not Pure Low Value Intent Media Traffic Page Views&quot;,&#13;&#10;&#9;i.number_of_prechecks_served as &quot;Number of Prechecks Served&quot;,&#13;&#10;&#9;i.requested_number_of_prechecks as &quot;Requested Number of Prechecks&quot;&#13;&#10;from&#13;&#10;&#9;(&#13;&#10;    select&#13;&#10;      aggregation_level_date_in_et as date_in_et,&#13;&#10;      ad_unit_id,&#13;&#10;      sum(ad_call_count) as ad_call_count,&#13;&#10;      sum(not_pure_ad_call_count) as not_pure_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_ad_call_count) as not_pure_low_converting_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_addressable_ad_call_count) as not_pure_low_converting_addressable_ad_call_count,&#13;&#10;      sum(pure_ad_call_count) as pure_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_ad_call_with_ads_count) as not_pure_low_converting_ad_call_with_ads_count,&#13;&#10;      sum(served_ad_count) as ad_unit_served_count,&#13;&#10;      sum(impression_count) as impression_count,&#13;&#10;      sum(interaction_count) as interaction_count,&#13;&#10;      sum(click_count) as click_count,&#13;&#10;      sum(gross_revenue_sum) as gross_revenue_sum,&#13;&#10;      sum(available_impression_count) as available_impression_count,&#13;&#10;      sum(net_revenue_sum) as net_revenue_sum,&#13;&#10;      sum(pure_low_converting_ad_call_count) as pure_low_converting_ad_call_count,&#13;&#10;      sum(low_converting_ad_call_count) as low_converting_ad_call_count,&#13;&#10;      0 as suppressed_by_route,&#13;&#10;      sum(suppressed_by_unknown_hotel_destination) as suppressed_by_unknown_hotel_city,&#13;&#10;      0 as suppressed_by_c13n_segment,&#13;&#10;      sum(suppressed_by_click_blackout) as suppressed_by_click_blackout,&#13;&#10;      sum(suppressed_by_no_valid_layout) as suppressed_by_no_valid_layout,&#13;&#10;      sum(suppressed_by_publisher_traffic_share) as suppressed_by_publisher_traffic_share,&#13;&#10;      0 as suppressed_by_c13n_above_threshold,&#13;&#10;      sum(not_pure_low_converting_intentmedia_traffic_share_ad_call_count) as not_pure_low_converting_intentmedia_traffic_share_ad_call_count,&#13;&#10;      sum(number_of_prechecks_served) as number_of_prechecks_served,&#13;&#10;      sum(requested_number_of_prechecks) as requested_number_of_prechecks&#13;&#10;    from intent_media_production.hotel_ct_media_performance_aggregations hcmpa&#13;&#10;    left join intent_media_production.ad_units au on au.id = hcmpa.ad_unit_id&#13;&#10;    left join intent_media_production.sites s on s.id = au.site_id&#13;&#10;    where aggregation_level_date_in_et &gt;&gt;= au.reporting_start_date&#13;&#10;      and aggregation_level_date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;    group by&#13;&#10;      aggregation_level_date_in_et,&#13;&#10;      ad_unit_id&#13;&#10;&#9;) i&#13;&#10;left join&#13;&#10;&#9;(&#13;&#10;    select&#13;&#10;      hcptpa.date_in_et,&#13;&#10;      hcptpa.ad_unit_id,&#13;&#10;      (case hcptpa.placement_type&#13;&#10;        when &apos;CLIENT_DEFINED&apos; then &apos;Client Defined&apos;&#13;&#10;        when &apos;DIALOG&apos; then &apos;Dialog&apos;&#13;&#10;        when &apos;EXIT_OVERLAY&apos; then &apos;Exit Overlay&apos;&#13;&#10;        when &apos;EXIT_UNIT&apos; then &apos;Exit Unit&apos;&#13;&#10;        when &apos;FOOTER&apos; then &apos;Footer&apos;&#13;&#10;        when &apos;FORM_COMPARE&apos; then &apos;Form Compare&apos;&#13;&#10;        when &apos;INTER_CARD&apos; then &apos;Inter Card&apos;&#13;&#10;        when &apos;MAP&apos; then &apos;Map&apos;&#13;&#10;        when &apos;MINI_CARD&apos; then &apos;Mini Card&apos;&#13;&#10;        when &apos;RIGHT_RAIL&apos; then &apos;Right Rail&apos;&#13;&#10;        when &apos;SEARCH_FORM&apos; then &apos;Search Form&apos;&#13;&#10;        when &apos;TOASTER&apos; then &apos;Toaster&apos;&#13;&#10;        when &apos;TOP_CARD&apos; then &apos;Top Card&apos;&#13;&#10;        else hcptpa.placement_type&#13;&#10;      end) as &quot;Placement&quot;,&#13;&#10;      case is_prechecked when true then &apos;Precheck&apos; else &apos;Non-Precheck&apos; end as is_prechecked,&#13;&#10;      sum(hcptpa.click_count) as click_count,&#13;&#10;      sum(hcptpa.click_conversion_count) as click_conversion_count,&#13;&#10;      sum(hcptpa.actual_cpc_sum) as actual_cpc_sum,&#13;&#10;      sum(hcptpa.click_conversion_value_sum) as click_conversion_value_sum,&#13;&#10;      sum(hcptpa.interaction_count) as interaction_count&#13;&#10;    from intent_media_production.hotel_ct_placement_type_performance_aggregations hcptpa&#13;&#10;    left join intent_media_production.ad_units au on au.id = hcptpa.ad_unit_id&#13;&#10;    left join intent_media_production.sites s on s.id = au.site_id&#13;&#10;    where date_in_et &gt;&gt;= au.reporting_start_date&#13;&#10;      and date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;    group by&#13;&#10;      hcptpa.date_in_et,&#13;&#10;      hcptpa.ad_unit_id,&#13;&#10;      (case hcptpa.placement_type&#13;&#10;        when &apos;CLIENT_DEFINED&apos; then &apos;Client Defined&apos;&#13;&#10;        when &apos;DIALOG&apos; then &apos;Dialog&apos;&#13;&#10;        when &apos;EXIT_OVERLAY&apos; then &apos;Exit Overlay&apos;&#13;&#10;        when &apos;EXIT_UNIT&apos; then &apos;Exit Unit&apos;&#13;&#10;        when &apos;FOOTER&apos; then &apos;Footer&apos;&#13;&#10;        when &apos;FORM_COMPARE&apos; then &apos;Form Compare&apos;&#13;&#10;        when &apos;INTER_CARD&apos; then &apos;Inter Card&apos;&#13;&#10;        when &apos;MAP&apos; then &apos;Map&apos;&#13;&#10;        when &apos;MINI_CARD&apos; then &apos;Mini Card&apos;&#13;&#10;        when &apos;RIGHT_RAIL&apos; then &apos;Right Rail&apos;&#13;&#10;        when &apos;SEARCH_FORM&apos; then &apos;Search Form&apos;&#13;&#10;        when &apos;TOASTER&apos; then &apos;Toaster&apos;&#13;&#10;        when &apos;TOP_CARD&apos; then &apos;Top Card&apos;&#13;&#10;        else hcptpa.placement_type&#13;&#10;      end),&#13;&#10;      case is_prechecked when true then &apos;Precheck&apos; else &apos;Non-Precheck&apos; end&#13;&#10;  ) p&#13;&#10;on i.date_in_et = p.date_in_et and i.ad_unit_id = p.ad_unit_id&#13;&#10;left join intent_media_production.ad_units au on p.ad_unit_id = au.id&#13;&#10;left join intent_media_production.sites s on au.site_id = s.id&#13;&#10;left join intent_media_production.entities e on e.id = s.publisher_id&#13;&#10;&#13;&#10;union&#13;&#10;&#13;&#10;/* HOTELS by Total */&#13;&#10;select&#13;&#10;&#9;&apos;Hotels&apos; as &apos;Product Category Type&apos;,&#13;&#10;&#9;i.date_in_et as Date,&#13;&#10;&#9;(case&#13;&#10;&#9;  when e.name = &apos;Air Fast Tickets&apos; then &apos;AirFastTickets&apos;&#13;&#10;&#9;  when e.name = &apos;Amoma&apos; then &apos;AMOMA.com&apos;&#13;&#10;&#9;  when e.name = &apos;Bookit&apos; then &apos;BookIt.com&apos;&#13;&#10;&#9;  when e.name = &apos;Expedia&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Hotwire&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Travelocity on Expedia&apos; then &apos;Expedia Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Kayak Software Corporation&apos; then &apos;KAYAK&apos;&#13;&#10;&#9;  when e.name = &apos;lastminute.com&apos; then &apos;Sabre Holdings&apos;&#13;&#10;&#9;  when e.name = &apos;Orbitz&apos; then &apos;Orbitz Worldwide, Inc.&apos;&#13;&#10;&#9;  when e.name = &apos;Oversee&apos; then &apos;Oversee.net&apos;&#13;&#10;    else e.name&#13;&#10;  end) as &quot;Publisher&quot;,&#13;&#10;&#9;s.display_name as &quot;Site&quot;,&#13;&#10;&#9;au.name as &quot;Ad Unit&quot;,&#13;&#10;&#9;&apos;Total by Ad Unit&apos; as Placement,&#13;&#10;&#9;&apos;Total Ad Unit&apos; as &quot;Placement is Prechecked&quot;,&#13;&#10;&#9;p.click_count as &quot;Clicks&quot;,&#13;&#10;&#9;p.click_conversion_count as &quot;Conversions&quot;,&#13;&#10;&#9;p.actual_cpc_sum as &quot;Gross Media Revenue&quot;,&#13;&#10;&#9;case when i.gross_revenue_sum &gt;&gt; 0 then (p.actual_cpc_sum / i.gross_revenue_sum) else cast(null as float) end as &quot;Revenue Proportion&quot;,&#13;&#10;&#9;p.click_conversion_value_sum as &quot;Conversion Value Sum&quot;,&#13;&#10;&#9;p.interaction_count as &quot;Interactions&quot;,&#13;&#10;&#9;i.ad_call_count as &quot;Page Views&quot;,&#13;&#10;&#9;i.not_pure_ad_call_count as &quot;Not Pure Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_ad_call_count as &quot;Not Pure Low Value Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_addressable_ad_call_count as &quot;Addressable Page Views&quot;,&#13;&#10;&#9;i.pure_ad_call_count as &quot;Pure Page Views&quot;,&#13;&#10;&#9;i.pure_low_converting_ad_call_count as &quot;Pure Low Value Page Views&quot;,&#13;&#10;&#9;i.low_converting_ad_call_count as &quot;Low Value Page Views&quot;,&#13;&#10;&#9;i.not_pure_low_converting_ad_call_with_ads_count as &quot;Fillable Pages&quot;,&#13;&#10;&#9;i.ad_unit_served_count as &quot;Pages Served&quot;,&#13;&#10;&#9;i.impression_count as &quot;Impressions&quot;,&#13;&#10;&#9;i.available_impression_count as &quot;Available Impressions&quot;,&#13;&#10;&#9;case when i.gross_revenue_sum &gt;&gt; 0 then i.net_revenue_sum * (p.actual_cpc_sum / i.gross_revenue_sum) else cast(null as float) end as &quot;Net Media Revenue&quot;,&#13;&#10;&#9;i.suppressed_by_route as &quot;Suppressed by Route&quot;,&#13;&#10;&#9;i.suppressed_by_unknown_hotel_city as &quot;Suppressed by Unknown Hotel City&quot;,&#13;&#10;&#9;i.suppressed_by_c13n_segment as &quot;Suppressed by Cannibalization Segment&quot;,&#13;&#10;&#9;i.suppressed_by_click_blackout as &quot;Suppressed by Click Blackout&quot;,&#13;&#10;&#9;i.suppressed_by_no_valid_layout as &quot;Suppressed by No Valid Layout&quot;,&#13;&#10;&#9;i.suppressed_by_publisher_traffic_share as &quot;Suppressed by Publisher Traffic Share&quot;,&#13;&#10;&#9;i.suppressed_by_c13n_above_threshold as &quot;Suppressed by Cannibalization Threshold&quot;,&#13;&#10;&#9;i.not_pure_low_converting_intentmedia_traffic_share_ad_call_count as &quot;Not Pure Low Value Intent Media Traffic Page Views&quot;,&#13;&#10;&#9;i.number_of_prechecks_served as &quot;Number of Prechecks Served&quot;,&#13;&#10;&#9;i.requested_number_of_prechecks as &quot;Requested Number of Prechecks&quot;&#13;&#10;from&#13;&#10;&#9;(&#13;&#10;    select&#13;&#10;      hcmpa.aggregation_level_date_in_et as date_in_et,&#13;&#10;      hcmpa.ad_unit_id,&#13;&#10;      sum(ad_call_count) as ad_call_count,&#13;&#10;      sum(not_pure_ad_call_count) as not_pure_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_ad_call_count) as not_pure_low_converting_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_addressable_ad_call_count) as not_pure_low_converting_addressable_ad_call_count,&#13;&#10;      sum(pure_ad_call_count) as pure_ad_call_count,&#13;&#10;      sum(not_pure_low_converting_ad_call_with_ads_count) as not_pure_low_converting_ad_call_with_ads_count,&#13;&#10;      sum(served_ad_count) as ad_unit_served_count,&#13;&#10;      sum(impression_count) as impression_count,&#13;&#10;      sum(interaction_count) as interaction_count,&#13;&#10;      sum(click_count) as click_count,&#13;&#10;      sum(gross_revenue_sum) as gross_revenue_sum,&#13;&#10;      sum(available_impression_count) as available_impression_count,&#13;&#10;      sum(net_revenue_sum) as net_revenue_sum,&#13;&#10;      sum(pure_low_converting_ad_call_count) as pure_low_converting_ad_call_count,&#13;&#10;      sum(low_converting_ad_call_count) as low_converting_ad_call_count,&#13;&#10;      0 as suppressed_by_route,&#13;&#10;      sum(suppressed_by_unknown_hotel_destination) as suppressed_by_unknown_hotel_city,&#13;&#10;      0 as suppressed_by_c13n_segment,&#13;&#10;      sum(suppressed_by_click_blackout) as suppressed_by_click_blackout,&#13;&#10;      sum(suppressed_by_no_valid_layout) as suppressed_by_no_valid_layout,&#13;&#10;      sum(suppressed_by_publisher_traffic_share) as suppressed_by_publisher_traffic_share,&#13;&#10;      0 as suppressed_by_c13n_above_threshold,&#13;&#10;      sum(not_pure_low_converting_intentmedia_traffic_share_ad_call_count) as not_pure_low_converting_intentmedia_traffic_share_ad_call_count,&#13;&#10;      sum(number_of_prechecks_served) as number_of_prechecks_served,&#13;&#10;      sum(requested_number_of_prechecks) as requested_number_of_prechecks&#13;&#10;    from intent_media_production.hotel_ct_media_performance_aggregations hcmpa&#13;&#10;    left join intent_media_production.ad_units au on hcmpa.ad_unit_id = au.id&#13;&#10;    left join intent_media_production.sites s on s.id = au.site_id&#13;&#10;    where aggregation_level_date_in_et &gt;&gt;= au.reporting_start_date&#13;&#10;      and aggregation_level_date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;    group by&#13;&#10;      hcmpa.aggregation_level_date_in_et,&#13;&#10;      hcmpa.ad_unit_id&#13;&#10;  ) i&#13;&#10;left join&#13;&#10;&#9;(&#13;&#10;    select&#13;&#10;      hcptpa.date_in_et,&#13;&#10;      hcptpa.ad_unit_id,&#13;&#10;      sum(hcptpa.click_count) as click_count,&#13;&#10;      sum(hcptpa.click_conversion_count) as click_conversion_count,&#13;&#10;      sum(hcptpa.actual_cpc_sum) as actual_cpc_sum,&#13;&#10;      sum(hcptpa.click_conversion_value_sum) as click_conversion_value_sum,&#13;&#10;      sum(hcptpa.interaction_count) as interaction_count&#13;&#10;    from intent_media_production.hotel_ct_placement_type_performance_aggregations hcptpa&#13;&#10;    left join intent_media_production.ad_units au on au.id = hcptpa.ad_unit_id&#13;&#10;    left join intent_media_production.sites s on s.id = au.site_id&#13;&#10;    where date_in_et &gt;&gt;= au.reporting_start_date&#13;&#10;      and date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;    group by&#13;&#10;      hcptpa.date_in_et,&#13;&#10;      hcptpa.ad_unit_id&#13;&#10;  ) p&#13;&#10;on i.date_in_et = p.date_in_et and i.ad_unit_id = p.ad_unit_id&#13;&#10;left join intent_media_production.ad_units au on p.ad_unit_id = au.id&#13;&#10;left join intent_media_production.sites s on au.site_id = s.id&#13;&#10;left join intent_media_production.entities e on e.id = s.publisher_id&#13;&#10;</relation>
+        <refresh increment-key='' incremental-updates='false'>
+        </refresh>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[:Measure Names]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;[placement_data].[sum:Requested Number of Prechecks:qk]&quot;' value='Number of Prechecks Requested' />
+          <alias key='&quot;[placement_data].[usr:Addressable:qk]&quot;' value='% Addressable' />
+          <alias key='&quot;[placement_data].[usr:Calculation_3430322153857371:qk]&quot;' value='Qualified after Unknown Hotel City %' />
+          <alias key='&quot;[placement_data].[usr:Not Pure Low Converting:qk]&quot;' value='% Not Pure Low Value' />
+          <alias key='&quot;[placement_data].[usr:Suppressed by Business Rules \%:qk]&quot;' value='Qualified after Business Rules %' />
+          <alias key='&quot;[placement_data].[usr:Suppressed by Business Rules Other \%:qk]&quot;' value='Qualified after Business Rules Other %' />
+          <alias key='&quot;[placement_data].[usr:Suppressed by Cannibalization Threshold \%:qk]&quot;' value='Qualified after Cannibalization Threshold %' />
+          <alias key='&quot;[placement_data].[usr:Suppressed by Click Blackout \%:qk]&quot;' value='Qualified after Click Blackout %' />
+          <alias key='&quot;[placement_data].[usr:Suppressed by No Valid Layout \%:qk]&quot;' value='Qualified after No Valid Layout %' />
+        </aliases>
+      </column>
+      <column datatype='string' name='[Ad Unit + Placement]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='[Ad Unit] + &quot; &quot; + [Placement]' />
+      </column>
+      <column datatype='real' default-format='p0.0%' name='[Addressable]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Addressable Page Views])/sum([Page Views])' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Available eCPM]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Gross Media Revenue])/sum([Page Views])*1000' scope-isolation='false' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[CPC]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Gross Media Revenue])/sum([Clicks])' />
+      </column>
+      <column datatype='real' default-format='p0.0%' name='[CTR]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Clicks])/sum([Pages Served])' />
+      </column>
+      <column caption='Product Category Filter' datatype='string' name='[Calculation_1980322152539214]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 1] = &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Parameters].[Parameter 1] = [Product Category Type] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+      </column>
+      <column caption='% Intent Media Traffic Share' datatype='real' default-format='p0.0%' name='[Calculation_2491231162412519]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Calculation_8460102172528083])/SUM([Not Pure Low Value Page Views])' scope-isolation='false' />
+      </column>
+      <column caption='Qualified after Unknown Hotel City %' datatype='real' name='[Calculation_3430322153857371]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='1-Sum([Suppressed by Unknown Hotel City])/Sum([Addressable Page Views])' scope-isolation='false' />
+      </column>
+      <column caption='Not Pure, Low Value, Intent Media Traffic Page Views' datatype='integer' name='[Calculation_8460102172528083]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Date] &gt;= #December 3, 2013# THEN [Not Pure Low Value Intent Media Traffic Page Views] ELSE [Not Pure Low Value Page Views] END' scope-isolation='false' />
+      </column>
+      <column datatype='real' default-format='n#,##0.0;-#,##0.0' name='[Clicks per Interaction]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Clicks])/sum([Interactions])' />
+      </column>
+      <column datatype='string' name='[Color]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Placement] = &quot;Total&quot; THEN &quot;Total&quot; END' />
+      </column>
+      <column datatype='datetime' default-format='S' name='[Date Axis]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='CASE [Parameters].[Aggregated By]&#13;&#10;WHEN &quot;Day&quot; THEN [Date]&#13;&#10;WHEN &quot;Week&quot; THEN DATETRUNC(&apos;week&apos;, [Date])&#13;&#10;WHEN &quot;Month&quot; THEN DATETRUNC(&apos;month&apos;,[Date])&#13;&#10;END' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Gross Media Revenue]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='real' default-format='p0.0%' name='[Interaction Rate]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Interactions])/sum([Pages Served])' />
+      </column>
+      <column caption='% Low Value' datatype='real' name='[Low Converting]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='Sum([Not Pure Low Value Page Views])/Sum([Not Pure Page Views])' scope-isolation='false' />
+      </column>
+      <column datatype='real' default-format='c&quot;$&quot;#,##0.00;(&quot;$&quot;#,##0.00)' name='[Net Media Revenue]' role='measure' type='quantitative'>
+      </column>
+      <column caption='% Not Pure Low Value' datatype='real' name='[Not Pure Low Converting]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='Sum([Not Pure Low Value Page Views])/Sum([Page Views])' scope-isolation='false' />
+      </column>
+      <column datatype='real' name='[Not Pure]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='Sum([Not Pure Page Views])/Sum([Page Views])' />
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='string' name='[Page]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF CONTAINS([Ad Unit], &quot;Exit Unit&quot;) THEN &quot;Exit Unit&quot;&#13;&#10;ELSEIF CONTAINS([Ad Unit],&quot;Flight List Page&quot;) THEN &quot;List Page&quot;&#13;&#10;ELSE [Ad Unit]&#13;&#10;END' />
+      </column>
+      <column datatype='integer' name='[Requested Number of Prechecks]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='real' default-format='n#,##0.0000;-#,##0.0000' name='[Revenue Proportion]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Served eCPM]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Gross Media Revenue])/sum([Pages Served])*1000' />
+      </column>
+      <column caption='Qualified after All Business Rules %' datatype='real' name='[Suppressed by Business Rules %]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Addressable Page Views])/SUM([Calculation_8460102172528083])' scope-isolation='false' />
+      </column>
+      <column caption='Qualified after Other Business Rules %' datatype='real' name='[Suppressed by Business Rules Other %]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='(SUM([Addressable Page Views]) + SUM([Suppressed by Click Blackout]))/SUM([Calculation_8460102172528083])' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Suppressed by Business Rules Other]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Calculation_8460102172528083]) - SUM([Addressable Page Views]) - SUM([Suppressed by Click Blackout])' scope-isolation='false' />
+      </column>
+      <column caption='Qualified after All Business Rules' datatype='integer' name='[Suppressed by Business Rules]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Calculation_8460102172528083]) - SUM([Addressable Page Views])' scope-isolation='false' />
+      </column>
+      <column caption='Qualified after Cannibalization Threshold %' datatype='real' name='[Suppressed by Cannibalization Threshold %]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='1-Sum([Suppressed by Cannibalization Threshold])/Sum([Addressable Page Views])' scope-isolation='false' />
+      </column>
+      <column caption='Qualified after Click Blackout %' datatype='real' name='[Suppressed by Click Blackout %]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='1-Sum([Suppressed by Click Blackout])/Sum([Calculation_8460102172528083])' scope-isolation='false' />
+      </column>
+      <column caption='Qualified after No Valid Layout %' datatype='real' name='[Suppressed by No Valid Layout %]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='1-Sum([Suppressed by No Valid Layout])/Sum([Addressable Page Views])' scope-isolation='false' />
+      </column>
+      <column-instance column='[Requested Number of Prechecks]' derivation='Sum' name='[sum:Requested Number of Prechecks:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Addressable]' derivation='User' name='[usr:Addressable:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_3430322153857371]' derivation='User' name='[usr:Calculation_3430322153857371:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Not Pure Low Converting]' derivation='User' name='[usr:Not Pure Low Converting:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Suppressed by Business Rules %]' derivation='User' name='[usr:Suppressed by Business Rules %:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Suppressed by Business Rules Other %]' derivation='User' name='[usr:Suppressed by Business Rules Other %:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Suppressed by Cannibalization Threshold %]' derivation='User' name='[usr:Suppressed by Cannibalization Threshold %:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Suppressed by Click Blackout %]' derivation='User' name='[usr:Suppressed by Click Blackout %:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Suppressed by No Valid Layout %]' derivation='User' name='[usr:Suppressed by No Valid Layout %:qk]' pivot='key' type='quantitative' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='\\tsclient\data\Tableau\data\aft_placement_report.tde' schema='Extract' tablename='Extract' update-time='2/17/2015 6:46:22 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Ad Unit + Placement]' formula='[Ad Unit] + &quot; &quot; + [Placement]' />
+            <calculation column='[Calculation_8460102172528083]' formula='IF [Date] &gt;= #December 3, 2013# THEN [Not Pure Low Value Intent Media Traffic Page Views] ELSE [Not Pure Low Value Page Views] END' />
+            <calculation column='[Color]' formula='IF [Placement] = &quot;Total&quot; THEN &quot;Total&quot; END' />
+            <calculation column='[Number of Records]' formula='1' />
+            <calculation column='[Page]' formula='IF CONTAINS([Ad Unit], &quot;Exit Unit&quot;) THEN &quot;Exit Unit&quot;&#13;&#10;ELSEIF CONTAINS([Ad Unit],&quot;Flight List Page&quot;) THEN &quot;List Page&quot;&#13;&#10;ELSE [Ad Unit]&#13;&#10;END' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='101203' timestamp-start='2015-02-17 18:46:22.367000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.348635' measure-ordering='alphabetic' measure-percentage='0.413151' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column datatype='string' name='[Aggregated By]' param-domain-type='list' role='measure' type='nominal' value='&quot;Day&quot;'>
+          <calculation class='tableau' formula='&quot;Day&quot;' />
+          <members>
+            <member value='&quot;Day&quot;' />
+            <member value='&quot;Week&quot;' />
+            <member value='&quot;Month&quot;' />
+          </members>
+        </column>
+        <column caption='Product Category' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Total&quot;'>
+          <calculation class='tableau' formula='&quot;Total&quot;' />
+          <members>
+            <member value='&quot;Total&quot;' />
+            <member value='&quot;Flights&quot;' />
+            <member value='&quot;Hotels&quot;' />
+          </members>
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='placement_data'>
+      <datasources>
+        <datasource caption='sca_placement_report' name='placement_data' />
+      </datasources>
+      <datasource-dependencies datasource='placement_data'>
+        <column datatype='string' name='[Publisher]' role='dimension' type='nominal'>
+        </column>
+        <column datatype='string' name='[Site]' role='dimension' type='nominal'>
+        </column>
+        <column-instance column='[Publisher]' derivation='None' name='[none:Publisher:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Site]' derivation='None' name='[none:Site:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[placement_data].[none:Publisher:nk]'>
+        <groupfilter from='&quot;Air Fast Tickets&quot;' function='range' level='[none:Publisher:nk]' to='&quot;Webjet Marketing North America, LLC&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[placement_data].[none:Site:nk]'>
+        <groupfilter from='&quot;AirFastTickets&quot;' function='range' level='[none:Site:nk]' to='&quot;Webjet&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='CSV Download'>
+      <repository-location derived-from='http://production-tableau-server-1.internal.intentmedia.net/workbooks/AfTPlacementReport/CSVDownload?rev=' id='CSVDownload' path='/workbooks/AfTPlacementReport' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sca_placement_report' name='placement_data' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='placement_data'>
+            <column datatype='string' name='[Ad Unit]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='integer' name='[Addressable Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Available Impressions]' role='measure' type='quantitative'>
+            </column>
+            <column caption='Product Category Filter' datatype='string' name='[Calculation_1980322152539214]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 1] = &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Parameters].[Parameter 1] = [Product Category Type] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column datatype='integer' name='[Clicks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' name='[Conversion Value Sum]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Conversions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='integer' name='[Fillable Pages]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Gross Media Revenue]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Impressions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Interactions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Low Value Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='c&quot;$&quot;#,##0.00;(&quot;$&quot;#,##0.00)' name='[Net Media Revenue]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Not Pure Low Value Intent Media Traffic Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Not Pure Low Value Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Not Pure Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Number of Prechecks Served]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Pages Served]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Placement is Prechecked]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Placement]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Product Category Type]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Publisher]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='integer' name='[Pure Low Value Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Pure Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Requested Number of Prechecks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Site]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='integer' name='[Suppressed by Business Rules Other]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Calculation_8460102172528083]) - SUM([Addressable Page Views]) - SUM([Suppressed by Click Blackout])' scope-isolation='false' />
+            </column>
+            <column datatype='integer' name='[Suppressed by Cannibalization Segment]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Suppressed by Cannibalization Threshold]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Suppressed by Click Blackout]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Suppressed by No Valid Layout]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Suppressed by Route]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Suppressed by Unknown Hotel City]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Ad Unit]' derivation='None' name='[none:Ad Unit:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1980322152539214]' derivation='None' name='[none:Calculation_1980322152539214:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='None' name='[none:Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Date]' derivation='None' name='[none:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Placement is Prechecked]' derivation='None' name='[none:Placement is Prechecked:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Placement]' derivation='None' name='[none:Placement:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Type]' derivation='None' name='[none:Product Category Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Publisher]' derivation='None' name='[none:Publisher:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Site]' derivation='None' name='[none:Site:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Addressable Page Views]' derivation='Sum' name='[sum:Addressable Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Available Impressions]' derivation='Sum' name='[sum:Available Impressions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Clicks]' derivation='Sum' name='[sum:Clicks:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Conversion Value Sum]' derivation='Sum' name='[sum:Conversion Value Sum:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Conversions]' derivation='Sum' name='[sum:Conversions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Fillable Pages]' derivation='Sum' name='[sum:Fillable Pages:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Gross Media Revenue]' derivation='Sum' name='[sum:Gross Media Revenue:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Impressions]' derivation='Sum' name='[sum:Impressions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Interactions]' derivation='Sum' name='[sum:Interactions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Low Value Page Views]' derivation='Sum' name='[sum:Low Value Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Net Media Revenue]' derivation='Sum' name='[sum:Net Media Revenue:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Not Pure Low Value Intent Media Traffic Page Views]' derivation='Sum' name='[sum:Not Pure Low Value Intent Media Traffic Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Not Pure Low Value Page Views]' derivation='Sum' name='[sum:Not Pure Low Value Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Not Pure Page Views]' derivation='Sum' name='[sum:Not Pure Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Number of Prechecks Served]' derivation='Sum' name='[sum:Number of Prechecks Served:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Page Views]' derivation='Sum' name='[sum:Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Pages Served]' derivation='Sum' name='[sum:Pages Served:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Pure Low Value Page Views]' derivation='Sum' name='[sum:Pure Low Value Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Pure Page Views]' derivation='Sum' name='[sum:Pure Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Requested Number of Prechecks]' derivation='Sum' name='[sum:Requested Number of Prechecks:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Cannibalization Segment]' derivation='Sum' name='[sum:Suppressed by Cannibalization Segment:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Cannibalization Threshold]' derivation='Sum' name='[sum:Suppressed by Cannibalization Threshold:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Click Blackout]' derivation='Sum' name='[sum:Suppressed by Click Blackout:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by No Valid Layout]' derivation='Sum' name='[sum:Suppressed by No Valid Layout:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Route]' derivation='Sum' name='[sum:Suppressed by Route:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Unknown Hotel City]' derivation='Sum' name='[sum:Suppressed by Unknown Hotel City:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Business Rules Other]' derivation='User' name='[usr:Suppressed by Business Rules Other:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[placement_data].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Available Impressions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Clicks:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Conversions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Conversion Value Sum:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Gross Media Revenue:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Impressions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Interactions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Net Media Revenue:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Low Value Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Not Pure Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Not Pure Low Value Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Addressable Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Fillable Pages:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Pages Served:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Pure Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Pure Low Value Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Not Pure Low Value Intent Media Traffic Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Suppressed by Cannibalization Segment:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Suppressed by Click Blackout:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Suppressed by Route:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Suppressed by Unknown Hotel City:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Suppressed by Business Rules Other:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Suppressed by No Valid Layout:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Suppressed by Cannibalization Threshold:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Number of Prechecks Served:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Requested Number of Prechecks:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[placement_data].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[placement_data].[sum:Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Available Impressions:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Clicks:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Conversions:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Conversion Value Sum:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Gross Media Revenue:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Impressions:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Interactions:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Net Media Revenue:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Low Value Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Not Pure Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Not Pure Low Value Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Addressable Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Fillable Pages:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Pages Served:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Pure Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Pure Low Value Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Not Pure Low Value Intent Media Traffic Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Suppressed by Cannibalization Segment:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Suppressed by Click Blackout:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Suppressed by Route:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Suppressed by Unknown Hotel City:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Suppressed by Business Rules Other:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Suppressed by No Valid Layout:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Suppressed by Cannibalization Threshold:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <filter class='categorical' column='[placement_data].[none:Calculation_1980322152539214:nk]'>
+            <groupfilter function='member' level='[none:Calculation_1980322152539214:nk]' member='&quot;Keep&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <sort class='natural' column='[placement_data].[none:Date:ok]' direction='DESC' />
+          <filter class='quantitative' column='[placement_data].[none:Date:qk]' included-values='all'>
+          </filter>
+          <slices>
+            <column>[placement_data].[:Measure Names]</column>
+            <column>[placement_data].[none:Calculation_1980322152539214:nk]</column>
+            <column>[placement_data].[none:Date:qk]</column>
+            <column>[placement_data].[none:Site:nk]</column>
+            <column>[placement_data].[none:Publisher:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[placement_data].[:Measure Names]' value='108' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='off' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[placement_data].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([placement_data].[none:Date:ok] / ([placement_data].[none:Product Category Type:nk] / ([placement_data].[none:Site:nk] / ([placement_data].[none:Ad Unit:nk] / ([placement_data].[none:Placement:nk] / [placement_data].[none:Placement is Prechecked:nk])))))</rows>
+        <cols>[placement_data].[:Measure Names]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Data Table'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sca_placement_report' name='placement_data' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='placement_data'>
+            <column datatype='string' name='[Ad Unit]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='integer' name='[Addressable Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='p0.0%' name='[Addressable]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Addressable Page Views])/sum([Page Views])' />
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Available eCPM]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Gross Media Revenue])/sum([Page Views])*1000' scope-isolation='false' />
+            </column>
+            <column datatype='real' default-format='p0.0%' name='[CTR]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Clicks])/sum([Pages Served])' />
+            </column>
+            <column caption='Product Category Filter' datatype='string' name='[Calculation_1980322152539214]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 1] = &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Parameters].[Parameter 1] = [Product Category Type] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column caption='% Intent Media Traffic Share' datatype='real' default-format='p0.0%' name='[Calculation_2491231162412519]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Calculation_8460102172528083])/SUM([Not Pure Low Value Page Views])' scope-isolation='false' />
+            </column>
+            <column caption='Qualified after Unknown Hotel City %' datatype='real' name='[Calculation_3430322153857371]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='1-Sum([Suppressed by Unknown Hotel City])/Sum([Addressable Page Views])' scope-isolation='false' />
+            </column>
+            <column caption='Not Pure, Low Value, Intent Media Traffic Page Views' datatype='integer' name='[Calculation_8460102172528083]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Date] &gt;= #December 3, 2013# THEN [Not Pure Low Value Intent Media Traffic Page Views] ELSE [Not Pure Low Value Page Views] END' scope-isolation='false' />
+            </column>
+            <column datatype='real' default-format='n#,##0.0;-#,##0.0' name='[Clicks per Interaction]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Clicks])/sum([Interactions])' />
+            </column>
+            <column datatype='integer' name='[Clicks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='datetime' default-format='S' name='[Date Axis]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Aggregated By]&#13;&#10;WHEN &quot;Day&quot; THEN [Date]&#13;&#10;WHEN &quot;Week&quot; THEN DATETRUNC(&apos;week&apos;, [Date])&#13;&#10;WHEN &quot;Month&quot; THEN DATETRUNC(&apos;month&apos;,[Date])&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Gross Media Revenue]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='p0.0%' name='[Interaction Rate]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Interactions])/sum([Pages Served])' />
+            </column>
+            <column datatype='integer' name='[Interactions]' role='measure' type='quantitative'>
+            </column>
+            <column caption='% Low Value' datatype='real' name='[Low Converting]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='Sum([Not Pure Low Value Page Views])/Sum([Not Pure Page Views])' scope-isolation='false' />
+            </column>
+            <column datatype='real' default-format='c&quot;$&quot;#,##0.00;(&quot;$&quot;#,##0.00)' name='[Net Media Revenue]' role='measure' type='quantitative'>
+            </column>
+            <column caption='% Not Pure Low Value' datatype='real' name='[Not Pure Low Converting]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='Sum([Not Pure Low Value Page Views])/Sum([Page Views])' scope-isolation='false' />
+            </column>
+            <column datatype='real' name='[Not Pure]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='Sum([Not Pure Page Views])/Sum([Page Views])' />
+            </column>
+            <column datatype='integer' name='[Number of Prechecks Served]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Page Views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Pages Served]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Placement is Prechecked]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Placement]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Product Category Type]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Publisher]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='integer' name='[Requested Number of Prechecks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='n#,##0.0000;-#,##0.0000' name='[Revenue Proportion]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Served eCPM]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Gross Media Revenue])/sum([Pages Served])*1000' />
+            </column>
+            <column datatype='string' name='[Site]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Qualified after All Business Rules %' datatype='real' name='[Suppressed by Business Rules %]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Addressable Page Views])/SUM([Calculation_8460102172528083])' scope-isolation='false' />
+            </column>
+            <column caption='Qualified after Other Business Rules %' datatype='real' name='[Suppressed by Business Rules Other %]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='(SUM([Addressable Page Views]) + SUM([Suppressed by Click Blackout]))/SUM([Calculation_8460102172528083])' scope-isolation='false' />
+            </column>
+            <column caption='Qualified after Cannibalization Threshold %' datatype='real' name='[Suppressed by Cannibalization Threshold %]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='1-Sum([Suppressed by Cannibalization Threshold])/Sum([Addressable Page Views])' scope-isolation='false' />
+            </column>
+            <column caption='Qualified after Click Blackout %' datatype='real' name='[Suppressed by Click Blackout %]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='1-Sum([Suppressed by Click Blackout])/Sum([Calculation_8460102172528083])' scope-isolation='false' />
+            </column>
+            <column caption='Qualified after No Valid Layout %' datatype='real' name='[Suppressed by No Valid Layout %]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='1-Sum([Suppressed by No Valid Layout])/Sum([Addressable Page Views])' scope-isolation='false' />
+            </column>
+            <column-instance column='[Ad Unit]' derivation='None' name='[none:Ad Unit:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1980322152539214]' derivation='None' name='[none:Calculation_1980322152539214:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Axis]' derivation='None' name='[none:Date Axis:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Date]' derivation='None' name='[none:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Placement is Prechecked]' derivation='None' name='[none:Placement is Prechecked:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Placement]' derivation='None' name='[none:Placement:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Type]' derivation='None' name='[none:Product Category Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Publisher]' derivation='None' name='[none:Publisher:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Site]' derivation='None' name='[none:Site:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Addressable Page Views]' derivation='Sum' name='[sum:Addressable Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_8460102172528083]' derivation='Sum' name='[sum:Calculation_8460102172528083:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Clicks]' derivation='Sum' name='[sum:Clicks:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Gross Media Revenue]' derivation='Sum' name='[sum:Gross Media Revenue:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Interactions]' derivation='Sum' name='[sum:Interactions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Net Media Revenue]' derivation='Sum' name='[sum:Net Media Revenue:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Number of Prechecks Served]' derivation='Sum' name='[sum:Number of Prechecks Served:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Page Views]' derivation='Sum' name='[sum:Page Views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Pages Served]' derivation='Sum' name='[sum:Pages Served:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Requested Number of Prechecks]' derivation='Sum' name='[sum:Requested Number of Prechecks:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Revenue Proportion]' derivation='Sum' name='[sum:Revenue Proportion:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Addressable]' derivation='User' name='[usr:Addressable:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Available eCPM]' derivation='User' name='[usr:Available eCPM:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[CTR]' derivation='User' name='[usr:CTR:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_2491231162412519]' derivation='User' name='[usr:Calculation_2491231162412519:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_3430322153857371]' derivation='User' name='[usr:Calculation_3430322153857371:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Clicks per Interaction]' derivation='User' name='[usr:Clicks per Interaction:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Interaction Rate]' derivation='User' name='[usr:Interaction Rate:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Low Converting]' derivation='User' name='[usr:Low Converting:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Not Pure Low Converting]' derivation='User' name='[usr:Not Pure Low Converting:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Not Pure]' derivation='User' name='[usr:Not Pure:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Served eCPM]' derivation='User' name='[usr:Served eCPM:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Business Rules %]' derivation='User' name='[usr:Suppressed by Business Rules %:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Business Rules Other %]' derivation='User' name='[usr:Suppressed by Business Rules Other %:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Cannibalization Threshold %]' derivation='User' name='[usr:Suppressed by Cannibalization Threshold %:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by Click Blackout %]' derivation='User' name='[usr:Suppressed by Click Blackout %:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Suppressed by No Valid Layout %]' derivation='User' name='[usr:Suppressed by No Valid Layout %:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[placement_data].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Not Pure:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Low Converting:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Not Pure Low Converting:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Calculation_2491231162412519:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Calculation_8460102172528083:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Suppressed by Click Blackout \%:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Suppressed by Business Rules Other \%:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Suppressed by Business Rules \%:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Addressable:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Addressable Page Views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Calculation_3430322153857371:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Suppressed by No Valid Layout \%:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Suppressed by Cannibalization Threshold \%:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Pages Served:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Interaction Rate:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Interactions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Clicks per Interaction:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:CTR:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Clicks:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Gross Media Revenue:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Net Media Revenue:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Available eCPM:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[usr:Served eCPM:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Number of Prechecks Served:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[placement_data].[sum:Requested Number of Prechecks:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[placement_data].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[placement_data].[sum:Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Not Pure:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Low Converting:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Not Pure Low Converting:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Calculation_2491231162412519:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Calculation_8460102172528083:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Suppressed by Click Blackout \%:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Suppressed by Business Rules Other \%:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Suppressed by Business Rules \%:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Addressable:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Addressable Page Views:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Calculation_3430322153857371:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Suppressed by No Valid Layout \%:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Suppressed by Cannibalization Threshold \%:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Pages Served:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Interaction Rate:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Interactions:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Clicks per Interaction:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:CTR:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Clicks:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Gross Media Revenue:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Revenue Proportion:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[sum:Net Media Revenue:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Available eCPM:qk]&quot;</bucket>
+              <bucket>&quot;[placement_data].[usr:Served eCPM:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <filter class='categorical' column='[placement_data].[none:Calculation_1980322152539214:nk]'>
+            <groupfilter function='member' level='[none:Calculation_1980322152539214:nk]' member='&quot;Keep&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <sort class='natural' column='[placement_data].[none:Date Axis:ok]' direction='DESC' />
+          <filter class='quantitative' column='[placement_data].[none:Date:qk]' included-values='all'>
+          </filter>
+          <filter class='categorical' column='[placement_data].[none:Placement:nk]'>
+            <groupfilter function='level-members' level='[none:Placement:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[placement_data].[:Measure Names]</column>
+            <column>[placement_data].[none:Calculation_1980322152539214:nk]</column>
+            <column>[placement_data].[none:Placement:nk]</column>
+            <column>[placement_data].[none:Date:qk]</column>
+            <column>[placement_data].[none:Publisher:nk]</column>
+            <column>[placement_data].[none:Site:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[placement_data].[:Measure Names]' value='98' />
+            <format attr='text-format' field='[placement_data].[usr:Not Pure:qk]' value='p0.0%' />
+            <format attr='text-format' field='[placement_data].[usr:Low Converting:qk]' value='p0.0%' />
+            <format attr='text-format' field='[placement_data].[usr:Suppressed by Click Blackout %:qk]' value='p0.0%' />
+            <format attr='text-format' field='[placement_data].[usr:Not Pure Low Converting:qk]' value='p0.0%' />
+            <format attr='text-format' field='[placement_data].[usr:Suppressed by Business Rules %:qk]' value='p0.0%' />
+            <format attr='text-format' field='[placement_data].[usr:Suppressed by No Valid Layout %:qk]' value='p0.0%' />
+            <format attr='text-format' field='[placement_data].[usr:Suppressed by Business Rules Other %:qk]' value='p0.0%' />
+            <format attr='text-format' field='[placement_data].[usr:Suppressed by Cannibalization Threshold %:qk]' value='p0.0%' />
+            <format attr='text-format' field='[placement_data].[usr:Calculation_3430322153857371:qk]' value='p0.0%' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='height' field='[placement_data].[:Measure Names]' value='72' />
+            <format attr='width' field='[placement_data].[none:Placement:nk]' value='72' />
+            <format attr='width' field='[placement_data].[none:Ad Unit:nk]' value='172' />
+            <format attr='width' field='[placement_data].[none:Placement is Prechecked:nk]' value='96' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' field='[placement_data].[:Measure Names]' value='center' />
+            <format attr='font-weight' field='[placement_data].[:Measure Names]' value='bold' />
+            <format attr='font-weight' field='[placement_data].[none:Placement:nk]' value='normal' />
+            <format attr='font-weight' field='[placement_data].[none:Date Axis:ok]' value='bold' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='band-color' scope='rows' value='#00000000' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='band-level' scope='rows' value='1' />
+            <format attr='band-size' scope='rows' value='1' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='off' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[placement_data].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='size' value='1.10667884349823' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([placement_data].[none:Date Axis:ok] / ([placement_data].[none:Product Category Type:nk] / ([placement_data].[none:Site:nk] / ([placement_data].[none:Ad Unit:nk] / ([placement_data].[none:Placement:nk] / [placement_data].[none:Placement is Prechecked:nk])))))</rows>
+        <cols>[placement_data].[:Measure Names]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Data by Placement'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Performance by Placement</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://production-tableau-server-1.internal.intentmedia.net/workbooks/AfTPlacementReport/DatabyPlacement?rev=' id='DatabyPlacement' path='/workbooks/AfTPlacementReport' revision='' />
+      <style>
+      </style>
+      <size maxheight='1200' maxwidth='2600' minheight='1200' minwidth='2600' />
+      <zones>
+        <zone h='100000' id='5' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='8' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='3332' id='7' type='title' w='100000' x='0' y='0'>
+            </zone>
+            <zone h='96668' id='4' param='horz' type='layout-flow' w='100000' x='0' y='3332'>
+              <zone h='96668' id='2' type='layout-basic' w='99846' x='0' y='3332'>
+                <zone h='96668' id='1' name='Data Table' w='91115' x='8731' y='3332'>
+                </zone>
+                <zone fixed-size='155' h='96668' id='3' is-fixed='true' param='vert' type='layout-flow' w='8731' x='0' y='3332'>
+                  <zone h='6749' id='12' param='[Parameters].[Parameter 1]' type='paramctrl' w='8731' x='0' y='3332'>
+                  </zone>
+                  <zone h='6749' id='6' param='[Parameters].[Aggregated By]' type='paramctrl' w='8731' x='0' y='10081'>
+                  </zone>
+                  <zone h='5416' id='15' name='Data Table' param='[placement_data].[none:Date:qk]' type='filter' w='8731' x='0' y='16830'>
+                  </zone>
+                  <zone h='36833' id='13' name='Data Table' param='[placement_data].[none:Publisher:nk]' type='filter' w='8731' x='0' y='22246'>
+                  </zone>
+                  <zone h='40921' id='14' name='Data Table' param='[placement_data].[none:Site:nk]' type='filter' w='8731' x='0' y='59079'>
+                  </zone>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Data Table'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='195'>
+            <card mode='compact' param='[Parameters].[Aggregated By]' type='parameter' />
+            <card mode='compact' param='[Parameters].[Parameter 1]' type='parameter' />
+            <card param='[placement_data].[none:Date:qk]' show-null-ctrls='false' type='filter' />
+            <card param='[placement_data].[none:Publisher:nk]' type='filter' />
+            <card param='[placement_data].[none:Site:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[Parameters].[Publisher]</field>
+          <field>[mysql.40997.681632395834].[:Measure Names]</field>
+          <field>[mysql.40997.681632395834].[none:Ad Unit:nk]</field>
+          <field>[mysql.40997.681632395834].[none:Date:nk]</field>
+          <field>[mysql.40997.681632395834].[none:Date:qk]</field>
+          <field>[mysql.40997.681632395834].[none:Placement:nk]</field>
+          <field>[mysql.40997.681632395834].[none:Site:nk]</field>
+          <field>[placement_data].[none:Calculation_1980322152539214:nk]</field>
+          <field>[placement_data].[none:Number of Prechecks Served:qk]</field>
+          <field>[placement_data].[none:Placement is Prechecked:nk]</field>
+          <field>[placement_data].[none:Product Category Type:nk]</field>
+          <field>[placement_data].[none:Publisher:nk]</field>
+          <field>[placement_data].[none:Site:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='0' name='Data by Placement'>
+      <zones>
+        <zone name='Data Table'>
+          <viewpoint>
+            <zoom type='fit-width' />
+          </viewpoint>
+        </zone>
+        <zone mode='list' name='' param='[Parameters].[Parameter 1]' type='paramctrl' />
+        <zone mode='list' name='' param='[Parameters].[Aggregated By]' type='paramctrl' />
+        <zone name='Data Table' param='[placement_data].[none:Date:qk]' show-null-ctrls='false' type='filter' />
+      </zones>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='CSV Download'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='list' param='[Parameters].[Parameter 1]' type='parameter' />
+            <card param='[placement_data].[none:Date:qk]' show-null-ctrls='false' type='filter' />
+            <card param='[placement_data].[none:Publisher:nk]' type='filter' />
+            <card param='[placement_data].[none:Site:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[placement_data].[none:Date:qk]</field>
+          <field>[placement_data].[none:Placement is Prechecked:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Data Table' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='Data by Placement' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='CSV Download' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>

@@ -1,0 +1,2535 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.2' xml:base='http://production-tableau-server-1.internal.intentmedia.net' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8100.14.0213.2024                -->
+  <repository-location derived-from='http://production-tableau-server-1.internal.intentmedia.net/workbooks/AfTAdvertiserReportforAdvertisers?rev=1.5' id='AfTAdvertiserReportforAdvertisersWithDateOption' path='/t/PreQA/workbooks' revision='1.1' site='PreQA' />
+  <preferences>
+  </preferences>
+  <style-theme name='modern' />
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='8.2'>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+        <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+        <members>
+          <member value='&quot;Aeromexico&quot;' />
+          <member value='&quot;Air Canada&quot;' />
+          <member value='&quot;Air Canada - Marketel&quot;' />
+          <member value='&quot;Air France&quot;' />
+          <member value='&quot;Airfarewatchdog&quot;' />
+          <member value='&quot;AirFastTickets&quot;' />
+          <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+          <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+          <member value='&quot;AirTicketsDirect&quot;' />
+          <member value='&quot;Alaska Airlines&quot;' />
+          <member value='&quot;American Airlines&quot;' />
+          <member value='&quot;American Airlines Fare Sale&quot;' />
+          <member value='&quot;American Airlines Vacation&quot;' />
+          <member value='&quot;Apple Vacations&quot;' />
+          <member value='&quot;Apple Vacations-ads &quot;' />
+          <member value='&quot;Aston Hotels&quot;' />
+          <member value='&quot;BMI&quot;' />
+          <member value='&quot;Booking.com-ads&quot;' />
+          <member value='&quot;Booking.com-Meta&quot;' />
+          <member value='&quot;bookit.com&quot;' />
+          <member value='&quot;British Airways&quot;' />
+          <member value='&quot;BudgetAir&quot;' />
+          <member value='&quot;BudgetAir.ca&quot;' />
+          <member value='&quot;Caesars&quot;' />
+          <member value='&quot;Cathay Pacific&quot;' />
+          <member value='&quot;Cathay Pacific - Canada&quot;' />
+          <member value='&quot;CheapFareGuru&quot;' />
+          <member value='&quot;CheapOair&quot;' />
+          <member value='&quot;CheapOair- Europe ads&quot;' />
+          <member value='&quot;CheapOair-Canada&quot;' />
+          <member value='&quot;CheapTickets-Ads&quot;' />
+          <member value='&quot;Cheaptickets-Meta&quot;' />
+          <member value='&quot;Crowne Plaza&quot;' />
+          <member value='&quot;DealBase&quot;' />
+          <member value='&quot;Delta&quot;' />
+          <member value='&quot;Edreams&quot;' />
+          <member value='&quot;eDreams - Europe&quot;' />
+          <member value='&quot;Emirates Airlines&quot;' />
+          <member value='&quot;Expedia - UK&quot;' />
+          <member value='&quot;Expedia-Ads&quot;' />
+          <member value='&quot;Expedia-Meta&quot;' />
+          <member value='&quot;Explore Trip&quot;' />
+          <member value='&quot;FareBoom-ads&quot;' />
+          <member value='&quot;FlightHub&quot;' />
+          <member value='&quot;FlightNetwork&quot;' />
+          <member value='&quot;Fly.com&quot;' />
+          <member value='&quot;Fly.com - UK&quot;' />
+          <member value='&quot;FlyFar&quot;' />
+          <member value='&quot;Frontier Airlines&quot;' />
+          <member value='&quot;Globester&quot;' />
+          <member value='&quot;Groupon-Ads&quot;' />
+          <member value='&quot;Hawaiian Airlines&quot;' />
+          <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+          <member value='&quot;Hilton Hotels&quot;' />
+          <member value='&quot;Hipmunk-Ads&quot;' />
+          <member value='&quot;Holiday Inn&quot;' />
+          <member value='&quot;Holiday Inn Express&quot;' />
+          <member value='&quot;Hotels.com-Ads&quot;' />
+          <member value='&quot;Hotels.com-Meta&quot;' />
+          <member value='&quot;Hotwire-Ads&quot;' />
+          <member value='&quot;Indian Eagle&quot;' />
+          <member value='&quot;JetaPort&quot;' />
+          <member value='&quot;JetBlue&quot;' />
+          <member value='&quot;Jetsetter-ads&quot;' />
+          <member value='&quot;Jetsetz&quot;' />
+          <member value='&quot;Justairticket-ads&quot;' />
+          <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+          <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+          <member value='&quot;La Quinta&quot;' />
+          <member value='&quot;LAN Airlines&quot;' />
+          <member value='&quot;LatinOFare-ads&quot;' />
+          <member value='&quot;Marriott Hotels&quot;' />
+          <member value='&quot;Melia Hotels-Ads&quot;' />
+          <member value='&quot;Mobissimo&quot;' />
+          <member value='&quot;Momondo&quot;' />
+          <member value='&quot;One Travel&quot;' />
+          <member value='&quot;Orbitz-ads-on-Network&quot;' />
+          <member value='&quot;Orbitz-Meta&quot;' />
+          <member value='&quot;OWW-ads-on-CTIX&quot;' />
+          <member value='&quot;Priceline-Ads&quot;' />
+          <member value='&quot;Priceline-Meta&quot;' />
+          <member value='&quot;Qatar Airways&quot;' />
+          <member value='&quot;Red Roof Inn&quot;' />
+          <member value='&quot;Rocketmiles&quot;' />
+          <member value='&quot;Room 77&quot;' />
+          <member value='&quot;Skyscanner-ads&quot;' />
+          <member value='&quot;SmartFares&quot;' />
+          <member value='&quot;South African Airlines&quot;' />
+          <member value='&quot;Starwood Hotels&quot;' />
+          <member value='&quot;Student Universe&quot;' />
+          <member value='&quot;TAM Airlines&quot;' />
+          <member value='&quot;Tingo&quot;' />
+          <member value='&quot;Travel Ticker&quot;' />
+          <member value='&quot;Travelation&quot;' />
+          <member value='&quot;Travelocity-Ads&quot;' />
+          <member value='&quot;Travelocity-Meta&quot;' />
+          <member value='&quot;Travelocity.ca&quot;' />
+          <member value='&quot;Travelstart&quot;' />
+          <member value='&quot;TripAdvisor&quot;' />
+          <member value='&quot;TripAdvisor-Europe&quot;' />
+          <member value='&quot;Tripping.com&quot;' />
+          <member value='&quot;Trivago&quot;' />
+          <member value='&quot;United Airlines&quot;' />
+          <member value='&quot;Vayama&quot;' />
+          <member value='&quot;Vegas.com-ads&quot;' />
+          <member value='&quot;Virgin America&quot;' />
+          <member value='&quot;Virgin Atlantic&quot;' />
+          <member value='&quot;Webjet&quot;' />
+          <member value='&quot;Webjet.ca&quot;' />
+          <member value='&quot;Westin Hotels&quot;' />
+        </members>
+      </column>
+      <column caption='Aggregated By' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Day&quot;'>
+        <calculation class='tableau' formula='&quot;Day&quot;' />
+        <members>
+          <member value='&quot;Day&quot;' />
+          <member value='&quot;Week&quot;' />
+        </members>
+      </column>
+      <column caption='Product Category' datatype='string' name='[Product Category]' param-domain-type='list' role='measure' type='nominal' value='&quot;Total&quot;'>
+        <calculation class='tableau' formula='&quot;Total&quot;' />
+        <members>
+          <member value='&quot;Total&quot;' />
+          <member value='&quot;Flights&quot;' />
+          <member value='&quot;Hotels&quot;' />
+          <member value='&quot;Meta&quot;' />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption='hotel_meta_advertiser_report_for_advertisers' inline='true' name='aft_advertiser_report_for_advertisers (copy)' version='8.2'>
+      <connection class='vertica' dbname='intent_media' expected-driver-version='7.0' odbc-connect-string-extras='ConnectionLoadBalance=1' odbc-native-protocol='yes' one-time-sql='' port='5433' server='production-vertica-cluster-1.internal.intentmedia.net' server-oauth='' username='tableau' workgroup-auth-mode='prompt'>
+        <relation name='TableauSQL' type='text'>&#13;&#10;select&#13;&#10;&#9;&apos;Flights&apos; as &quot;Product Category Type&quot;,&#13;&#10;&#9;e.name as &quot;Advertiser Name&quot;,&#13;&#10;&#9;performance.*,&#13;&#10;&#9;revenue_metrics.Impressions,&#13;&#10;&#9;revenue_metrics.Clicks,&#13;&#10;&#9;revenue_metrics.Spend,&#13;&#10;&#9;revenue_metrics.&quot;Click Conversions&quot;,&#13;&#10;&#9;revenue_metrics.&quot;View Conversions&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Click Revenue&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Exposed Revenue&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Auction Position Sum&quot;&#13;&#10;from&#13;&#10;&#9;(select&#13;&#10;&#9;&#9;aggregation_level_date_in_et as Date,&#13;&#10;&#9;&#9;advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;&#9;sum(page_served_count) as &quot;Pages Served&quot;&#13;&#10;&#9;from intent_media_production.air_ct_advertiser_performance_aggregations&#13;&#10;&#9;group by aggregation_level_date_in_et, advertiser_id) performance&#13;&#10;left join&#13;&#10;&#9;(select&#13;&#10;&#9;&#9;acapra.date_in_et as Date,&#13;&#10;&#9;&#9;acapra.advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;&#9;sum(acapra.impression_count) as Impressions,&#13;&#10;&#9;&#9;sum(acapra.click_count) as Clicks,&#13;&#10;&#9;&#9;sum(acapra.actual_cpc_sum) as Spend,&#13;&#10;&#9;&#9;sum(acapra.click_conversion_count) as &quot;Click Conversions&quot;,&#13;&#10;&#9;&#9;sum(acapra.exposed_conversion_count) as &quot;View Conversions&quot;,&#13;&#10;&#9;&#9;sum(acapra.click_conversion_value_sum) as &quot;Click Revenue&quot;,&#13;&#10;&#9;&#9;sum(acapra.exposed_conversion_value_sum) as &quot;Exposed Revenue&quot;,&#13;&#10;&#9;&#9;sum(acapra.auction_position_sum) as &quot;Auction Position Sum&quot;&#13;&#10;&#9;from intent_media_production.air_ct_advertiser_performance_report_aggregations acapra&#13;&#10;&#9;group by acapra.&quot;date_in_et&quot;, acapra.&quot;advertiser_id&quot;) revenue_metrics&#13;&#10;on performance.Date = revenue_metrics.Date&#13;&#10;and performance.&quot;Advertiser ID&quot; = revenue_metrics.&quot;Advertiser ID&quot;&#13;&#10;left join intent_media_production.entities e on performance.&quot;Advertiser ID&quot; = e.id&#13;&#10;&#13;&#10;union&#13;&#10;&#13;&#10;&#13;&#10;select&#13;&#10;&#9;&apos;Hotels&apos; as &quot;Product Category Type&quot;,&#13;&#10;&#9;e.name as &quot;Advertiser Name&quot;,&#13;&#10;&#9;performance.*,&#13;&#10;&#9;revenue_metrics.Impressions,&#13;&#10;&#9;revenue_metrics.Clicks,&#13;&#10;&#9;revenue_metrics.Spend,&#13;&#10;&#9;revenue_metrics.&quot;Click Conversions&quot;,&#13;&#10;&#9;revenue_metrics.&quot;View Conversions&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Click Revenue&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Exposed Revenue&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Auction Position Sum&quot;&#13;&#10;from&#13;&#10;&#9;(select&#13;&#10;&#9;&#9;aggregation_level_date_in_et as Date,&#13;&#10;&#9;&#9;advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;&#9;sum(impression_count+filtered_ad_count) as &quot;Pages Served&quot;&#13;&#10;&#9;from intent_media_production.hotel_ct_impression_share_report_aggregations&#13;&#10;&#9;group by aggregation_level_date_in_et, advertiser_id) performance&#13;&#10;left join&#13;&#10;&#9;(select&#13;&#10;&#9;&#9;acapra.date_in_et as Date,&#13;&#10;&#9;&#9;acapra.advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;&#9;sum(acapra.impression_count) as Impressions,&#13;&#10;&#9;&#9;sum(acapra.click_count) as Clicks,&#13;&#10;&#9;&#9;sum(acapra.actual_cpc_sum) as Spend,&#13;&#10;&#9;&#9;sum(acapra.click_conversion_count) as &quot;Click Conversions&quot;,&#13;&#10;&#9;&#9;sum(acapra.exposed_conversion_count) as &quot;View Conversions&quot;,&#13;&#10;&#9;&#9;sum(acapra.click_conversion_value_sum) as &quot;Click Revenue&quot;,&#13;&#10;&#9;&#9;sum(acapra.exposed_conversion_value_sum) as &quot;Exposed Revenue&quot;,&#13;&#10;&#9;&#9;sum(acapra.auction_position_sum) as &quot;Auction Position Sum&quot;&#13;&#10;&#9;from intent_media_production.hotel_ct_advertiser_performance_report_aggregations acapra&#13;&#10;&#9;group by acapra.&quot;date_in_et&quot;, acapra.&quot;advertiser_id&quot;) revenue_metrics&#13;&#10;on performance.Date = revenue_metrics.Date&#13;&#10;and performance.&quot;Advertiser ID&quot; = revenue_metrics.&quot;Advertiser ID&quot;&#13;&#10;left join intent_media_production.entities e on performance.&quot;Advertiser ID&quot; = e.id&#13;&#10;&#13;&#10;union&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;select&#13;&#10;&#9;&apos;Meta&apos; as &quot;Product Category Type&quot;,&#13;&#10;&#9;entities.name as &quot;Advertiser Name&quot;,&#13;&#10;&#9;acapra.date_in_et as Date,&#13;&#10;&#9;entities.id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;sum(acapra.filtered_ad_count + acapra.impression_count) as &quot;Pages Served&quot;,&#13;&#10;&#9;sum(acapra.impression_count) as Impressions,&#13;&#10;&#9;sum(acapra.click_count) as Clicks,&#13;&#10;&#9;sum(acapra.actual_cpc_sum) as Spend,&#13;&#10;&#9;cast(null as int) as &quot;Click Conversions&quot;,&#13;&#10;&#9;cast(null as int) as &quot;View Conversions&quot;,&#13;&#10;&#9;cast(null as float) as &quot;Click Revenue&quot;,&#13;&#10;&#9;cast(null as float) as &quot;Exposed Revenue&quot;,&#13;&#10;&#9;sum(acapra.auction_position_sum) as &quot;Auction Position Sum&quot;&#13;&#10;from intent_media_production.hotel_meta_advertiser_performance_aggregations acapra&#13;&#10;left join intent_media_production.entities on acapra.advertiser_id = entities.id&#13;&#10;left join intent_media_production.ad_groups on acapra.ad_group_id = ad_groups.id&#13;&#10;left join intent_media_production.campaigns on ad_groups.campaign_id = campaigns.id&#13;&#10;where acapra.date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;and acapra.date_in_et &gt;&gt; &apos;2014-01-14&apos;&#13;&#10;group by entities.name, acapra.date_in_et, entities.id&#13;&#10;</relation>
+      </connection>
+      <aliases enabled='yes' />
+      <column aggregation='Sum' datatype='integer' name='[Advertiser ID]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Average Position]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Auction Position Sum])/sum([Impressions Nulled])' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[CPC]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Spend])/sum([Clicks Nulled])' />
+      </column>
+      <column datatype='real' default-format='p0.0%' name='[CTR]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Clicks])/sum([Impressions Nulled])' />
+      </column>
+      <column caption='Date Axis' datatype='date' name='[Calculation_3510409144857232]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;    WHEN &quot;Day&quot; THEN DATE([Date])&#13;&#10;    WHEN &quot;Week&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[Date]))&#13;&#10;END' scope-isolation='false' />
+      </column>
+      <column caption='Filtered Ads Nulled' datatype='integer' name='[Calculation_5210102160009994]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF SUM([Pages Served])- SUM([Impressions]) &gt; 0 THEN SUM([Pages Served])- SUM([Impressions]) END' scope-isolation='false' />
+      </column>
+      <column caption='Filtered Ads' datatype='integer' name='[Calculation_6100110125516732]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Pages Served])-SUM([Impressions])' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Clicks Nulled]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Clicks]&gt;0 THEN [Clicks] END' />
+      </column>
+      <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+      </column>
+      <column datatype='real' default-format='p0.0%' name='[Impression Share]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Impressions Nulled])/(SUM([Impressions Nulled]) + [Calculation_5210102160009994])' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Impressions Nulled]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Impressions]&gt;0 THEN [Impressions] END' />
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Spend Nulled]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Spend]&gt;0 THEN [Spend] END' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Spend]' role='measure' type='quantitative'>
+      </column>
+      <column-instance column='[Impressions Nulled]' derivation='Sum' name='[sum:Impressions Nulled:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_6100110125516732]' derivation='User' name='[usr:Calculation_6100110125516732:qk]' pivot='key' type='quantitative' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='\\psf\Home\Documents\My Tableau Repository\Datasources\aft_advertiser_report_for_advert.tde' schema='Extract' tablename='Extract' update-time='4/10/2014 8:08:37 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Clicks Nulled]' formula='IF [Clicks]&gt;0 THEN [Clicks] END' />
+            <calculation column='[Impressions Nulled]' formula='IF [Impressions]&gt;0 THEN [Impressions] END' />
+            <calculation column='[Number of Records]' formula='1' />
+            <calculation column='[Spend Nulled]' formula='IF [Spend]&gt;0 THEN [Spend] END' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='41607' timestamp-start='2014-04-10 20:08:37.609000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.310174' measure-ordering='alphabetic' measure-percentage='0.544665' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#006ba4'>
+              <bucket>&quot;[aft_advertiser_report_for_advertisers (copy)].[sum:Impressions Nulled:qk]&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;[aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_6100110125516732:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column caption='Aggregated By' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Day&quot;'>
+          <calculation class='tableau' formula='&quot;Day&quot;' />
+          <members>
+            <member value='&quot;Day&quot;' />
+            <member value='&quot;Week&quot;' />
+          </members>
+        </column>
+        <column caption='Product Category' datatype='string' name='[Product Category]' param-domain-type='list' role='measure' type='nominal' value='&quot;Total&quot;'>
+          <calculation class='tableau' formula='&quot;Total&quot;' />
+          <members>
+            <member value='&quot;Total&quot;' />
+            <member value='&quot;Flights&quot;' />
+            <member value='&quot;Hotels&quot;' />
+            <member value='&quot;Meta&quot;' />
+          </members>
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='aft_advertiser_report_for_advertisers (copy)'>
+      <datasources>
+        <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+      </datasources>
+      <datasource-dependencies datasource='Parameters'>
+        <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+          <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+          <members>
+            <member value='&quot;Aeromexico&quot;' />
+            <member value='&quot;Air Canada&quot;' />
+            <member value='&quot;Air Canada - Marketel&quot;' />
+            <member value='&quot;Air France&quot;' />
+            <member value='&quot;Airfarewatchdog&quot;' />
+            <member value='&quot;AirFastTickets&quot;' />
+            <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+            <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+            <member value='&quot;AirTicketsDirect&quot;' />
+            <member value='&quot;Alaska Airlines&quot;' />
+            <member value='&quot;American Airlines&quot;' />
+            <member value='&quot;American Airlines Fare Sale&quot;' />
+            <member value='&quot;American Airlines Vacation&quot;' />
+            <member value='&quot;Apple Vacations&quot;' />
+            <member value='&quot;Apple Vacations-ads &quot;' />
+            <member value='&quot;Aston Hotels&quot;' />
+            <member value='&quot;BMI&quot;' />
+            <member value='&quot;Booking.com-ads&quot;' />
+            <member value='&quot;Booking.com-Meta&quot;' />
+            <member value='&quot;bookit.com&quot;' />
+            <member value='&quot;British Airways&quot;' />
+            <member value='&quot;BudgetAir&quot;' />
+            <member value='&quot;BudgetAir.ca&quot;' />
+            <member value='&quot;Caesars&quot;' />
+            <member value='&quot;Cathay Pacific&quot;' />
+            <member value='&quot;Cathay Pacific - Canada&quot;' />
+            <member value='&quot;CheapFareGuru&quot;' />
+            <member value='&quot;CheapOair&quot;' />
+            <member value='&quot;CheapOair- Europe ads&quot;' />
+            <member value='&quot;CheapOair-Canada&quot;' />
+            <member value='&quot;CheapTickets-Ads&quot;' />
+            <member value='&quot;Cheaptickets-Meta&quot;' />
+            <member value='&quot;Crowne Plaza&quot;' />
+            <member value='&quot;DealBase&quot;' />
+            <member value='&quot;Delta&quot;' />
+            <member value='&quot;Edreams&quot;' />
+            <member value='&quot;eDreams - Europe&quot;' />
+            <member value='&quot;Emirates Airlines&quot;' />
+            <member value='&quot;Expedia - UK&quot;' />
+            <member value='&quot;Expedia-Ads&quot;' />
+            <member value='&quot;Expedia-Meta&quot;' />
+            <member value='&quot;Explore Trip&quot;' />
+            <member value='&quot;FareBoom-ads&quot;' />
+            <member value='&quot;FlightHub&quot;' />
+            <member value='&quot;FlightNetwork&quot;' />
+            <member value='&quot;Fly.com&quot;' />
+            <member value='&quot;Fly.com - UK&quot;' />
+            <member value='&quot;FlyFar&quot;' />
+            <member value='&quot;Frontier Airlines&quot;' />
+            <member value='&quot;Globester&quot;' />
+            <member value='&quot;Groupon-Ads&quot;' />
+            <member value='&quot;Hawaiian Airlines&quot;' />
+            <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+            <member value='&quot;Hilton Hotels&quot;' />
+            <member value='&quot;Hipmunk-Ads&quot;' />
+            <member value='&quot;Holiday Inn&quot;' />
+            <member value='&quot;Holiday Inn Express&quot;' />
+            <member value='&quot;Hotels.com-Ads&quot;' />
+            <member value='&quot;Hotels.com-Meta&quot;' />
+            <member value='&quot;Hotwire-Ads&quot;' />
+            <member value='&quot;Indian Eagle&quot;' />
+            <member value='&quot;JetaPort&quot;' />
+            <member value='&quot;JetBlue&quot;' />
+            <member value='&quot;Jetsetter-ads&quot;' />
+            <member value='&quot;Jetsetz&quot;' />
+            <member value='&quot;Justairticket-ads&quot;' />
+            <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+            <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+            <member value='&quot;La Quinta&quot;' />
+            <member value='&quot;LAN Airlines&quot;' />
+            <member value='&quot;LatinOFare-ads&quot;' />
+            <member value='&quot;Marriott Hotels&quot;' />
+            <member value='&quot;Melia Hotels-Ads&quot;' />
+            <member value='&quot;Mobissimo&quot;' />
+            <member value='&quot;Momondo&quot;' />
+            <member value='&quot;One Travel&quot;' />
+            <member value='&quot;Orbitz-ads-on-Network&quot;' />
+            <member value='&quot;Orbitz-Meta&quot;' />
+            <member value='&quot;OWW-ads-on-CTIX&quot;' />
+            <member value='&quot;Priceline-Ads&quot;' />
+            <member value='&quot;Priceline-Meta&quot;' />
+            <member value='&quot;Qatar Airways&quot;' />
+            <member value='&quot;Red Roof Inn&quot;' />
+            <member value='&quot;Rocketmiles&quot;' />
+            <member value='&quot;Room 77&quot;' />
+            <member value='&quot;Skyscanner-ads&quot;' />
+            <member value='&quot;SmartFares&quot;' />
+            <member value='&quot;South African Airlines&quot;' />
+            <member value='&quot;Starwood Hotels&quot;' />
+            <member value='&quot;Student Universe&quot;' />
+            <member value='&quot;TAM Airlines&quot;' />
+            <member value='&quot;Tingo&quot;' />
+            <member value='&quot;Travel Ticker&quot;' />
+            <member value='&quot;Travelation&quot;' />
+            <member value='&quot;Travelocity-Ads&quot;' />
+            <member value='&quot;Travelocity-Meta&quot;' />
+            <member value='&quot;Travelocity.ca&quot;' />
+            <member value='&quot;Travelstart&quot;' />
+            <member value='&quot;TripAdvisor&quot;' />
+            <member value='&quot;TripAdvisor-Europe&quot;' />
+            <member value='&quot;Tripping.com&quot;' />
+            <member value='&quot;Trivago&quot;' />
+            <member value='&quot;United Airlines&quot;' />
+            <member value='&quot;Vayama&quot;' />
+            <member value='&quot;Vegas.com-ads&quot;' />
+            <member value='&quot;Virgin America&quot;' />
+            <member value='&quot;Virgin Atlantic&quot;' />
+            <member value='&quot;Webjet&quot;' />
+            <member value='&quot;Webjet.ca&quot;' />
+            <member value='&quot;Westin Hotels&quot;' />
+          </members>
+        </column>
+      </datasource-dependencies>
+      <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+        <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+        </column>
+        <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+        </column>
+        <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]'>
+        <groupfilter expression='[Advertiser Name] = [Parameters].[Advertiser]' function='filter' user:ui-marker='filter-by'>
+          <groupfilter function='level-members' level='[none:Advertiser Name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+        </groupfilter>
+      </filter>
+      <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]'>
+        <groupfilter function='member' level='[none:Product Category Filter:nk]' member='&quot;Keep&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='Average Position'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+              <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+              <members>
+                <member value='&quot;Aeromexico&quot;' />
+                <member value='&quot;Air Canada&quot;' />
+                <member value='&quot;Air Canada - Marketel&quot;' />
+                <member value='&quot;Air France&quot;' />
+                <member value='&quot;Airfarewatchdog&quot;' />
+                <member value='&quot;AirFastTickets&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+                <member value='&quot;AirTicketsDirect&quot;' />
+                <member value='&quot;Alaska Airlines&quot;' />
+                <member value='&quot;American Airlines&quot;' />
+                <member value='&quot;American Airlines Fare Sale&quot;' />
+                <member value='&quot;American Airlines Vacation&quot;' />
+                <member value='&quot;Apple Vacations&quot;' />
+                <member value='&quot;Apple Vacations-ads &quot;' />
+                <member value='&quot;Aston Hotels&quot;' />
+                <member value='&quot;BMI&quot;' />
+                <member value='&quot;Booking.com-ads&quot;' />
+                <member value='&quot;Booking.com-Meta&quot;' />
+                <member value='&quot;bookit.com&quot;' />
+                <member value='&quot;British Airways&quot;' />
+                <member value='&quot;BudgetAir&quot;' />
+                <member value='&quot;BudgetAir.ca&quot;' />
+                <member value='&quot;Caesars&quot;' />
+                <member value='&quot;Cathay Pacific&quot;' />
+                <member value='&quot;Cathay Pacific - Canada&quot;' />
+                <member value='&quot;CheapFareGuru&quot;' />
+                <member value='&quot;CheapOair&quot;' />
+                <member value='&quot;CheapOair- Europe ads&quot;' />
+                <member value='&quot;CheapOair-Canada&quot;' />
+                <member value='&quot;CheapTickets-Ads&quot;' />
+                <member value='&quot;Cheaptickets-Meta&quot;' />
+                <member value='&quot;Crowne Plaza&quot;' />
+                <member value='&quot;DealBase&quot;' />
+                <member value='&quot;Delta&quot;' />
+                <member value='&quot;Edreams&quot;' />
+                <member value='&quot;eDreams - Europe&quot;' />
+                <member value='&quot;Emirates Airlines&quot;' />
+                <member value='&quot;Expedia - UK&quot;' />
+                <member value='&quot;Expedia-Ads&quot;' />
+                <member value='&quot;Expedia-Meta&quot;' />
+                <member value='&quot;Explore Trip&quot;' />
+                <member value='&quot;FareBoom-ads&quot;' />
+                <member value='&quot;FlightHub&quot;' />
+                <member value='&quot;FlightNetwork&quot;' />
+                <member value='&quot;Fly.com&quot;' />
+                <member value='&quot;Fly.com - UK&quot;' />
+                <member value='&quot;FlyFar&quot;' />
+                <member value='&quot;Frontier Airlines&quot;' />
+                <member value='&quot;Globester&quot;' />
+                <member value='&quot;Groupon-Ads&quot;' />
+                <member value='&quot;Hawaiian Airlines&quot;' />
+                <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+                <member value='&quot;Hilton Hotels&quot;' />
+                <member value='&quot;Hipmunk-Ads&quot;' />
+                <member value='&quot;Holiday Inn&quot;' />
+                <member value='&quot;Holiday Inn Express&quot;' />
+                <member value='&quot;Hotels.com-Ads&quot;' />
+                <member value='&quot;Hotels.com-Meta&quot;' />
+                <member value='&quot;Hotwire-Ads&quot;' />
+                <member value='&quot;Indian Eagle&quot;' />
+                <member value='&quot;JetaPort&quot;' />
+                <member value='&quot;JetBlue&quot;' />
+                <member value='&quot;Jetsetter-ads&quot;' />
+                <member value='&quot;Jetsetz&quot;' />
+                <member value='&quot;Justairticket-ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+                <member value='&quot;La Quinta&quot;' />
+                <member value='&quot;LAN Airlines&quot;' />
+                <member value='&quot;LatinOFare-ads&quot;' />
+                <member value='&quot;Marriott Hotels&quot;' />
+                <member value='&quot;Melia Hotels-Ads&quot;' />
+                <member value='&quot;Mobissimo&quot;' />
+                <member value='&quot;Momondo&quot;' />
+                <member value='&quot;One Travel&quot;' />
+                <member value='&quot;Orbitz-ads-on-Network&quot;' />
+                <member value='&quot;Orbitz-Meta&quot;' />
+                <member value='&quot;OWW-ads-on-CTIX&quot;' />
+                <member value='&quot;Priceline-Ads&quot;' />
+                <member value='&quot;Priceline-Meta&quot;' />
+                <member value='&quot;Qatar Airways&quot;' />
+                <member value='&quot;Red Roof Inn&quot;' />
+                <member value='&quot;Rocketmiles&quot;' />
+                <member value='&quot;Room 77&quot;' />
+                <member value='&quot;Skyscanner-ads&quot;' />
+                <member value='&quot;SmartFares&quot;' />
+                <member value='&quot;South African Airlines&quot;' />
+                <member value='&quot;Starwood Hotels&quot;' />
+                <member value='&quot;Student Universe&quot;' />
+                <member value='&quot;TAM Airlines&quot;' />
+                <member value='&quot;Tingo&quot;' />
+                <member value='&quot;Travel Ticker&quot;' />
+                <member value='&quot;Travelation&quot;' />
+                <member value='&quot;Travelocity-Ads&quot;' />
+                <member value='&quot;Travelocity-Meta&quot;' />
+                <member value='&quot;Travelocity.ca&quot;' />
+                <member value='&quot;Travelstart&quot;' />
+                <member value='&quot;TripAdvisor&quot;' />
+                <member value='&quot;TripAdvisor-Europe&quot;' />
+                <member value='&quot;Tripping.com&quot;' />
+                <member value='&quot;Trivago&quot;' />
+                <member value='&quot;United Airlines&quot;' />
+                <member value='&quot;Vayama&quot;' />
+                <member value='&quot;Vegas.com-ads&quot;' />
+                <member value='&quot;Virgin America&quot;' />
+                <member value='&quot;Virgin Atlantic&quot;' />
+                <member value='&quot;Webjet&quot;' />
+                <member value='&quot;Webjet.ca&quot;' />
+                <member value='&quot;Westin Hotels&quot;' />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Average Position]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Auction Position Sum])/sum([Impressions Nulled])' />
+            </column>
+            <column caption='Date Axis' datatype='date' name='[Calculation_3510409144857232]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;    WHEN &quot;Day&quot; THEN DATE([Date])&#13;&#10;    WHEN &quot;Week&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[Date]))&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_3510409144857232]' derivation='None' name='[none:Calculation_3510409144857232:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Average Position]' derivation='User' name='[usr:Average Position:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+            <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='subtitle' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:qk]' scope='rows' value='true' />
+            <encoding attr='space' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:qk]' field-type='quantitative' max='5.0' min='1.0' range-type='fixed' reverse='true' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:qk]</rows>
+        <cols>[aft_advertiser_report_for_advertisers (copy)].[none:Calculation_3510409144857232:qk]</cols>
+        <show-full-range>
+          <column>[aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='CPC'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+              <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+              <members>
+                <member value='&quot;Aeromexico&quot;' />
+                <member value='&quot;Air Canada&quot;' />
+                <member value='&quot;Air Canada - Marketel&quot;' />
+                <member value='&quot;Air France&quot;' />
+                <member value='&quot;Airfarewatchdog&quot;' />
+                <member value='&quot;AirFastTickets&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+                <member value='&quot;AirTicketsDirect&quot;' />
+                <member value='&quot;Alaska Airlines&quot;' />
+                <member value='&quot;American Airlines&quot;' />
+                <member value='&quot;American Airlines Fare Sale&quot;' />
+                <member value='&quot;American Airlines Vacation&quot;' />
+                <member value='&quot;Apple Vacations&quot;' />
+                <member value='&quot;Apple Vacations-ads &quot;' />
+                <member value='&quot;Aston Hotels&quot;' />
+                <member value='&quot;BMI&quot;' />
+                <member value='&quot;Booking.com-ads&quot;' />
+                <member value='&quot;Booking.com-Meta&quot;' />
+                <member value='&quot;bookit.com&quot;' />
+                <member value='&quot;British Airways&quot;' />
+                <member value='&quot;BudgetAir&quot;' />
+                <member value='&quot;BudgetAir.ca&quot;' />
+                <member value='&quot;Caesars&quot;' />
+                <member value='&quot;Cathay Pacific&quot;' />
+                <member value='&quot;Cathay Pacific - Canada&quot;' />
+                <member value='&quot;CheapFareGuru&quot;' />
+                <member value='&quot;CheapOair&quot;' />
+                <member value='&quot;CheapOair- Europe ads&quot;' />
+                <member value='&quot;CheapOair-Canada&quot;' />
+                <member value='&quot;CheapTickets-Ads&quot;' />
+                <member value='&quot;Cheaptickets-Meta&quot;' />
+                <member value='&quot;Crowne Plaza&quot;' />
+                <member value='&quot;DealBase&quot;' />
+                <member value='&quot;Delta&quot;' />
+                <member value='&quot;Edreams&quot;' />
+                <member value='&quot;eDreams - Europe&quot;' />
+                <member value='&quot;Emirates Airlines&quot;' />
+                <member value='&quot;Expedia - UK&quot;' />
+                <member value='&quot;Expedia-Ads&quot;' />
+                <member value='&quot;Expedia-Meta&quot;' />
+                <member value='&quot;Explore Trip&quot;' />
+                <member value='&quot;FareBoom-ads&quot;' />
+                <member value='&quot;FlightHub&quot;' />
+                <member value='&quot;FlightNetwork&quot;' />
+                <member value='&quot;Fly.com&quot;' />
+                <member value='&quot;Fly.com - UK&quot;' />
+                <member value='&quot;FlyFar&quot;' />
+                <member value='&quot;Frontier Airlines&quot;' />
+                <member value='&quot;Globester&quot;' />
+                <member value='&quot;Groupon-Ads&quot;' />
+                <member value='&quot;Hawaiian Airlines&quot;' />
+                <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+                <member value='&quot;Hilton Hotels&quot;' />
+                <member value='&quot;Hipmunk-Ads&quot;' />
+                <member value='&quot;Holiday Inn&quot;' />
+                <member value='&quot;Holiday Inn Express&quot;' />
+                <member value='&quot;Hotels.com-Ads&quot;' />
+                <member value='&quot;Hotels.com-Meta&quot;' />
+                <member value='&quot;Hotwire-Ads&quot;' />
+                <member value='&quot;Indian Eagle&quot;' />
+                <member value='&quot;JetaPort&quot;' />
+                <member value='&quot;JetBlue&quot;' />
+                <member value='&quot;Jetsetter-ads&quot;' />
+                <member value='&quot;Jetsetz&quot;' />
+                <member value='&quot;Justairticket-ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+                <member value='&quot;La Quinta&quot;' />
+                <member value='&quot;LAN Airlines&quot;' />
+                <member value='&quot;LatinOFare-ads&quot;' />
+                <member value='&quot;Marriott Hotels&quot;' />
+                <member value='&quot;Melia Hotels-Ads&quot;' />
+                <member value='&quot;Mobissimo&quot;' />
+                <member value='&quot;Momondo&quot;' />
+                <member value='&quot;One Travel&quot;' />
+                <member value='&quot;Orbitz-ads-on-Network&quot;' />
+                <member value='&quot;Orbitz-Meta&quot;' />
+                <member value='&quot;OWW-ads-on-CTIX&quot;' />
+                <member value='&quot;Priceline-Ads&quot;' />
+                <member value='&quot;Priceline-Meta&quot;' />
+                <member value='&quot;Qatar Airways&quot;' />
+                <member value='&quot;Red Roof Inn&quot;' />
+                <member value='&quot;Rocketmiles&quot;' />
+                <member value='&quot;Room 77&quot;' />
+                <member value='&quot;Skyscanner-ads&quot;' />
+                <member value='&quot;SmartFares&quot;' />
+                <member value='&quot;South African Airlines&quot;' />
+                <member value='&quot;Starwood Hotels&quot;' />
+                <member value='&quot;Student Universe&quot;' />
+                <member value='&quot;TAM Airlines&quot;' />
+                <member value='&quot;Tingo&quot;' />
+                <member value='&quot;Travel Ticker&quot;' />
+                <member value='&quot;Travelation&quot;' />
+                <member value='&quot;Travelocity-Ads&quot;' />
+                <member value='&quot;Travelocity-Meta&quot;' />
+                <member value='&quot;Travelocity.ca&quot;' />
+                <member value='&quot;Travelstart&quot;' />
+                <member value='&quot;TripAdvisor&quot;' />
+                <member value='&quot;TripAdvisor-Europe&quot;' />
+                <member value='&quot;Tripping.com&quot;' />
+                <member value='&quot;Trivago&quot;' />
+                <member value='&quot;United Airlines&quot;' />
+                <member value='&quot;Vayama&quot;' />
+                <member value='&quot;Vegas.com-ads&quot;' />
+                <member value='&quot;Virgin America&quot;' />
+                <member value='&quot;Virgin Atlantic&quot;' />
+                <member value='&quot;Webjet&quot;' />
+                <member value='&quot;Webjet.ca&quot;' />
+                <member value='&quot;Westin Hotels&quot;' />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='C1033%' name='[CPC]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Spend])/sum([Clicks Nulled])' />
+            </column>
+            <column caption='Date Axis' datatype='date' name='[Calculation_3510409144857232]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;    WHEN &quot;Day&quot; THEN DATE([Date])&#13;&#10;    WHEN &quot;Week&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[Date]))&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_3510409144857232]' derivation='None' name='[none:Calculation_3510409144857232:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CPC]' derivation='User' name='[usr:CPC:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+            <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='subtitle' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[usr:CPC:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[usr:CPC:qk]' scope='rows' value='true' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[aft_advertiser_report_for_advertisers (copy)].[usr:CPC:qk]</rows>
+        <cols>[aft_advertiser_report_for_advertisers (copy)].[none:Calculation_3510409144857232:qk]</cols>
+        <show-full-range>
+          <column>[aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='CSV Download'>
+      <repository-location id='CSVDownload' path='/t/PreQA/workbooks/AfTAdvertiserReportforAdvertisersWithDateOption' revision='' site='PreQA' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+              <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+              <members>
+                <member value='&quot;Aeromexico&quot;' />
+                <member value='&quot;Air Canada&quot;' />
+                <member value='&quot;Air Canada - Marketel&quot;' />
+                <member value='&quot;Air France&quot;' />
+                <member value='&quot;Airfarewatchdog&quot;' />
+                <member value='&quot;AirFastTickets&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+                <member value='&quot;AirTicketsDirect&quot;' />
+                <member value='&quot;Alaska Airlines&quot;' />
+                <member value='&quot;American Airlines&quot;' />
+                <member value='&quot;American Airlines Fare Sale&quot;' />
+                <member value='&quot;American Airlines Vacation&quot;' />
+                <member value='&quot;Apple Vacations&quot;' />
+                <member value='&quot;Apple Vacations-ads &quot;' />
+                <member value='&quot;Aston Hotels&quot;' />
+                <member value='&quot;BMI&quot;' />
+                <member value='&quot;Booking.com-ads&quot;' />
+                <member value='&quot;Booking.com-Meta&quot;' />
+                <member value='&quot;bookit.com&quot;' />
+                <member value='&quot;British Airways&quot;' />
+                <member value='&quot;BudgetAir&quot;' />
+                <member value='&quot;BudgetAir.ca&quot;' />
+                <member value='&quot;Caesars&quot;' />
+                <member value='&quot;Cathay Pacific&quot;' />
+                <member value='&quot;Cathay Pacific - Canada&quot;' />
+                <member value='&quot;CheapFareGuru&quot;' />
+                <member value='&quot;CheapOair&quot;' />
+                <member value='&quot;CheapOair- Europe ads&quot;' />
+                <member value='&quot;CheapOair-Canada&quot;' />
+                <member value='&quot;CheapTickets-Ads&quot;' />
+                <member value='&quot;Cheaptickets-Meta&quot;' />
+                <member value='&quot;Crowne Plaza&quot;' />
+                <member value='&quot;DealBase&quot;' />
+                <member value='&quot;Delta&quot;' />
+                <member value='&quot;Edreams&quot;' />
+                <member value='&quot;eDreams - Europe&quot;' />
+                <member value='&quot;Emirates Airlines&quot;' />
+                <member value='&quot;Expedia - UK&quot;' />
+                <member value='&quot;Expedia-Ads&quot;' />
+                <member value='&quot;Expedia-Meta&quot;' />
+                <member value='&quot;Explore Trip&quot;' />
+                <member value='&quot;FareBoom-ads&quot;' />
+                <member value='&quot;FlightHub&quot;' />
+                <member value='&quot;FlightNetwork&quot;' />
+                <member value='&quot;Fly.com&quot;' />
+                <member value='&quot;Fly.com - UK&quot;' />
+                <member value='&quot;FlyFar&quot;' />
+                <member value='&quot;Frontier Airlines&quot;' />
+                <member value='&quot;Globester&quot;' />
+                <member value='&quot;Groupon-Ads&quot;' />
+                <member value='&quot;Hawaiian Airlines&quot;' />
+                <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+                <member value='&quot;Hilton Hotels&quot;' />
+                <member value='&quot;Hipmunk-Ads&quot;' />
+                <member value='&quot;Holiday Inn&quot;' />
+                <member value='&quot;Holiday Inn Express&quot;' />
+                <member value='&quot;Hotels.com-Ads&quot;' />
+                <member value='&quot;Hotels.com-Meta&quot;' />
+                <member value='&quot;Hotwire-Ads&quot;' />
+                <member value='&quot;Indian Eagle&quot;' />
+                <member value='&quot;JetaPort&quot;' />
+                <member value='&quot;JetBlue&quot;' />
+                <member value='&quot;Jetsetter-ads&quot;' />
+                <member value='&quot;Jetsetz&quot;' />
+                <member value='&quot;Justairticket-ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+                <member value='&quot;La Quinta&quot;' />
+                <member value='&quot;LAN Airlines&quot;' />
+                <member value='&quot;LatinOFare-ads&quot;' />
+                <member value='&quot;Marriott Hotels&quot;' />
+                <member value='&quot;Melia Hotels-Ads&quot;' />
+                <member value='&quot;Mobissimo&quot;' />
+                <member value='&quot;Momondo&quot;' />
+                <member value='&quot;One Travel&quot;' />
+                <member value='&quot;Orbitz-ads-on-Network&quot;' />
+                <member value='&quot;Orbitz-Meta&quot;' />
+                <member value='&quot;OWW-ads-on-CTIX&quot;' />
+                <member value='&quot;Priceline-Ads&quot;' />
+                <member value='&quot;Priceline-Meta&quot;' />
+                <member value='&quot;Qatar Airways&quot;' />
+                <member value='&quot;Red Roof Inn&quot;' />
+                <member value='&quot;Rocketmiles&quot;' />
+                <member value='&quot;Room 77&quot;' />
+                <member value='&quot;Skyscanner-ads&quot;' />
+                <member value='&quot;SmartFares&quot;' />
+                <member value='&quot;South African Airlines&quot;' />
+                <member value='&quot;Starwood Hotels&quot;' />
+                <member value='&quot;Student Universe&quot;' />
+                <member value='&quot;TAM Airlines&quot;' />
+                <member value='&quot;Tingo&quot;' />
+                <member value='&quot;Travel Ticker&quot;' />
+                <member value='&quot;Travelation&quot;' />
+                <member value='&quot;Travelocity-Ads&quot;' />
+                <member value='&quot;Travelocity-Meta&quot;' />
+                <member value='&quot;Travelocity.ca&quot;' />
+                <member value='&quot;Travelstart&quot;' />
+                <member value='&quot;TripAdvisor&quot;' />
+                <member value='&quot;TripAdvisor-Europe&quot;' />
+                <member value='&quot;Tripping.com&quot;' />
+                <member value='&quot;Trivago&quot;' />
+                <member value='&quot;United Airlines&quot;' />
+                <member value='&quot;Vayama&quot;' />
+                <member value='&quot;Vegas.com-ads&quot;' />
+                <member value='&quot;Virgin America&quot;' />
+                <member value='&quot;Virgin Atlantic&quot;' />
+                <member value='&quot;Webjet&quot;' />
+                <member value='&quot;Webjet.ca&quot;' />
+                <member value='&quot;Westin Hotels&quot;' />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Average Position]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Auction Position Sum])/sum([Impressions Nulled])' />
+            </column>
+            <column datatype='real' default-format='C1033%' name='[CPC]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Spend])/sum([Clicks Nulled])' />
+            </column>
+            <column datatype='real' default-format='p0.0%' name='[CTR]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Clicks])/sum([Impressions Nulled])' />
+            </column>
+            <column datatype='integer' name='[Clicks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='integer' name='[Impressions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Product Category Type]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Spend]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='None' name='[none:Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Type]' derivation='None' name='[none:Product Category Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Clicks]' derivation='Sum' name='[sum:Clicks:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Impressions]' derivation='Sum' name='[sum:Impressions:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Spend]' derivation='Sum' name='[sum:Spend:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Average Position]' derivation='User' name='[usr:Average Position:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[CPC]' derivation='User' name='[usr:CPC:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[CTR]' derivation='User' name='[usr:CTR:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+            <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='off' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>([aft_advertiser_report_for_advertisers (copy)].[none:Date:ok] / ([aft_advertiser_report_for_advertisers (copy)].[none:Product Category Type:nk] / ([aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk] / ([aft_advertiser_report_for_advertisers (copy)].[sum:Impressions:ok] / ([aft_advertiser_report_for_advertisers (copy)].[sum:Clicks:ok] / ([aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:ok] / ([aft_advertiser_report_for_advertisers (copy)].[usr:CTR:ok] / ([aft_advertiser_report_for_advertisers (copy)].[usr:CPC:ok] / [aft_advertiser_report_for_advertisers (copy)].[sum:Spend:ok]))))))))</rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+    <worksheet name='CTR'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+              <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+              <members>
+                <member value='&quot;Aeromexico&quot;' />
+                <member value='&quot;Air Canada&quot;' />
+                <member value='&quot;Air Canada - Marketel&quot;' />
+                <member value='&quot;Air France&quot;' />
+                <member value='&quot;Airfarewatchdog&quot;' />
+                <member value='&quot;AirFastTickets&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+                <member value='&quot;AirTicketsDirect&quot;' />
+                <member value='&quot;Alaska Airlines&quot;' />
+                <member value='&quot;American Airlines&quot;' />
+                <member value='&quot;American Airlines Fare Sale&quot;' />
+                <member value='&quot;American Airlines Vacation&quot;' />
+                <member value='&quot;Apple Vacations&quot;' />
+                <member value='&quot;Apple Vacations-ads &quot;' />
+                <member value='&quot;Aston Hotels&quot;' />
+                <member value='&quot;BMI&quot;' />
+                <member value='&quot;Booking.com-ads&quot;' />
+                <member value='&quot;Booking.com-Meta&quot;' />
+                <member value='&quot;bookit.com&quot;' />
+                <member value='&quot;British Airways&quot;' />
+                <member value='&quot;BudgetAir&quot;' />
+                <member value='&quot;BudgetAir.ca&quot;' />
+                <member value='&quot;Caesars&quot;' />
+                <member value='&quot;Cathay Pacific&quot;' />
+                <member value='&quot;Cathay Pacific - Canada&quot;' />
+                <member value='&quot;CheapFareGuru&quot;' />
+                <member value='&quot;CheapOair&quot;' />
+                <member value='&quot;CheapOair- Europe ads&quot;' />
+                <member value='&quot;CheapOair-Canada&quot;' />
+                <member value='&quot;CheapTickets-Ads&quot;' />
+                <member value='&quot;Cheaptickets-Meta&quot;' />
+                <member value='&quot;Crowne Plaza&quot;' />
+                <member value='&quot;DealBase&quot;' />
+                <member value='&quot;Delta&quot;' />
+                <member value='&quot;Edreams&quot;' />
+                <member value='&quot;eDreams - Europe&quot;' />
+                <member value='&quot;Emirates Airlines&quot;' />
+                <member value='&quot;Expedia - UK&quot;' />
+                <member value='&quot;Expedia-Ads&quot;' />
+                <member value='&quot;Expedia-Meta&quot;' />
+                <member value='&quot;Explore Trip&quot;' />
+                <member value='&quot;FareBoom-ads&quot;' />
+                <member value='&quot;FlightHub&quot;' />
+                <member value='&quot;FlightNetwork&quot;' />
+                <member value='&quot;Fly.com&quot;' />
+                <member value='&quot;Fly.com - UK&quot;' />
+                <member value='&quot;FlyFar&quot;' />
+                <member value='&quot;Frontier Airlines&quot;' />
+                <member value='&quot;Globester&quot;' />
+                <member value='&quot;Groupon-Ads&quot;' />
+                <member value='&quot;Hawaiian Airlines&quot;' />
+                <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+                <member value='&quot;Hilton Hotels&quot;' />
+                <member value='&quot;Hipmunk-Ads&quot;' />
+                <member value='&quot;Holiday Inn&quot;' />
+                <member value='&quot;Holiday Inn Express&quot;' />
+                <member value='&quot;Hotels.com-Ads&quot;' />
+                <member value='&quot;Hotels.com-Meta&quot;' />
+                <member value='&quot;Hotwire-Ads&quot;' />
+                <member value='&quot;Indian Eagle&quot;' />
+                <member value='&quot;JetaPort&quot;' />
+                <member value='&quot;JetBlue&quot;' />
+                <member value='&quot;Jetsetter-ads&quot;' />
+                <member value='&quot;Jetsetz&quot;' />
+                <member value='&quot;Justairticket-ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+                <member value='&quot;La Quinta&quot;' />
+                <member value='&quot;LAN Airlines&quot;' />
+                <member value='&quot;LatinOFare-ads&quot;' />
+                <member value='&quot;Marriott Hotels&quot;' />
+                <member value='&quot;Melia Hotels-Ads&quot;' />
+                <member value='&quot;Mobissimo&quot;' />
+                <member value='&quot;Momondo&quot;' />
+                <member value='&quot;One Travel&quot;' />
+                <member value='&quot;Orbitz-ads-on-Network&quot;' />
+                <member value='&quot;Orbitz-Meta&quot;' />
+                <member value='&quot;OWW-ads-on-CTIX&quot;' />
+                <member value='&quot;Priceline-Ads&quot;' />
+                <member value='&quot;Priceline-Meta&quot;' />
+                <member value='&quot;Qatar Airways&quot;' />
+                <member value='&quot;Red Roof Inn&quot;' />
+                <member value='&quot;Rocketmiles&quot;' />
+                <member value='&quot;Room 77&quot;' />
+                <member value='&quot;Skyscanner-ads&quot;' />
+                <member value='&quot;SmartFares&quot;' />
+                <member value='&quot;South African Airlines&quot;' />
+                <member value='&quot;Starwood Hotels&quot;' />
+                <member value='&quot;Student Universe&quot;' />
+                <member value='&quot;TAM Airlines&quot;' />
+                <member value='&quot;Tingo&quot;' />
+                <member value='&quot;Travel Ticker&quot;' />
+                <member value='&quot;Travelation&quot;' />
+                <member value='&quot;Travelocity-Ads&quot;' />
+                <member value='&quot;Travelocity-Meta&quot;' />
+                <member value='&quot;Travelocity.ca&quot;' />
+                <member value='&quot;Travelstart&quot;' />
+                <member value='&quot;TripAdvisor&quot;' />
+                <member value='&quot;TripAdvisor-Europe&quot;' />
+                <member value='&quot;Tripping.com&quot;' />
+                <member value='&quot;Trivago&quot;' />
+                <member value='&quot;United Airlines&quot;' />
+                <member value='&quot;Vayama&quot;' />
+                <member value='&quot;Vegas.com-ads&quot;' />
+                <member value='&quot;Virgin America&quot;' />
+                <member value='&quot;Virgin Atlantic&quot;' />
+                <member value='&quot;Webjet&quot;' />
+                <member value='&quot;Webjet.ca&quot;' />
+                <member value='&quot;Westin Hotels&quot;' />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='p0.0%' name='[CTR]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Clicks])/sum([Impressions Nulled])' />
+            </column>
+            <column caption='Date Axis' datatype='date' name='[Calculation_3510409144857232]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;    WHEN &quot;Day&quot; THEN DATE([Date])&#13;&#10;    WHEN &quot;Week&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[Date]))&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_3510409144857232]' derivation='None' name='[none:Calculation_3510409144857232:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CTR]' derivation='User' name='[usr:CTR:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+            <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[aft_advertiser_report_for_advertisers (copy)].[usr:CTR:qk]</rows>
+        <cols>[aft_advertiser_report_for_advertisers (copy)].[none:Calculation_3510409144857232:qk]</cols>
+        <show-full-range>
+          <column>[aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Clicks'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+              <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+              <members>
+                <member value='&quot;Aeromexico&quot;' />
+                <member value='&quot;Air Canada&quot;' />
+                <member value='&quot;Air Canada - Marketel&quot;' />
+                <member value='&quot;Air France&quot;' />
+                <member value='&quot;Airfarewatchdog&quot;' />
+                <member value='&quot;AirFastTickets&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+                <member value='&quot;AirTicketsDirect&quot;' />
+                <member value='&quot;Alaska Airlines&quot;' />
+                <member value='&quot;American Airlines&quot;' />
+                <member value='&quot;American Airlines Fare Sale&quot;' />
+                <member value='&quot;American Airlines Vacation&quot;' />
+                <member value='&quot;Apple Vacations&quot;' />
+                <member value='&quot;Apple Vacations-ads &quot;' />
+                <member value='&quot;Aston Hotels&quot;' />
+                <member value='&quot;BMI&quot;' />
+                <member value='&quot;Booking.com-ads&quot;' />
+                <member value='&quot;Booking.com-Meta&quot;' />
+                <member value='&quot;bookit.com&quot;' />
+                <member value='&quot;British Airways&quot;' />
+                <member value='&quot;BudgetAir&quot;' />
+                <member value='&quot;BudgetAir.ca&quot;' />
+                <member value='&quot;Caesars&quot;' />
+                <member value='&quot;Cathay Pacific&quot;' />
+                <member value='&quot;Cathay Pacific - Canada&quot;' />
+                <member value='&quot;CheapFareGuru&quot;' />
+                <member value='&quot;CheapOair&quot;' />
+                <member value='&quot;CheapOair- Europe ads&quot;' />
+                <member value='&quot;CheapOair-Canada&quot;' />
+                <member value='&quot;CheapTickets-Ads&quot;' />
+                <member value='&quot;Cheaptickets-Meta&quot;' />
+                <member value='&quot;Crowne Plaza&quot;' />
+                <member value='&quot;DealBase&quot;' />
+                <member value='&quot;Delta&quot;' />
+                <member value='&quot;Edreams&quot;' />
+                <member value='&quot;eDreams - Europe&quot;' />
+                <member value='&quot;Emirates Airlines&quot;' />
+                <member value='&quot;Expedia - UK&quot;' />
+                <member value='&quot;Expedia-Ads&quot;' />
+                <member value='&quot;Expedia-Meta&quot;' />
+                <member value='&quot;Explore Trip&quot;' />
+                <member value='&quot;FareBoom-ads&quot;' />
+                <member value='&quot;FlightHub&quot;' />
+                <member value='&quot;FlightNetwork&quot;' />
+                <member value='&quot;Fly.com&quot;' />
+                <member value='&quot;Fly.com - UK&quot;' />
+                <member value='&quot;FlyFar&quot;' />
+                <member value='&quot;Frontier Airlines&quot;' />
+                <member value='&quot;Globester&quot;' />
+                <member value='&quot;Groupon-Ads&quot;' />
+                <member value='&quot;Hawaiian Airlines&quot;' />
+                <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+                <member value='&quot;Hilton Hotels&quot;' />
+                <member value='&quot;Hipmunk-Ads&quot;' />
+                <member value='&quot;Holiday Inn&quot;' />
+                <member value='&quot;Holiday Inn Express&quot;' />
+                <member value='&quot;Hotels.com-Ads&quot;' />
+                <member value='&quot;Hotels.com-Meta&quot;' />
+                <member value='&quot;Hotwire-Ads&quot;' />
+                <member value='&quot;Indian Eagle&quot;' />
+                <member value='&quot;JetaPort&quot;' />
+                <member value='&quot;JetBlue&quot;' />
+                <member value='&quot;Jetsetter-ads&quot;' />
+                <member value='&quot;Jetsetz&quot;' />
+                <member value='&quot;Justairticket-ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+                <member value='&quot;La Quinta&quot;' />
+                <member value='&quot;LAN Airlines&quot;' />
+                <member value='&quot;LatinOFare-ads&quot;' />
+                <member value='&quot;Marriott Hotels&quot;' />
+                <member value='&quot;Melia Hotels-Ads&quot;' />
+                <member value='&quot;Mobissimo&quot;' />
+                <member value='&quot;Momondo&quot;' />
+                <member value='&quot;One Travel&quot;' />
+                <member value='&quot;Orbitz-ads-on-Network&quot;' />
+                <member value='&quot;Orbitz-Meta&quot;' />
+                <member value='&quot;OWW-ads-on-CTIX&quot;' />
+                <member value='&quot;Priceline-Ads&quot;' />
+                <member value='&quot;Priceline-Meta&quot;' />
+                <member value='&quot;Qatar Airways&quot;' />
+                <member value='&quot;Red Roof Inn&quot;' />
+                <member value='&quot;Rocketmiles&quot;' />
+                <member value='&quot;Room 77&quot;' />
+                <member value='&quot;Skyscanner-ads&quot;' />
+                <member value='&quot;SmartFares&quot;' />
+                <member value='&quot;South African Airlines&quot;' />
+                <member value='&quot;Starwood Hotels&quot;' />
+                <member value='&quot;Student Universe&quot;' />
+                <member value='&quot;TAM Airlines&quot;' />
+                <member value='&quot;Tingo&quot;' />
+                <member value='&quot;Travel Ticker&quot;' />
+                <member value='&quot;Travelation&quot;' />
+                <member value='&quot;Travelocity-Ads&quot;' />
+                <member value='&quot;Travelocity-Meta&quot;' />
+                <member value='&quot;Travelocity.ca&quot;' />
+                <member value='&quot;Travelstart&quot;' />
+                <member value='&quot;TripAdvisor&quot;' />
+                <member value='&quot;TripAdvisor-Europe&quot;' />
+                <member value='&quot;Tripping.com&quot;' />
+                <member value='&quot;Trivago&quot;' />
+                <member value='&quot;United Airlines&quot;' />
+                <member value='&quot;Vayama&quot;' />
+                <member value='&quot;Vegas.com-ads&quot;' />
+                <member value='&quot;Virgin America&quot;' />
+                <member value='&quot;Virgin Atlantic&quot;' />
+                <member value='&quot;Webjet&quot;' />
+                <member value='&quot;Webjet.ca&quot;' />
+                <member value='&quot;Westin Hotels&quot;' />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Date Axis' datatype='date' name='[Calculation_3510409144857232]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;    WHEN &quot;Day&quot; THEN DATE([Date])&#13;&#10;    WHEN &quot;Week&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[Date]))&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='integer' name='[Clicks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_3510409144857232]' derivation='None' name='[none:Calculation_3510409144857232:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Clicks]' derivation='Sum' name='[sum:Clicks:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+            <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[aft_advertiser_report_for_advertisers (copy)].[sum:Clicks:qk]</rows>
+        <cols>[aft_advertiser_report_for_advertisers (copy)].[none:Calculation_3510409144857232:qk]</cols>
+        <show-full-range>
+          <column>[aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Impression Share'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+              <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+              <members>
+                <member value='&quot;Aeromexico&quot;' />
+                <member value='&quot;Air Canada&quot;' />
+                <member value='&quot;Air Canada - Marketel&quot;' />
+                <member value='&quot;Air France&quot;' />
+                <member value='&quot;Airfarewatchdog&quot;' />
+                <member value='&quot;AirFastTickets&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+                <member value='&quot;AirTicketsDirect&quot;' />
+                <member value='&quot;Alaska Airlines&quot;' />
+                <member value='&quot;American Airlines&quot;' />
+                <member value='&quot;American Airlines Fare Sale&quot;' />
+                <member value='&quot;American Airlines Vacation&quot;' />
+                <member value='&quot;Apple Vacations&quot;' />
+                <member value='&quot;Apple Vacations-ads &quot;' />
+                <member value='&quot;Aston Hotels&quot;' />
+                <member value='&quot;BMI&quot;' />
+                <member value='&quot;Booking.com-ads&quot;' />
+                <member value='&quot;Booking.com-Meta&quot;' />
+                <member value='&quot;bookit.com&quot;' />
+                <member value='&quot;British Airways&quot;' />
+                <member value='&quot;BudgetAir&quot;' />
+                <member value='&quot;BudgetAir.ca&quot;' />
+                <member value='&quot;Caesars&quot;' />
+                <member value='&quot;Cathay Pacific&quot;' />
+                <member value='&quot;Cathay Pacific - Canada&quot;' />
+                <member value='&quot;CheapFareGuru&quot;' />
+                <member value='&quot;CheapOair&quot;' />
+                <member value='&quot;CheapOair- Europe ads&quot;' />
+                <member value='&quot;CheapOair-Canada&quot;' />
+                <member value='&quot;CheapTickets-Ads&quot;' />
+                <member value='&quot;Cheaptickets-Meta&quot;' />
+                <member value='&quot;Crowne Plaza&quot;' />
+                <member value='&quot;DealBase&quot;' />
+                <member value='&quot;Delta&quot;' />
+                <member value='&quot;Edreams&quot;' />
+                <member value='&quot;eDreams - Europe&quot;' />
+                <member value='&quot;Emirates Airlines&quot;' />
+                <member value='&quot;Expedia - UK&quot;' />
+                <member value='&quot;Expedia-Ads&quot;' />
+                <member value='&quot;Expedia-Meta&quot;' />
+                <member value='&quot;Explore Trip&quot;' />
+                <member value='&quot;FareBoom-ads&quot;' />
+                <member value='&quot;FlightHub&quot;' />
+                <member value='&quot;FlightNetwork&quot;' />
+                <member value='&quot;Fly.com&quot;' />
+                <member value='&quot;Fly.com - UK&quot;' />
+                <member value='&quot;FlyFar&quot;' />
+                <member value='&quot;Frontier Airlines&quot;' />
+                <member value='&quot;Globester&quot;' />
+                <member value='&quot;Groupon-Ads&quot;' />
+                <member value='&quot;Hawaiian Airlines&quot;' />
+                <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+                <member value='&quot;Hilton Hotels&quot;' />
+                <member value='&quot;Hipmunk-Ads&quot;' />
+                <member value='&quot;Holiday Inn&quot;' />
+                <member value='&quot;Holiday Inn Express&quot;' />
+                <member value='&quot;Hotels.com-Ads&quot;' />
+                <member value='&quot;Hotels.com-Meta&quot;' />
+                <member value='&quot;Hotwire-Ads&quot;' />
+                <member value='&quot;Indian Eagle&quot;' />
+                <member value='&quot;JetaPort&quot;' />
+                <member value='&quot;JetBlue&quot;' />
+                <member value='&quot;Jetsetter-ads&quot;' />
+                <member value='&quot;Jetsetz&quot;' />
+                <member value='&quot;Justairticket-ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+                <member value='&quot;La Quinta&quot;' />
+                <member value='&quot;LAN Airlines&quot;' />
+                <member value='&quot;LatinOFare-ads&quot;' />
+                <member value='&quot;Marriott Hotels&quot;' />
+                <member value='&quot;Melia Hotels-Ads&quot;' />
+                <member value='&quot;Mobissimo&quot;' />
+                <member value='&quot;Momondo&quot;' />
+                <member value='&quot;One Travel&quot;' />
+                <member value='&quot;Orbitz-ads-on-Network&quot;' />
+                <member value='&quot;Orbitz-Meta&quot;' />
+                <member value='&quot;OWW-ads-on-CTIX&quot;' />
+                <member value='&quot;Priceline-Ads&quot;' />
+                <member value='&quot;Priceline-Meta&quot;' />
+                <member value='&quot;Qatar Airways&quot;' />
+                <member value='&quot;Red Roof Inn&quot;' />
+                <member value='&quot;Rocketmiles&quot;' />
+                <member value='&quot;Room 77&quot;' />
+                <member value='&quot;Skyscanner-ads&quot;' />
+                <member value='&quot;SmartFares&quot;' />
+                <member value='&quot;South African Airlines&quot;' />
+                <member value='&quot;Starwood Hotels&quot;' />
+                <member value='&quot;Student Universe&quot;' />
+                <member value='&quot;TAM Airlines&quot;' />
+                <member value='&quot;Tingo&quot;' />
+                <member value='&quot;Travel Ticker&quot;' />
+                <member value='&quot;Travelation&quot;' />
+                <member value='&quot;Travelocity-Ads&quot;' />
+                <member value='&quot;Travelocity-Meta&quot;' />
+                <member value='&quot;Travelocity.ca&quot;' />
+                <member value='&quot;Travelstart&quot;' />
+                <member value='&quot;TripAdvisor&quot;' />
+                <member value='&quot;TripAdvisor-Europe&quot;' />
+                <member value='&quot;Tripping.com&quot;' />
+                <member value='&quot;Trivago&quot;' />
+                <member value='&quot;United Airlines&quot;' />
+                <member value='&quot;Vayama&quot;' />
+                <member value='&quot;Vegas.com-ads&quot;' />
+                <member value='&quot;Virgin America&quot;' />
+                <member value='&quot;Virgin Atlantic&quot;' />
+                <member value='&quot;Webjet&quot;' />
+                <member value='&quot;Webjet.ca&quot;' />
+                <member value='&quot;Westin Hotels&quot;' />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Date Axis' datatype='date' name='[Calculation_3510409144857232]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;    WHEN &quot;Day&quot; THEN DATE([Date])&#13;&#10;    WHEN &quot;Week&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[Date]))&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='real' default-format='p0.0%' name='[Impression Share]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Impressions Nulled])/(SUM([Impressions Nulled]) + [Calculation_5210102160009994])' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_3510409144857232]' derivation='None' name='[none:Calculation_3510409144857232:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Impression Share]' derivation='User' name='[usr:Impression Share:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+            <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='subtitle' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[usr:Impression Share:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[usr:Impression Share:qk]' scope='rows' value='true' />
+            <encoding attr='space' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[usr:Impression Share:qk]' field-type='quantitative' max='1.0' min='0.0' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[aft_advertiser_report_for_advertisers (copy)].[usr:Impression Share:qk]</rows>
+        <cols>[aft_advertiser_report_for_advertisers (copy)].[none:Calculation_3510409144857232:qk]</cols>
+        <show-full-range>
+          <column>[aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Impressions over Pages Available'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+              <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+              <members>
+                <member value='&quot;Aeromexico&quot;' />
+                <member value='&quot;Air Canada&quot;' />
+                <member value='&quot;Air Canada - Marketel&quot;' />
+                <member value='&quot;Air France&quot;' />
+                <member value='&quot;Airfarewatchdog&quot;' />
+                <member value='&quot;AirFastTickets&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+                <member value='&quot;AirTicketsDirect&quot;' />
+                <member value='&quot;Alaska Airlines&quot;' />
+                <member value='&quot;American Airlines&quot;' />
+                <member value='&quot;American Airlines Fare Sale&quot;' />
+                <member value='&quot;American Airlines Vacation&quot;' />
+                <member value='&quot;Apple Vacations&quot;' />
+                <member value='&quot;Apple Vacations-ads &quot;' />
+                <member value='&quot;Aston Hotels&quot;' />
+                <member value='&quot;BMI&quot;' />
+                <member value='&quot;Booking.com-ads&quot;' />
+                <member value='&quot;Booking.com-Meta&quot;' />
+                <member value='&quot;bookit.com&quot;' />
+                <member value='&quot;British Airways&quot;' />
+                <member value='&quot;BudgetAir&quot;' />
+                <member value='&quot;BudgetAir.ca&quot;' />
+                <member value='&quot;Caesars&quot;' />
+                <member value='&quot;Cathay Pacific&quot;' />
+                <member value='&quot;Cathay Pacific - Canada&quot;' />
+                <member value='&quot;CheapFareGuru&quot;' />
+                <member value='&quot;CheapOair&quot;' />
+                <member value='&quot;CheapOair- Europe ads&quot;' />
+                <member value='&quot;CheapOair-Canada&quot;' />
+                <member value='&quot;CheapTickets-Ads&quot;' />
+                <member value='&quot;Cheaptickets-Meta&quot;' />
+                <member value='&quot;Crowne Plaza&quot;' />
+                <member value='&quot;DealBase&quot;' />
+                <member value='&quot;Delta&quot;' />
+                <member value='&quot;Edreams&quot;' />
+                <member value='&quot;eDreams - Europe&quot;' />
+                <member value='&quot;Emirates Airlines&quot;' />
+                <member value='&quot;Expedia - UK&quot;' />
+                <member value='&quot;Expedia-Ads&quot;' />
+                <member value='&quot;Expedia-Meta&quot;' />
+                <member value='&quot;Explore Trip&quot;' />
+                <member value='&quot;FareBoom-ads&quot;' />
+                <member value='&quot;FlightHub&quot;' />
+                <member value='&quot;FlightNetwork&quot;' />
+                <member value='&quot;Fly.com&quot;' />
+                <member value='&quot;Fly.com - UK&quot;' />
+                <member value='&quot;FlyFar&quot;' />
+                <member value='&quot;Frontier Airlines&quot;' />
+                <member value='&quot;Globester&quot;' />
+                <member value='&quot;Groupon-Ads&quot;' />
+                <member value='&quot;Hawaiian Airlines&quot;' />
+                <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+                <member value='&quot;Hilton Hotels&quot;' />
+                <member value='&quot;Hipmunk-Ads&quot;' />
+                <member value='&quot;Holiday Inn&quot;' />
+                <member value='&quot;Holiday Inn Express&quot;' />
+                <member value='&quot;Hotels.com-Ads&quot;' />
+                <member value='&quot;Hotels.com-Meta&quot;' />
+                <member value='&quot;Hotwire-Ads&quot;' />
+                <member value='&quot;Indian Eagle&quot;' />
+                <member value='&quot;JetaPort&quot;' />
+                <member value='&quot;JetBlue&quot;' />
+                <member value='&quot;Jetsetter-ads&quot;' />
+                <member value='&quot;Jetsetz&quot;' />
+                <member value='&quot;Justairticket-ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+                <member value='&quot;La Quinta&quot;' />
+                <member value='&quot;LAN Airlines&quot;' />
+                <member value='&quot;LatinOFare-ads&quot;' />
+                <member value='&quot;Marriott Hotels&quot;' />
+                <member value='&quot;Melia Hotels-Ads&quot;' />
+                <member value='&quot;Mobissimo&quot;' />
+                <member value='&quot;Momondo&quot;' />
+                <member value='&quot;One Travel&quot;' />
+                <member value='&quot;Orbitz-ads-on-Network&quot;' />
+                <member value='&quot;Orbitz-Meta&quot;' />
+                <member value='&quot;OWW-ads-on-CTIX&quot;' />
+                <member value='&quot;Priceline-Ads&quot;' />
+                <member value='&quot;Priceline-Meta&quot;' />
+                <member value='&quot;Qatar Airways&quot;' />
+                <member value='&quot;Red Roof Inn&quot;' />
+                <member value='&quot;Rocketmiles&quot;' />
+                <member value='&quot;Room 77&quot;' />
+                <member value='&quot;Skyscanner-ads&quot;' />
+                <member value='&quot;SmartFares&quot;' />
+                <member value='&quot;South African Airlines&quot;' />
+                <member value='&quot;Starwood Hotels&quot;' />
+                <member value='&quot;Student Universe&quot;' />
+                <member value='&quot;TAM Airlines&quot;' />
+                <member value='&quot;Tingo&quot;' />
+                <member value='&quot;Travel Ticker&quot;' />
+                <member value='&quot;Travelation&quot;' />
+                <member value='&quot;Travelocity-Ads&quot;' />
+                <member value='&quot;Travelocity-Meta&quot;' />
+                <member value='&quot;Travelocity.ca&quot;' />
+                <member value='&quot;Travelstart&quot;' />
+                <member value='&quot;TripAdvisor&quot;' />
+                <member value='&quot;TripAdvisor-Europe&quot;' />
+                <member value='&quot;Tripping.com&quot;' />
+                <member value='&quot;Trivago&quot;' />
+                <member value='&quot;United Airlines&quot;' />
+                <member value='&quot;Vayama&quot;' />
+                <member value='&quot;Vegas.com-ads&quot;' />
+                <member value='&quot;Virgin America&quot;' />
+                <member value='&quot;Virgin Atlantic&quot;' />
+                <member value='&quot;Webjet&quot;' />
+                <member value='&quot;Webjet.ca&quot;' />
+                <member value='&quot;Westin Hotels&quot;' />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Date Axis' datatype='date' name='[Calculation_3510409144857232]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;    WHEN &quot;Day&quot; THEN DATE([Date])&#13;&#10;    WHEN &quot;Week&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[Date]))&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column caption='Filtered Ads' datatype='integer' name='[Calculation_6100110125516732]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Pages Served])-SUM([Impressions])' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='integer' name='[Impressions Nulled]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Impressions]&gt;0 THEN [Impressions] END' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_3510409144857232]' derivation='None' name='[none:Calculation_3510409144857232:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Impressions Nulled]' derivation='Sum' name='[sum:Impressions Nulled:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_6100110125516732]' derivation='User' name='[usr:Calculation_6100110125516732:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_6100110125516732:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[aft_advertiser_report_for_advertisers (copy)].[sum:Impressions Nulled:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[aft_advertiser_report_for_advertisers (copy)].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_6100110125516732:qk]&quot;</bucket>
+              <bucket>&quot;[aft_advertiser_report_for_advertisers (copy)].[sum:Impressions Nulled:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+            <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[:Measure Names]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[Multiple Values]' scope='rows' value='Pages' />
+            <format attr='subtitle' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[Multiple Values]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[aft_advertiser_report_for_advertisers (copy)].[Multiple Values]' scope='rows' value='true' />
+            <format attr='width' field='[aft_advertiser_report_for_advertisers (copy)].[Multiple Values]' value='52' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[aft_advertiser_report_for_advertisers (copy)].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[aft_advertiser_report_for_advertisers (copy)].[Multiple Values]</rows>
+        <cols>[aft_advertiser_report_for_advertisers (copy)].[none:Calculation_3510409144857232:qk]</cols>
+        <show-full-range>
+          <column>[aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Spend'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_meta_advertiser_report_for_advertisers' name='aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column datatype='string' name='[Advertiser]' param-domain-type='list' role='measure' type='nominal' value='&quot;Aeromexico&quot;'>
+              <calculation class='tableau' formula='&quot;Aeromexico&quot;' />
+              <members>
+                <member value='&quot;Aeromexico&quot;' />
+                <member value='&quot;Air Canada&quot;' />
+                <member value='&quot;Air Canada - Marketel&quot;' />
+                <member value='&quot;Air France&quot;' />
+                <member value='&quot;Airfarewatchdog&quot;' />
+                <member value='&quot;AirFastTickets&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis&quot;' />
+                <member value='&quot;Airtickets Touristikes Ypiresies Etairia Periorismenis Efthynis - UK&quot;' />
+                <member value='&quot;AirTicketsDirect&quot;' />
+                <member value='&quot;Alaska Airlines&quot;' />
+                <member value='&quot;American Airlines&quot;' />
+                <member value='&quot;American Airlines Fare Sale&quot;' />
+                <member value='&quot;American Airlines Vacation&quot;' />
+                <member value='&quot;Apple Vacations&quot;' />
+                <member value='&quot;Apple Vacations-ads &quot;' />
+                <member value='&quot;Aston Hotels&quot;' />
+                <member value='&quot;BMI&quot;' />
+                <member value='&quot;Booking.com-ads&quot;' />
+                <member value='&quot;Booking.com-Meta&quot;' />
+                <member value='&quot;bookit.com&quot;' />
+                <member value='&quot;British Airways&quot;' />
+                <member value='&quot;BudgetAir&quot;' />
+                <member value='&quot;BudgetAir.ca&quot;' />
+                <member value='&quot;Caesars&quot;' />
+                <member value='&quot;Cathay Pacific&quot;' />
+                <member value='&quot;Cathay Pacific - Canada&quot;' />
+                <member value='&quot;CheapFareGuru&quot;' />
+                <member value='&quot;CheapOair&quot;' />
+                <member value='&quot;CheapOair- Europe ads&quot;' />
+                <member value='&quot;CheapOair-Canada&quot;' />
+                <member value='&quot;CheapTickets-Ads&quot;' />
+                <member value='&quot;Cheaptickets-Meta&quot;' />
+                <member value='&quot;Crowne Plaza&quot;' />
+                <member value='&quot;DealBase&quot;' />
+                <member value='&quot;Delta&quot;' />
+                <member value='&quot;Edreams&quot;' />
+                <member value='&quot;eDreams - Europe&quot;' />
+                <member value='&quot;Emirates Airlines&quot;' />
+                <member value='&quot;Expedia - UK&quot;' />
+                <member value='&quot;Expedia-Ads&quot;' />
+                <member value='&quot;Expedia-Meta&quot;' />
+                <member value='&quot;Explore Trip&quot;' />
+                <member value='&quot;FareBoom-ads&quot;' />
+                <member value='&quot;FlightHub&quot;' />
+                <member value='&quot;FlightNetwork&quot;' />
+                <member value='&quot;Fly.com&quot;' />
+                <member value='&quot;Fly.com - UK&quot;' />
+                <member value='&quot;FlyFar&quot;' />
+                <member value='&quot;Frontier Airlines&quot;' />
+                <member value='&quot;Globester&quot;' />
+                <member value='&quot;Groupon-Ads&quot;' />
+                <member value='&quot;Hawaiian Airlines&quot;' />
+                <member value='&quot;Hawaiian Airlines - JFK Launch&quot;' />
+                <member value='&quot;Hilton Hotels&quot;' />
+                <member value='&quot;Hipmunk-Ads&quot;' />
+                <member value='&quot;Holiday Inn&quot;' />
+                <member value='&quot;Holiday Inn Express&quot;' />
+                <member value='&quot;Hotels.com-Ads&quot;' />
+                <member value='&quot;Hotels.com-Meta&quot;' />
+                <member value='&quot;Hotwire-Ads&quot;' />
+                <member value='&quot;Indian Eagle&quot;' />
+                <member value='&quot;JetaPort&quot;' />
+                <member value='&quot;JetBlue&quot;' />
+                <member value='&quot;Jetsetter-ads&quot;' />
+                <member value='&quot;Jetsetz&quot;' />
+                <member value='&quot;Justairticket-ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads&quot;' />
+                <member value='&quot;Kayak Software Corporation - Ads - Europe&quot;' />
+                <member value='&quot;La Quinta&quot;' />
+                <member value='&quot;LAN Airlines&quot;' />
+                <member value='&quot;LatinOFare-ads&quot;' />
+                <member value='&quot;Marriott Hotels&quot;' />
+                <member value='&quot;Melia Hotels-Ads&quot;' />
+                <member value='&quot;Mobissimo&quot;' />
+                <member value='&quot;Momondo&quot;' />
+                <member value='&quot;One Travel&quot;' />
+                <member value='&quot;Orbitz-ads-on-Network&quot;' />
+                <member value='&quot;Orbitz-Meta&quot;' />
+                <member value='&quot;OWW-ads-on-CTIX&quot;' />
+                <member value='&quot;Priceline-Ads&quot;' />
+                <member value='&quot;Priceline-Meta&quot;' />
+                <member value='&quot;Qatar Airways&quot;' />
+                <member value='&quot;Red Roof Inn&quot;' />
+                <member value='&quot;Rocketmiles&quot;' />
+                <member value='&quot;Room 77&quot;' />
+                <member value='&quot;Skyscanner-ads&quot;' />
+                <member value='&quot;SmartFares&quot;' />
+                <member value='&quot;South African Airlines&quot;' />
+                <member value='&quot;Starwood Hotels&quot;' />
+                <member value='&quot;Student Universe&quot;' />
+                <member value='&quot;TAM Airlines&quot;' />
+                <member value='&quot;Tingo&quot;' />
+                <member value='&quot;Travel Ticker&quot;' />
+                <member value='&quot;Travelation&quot;' />
+                <member value='&quot;Travelocity-Ads&quot;' />
+                <member value='&quot;Travelocity-Meta&quot;' />
+                <member value='&quot;Travelocity.ca&quot;' />
+                <member value='&quot;Travelstart&quot;' />
+                <member value='&quot;TripAdvisor&quot;' />
+                <member value='&quot;TripAdvisor-Europe&quot;' />
+                <member value='&quot;Tripping.com&quot;' />
+                <member value='&quot;Trivago&quot;' />
+                <member value='&quot;United Airlines&quot;' />
+                <member value='&quot;Vayama&quot;' />
+                <member value='&quot;Vegas.com-ads&quot;' />
+                <member value='&quot;Virgin America&quot;' />
+                <member value='&quot;Virgin Atlantic&quot;' />
+                <member value='&quot;Webjet&quot;' />
+                <member value='&quot;Webjet.ca&quot;' />
+                <member value='&quot;Westin Hotels&quot;' />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser Name]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Date Axis' datatype='date' name='[Calculation_3510409144857232]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;    WHEN &quot;Day&quot; THEN DATE([Date])&#13;&#10;    WHEN &quot;Week&quot; THEN DATE(DATETRUNC(&apos;week&apos;,[Date]))&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Spend]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Advertiser Name]' derivation='None' name='[none:Advertiser Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_3510409144857232]' derivation='None' name='[none:Calculation_3510409144857232:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Spend]' derivation='Sum' name='[sum:Spend:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+            <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser Name:nk]</column>
+            <column>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[aft_advertiser_report_for_advertisers (copy)].[sum:Spend:qk]</rows>
+        <cols>[aft_advertiser_report_for_advertisers (copy)].[none:Calculation_3510409144857232:qk]</cols>
+        <show-full-range>
+          <column>[aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Topline'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;[Parameters].[Advertiser]&gt; &lt;Sheet Name&gt;&#10;</run>
+            <run fontsize='14'>&lt;[Parameters].[Product Category]&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location id='Topline' path='/t/PreQA/workbooks/AfTAdvertiserReportforAdvertisersWithDateOption' revision='' site='PreQA' />
+      <style>
+      </style>
+      <size maxheight='1600' maxwidth='1600' minheight='1600' minwidth='1600' />
+      <zones>
+        <zone h='100000' id='1' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='12' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='3875' id='11' type='title' w='100000' x='0' y='0'>
+            </zone>
+            <zone h='96125' id='9' param='horz' type='layout-flow' w='100000' x='0' y='3875'>
+              <zone h='96125' id='7' type='layout-basic' w='90000' x='0' y='3875'>
+                <zone h='24032' id='17' name='Impression Share' show-title='true' w='45000' x='45000' y='3875'>
+                </zone>
+                <zone h='24032' id='18' name='Impressions over Pages Available' show-title='true' w='45000' x='0' y='3875'>
+                </zone>
+                <zone h='24031' id='20' name='CTR' show-title='true' w='45000' x='0' y='51938'>
+                </zone>
+                <zone h='24031' id='21' name='Average Position' show-title='true' w='45000' x='0' y='27907'>
+                </zone>
+                <zone h='24031' id='22' name='CPC' show-title='true' w='45000' x='45000' y='51938'>
+                </zone>
+                <zone h='24031' id='23' name='Clicks' show-title='true' w='45000' x='45000' y='27907'>
+                </zone>
+                <zone h='24031' id='24' name='Spend' show-title='true' w='45000' x='0' y='75969'>
+                </zone>
+                <zone h='24031' id='25' type='empty' w='45000' x='45000' y='75969'>
+                </zone>
+              </zone>
+              <zone fixed-size='160' h='96125' id='8' is-fixed='true' param='vert' type='layout-flow' w='10000' x='90000' y='3875'>
+                <zone h='3125' id='10' param='[Parameters].[Advertiser]' type='paramctrl' w='10000' x='90000' y='3875'>
+                </zone>
+                <zone h='3125' id='26' param='[Parameters].[Product Category]' type='paramctrl' w='10000' x='90000' y='7000'>
+                </zone>
+                <zone h='3125' id='27' param='[Parameters].[Parameter 1]' type='paramctrl' w='10000' x='90000' y='10125'>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Impressions over Pages Available'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+            <card pane-specification-id='0' param='[aft_advertiser_report_for_advertisers (copy)].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='compact' param='[Parameters].[Advertiser]' type='parameter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[Parameters].[Product Category]</field>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[:Measure Names]</field>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</field>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[yr:Calculation_3510409144857232:ok]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Filter:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Impression Share'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='compact' param='[Parameters].[Advertiser]' type='parameter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[yr:Calculation_3510409144857232:ok]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Filter:nk]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Average Position'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[yr:Calculation_3510409144857232:ok]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Clicks'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[yr:Calculation_3510409144857232:ok]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='CTR'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[yr:Calculation_3510409144857232:ok]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='CPC'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='compact' param='[Parameters].[Advertiser]' type='parameter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[yr:Calculation_3510409144857232:ok]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Spend'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[yr:Calculation_3510409144857232:ok]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='1' name='Topline'>
+      <zones>
+        <zone name='Impression Share'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Impressions over Pages Available'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='CTR'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Average Position'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='CPC'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Clicks'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Spend'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone mode='compact' name='' param='[Parameters].[Advertiser]' type='paramctrl' />
+        <zone mode='compact' name='' param='[Parameters].[Product Category]' type='paramctrl' />
+        <zone mode='compact' name='' param='[Parameters].[Parameter 1]' type='paramctrl' />
+      </zones>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='CSV Download'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card type='rows' />
+            <card mode='compact' param='[Parameters].[Product Category]' type='parameter' />
+          </strip>
+          <strip size='300'>
+            <card mode='list' param='[Parameters].[Advertiser]' type='parameter' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Topline' width='192'>
+      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
+      SXfte647SwAAAABJRU5ErkJggg==
+    </thumbnail>
+  </thumbnails>
+</workbook>

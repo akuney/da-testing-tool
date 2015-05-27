@@ -1,0 +1,9 @@
+.DS_Store
+Tableau/data_extracts/*
+Tableau/server/Logs/*
+Tableau/server/Artifacts/*
+Tableau/server/Archived_Artifacts/*
+Tableau/workbook_converter/out
+.idea/*
+data.iml
+*.py[ocd]

@@ -1,0 +1,92 @@
+@outputSchema("ap_new_0:int")
+def ap_new_0(auction_position):
+    return auction_position
+
+@outputSchema("ap_new_1:int")
+def ap_new_1(auction_position):
+    return auction_position - 1
+
+@outputSchema("ap_new_2:int")
+def ap_new_2(auction_position):
+    if auction_position <= 1:
+        return auction_position
+    if auction_position >= 3:
+        return auction_position - 1
+
+@outputSchema("ap_new_3:int")
+def ap_new_3(auction_position):
+    if auction_position <= 2:
+        return auction_position
+    if auction_position >= 4:
+        return auction_position - 1
+
+@outputSchema("ap_new_4:int")
+def ap_new_4(auction_position):
+    if auction_position <= 3:
+        return auction_position
+    if auction_position >= 5:
+        return auction_position - 1
+
+@outputSchema("ap_new_5:int")
+def ap_new_5(auction_position):
+    if auction_position <= 4:
+        return auction_position
+    if auction_position >= 6:
+        return auction_position - 1
+
+@outputSchema("ap_new_6:int")
+def ap_new_6(auction_position):
+    if auction_position <= 5:
+        return auction_position
+    if auction_position >=7:
+        return auction_position - 1
+
+@outputSchema("raw_cpc:double")
+def raw_cpc(expectation_next, quality_score):
+    if expectation_next is None:
+        return 0.15
+    if quality_score is None:
+        return 0
+    else:
+        if expectation_next / quality_score < 0.15:
+            return 0.15
+        else:
+            return expectation_next / quality_score
+
+@outputSchema("advertiser_clicks:double")
+def advertiser_clicks(auction_position, clicks_0, clicks_1, clicks_2, clicks_3, clicks_4, clicks_5, clicks_6):
+    if auction_position == 1:
+        return clicks_0 - clicks_1
+    if auction_position == 2:
+        return clicks_0 - clicks_2
+    if auction_position == 3:
+        return clicks_0 - clicks_3
+    if auction_position == 4:
+        return clicks_0 - clicks_4
+    if auction_position == 5:
+        return clicks_0 - clicks_5
+    if auction_position == 6:
+        return clicks_0 - clicks_6
+    if auction_position > 6:
+        return 0
+    else:
+        return 0
+
+@outputSchema("advertiser_value:double")
+def advertiser_value(auction_position, contribution_0, contribution_1, contribution_2, contribution_3, contribution_4, contribution_5, contribution_6):
+    if auction_position == 1:
+        return contribution_0 - contribution_1
+    if auction_position == 2:
+        return contribution_0 - contribution_2
+    if auction_position == 3:
+        return contribution_0 - contribution_3
+    if auction_position == 4:
+        return contribution_0 - contribution_4
+    if auction_position == 5:
+        return contribution_0 - contribution_5
+    if auction_position == 6:
+        return contribution_0 - contribution_6
+    if auction_position > 6:
+        return 0
+    else:
+        return 0

@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+DA is the best!!
+=======
+DA is the best
+
+
+Hellooooo >:o
+>>>>>>> Stashed changes
+=======
+Rommy is the best
+>>>>>>> b11c7064084151e7524a9daf51a478a90ad7ddd3
+=======
+Rommy is the best
+>>>>>>> FETCH_HEAD

@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.2' xml:base='http://production-tableau-server-1.internal.intentmedia.net' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8100.14.0408.1805                -->
+  <repository-location derived-from='http://production-tableau-server-1.internal.intentmedia.net/t/DataSandbox/workbooks/DailyZeroBetas?rev=1.4' id='DailyZeroBetas' path='/t/DataSandbox/workbooks' revision='1.9' site='DataSandbox' />
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource caption='daily_zero_betas' inline='true' name='mysql.41578.657320625003' version='8.2'>
+      <connection class='mysql' dbname='intent_media_production' odbc-native-protocol='yes' port='3306' server='production-slave-db-server-1.internal.intentmedia.net' server-oauth='' username='tableau' workgroup-auth-mode='prompt'>
+        <relation name='TableauSQL' type='text'>select &#13;&#10;&#9;r.updated_at as `Updated At`,&#13;&#10;&#9;segmentation_model_id as `Segmentation Model ID`,&#13;&#10;&#9;feature_type as `Feature Type`,&#13;&#10;&#9;weight as `Weight`,&#13;&#10;&#9;avg_weight as `Average Weight`,&#13;&#10;&#9;site_id as `Site ID`,&#13;&#10;&#9;product_category_type as `Product Category`,&#13;&#10;&#9;model_type as `Model Type`,&#13;&#10;&#9;s.name as Site&#13;&#10;from&#13;&#10;&#9;(select * from &#13;&#10;&#9;&#9;(select &#13;&#10;&#9;&#9;&#9;updated_at,&#13;&#10;&#9;&#9;&#9;segmentation_model_id,&#13;&#10;&#9;&#9;&#9;feature_type,&#13;&#10;&#9;&#9;&#9;weight&#13;&#10;&#9;&#9;from &#13;&#10;&#9;&#9;&#9;segmentation_model_parameters&#13;&#10;&#9;&#9;where weight = 0 &#13;&#10;&#9;&#9;&#9;and date(updated_at) = current_date()) c&#13;&#10;&#9;inner join&#13;&#10;&#9;&#9;(select &#13;&#10;&#9;&#9;&#9;&#9;segmentation_model_id as sid,&#13;&#10;&#9;&#9;&#9;&#9;feature_type as ftype,&#13;&#10;&#9;&#9;&#9;&#9;sum(weight)/count(weight) as avg_weight&#13;&#10;&#9;&#9;from segmentation_model_parameters&#13;&#10;&#9;&#9;where segmentation_model_id is not null &#13;&#10;&#9;&#9;group by 1,2) p&#13;&#10;&#9;on&#13;&#10;&#9;&#9;c.segmentation_model_id = p.sid&#13;&#10;&#9;&#9;and c.feature_type = p.ftype&#13;&#10;&#9;&#9;and abs(p.avg_weight) &gt;&gt; 0.0001) r&#13;&#10;left join&#13;&#10;&#9;(select &#13;&#10;&#9;&#9;id,&#13;&#10;&#9;&#9;site_id,&#13;&#10;&#9;&#9;product_category_type,&#13;&#10;&#9;&#9;model_type&#13;&#10;&#9;from segmentation_models) d&#13;&#10;on r.segmentation_model_id = d.id&#13;&#10;left join sites s on s.id = d.site_id</relation>
+        <refresh increment-key='' incremental-updates='false'>
+        </refresh>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Model' datatype='string' name='[Calculation_3291108140848984]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='[Product Category]+&quot;-&quot;+[Model Type]' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Segmentation Model ID]' role='dimension' type='ordinal'>
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Site ID]' role='dimension' type='ordinal'>
+      </column>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='\\psf\Home\Documents\My Tableau Repository\Datasources\daily_zero_betas.tde' schema='Extract' tablename='Extract' update-time='10/17/2014 3:01:41 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Calculation_3291108140848984]' formula='[Product Category]+&quot;-&quot;+[Model Type]' />
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='0' timestamp-start='2014-10-17 15:01:41.267000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Feature List'>
+      <repository-location derived-from='http://production-tableau-server-1.internal.intentmedia.net/t/DataSandbox/workbooks/DailyZeroBetas/ZeroBetas?rev=' id='FeatureList' path='/t/DataSandbox/workbooks/DailyZeroBetas' revision='' site='DataSandbox' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='daily_zero_betas' name='mysql.41578.657320625003' />
+          </datasources>
+          <datasource-dependencies datasource='mysql.41578.657320625003'>
+            <column datatype='real' name='[Average Weight]' role='measure' type='quantitative'>
+            </column>
+            <column caption='Model' datatype='string' name='[Calculation_3291108140848984]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[Product Category]+&quot;-&quot;+[Model Type]' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Feature Type]' role='dimension' type='nominal'>
+            </column>
+            <column aggregation='Sum' datatype='integer' name='[Segmentation Model ID]' role='dimension' type='ordinal'>
+            </column>
+            <column aggregation='Sum' datatype='integer' name='[Site ID]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='string' name='[Site]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' name='[Weight]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Calculation_3291108140848984]' derivation='None' name='[none:Calculation_3291108140848984:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Feature Type]' derivation='None' name='[none:Feature Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Segmentation Model ID]' derivation='None' name='[none:Segmentation Model ID:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Site ID]' derivation='None' name='[none:Site ID:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Site]' derivation='None' name='[none:Site:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Average Weight]' derivation='Sum' name='[sum:Average Weight:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Weight]' derivation='Sum' name='[sum:Weight:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[mysql.41578.657320625003].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[mysql.41578.657320625003].[sum:Weight:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[mysql.41578.657320625003].[sum:Average Weight:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[mysql.41578.657320625003].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[mysql.41578.657320625003].[sum:Weight:qk]&quot;</bucket>
+              <bucket>&quot;[mysql.41578.657320625003].[sum:avg_weight:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <slices>
+            <column>[mysql.41578.657320625003].[:Measure Names]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='color' value='#000000' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[mysql.41578.657320625003].[none:Calculation_3291108140848984:nk]' value='132' />
+            <format attr='width' field='[mysql.41578.657320625003].[none:Feature Type:nk]' value='328' />
+            <format attr='width' field='[mysql.41578.657320625003].[none:Site:nk]' value='116' />
+            <format attr='width' field='[mysql.41578.657320625003].[none:Site ID:ok]' value='40' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' field='[mysql.41578.657320625003].[:Measure Names]' value='center' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='color' value='#000000' />
+          </style-rule>
+          <style-rule element='quick-filter'>
+            <format attr='color' value='#00000000' />
+          </style-rule>
+          <style-rule element='quick-filter-title'>
+            <format attr='color' value='#000000' />
+          </style-rule>
+          <style-rule element='parameter-ctrl'>
+            <format attr='color' value='#000000' />
+          </style-rule>
+          <style-rule element='parameter-ctrl-title'>
+            <format attr='color' value='#555555' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[mysql.41578.657320625003].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([mysql.41578.657320625003].[none:Segmentation Model ID:ok] / ([mysql.41578.657320625003].[none:Site ID:ok] / ([mysql.41578.657320625003].[none:Site:nk] / ([mysql.41578.657320625003].[none:Calculation_3291108140848984:nk] / [mysql.41578.657320625003].[none:Feature Type:nk]))))</rows>
+        <cols>[mysql.41578.657320625003].[:Measure Names]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Feature List'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[mysql.41578.657320625003].[:Measure Names]</field>
+          <field>[mysql.41578.657320625003].[none:Calculation_3291108140848984:nk]</field>
+          <field>[mysql.41578.657320625003].[none:Feature Type:nk]</field>
+          <field>[mysql.41578.657320625003].[none:Segmentation Model ID:ok]</field>
+          <field>[mysql.41578.657320625003].[none:Site ID:ok]</field>
+          <field>[mysql.41578.657320625003].[none:Site:nk]</field>
+          <field>[mysql.41578.657320625003].[none:avg_weight:ok]</field>
+          <field>[mysql.41578.657320625003].[none:feature_type:nk]</field>
+          <field>[mysql.41578.657320625003].[none:model_type:nk]</field>
+          <field>[mysql.41578.657320625003].[none:product_category_type:nk]</field>
+          <field>[mysql.41578.657320625003].[none:segmentation_model_id:ok]</field>
+          <field>[mysql.41578.657320625003].[none:site_id:ok]</field>
+          <field>[mysql.41578.657320625003].[none:weight:ok]</field>
+          <field>[mysql.41578.657320625003].[yr:updated_at:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+  </thumbnails>
+</workbook>

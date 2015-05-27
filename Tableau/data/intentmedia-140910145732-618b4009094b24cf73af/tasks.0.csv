@@ -1,0 +1,473 @@
+content,owner,send_time,done_at,created_at,date,id,remind,taskable_company_name,taskable_first_name,taskable_id,taskable_last_name,taskable_name,taskable_type,updated_at
+SSN Deep Dive w/ Kris,Noreen Henry,2014-06-16T17:00:00Z,2014-07-17T16:32:58Z,2014-07-17T16:32:51Z,,6413334,true,LateRooms,,64266104,,,SalesAccount,2014-07-17T16:32:58Z
+Data Request Template to LR,Noreen Henry,2014-06-17T17:00:00Z,2014-07-17T16:24:25Z,2014-07-17T16:24:22Z,,6412952,true,LateRooms,,64266104,,,SalesAccount,2014-07-17T16:24:25Z
+MOCK UPS,Noreen Henry,2014-06-26T17:00:00Z,2014-07-17T16:40:33Z,2014-07-17T16:40:30Z,,6413473,true,LateRooms,,64266104,,,SalesAccount,2014-07-17T16:40:33Z
+SIZING -,Noreen Henry,2014-07-03T16:00:00Z,2014-07-17T15:56:21Z,2014-07-17T15:56:13Z,,6412546,true,AirTickets,,64266073,,,SalesAccount,2014-08-02T04:03:38Z
+CONTRACT - initial draft sent to Thodoris,Noreen Henry,2014-07-05T16:00:00Z,2014-07-17T15:57:17Z,2014-07-17T15:57:11Z,,6412556,true,AirTickets,,64266073,,,SalesAccount,2014-08-02T04:03:38Z
+What is the Status on This Account - What are Next Steps?,Jonathan Naymark,2014-07-09T18:00:00Z,,2014-07-09T17:57:24Z,,6247660,true,,,64266129,,,SalesAccount,2014-07-09T17:57:24Z
+Phone Call with AirTkt,Jonathan Naymark,2014-07-10T17:00:00Z,2014-07-10T19:27:09Z,2014-07-09T15:49:23Z,,6245503,true,AirTkt.com,,64266074,,,SalesAccount,2014-07-10T19:27:09Z
+This is a test - did you get an email or calendar notice?,Jonathan Naymark,2014-07-10T18:00:00Z,2014-07-30T15:30:42Z,2014-07-10T17:27:13Z,,6261371,true,"",Jess,64401090,Jacobs,,Contact,2014-07-30T15:30:42Z
+Test 2,Jessica Jacobs,2014-07-10T20:00:00Z,2014-07-10T19:06:40Z,2014-07-10T19:04:45Z,,6262698,true,"",Jess,64401090,Jacobs,,Contact,2014-07-10T19:06:40Z
+Draft Data Questionnaire for Momondo + CheapFlights,Robert Moore,2014-07-10T20:00:00Z,2014-07-11T20:43:54Z,2014-07-09T13:51:14Z,,6242911,true,Momondo,,64266107,,,SalesAccount,2014-07-11T20:43:54Z
+Follow up with Raina on test traffic estimates,Jessica Jacobs,2014-07-11T14:00:00Z,2014-07-28T17:44:06Z,2014-07-09T23:51:21Z,,6251747,true,,,3892128,,Expedia.com - SCA - Hotel - OP - List Page,Deal,2014-07-28T17:44:06Z
+Test TEst,Jonathan Naymark,2014-07-11T17:00:00Z,2014-07-09T16:33:37Z,2014-07-09T16:32:51Z,,6246409,true,AirFastTickets,,64266071,,,SalesAccount,2014-07-09T16:33:37Z
+Send Internal Team an Update on Share Trips Traffic Buying,Jonathan Naymark,2014-07-11T18:00:00Z,2014-07-09T18:17:31Z,2014-07-09T17:33:34Z,,6247167,true,,,64266117,,,SalesAccount,2014-07-17T17:04:56Z
+Complete BD Sizing Template for Momondo,Robert Moore,2014-07-11T20:00:00Z,2014-07-22T18:18:52Z,2014-07-09T13:50:43Z,,6242906,true,Momondo,,64266107,,,SalesAccount,2014-07-22T18:18:52Z
+Complete BD Sizing Template for CheapFlights.co.uk,Robert Moore,2014-07-10T21:00:00Z,2014-07-22T18:18:51Z,2014-07-09T13:50:19Z,,6242900,true,Momondo,,64266107,,,SalesAccount,2014-07-22T18:18:51Z
+Add to Operating Model,Bhuwan Vashisht,2014-07-11T20:00:00Z,2014-07-10T23:42:28Z,2014-07-09T13:33:47Z,,6242732,true,,,3892350,,ShareTrips - PPA - Hotel - OP,Deal,2014-07-10T23:42:28Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-07-13T15:00:00Z,2014-07-11T19:21:26Z,2014-07-11T19:21:04Z,,6281618,true,,,3988523,,Hotwire - SCA - Flight - OP - MFI,Deal,2014-07-11T19:21:26Z
+Circle back to Raina on status of test pause,Jessica Jacobs,2014-07-14T14:00:00Z,2014-07-28T17:44:07Z,2014-07-11T19:33:30Z,,6281757,true,,,3892137,,Expedia.com - SCA - Hotel - XU - List Page,Deal,2014-07-28T17:44:07Z
+Work with Shehzad to finalize test proposal,Jessica Jacobs,2014-07-14T13:00:00Z,2014-07-22T18:12:46Z,2014-07-09T23:55:08Z,,6251761,true,,,3892128,,Expedia.com - SCA - Hotel - OP - List Page,Deal,2014-07-22T18:12:46Z
+Follow up with Ronak and Angus to see if any next steps prior to 8/25 scheduled launch,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-31T16:35:10Z,2014-07-10T01:13:01Z,,6252252,true,,,3892125,,Hotels.com - SCA - Flight - OP - List Page,Deal,2014-07-31T16:35:10Z
+Follow up with Ronak and Angus to see if any next steps prior to 8/25 scheduled launch,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-11T19:45:21Z,2014-07-10T01:12:16Z,,6252250,true,,,3892139,,Hotels.com - SCA - Package - OP - List Page,Deal,2014-07-11T19:45:21Z
+"Follow up with Ronak and Angus to determine next steps, if any",Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-30T13:05:21Z,2014-07-10T01:04:26Z,,6252215,true,,,3892217,,KAYAK - SCA - Flight - OP - List Page Backfill,Deal,2014-07-30T13:05:21Z
+Follow up with Ronak and Angus to determine next steps to launch,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-30T13:05:08Z,2014-07-10T01:03:28Z,,6252210,true,,,3892213,,KAYAK - SCA - Flight - IE11 XU Overlay,Deal,2014-07-30T13:05:08Z
+Follow up with Ronak and Angus prior to scheduled 8/1 launch to determine required next steps,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-30T13:04:59Z,2014-07-10T01:02:30Z,,6252207,true,,,3892207,,KAYAK - SCA - Flight - Tablet XU,Deal,2014-07-30T13:04:59Z
+Follow up with Ronak and Angus to see next steps prior to 8/1 scheduled launch,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-22T18:13:00Z,2014-07-10T01:01:25Z,,6252203,true,,,3892221,,KAYAK - SCA - Hotel - Tablet XU,Deal,2014-07-22T18:13:00Z
+Follow up with Ronak and Angus to determined any required next steps before 7/28 lauch,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-22T18:12:57Z,2014-07-10T00:48:40Z,,6252161,true,,,3892171,,Travelocity.ca - SCA - Hotel - XU - List Page,Deal,2014-07-22T18:12:57Z
+Follow up with Ronak and Angus to see any requirements before 8/4 launch,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-22T18:12:51Z,2014-07-10T00:46:55Z,,6252155,true,,,3892181,,Travelocity.ca - SCA - Flight - XU - List Page,Deal,2014-07-22T18:12:51Z
+Follow up with Angus and Ronak to determine any required next steps for Launch 7/28,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-17T16:20:42Z,2014-07-10T00:45:42Z,,6252153,true,,,3892177,,Travelocity.ca - SCA - Flight - OP - List Page,Deal,2014-07-17T16:20:42Z
+Follow up with Raina and Ronak regarding tag release to determine launch timeline,Jessica Jacobs,2014-07-14T14:00:00Z,2014-07-17T16:11:31Z,2014-07-10T00:00:55Z,,6251849,false,,,3892121,,Expedia.co.uk - SCA - Flight - OP - List Page,Deal,2014-07-17T16:11:31Z
+Follow up with Raina and Ronak regarding tag updates to determine launch timeline,Jessica Jacobs,2014-07-14T15:00:00Z,2014-07-11T19:12:52Z,2014-07-09T23:59:56Z,,6251833,true,,,3892142,,Expedia.ca - SCA - Flight - OP - List Page,Deal,2014-07-11T19:12:52Z
+TECH SPECS - to LR,Noreen Henry,2014-07-14T17:00:00Z,2014-07-17T16:29:37Z,2014-07-17T16:29:31Z,,6413097,true,LateRooms,,64266104,,,SalesAccount,2014-07-17T16:29:37Z
+QBR Deck Outline,Lynne Hamilton,2014-07-14T18:00:00Z,2014-07-15T22:27:17Z,2014-07-14T17:15:15Z,,6301804,true,,,64266126,,,SalesAccount,2014-07-15T22:27:17Z
+Travel update for Hotwire QBR,Lynne Hamilton,2014-07-14T20:00:00Z,2014-07-16T11:26:24Z,2014-07-14T19:49:27Z,,6304090,true,"Expedia, Inc.",,64116451,,,SalesAccount,2014-07-16T11:26:24Z
+Have an internal get together with Patrick before Share Trips phone call,Jonathan Naymark,2014-07-15T12:00:00Z,2014-07-16T19:09:00Z,2014-07-09T17:38:17Z,,6247211,true,,,64266117,,,SalesAccount,2014-07-17T17:04:56Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-07-15T15:00:00Z,2014-07-10T23:43:04Z,2014-07-09T13:33:47Z,,6242733,true,,,3892350,,ShareTrips - PPA - Hotel - OP,Deal,2014-07-10T23:43:04Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-07-15T15:00:00Z,2014-07-10T23:42:17Z,2014-07-09T11:31:20Z,,6237874,true,,,3892387,,Travelzoo - SCA - Hotel - XU - Hotel Deals List,Deal,2014-07-10T23:42:17Z
+Add Homepage XUs to the Launch Performance Tracker,Bhuwan Vashisht,2014-07-15T15:00:00Z,2014-07-10T23:41:17Z,2014-07-08T22:53:24Z,,6234261,true,,,3892137,,Expedia.com - SCA - Hotel - XU - List Page,Deal,2014-07-10T23:41:17Z
+Call with Steve Clarke,Lynne Hamilton,2014-07-15T20:30:00Z,2014-07-16T11:23:47Z,2014-07-14T17:14:41Z,,6301799,true,AMOMA.com,,64266077,,,SalesAccount,2014-07-16T11:23:47Z
+Send Bookit Intro email,Lynne Hamilton,2014-07-16T12:30:00Z,2014-07-16T18:45:44Z,2014-07-16T11:50:41Z,,6330062,true,BookIt.com,,64266078,,,SalesAccount,2014-07-16T18:45:44Z
+Check for Fareportal 4/23 notes,Lynne Hamilton,2014-07-16T12:30:00Z,2014-07-16T18:44:09Z,2014-07-16T11:34:38Z,,6329943,true,Fareportal,,64266092,,,SalesAccount,2014-07-16T18:44:09Z
+SIZING - to LR,Noreen Henry,2014-07-16T17:00:00Z,2014-07-17T16:25:09Z,2014-07-17T16:25:06Z,,6412960,true,LateRooms,,64266104,,,SalesAccount,2014-07-17T16:25:09Z
+lastminute.com call notes,Lynne Hamilton,2014-07-16T19:00:00Z,2014-07-30T03:55:42Z,2014-07-16T18:46:36Z,,6348790,true,lastminute.com,,64266103,,,SalesAccount,2014-07-30T03:55:42Z
+NDA - signed,Noreen Henry,2014-07-16T20:00:00Z,2014-07-17T19:36:12Z,2014-07-17T19:36:09Z,,6416008,true,Momondo,,64266107,,,SalesAccount,2014-07-17T19:36:12Z
+QBR Deck Turn,Lynne Hamilton,2014-07-16T21:30:00Z,2014-07-24T06:29:56Z,2014-07-14T17:15:32Z,,6301808,true,,,64266126,,,SalesAccount,2014-07-24T06:29:56Z
+Re-pull traffic data and send funnels,Lynne Hamilton,2014-07-16T22:30:00Z,2014-07-16T23:19:39Z,2014-07-14T17:17:55Z,,6301857,true,,,3892388,,Travelzoo - SCA - Flight - SF,Deal,2014-07-16T23:19:39Z
+"Prepare, vet and send BookIt SSN opportunity sizing (should include details page, too)",Jessica Jacobs,2014-07-16T23:30:00Z,2014-07-28T17:44:29Z,2014-07-15T17:32:30Z,,6319628,true,,,3892087,,BookIt.com - SSN - Hotel - OP - List Page,Deal,2014-07-28T17:44:29Z
+"Pub Team: Jonathan, JT, Lynn and Shezad are currently reconnecting to build story line to support expansion for Fareportal on Intent Media network",Jonathan Naymark,2014-07-17T12:00:00Z,,2014-07-09T18:22:07Z,,6247924,true,Fareportal,,64266092,,,SalesAccount,2014-07-09T18:22:07Z
+Transition lastminute.com to cross-product report https://www.pivotaltracker.com/story/show/75029692,Lynne Hamilton,2014-07-17T14:20:00Z,2014-07-24T06:33:13Z,2014-07-15T15:07:19Z,,6316092,true,lastminute.com,,64266103,,,SalesAccount,2014-07-24T06:33:13Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-07-17T15:00:00Z,2014-07-15T17:54:44Z,2014-07-15T17:15:07Z,,6319384,true,,,3892226,,lastminute.com - PPA - Hotel - OP - List Page,Deal,2014-07-15T17:54:44Z
+SIZING,Noreen Henry,2014-07-17T17:00:00Z,2014-07-17T16:21:51Z,2014-07-17T16:21:48Z,,6412885,true,LateRooms,,64266104,,,SalesAccount,2014-07-17T16:21:51Z
+Checking In On Fill Rate Problem For Certain Country ID's,Jonathan Naymark,2014-07-17T18:00:00Z,,2014-07-14T17:58:46Z,,6302491,true,Gogobot,,64266094,,,SalesAccount,2014-07-14T17:58:55Z
+Respond to Steve Toy re: UK tags,Lynne Hamilton,2014-07-18T01:00:00Z,2014-07-18T00:41:09Z,2014-07-18T00:41:03Z,,6422075,true,Fareportal,,64266092,,,SalesAccount,2014-07-18T00:41:09Z
+Ask Raina about updated margin information,Jessica Jacobs,2014-07-18T14:00:00Z,2014-07-28T17:44:34Z,2014-07-17T16:25:03Z,,6412959,true,"Expedia, Inc.",,64116451,,,SalesAccount,2014-07-28T17:44:34Z
+Follow up with Raina to see if she has a preference of when this launches,Jessica Jacobs,2014-07-18T14:00:00Z,2014-07-28T17:44:31Z,2014-07-17T16:23:41Z,,6412948,true,,,3892177,,Travelocity.ca - SCA - Flight - OP - List Page,Deal,2014-07-28T17:44:31Z
+SPECS/INTEGRATION - validate specs with KC and resent to Antoine,Noreen Henry,2014-07-18T16:00:00Z,2014-07-19T01:32:59Z,2014-07-17T16:51:51Z,,6413714,true,LateRooms,,64266104,,,SalesAccount,2014-07-19T01:32:59Z
+Email David / Steve re: Click Tabs,Lynne Hamilton,2014-07-18T16:00:00Z,2014-07-18T00:40:14Z,2014-07-16T13:50:11Z,,6331172,true,,,64266126,,,SalesAccount,2014-07-18T00:40:14Z
+MOCK UPS - NH to send Mock ups to H.com,Noreen Henry,2014-07-18T18:00:00Z,,2014-07-18T14:02:56Z,,6429563,true,Hotels.com,,65340712,,,SalesAccount,2014-07-18T20:32:57Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-07-20T15:00:00Z,,2014-07-18T15:24:08Z,,6430756,true,,,3892053,,AMOMA.com UK - SCA - Hotel - OP - Details Page,Deal,2014-07-18T15:24:08Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-07-20T15:00:00Z,,2014-07-18T15:24:08Z,,6430755,true,,,3892055,,AMOMA.com UK - SCA - Hotel - OP - List Page,Deal,2014-07-18T15:24:08Z
+PROPOSAL:  Prepare/send SSN business terms to Antoine,Noreen Henry,2014-07-21T12:00:00Z,2014-07-22T15:38:21Z,2014-07-17T21:45:42Z,,6420725,true,LateRooms,,64266104,,,SalesAccount,2014-07-22T15:38:21Z
+SIZING - NH to follow up with Kam on completing form,Noreen Henry,2014-07-21T12:00:00Z,2014-07-23T02:03:15Z,2014-07-17T19:44:29Z,,6416185,true,Momondo,,64266107,,,SalesAccount,2014-07-23T02:03:15Z
+SIZING - NH to send request to EAN (mon when Steve is back),Noreen Henry,2014-07-21T12:00:00Z,2014-07-23T01:57:15Z,2014-07-17T17:54:11Z,,6414763,true,Expedia Affiliate Network,,64351774,,,SalesAccount,2014-07-23T01:57:15Z
+Patrick to send Share Trips partner logos,Jonathan Naymark,2014-07-21T20:00:00Z,2014-07-31T17:51:32Z,2014-07-16T19:20:16Z,,6353396,true,,,64266117,,,SalesAccount,2014-07-31T17:51:32Z
+Complete QBR Document,Jonathan Naymark,2014-07-21T21:00:00Z,2014-07-31T17:51:35Z,2014-07-21T03:10:30Z,,6447944,true,LBF Travel,,64266105,,,SalesAccount,2014-07-31T17:51:35Z
+PCLN Deck Prep,Noreen Henry,2014-07-21T21:00:00Z,2014-07-23T01:07:24Z,2014-07-18T20:48:14Z,,6434903,true,Priceline Partner Network,,64266112,,,SalesAccount,2014-07-23T01:07:24Z
+Complete QBR Deck,Jonathan Naymark,2014-07-21T21:10:00Z,2014-07-27T15:44:06Z,2014-07-21T02:56:39Z,,6447900,true,Oversee.net,,64266111,,,SalesAccount,2014-07-27T15:44:06Z
+DATA REQUEST - follow up on request for info to size biz,Noreen Henry,2014-07-21T22:00:00Z,2014-07-22T17:29:21Z,2014-07-17T22:45:13Z,,6421266,true,,,65238482,,,SalesAccount,2014-07-22T17:29:21Z
+IMPLEMENTATION:  Set up Implementation meeting,Noreen Henry,2014-07-21T22:00:00Z,2014-07-22T17:00:03Z,2014-07-17T22:25:19Z,,6421154,true,,,64266124,,,SalesAccount,2014-07-22T17:00:03Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-22T03:00:00Z,2014-07-25T19:37:18Z,2014-07-15T21:42:08Z,,6322898,true,,,65238482,,,SalesAccount,2014-07-25T19:37:18Z
+INTRO CALL PREP - prep for call with John Diorio - President HotelReservations.com,Noreen Henry,2014-07-22T12:00:00Z,2014-07-22T17:41:34Z,2014-07-21T16:19:23Z,,6459283,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-07-22T17:41:35Z
+IMPLEMENTATION DOCS:  Send imp docs once NDA is signed,Noreen Henry,2014-07-22T12:00:00Z,2014-07-22T17:00:05Z,2014-07-17T22:26:04Z,,6421158,true,,,64266124,,,SalesAccount,2014-07-22T17:00:05Z
+Follow up with Thodoris on contract,Noreen Henry,2014-07-22T12:00:00Z,2014-07-24T13:59:07Z,2014-07-17T15:30:36Z,,6411848,true,AirTickets,,64266073,,,SalesAccount,2014-08-02T04:03:38Z
+Ensure all UX changes have been made,Jonathan Naymark,2014-07-22T13:00:00Z,2014-08-11T14:55:24Z,2014-07-09T17:38:52Z,,6247222,true,,,64266117,,,SalesAccount,2014-08-11T14:55:24Z
+FOLLOW UP - Send follow up to Andrew and keep updated on Car Search Compare launch,Noreen Henry,2014-07-22T15:00:00Z,2014-07-22T18:06:30Z,2014-07-22T14:06:54Z,,6474867,true,CarTrawler,,64266083,,,SalesAccount,2014-07-22T18:06:30Z
+AGW - with PQ to provide NH with PPA integration documents for EAN,Angus Glover Wilson,2014-07-22T21:00:00Z,2014-07-23T01:57:16Z,2014-07-17T17:56:54Z,,6414808,true,Expedia Affiliate Network,,64351774,,,SalesAccount,2014-07-23T01:57:16Z
+OPP SIZING - NH to send to Juliana,Noreen Henry,2014-07-22T22:00:00Z,2014-07-22T21:34:32Z,2014-07-22T21:32:04Z,,6502702,true,,,65238482,,,SalesAccount,2014-07-22T21:34:32Z
+PPA SCREEN SHOTS - Send John screen shots including details page,Noreen Henry,2014-07-22T22:00:00Z,2014-07-22T21:02:02Z,2014-07-22T20:19:22Z,,6501695,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-07-22T21:02:02Z
+DATA REQUEST - send to John so we can size the business,Noreen Henry,2014-07-22T22:00:00Z,2014-07-22T21:02:00Z,2014-07-22T20:18:45Z,,6501691,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-07-22T21:02:00Z
+NDA - send NDA to John and have it signed before sharing data,Noreen Henry,2014-07-22T22:00:00Z,2014-07-22T21:01:57Z,2014-07-22T20:18:08Z,,6501686,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-07-22T21:01:57Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-23T03:00:00Z,2014-07-25T19:37:19Z,2014-07-16T20:00:31Z,,6357084,true,Hotels.com,,65340712,,,SalesAccount,2014-07-25T19:37:19Z
+INTEGRATION DOCs - send to John,Noreen Henry,2014-07-23T12:00:00Z,2014-07-25T21:04:29Z,2014-07-22T21:59:20Z,,6503005,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-07-25T21:04:29Z
+INTRO CALL PREP - prep for call with Jessica Duemig with Skyscanner,Noreen Henry,2014-07-23T12:00:00Z,2014-07-24T14:02:04Z,2014-07-22T17:41:00Z,,6494272,true,,,64266119,,,SalesAccount,2014-07-24T14:02:04Z
+SIZE BD OPP - RM to size Vegas.com opportunity.  NH to follow up,Noreen Henry,2014-07-23T12:00:00Z,2014-07-22T21:31:24Z,2014-07-22T17:32:17Z,,6494149,true,,,65238482,,,SalesAccount,2014-07-22T21:31:24Z
+SKD TECH CALL - H.com sent over add'l PPA questions (in addition to previous QQ re loyalty and pricing feed -- too much to handle via email.  NH requested availability to schedule a tech call later this week,Noreen Henry,2014-07-23T12:00:00Z,2014-07-22T18:07:34Z,2014-07-18T14:04:16Z,,6429604,true,Hotels.com,,65340712,,,SalesAccount,2014-07-22T18:07:34Z
+Get Integration Documents for Booking Wiz,Jonathan Naymark,2014-07-23T18:00:00Z,2014-07-31T17:51:38Z,2014-07-21T03:10:56Z,,6447947,true,LBF Travel,,64266105,,,SalesAccount,2014-07-31T17:51:38Z
+NDA - send Randy NDA,Noreen Henry,2014-07-23T22:00:00Z,2014-07-23T21:54:10Z,2014-07-23T21:37:40Z,,6518044,true,Priceline Partner Network,,64266112,,,SalesAccount,2014-07-23T21:54:10Z
+NDA - obtain signatures for Vegas.com,Noreen Henry,2014-07-23T22:00:00Z,2014-07-23T01:04:07Z,2014-07-17T22:44:10Z,,6421258,true,,,65238482,,,SalesAccount,2014-07-23T01:04:07Z
+Ensure logos have been sent to Share Trips for ad units,Jonathan Naymark,2014-07-24T03:00:00Z,2014-07-31T17:51:40Z,2014-07-21T02:26:22Z,,6447759,true,,,3892350,,ShareTrips - PPA - Hotel - OP,Deal,2014-07-31T17:51:40Z
+Travelzoo ABR upload deck,Lynne Hamilton,2014-07-24T07:00:00Z,2014-07-26T00:21:49Z,2014-07-24T06:32:14Z,,6523152,true,,,64266126,,,SalesAccount,2014-07-26T00:21:49Z
+Hotwire QBR upload deck,Lynne Hamilton,2014-07-24T07:00:00Z,2014-07-29T20:34:45Z,2014-07-24T06:31:49Z,,6523151,true,"Expedia, Inc.",,64116451,,,SalesAccount,2014-07-29T20:34:45Z
+Travelzoo QBR external notes,Lynne Hamilton,2014-07-24T07:00:00Z,2014-07-26T00:07:04Z,2014-07-24T06:30:26Z,,6523146,true,,,64266126,,,SalesAccount,2014-07-26T00:07:04Z
+Travelzoo QBR internal notes,Lynne Hamilton,2014-07-24T07:00:00Z,2014-07-24T17:44:32Z,2014-07-24T06:30:14Z,,6523142,true,,,64266126,,,SalesAccount,2014-07-24T17:44:32Z
+CONTRACT PREP - for call tomorrow,Noreen Henry,2014-07-24T16:00:00Z,2014-07-25T14:11:30Z,2014-07-24T14:01:23Z,,6527970,true,AirTickets,,64266073,,,SalesAccount,2014-08-02T04:03:38Z
+CONTRACT - prep for tomorrow's call,Noreen Henry,2014-07-24T16:00:00Z,2014-07-25T17:24:40Z,2014-07-17T19:09:49Z,,6415654,true,Clicksco,,64266084,,,SalesAccount,2014-08-02T04:08:34Z
+API DOCUMENTS - NH to send tech meeting recap and API documents to TSM,Noreen Henry,2014-07-24T20:00:00Z,2014-07-24T19:04:44Z,2014-07-24T19:04:20Z,,6531760,true,,,64266124,,,SalesAccount,2014-07-24T19:04:44Z
+DATA REQUEST - send Jessica the data request temp ate,Noreen Henry,2014-07-24T21:00:00Z,2014-07-24T21:14:25Z,2014-07-24T20:04:41Z,,6532436,true,,,64266119,,,SalesAccount,2014-07-24T21:14:25Z
+HAND OUT - send Jessica modified version of the deck she can use internally,Noreen Henry,2014-07-24T21:00:00Z,2014-07-24T21:14:24Z,2014-07-24T20:04:21Z,,6532434,true,,,64266119,,,SalesAccount,2014-07-24T21:14:24Z
+NDA - send Jessica an NDA,Noreen Henry,2014-07-24T21:00:00Z,2014-07-24T21:14:21Z,2014-07-24T20:03:54Z,,6532432,true,,,64266119,,,SalesAccount,2014-07-24T21:14:21Z
+DATA REQUEST TEMPLATE - from RM,Noreen Henry,2014-07-24T22:00:00Z,2014-07-23T21:54:11Z,2014-07-23T21:30:36Z,,6517940,true,Priceline Partner Network,,64266112,,,SalesAccount,2014-07-23T21:54:11Z
+INTRO CALL PREP - prep for call with Elliot - CMO,Noreen Henry,2014-07-24T23:00:00Z,2014-07-24T23:23:55Z,2014-07-22T22:17:27Z,,6503260,true,,,65910813,,,SalesAccount,2014-09-08T12:30:47Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-07-25T03:00:00Z,,2014-07-18T16:10:07Z,,6431698,true,,,4060147,,lastminute.com - SCA - Hotel - XU - Details Page,Deal,2014-07-18T16:10:07Z
+Hotwire QBR internal notes,Lynne Hamilton,2014-07-25T07:00:00Z,2014-07-29T20:34:47Z,2014-07-24T06:31:13Z,,6523149,true,"Expedia, Inc.",,64116451,,,SalesAccount,2014-07-29T20:34:47Z
+Hotwire QBR external notes,Lynne Hamilton,2014-07-25T07:00:00Z,2014-07-29T20:34:46Z,2014-07-24T06:31:04Z,,6523148,true,"Expedia, Inc.",,64116451,,,SalesAccount,2014-07-29T20:34:46Z
+INTRO CALL PREP - prep for call with Scott & Chris from Groupon Getaway,Noreen Henry,2014-07-25T12:00:00Z,2014-07-28T19:18:50Z,2014-07-22T17:59:30Z,,6494597,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-07-28T19:18:50Z
+Follow up with Raina to get test turned up to 50:50 on Monday or Tuesday,Jessica Jacobs,2014-07-25T14:30:00Z,2014-07-28T17:44:37Z,2014-07-17T16:04:20Z,,6412671,true,,,3892142,,Expedia.ca - SCA - Flight - OP - List Page,Deal,2014-07-28T17:44:37Z
+IMPLEMENTATION - schedule Internal Kickoff,Noreen Henry,2014-07-25T15:00:00Z,2014-07-25T19:11:10Z,2014-07-25T14:12:21Z,,6541981,true,AirTickets,,64266073,,,SalesAccount,2014-08-02T04:03:39Z
+DATA REQUEST TEMPLATE - work with RM to send Elliott Data Request Template,Noreen Henry,2014-07-25T21:00:00Z,2014-07-25T21:48:24Z,2014-07-25T16:04:01Z,,6544555,true,,,65910813,,,SalesAccount,2014-09-08T12:30:47Z
+HANDOUT - Send Elliot handout of intro deck,Noreen Henry,2014-07-25T21:00:00Z,2014-07-25T21:48:22Z,2014-07-25T16:03:28Z,,6544544,true,,,65910813,,,SalesAccount,2014-09-08T12:30:47Z
+NDA - send Elliot NDA,Noreen Henry,2014-07-25T21:00:00Z,2014-07-25T21:48:16Z,2014-07-25T16:03:02Z,,6544542,true,,,65910813,,,SalesAccount,2014-09-08T12:30:47Z
+API ACCESS - Follow up with AGW on granting Travel SuperMarket API access,Noreen Henry,2014-07-25T22:00:00Z,2014-07-31T03:58:03Z,2014-07-24T21:02:46Z,,6532940,true,,,64266124,,,SalesAccount,2014-07-31T03:58:03Z
+CONTRACT - dev/review counter proposal with DT,Noreen Henry,2014-07-27T12:00:00Z,2014-07-28T19:45:27Z,2014-07-25T19:01:54Z,,6548925,true,Clicksco,,64266084,,,SalesAccount,2014-08-02T04:08:34Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-28T03:00:00Z,2014-07-28T15:00:30Z,2014-07-21T15:54:49Z,,6458554,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-07-28T15:00:30Z
+Monitor UX shift for capture the button,Jonathan Naymark,2014-07-28T03:00:00Z,2014-07-31T17:51:43Z,2014-07-21T02:26:06Z,,6447757,true,,,3892350,,ShareTrips - PPA - Hotel - OP,Deal,2014-07-31T17:51:43Z
+NDA - follow up on getting this from John,Noreen Henry,2014-07-28T12:00:00Z,2014-07-22T21:39:36Z,2014-07-22T21:03:20Z,,6502396,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-07-22T21:39:36Z
+DATA REQUEST - follow up on getting this from John,Noreen Henry,2014-07-28T12:00:00Z,2014-07-22T21:58:51Z,2014-07-22T21:02:52Z,,6502394,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-07-22T21:58:51Z
+Send info on pricing@ responses,Lynne Hamilton,2014-07-28T15:00:00Z,2014-07-30T03:55:25Z,2014-07-25T14:44:47Z,,6542640,true,,,3892226,,lastminute.com - PPA - Hotel - OP - List Page,Deal,2014-07-30T03:55:25Z
+Email David on price parity for Booking Engine,Lynne Hamilton,2014-07-28T18:00:00Z,2014-07-30T03:55:30Z,2014-07-28T17:05:47Z,,6572361,true,,,64266126,,,SalesAccount,2014-07-30T03:55:30Z
+Send info on pricing@ -- include property ID and latest on responses pending,Lynne Hamilton,2014-07-28T20:00:00Z,2014-07-29T13:32:42Z,2014-07-28T19:40:10Z,,6577725,true,lastminute.com,,64266103,,,SalesAccount,2014-07-29T13:32:42Z
+CONTRACT - get back to Kit with counter,Noreen Henry,2014-07-28T21:00:00Z,2014-07-29T01:22:00Z,2014-07-25T19:02:20Z,,6548932,true,Clicksco,,64266084,,,SalesAccount,2014-08-02T04:08:34Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-29T03:00:00Z,2014-07-28T15:00:31Z,2014-07-22T22:12:35Z,,6503107,true,,,65910813,,,SalesAccount,2014-09-08T12:30:47Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-29T03:00:00Z,2014-07-28T15:00:31Z,2014-07-22T17:48:03Z,,6494389,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-07-28T15:00:31Z
+DATA REQUEST TEMPLATE - work with RM to send to Groupon,Noreen Henry,2014-07-29T11:00:00Z,2014-07-29T17:33:46Z,2014-07-29T02:45:27Z,,6581568,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-07-29T17:33:46Z
+NDA - Have Tim review so I can sign.,Noreen Henry,2014-07-29T11:00:00Z,2014-07-29T18:58:36Z,2014-07-29T02:44:56Z,,6581566,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-07-29T18:58:36Z
+Internal Handoff meeting,Noreen Henry,2014-07-29T19:00:00Z,2014-07-30T03:32:20Z,2014-07-29T18:27:20Z,,6594063,true,Clicksco,,64266084,,,SalesAccount,2014-08-02T04:08:34Z
+PREP FOR FUNCTIONAL SPEC DISCUSSION -with KD/KC,Noreen Henry,2014-07-29T19:00:00Z,2014-07-29T18:38:32Z,2014-07-28T18:43:24Z,,6576844,true,Sabre,,64266116,,,SalesAccount,2014-07-29T18:38:32Z
+PREP for INTRO CALL,Noreen Henry,2014-07-29T20:00:00Z,2014-07-30T00:54:22Z,2014-07-29T19:22:16Z,,6594823,true,Meetingmax,,66428712,,,SalesAccount,2014-09-07T17:56:50Z
+INTEGRATION DOCs -- send updated version and follow up on Data Request,Noreen Henry,2014-07-29T21:00:00Z,2014-07-29T20:41:15Z,2014-07-29T20:34:04Z,,6595586,true,Expedia Affiliate Network,,64351774,,,SalesAccount,2014-07-29T20:41:15Z
+DECK for Sabre Functional Spec Call,Noreen Henry,2014-07-29T23:00:00Z,2014-07-30T15:26:24Z,2014-07-29T22:25:39Z,,6596898,true,Sabre,,64266116,,,SalesAccount,2014-07-30T15:26:24Z
+INTERNAL HANDOVER,Noreen Henry,2014-07-29T23:00:00Z,2014-07-29T22:22:58Z,2014-07-29T22:22:48Z,,6596875,true,AirTickets,,64266073,,,SalesAccount,2014-08-02T04:03:39Z
+NDA - send to Jeff,Noreen Henry,2014-07-30T01:00:00Z,2014-07-30T12:08:39Z,2014-07-30T00:56:07Z,,6602808,true,Meetingmax,,66428712,,,SalesAccount,2014-09-07T17:56:50Z
+Pitch on Intercard (adjust sizing once Intercard projects are finalized from Strat/Ops),Jonathan Naymark,2014-07-30T02:00:00Z,,2014-07-22T01:34:40Z,,6468696,true,Gogobot,,64266094,,,SalesAccount,2014-07-22T01:34:40Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:43Z,2014-07-23T18:28:28Z,,6514572,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:42Z,2014-07-23T18:28:28Z,,6514571,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:41Z,2014-07-23T18:28:28Z,,6514570,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:41Z,2014-07-23T18:28:28Z,,6514569,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:40Z,2014-07-23T18:28:28Z,,6514568,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:39Z,2014-07-23T18:28:28Z,,6514567,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:37Z,2014-07-23T18:28:28Z,,6514566,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:36Z,2014-07-23T18:28:28Z,,6514565,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:34Z,2014-07-23T18:28:27Z,,6514564,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-07-30T03:00:00Z,2014-07-28T15:00:33Z,2014-07-23T18:28:27Z,,6514563,true,,,64266126,,,SalesAccount,2014-07-29T20:26:58Z
+Respond to David on PPA price match,Lynne Hamilton,2014-07-30T12:00:00Z,2014-07-30T16:37:32Z,2014-07-30T03:57:46Z,,6603901,true,,,64266126,,,SalesAccount,2014-07-30T16:37:32Z
+RH to brief Ariane on EAN PPA opportunity,Noreen Henry,2014-07-30T12:00:00Z,2014-07-31T03:31:14Z,2014-07-17T17:55:16Z,,6414769,true,Expedia Affiliate Network,,64351774,,,SalesAccount,2014-07-31T03:31:14Z
+Follow up Evan Becker on opportunity to re-test,Carolyn Starrett,2014-07-30T13:00:00Z,,2014-07-12T14:42:01Z,,6286337,true,,,65057350,,,SalesAccount,2014-07-13T11:51:31Z
+Follow up with Dean on Q3 testing + SCA re-launch,Carolyn Starrett,2014-07-30T13:00:00Z,,2014-07-12T14:39:26Z,,6286333,true,,,64297339,,,SalesAccount,2014-07-13T13:54:21Z
+JN to schedule QBR,Jonathan Naymark,2014-07-30T16:00:00Z,2014-08-07T13:05:39Z,2014-07-21T15:52:34Z,,6458418,true,AirTrade,,64266075,,,SalesAccount,2014-08-07T13:05:39Z
+JN to schedule re-engagement call,Jonathan Naymark,2014-07-30T16:00:00Z,2014-08-07T13:05:37Z,2014-07-21T15:52:20Z,,6458385,true,AirTrade,,64266075,,,SalesAccount,2014-08-07T13:05:37Z
+Resize Vayama with addition of Intercard,Jonathan Naymark,2014-07-30T16:00:00Z,2014-08-16T18:09:10Z,2014-07-21T15:48:46Z,,6458198,true,,,3892045,,Vayama - SCA - Flight - OP - List Page,Deal,2014-08-16T18:09:10Z
+AMOMA account plan,Lynne Hamilton,2014-07-30T18:00:00Z,2014-08-01T18:36:08Z,2014-07-16T12:22:58Z,,6330270,true,AMOMA.com,,64266077,,,SalesAccount,2014-08-01T18:36:08Z
+LMN account plan,Lynne Hamilton,2014-07-30T18:00:00Z,2014-08-01T18:36:07Z,2014-07-16T12:21:21Z,,6330260,true,lastminute.com,,64266103,,,SalesAccount,2014-08-01T18:36:07Z
+Odigeo account plan,Lynne Hamilton,2014-07-30T18:00:00Z,2014-08-01T18:36:07Z,2014-07-16T12:20:56Z,,6330256,true,eDreams Odigeo,,64266088,,,SalesAccount,2014-08-01T18:36:07Z
+Travelzoo account plan,Lynne Hamilton,2014-07-30T18:00:00Z,2014-08-01T18:36:05Z,2014-07-16T12:15:23Z,,6330175,true,,,64266126,,,SalesAccount,2014-08-01T18:36:06Z
+Exclusivity - check contract,Noreen Henry,2014-07-30T19:00:00Z,2014-07-31T04:44:52Z,2014-07-30T18:30:26Z,,6615961,true,ShareTrips,,64266117,,,SalesAccount,2014-07-31T04:44:52Z
+API ACCESS/MVT CONTACT,Noreen Henry,2014-07-30T19:00:00Z,2014-07-31T21:20:44Z,2014-07-29T18:29:04Z,,6594072,true,Clicksco,,64266084,,,SalesAccount,2014-08-02T04:08:34Z
+API Decision - follow up with Danny,Noreen Henry,2014-07-30T19:00:00Z,2014-07-31T20:49:03Z,2014-07-29T18:29:04Z,,6594071,true,Clicksco,,64266084,,,SalesAccount,2014-08-02T04:08:34Z
+Respond to Matt on Traffic Spike,Lynne Hamilton,2014-07-30T20:00:00Z,2014-07-31T20:23:54Z,2014-07-30T03:57:26Z,,6603898,true,,,64266126,,,SalesAccount,2014-07-31T20:23:54Z
+DATA REQUEST TEMPLATE - work with RM to send,Noreen Henry,2014-07-30T21:00:00Z,2014-07-31T03:30:39Z,2014-07-30T00:56:40Z,,6602811,true,Meetingmax,,66428712,,,SalesAccount,2014-09-07T17:56:50Z
+BRIEFING - get briefing from RH on b.com meeting,Noreen Henry,2014-07-30T21:00:00Z,2014-07-31T01:17:59Z,2014-07-17T18:42:08Z,,6415343,true,Booking.com Affiliate Network,,64266076,,,SalesAccount,2014-07-31T01:17:59Z
+INTRO - RH to intro NH to Nicole,Noreen Henry,2014-07-31T02:00:00Z,2014-07-31T01:35:36Z,2014-07-31T01:20:35Z,,6620693,true,Booking.com Affiliate Network,,64266076,,,SalesAccount,2014-07-31T01:35:36Z
+API Guidelines - get copy from AP and send to Tim,Noreen Henry,2014-07-31T11:00:00Z,2014-07-31T21:39:45Z,2014-07-31T02:28:20Z,,6621145,true,Dealbase,,64266085,,,SalesAccount,2014-07-31T21:39:46Z
+SET UP INTRO CALL with Dan and Lynne,Noreen Henry,2014-07-31T11:00:00Z,2014-07-31T21:39:42Z,2014-07-31T01:48:31Z,,6620832,true,Dealbase,,64266085,,,SalesAccount,2014-07-31T21:39:42Z
+MEETING Notes,Noreen Henry,2014-07-31T11:00:00Z,2014-08-02T00:28:54Z,2014-07-30T15:26:42Z,,6612747,true,Sabre,,64266116,,,SalesAccount,2014-08-02T00:28:54Z
+API vs EZ$ - follow up with DA for final decision,Noreen Henry,2014-07-31T11:00:00Z,2014-07-31T20:49:08Z,2014-07-29T22:24:42Z,,6596890,true,Clicksco,,64266084,,,SalesAccount,2014-08-02T04:08:35Z
+SAMPLE REPORT - get CSS to bless and send to John,Noreen Henry,2014-07-31T11:00:00Z,2014-08-01T01:37:30Z,2014-07-29T20:22:16Z,,6595461,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-08-01T01:37:30Z
+OPP SIZING/NEXT STEPS - she is out rest of the week -  follow up with Juliana -- push to move to proposal,Noreen Henry,2014-07-31T12:00:00Z,2014-07-31T01:43:10Z,2014-07-22T21:35:33Z,,6502731,true,,,65238482,,,SalesAccount,2014-07-31T01:43:10Z
+FOLLOW UP - julie out last week - requested I follow end of this week,Noreen Henry,2014-07-31T13:00:00Z,2014-07-31T01:43:08Z,2014-07-30T12:11:06Z,,6607944,true,,,65238482,,,SalesAccount,2014-07-31T01:43:08Z
+Work with legal to preare Search Compare amendment to existing Share Trips contract,Noreen Henry,2014-07-31T19:00:00Z,2014-08-07T14:53:46Z,2014-07-30T18:46:41Z,,6616140,true,,,4185080,,ShareTrips - SCA - Hotel - XU,Deal,2014-08-07T14:53:47Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-08-01T03:00:00Z,2014-07-11T19:21:26Z,2014-07-11T19:21:04Z,,6281619,true,,,3988523,,Hotwire - SCA - Flight - OP - MFI,Deal,2014-07-11T19:21:26Z
+SET UP CALL with Roger & Lynne to brief/strategize,Noreen Henry,2014-08-01T11:00:00Z,2014-08-01T16:13:58Z,2014-07-31T04:18:01Z,,6621729,true,Room 77,,64266113,,,SalesAccount,2014-08-01T16:13:58Z
+SIZING - obtain sizing info from Will and send to RM,Noreen Henry,2014-08-01T12:00:00Z,2014-08-01T16:09:28Z,2014-07-17T22:28:00Z,,6421175,true,,,64266124,,,SalesAccount,2014-08-01T16:09:28Z
+PROPOSAL:  NH to send to Will once NDA signed,Noreen Henry,2014-08-01T12:00:00Z,2014-08-01T16:09:26Z,2014-07-17T22:27:02Z,,6421166,true,,,64266124,,,SalesAccount,2014-08-01T16:09:26Z
+CONTRACT - send to Will once NDA is signed,Noreen Henry,2014-08-01T12:00:00Z,2014-08-01T16:09:23Z,2014-07-17T22:26:39Z,,6421161,true,,,64266124,,,SalesAccount,2014-08-01T16:09:23Z
+Follow up with Raina re margin info,Jessica Jacobs,2014-08-01T17:00:00Z,2014-07-31T16:47:26Z,2014-07-31T16:39:13Z,,6652804,false,,,3892121,,Expedia.co.uk - SCA - Flight - OP - List Page,Deal,2014-07-31T16:47:26Z
+Email PQ About Sending Property Reuest Errors,Lynne Hamilton,2014-08-01T21:00:00Z,2014-08-01T19:56:33Z,2014-08-01T18:35:00Z,,6752516,true,lastminute.com,,64266103,,,SalesAccount,2014-08-01T19:56:33Z
+Email KAYAK Intel,Lynne Hamilton,2014-08-01T21:00:00Z,2014-08-01T22:22:47Z,2014-08-01T18:34:23Z,,6752482,true,,,64266126,,,SalesAccount,2014-08-01T22:22:47Z
+Email David re: IE11,Lynne Hamilton,2014-08-01T21:00:00Z,2014-08-01T22:22:42Z,2014-08-01T18:33:36Z,,6752475,true,,,64266126,,,SalesAccount,2014-08-01T22:22:42Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-08-02T15:00:00Z,,2014-07-31T18:02:34Z,,6653790,true,,,3892142,,Expedia.ca - SCA - Flight - OP - List Page,Deal,2014-07-31T18:02:34Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-08-03T03:00:00Z,2014-08-12T13:40:28Z,2014-07-13T12:15:20Z,,6290407,true,,,3997779,,BookIt.com - SCA - Hotel - XU - List Page,Deal,2014-08-12T13:40:28Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-04T03:00:00Z,2014-08-13T15:18:04Z,2014-07-28T18:53:30Z,,6576947,true,"SkyAuction.com, Inc.",,66327018,,,SalesAccount,2014-09-07T21:11:16Z
+FOLLOW UP on proposal and set up meeting on SSN,Noreen Henry,2014-08-04T11:00:00Z,2014-08-01T23:53:25Z,2014-07-31T01:43:49Z,,6620815,true,,,65238482,,,SalesAccount,2014-08-01T23:53:25Z
+Send Search Compare Addendum,Noreen Henry,2014-08-04T11:00:00Z,2014-08-05T13:14:04Z,2014-07-30T18:29:12Z,,6615924,true,ShareTrips,,64266117,,,SalesAccount,2014-08-05T13:14:04Z
+CONTRACT - Follow up on signatures with Kit,Noreen Henry,2014-08-04T11:00:00Z,2014-07-29T18:14:50Z,2014-07-29T01:25:24Z,,6580974,true,Clicksco,,64266084,,,SalesAccount,2014-08-02T04:08:34Z
+FOLLOW UP - on tech deep dive and proposal,Noreen Henry,2014-08-04T11:00:00Z,2014-08-01T16:12:04Z,2014-07-25T21:11:52Z,,6551000,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-08-01T16:12:04Z
+FOLLOW - ADVISE NOT QUALIFIED,Noreen Henry,2014-08-04T12:00:00Z,,2014-08-02T04:50:52Z,,6756392,true,PinTrips,,64351772,,,Contact,2014-08-02T04:51:22Z
+INTRO - reach out to Adam for intro,Noreen Henry,2014-08-04T12:00:00Z,2014-08-04T18:56:39Z,2014-08-02T04:48:02Z,,6756388,true,,,64266130,,,SalesAccount,2014-08-04T18:56:39Z
+FOLLOW UP on in-person visit,Noreen Henry,2014-08-04T12:00:00Z,2014-08-04T16:59:57Z,2014-08-01T16:13:01Z,,6748570,true,Media Market Group LLC,,65821528,,,SalesAccount,2014-08-04T16:59:57Z
+QUESTIONS:  Track down answers to Jessica's 2 questions re: IAB ads/filter by traffic source and get back to her,Noreen Henry,2014-08-04T12:00:00Z,2014-08-04T18:34:09Z,2014-07-24T21:16:46Z,,6533134,true,Skyscanner Ltd.,,64266119,,,SalesAccount,2014-08-04T18:34:09Z
+See if we are ready to have Share Trips ad intercard to site,Jonathan Naymark,2014-08-04T13:00:00Z,2014-08-16T18:09:14Z,2014-07-21T02:27:38Z,,6447762,true,,,3892350,,ShareTrips - PPA - Hotel - OP,Deal,2014-08-16T18:09:15Z
+Decision on API from AP,Noreen Henry,2014-08-04T15:00:00Z,2014-08-05T13:14:10Z,2014-07-31T22:20:38Z,,6658061,true,ShareTrips,,64266117,,,SalesAccount,2014-08-05T13:14:10Z
+Work with Shehzad to get custom reporting created,Jessica Jacobs,2014-08-04T17:00:00Z,2014-08-07T13:58:45Z,2014-07-31T16:38:28Z,,6652799,false,,,3892128,,Expedia.com - SCA - Hotel - OP - List Page,Deal,2014-08-07T13:58:45Z
+Unlock Search Compare API to Share Trips,Angus Glover Wilson,2014-08-04T19:00:00Z,,2014-07-30T18:47:09Z,,6616148,true,,,4185080,,ShareTrips - SCA - Hotel - XU,Deal,2014-07-30T18:47:09Z
+Create new ad ID for the PPA Exit overlay,Angus Glover Wilson,2014-08-05T01:00:00Z,,2014-07-31T00:06:40Z,,6620444,true,,,4188045,,ShareTrips - PPA - Hotel - XU,Deal,2014-07-31T00:06:40Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-05T03:00:00Z,2014-08-13T15:18:10Z,2014-07-29T19:10:05Z,,6594699,true,Meetingmax,,66428712,,,SalesAccount,2014-09-07T17:56:50Z
+Develop Technical Integration documentation,Daniel Ackerman,2014-08-05T03:00:00Z,,2014-07-29T17:38:33Z,,6593224,true,,,3892068,,Traveljunction - SCA - Flight - OP - List Page,Deal,2014-07-31T21:24:05Z
+Develop Technical Integration documentation,Daniel Ackerman,2014-08-05T03:00:00Z,,2014-07-29T17:37:22Z,,6593213,true,,,3892050,,AirTickets.com UK - SCA - Flight - OP - List Page,Deal,2014-08-19T15:15:18Z
+Develop Technical Integration documentation,Daniel Ackerman,2014-08-05T03:00:00Z,,2014-07-29T17:36:58Z,,6593204,true,,,3892035,,AirTickets.com UK - SCA - Flight - XU,Deal,2014-08-19T15:11:06Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-08-05T03:00:00Z,2014-08-12T13:40:28Z,2014-07-15T17:15:08Z,,6319385,true,,,3892226,,lastminute.com - PPA - Hotel - OP - List Page,Deal,2014-08-12T13:40:28Z
+INTRO Call with Dan and Lynne,Noreen Henry,2014-08-05T11:00:00Z,2014-08-05T23:12:59Z,2014-07-31T21:57:16Z,,6657520,true,Dealbase,,64266085,,,SalesAccount,2014-08-05T23:12:59Z
+Follow up with Raina regarding other Hotels testing,Jessica Jacobs,2014-08-05T17:00:00Z,2014-08-05T16:12:46Z,2014-07-31T16:38:02Z,,6652794,false,,,3892128,,Expedia.com - SCA - Hotel - OP - List Page,Deal,2014-08-05T16:12:46Z
+Draft account plan,Lynne Hamilton,2014-08-05T19:00:00Z,2014-08-13T21:42:34Z,2014-08-01T18:38:16Z,,6752545,true,,,64266124,,,SalesAccount,2014-08-13T21:42:34Z
+NDA - send Dan signed NDA,Noreen Henry,2014-08-06T00:00:00Z,2014-08-05T23:17:39Z,2014-08-05T23:13:14Z,,6797692,true,Dealbase,,64266085,,,SalesAccount,2014-08-05T23:17:39Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-06T03:00:00Z,2014-08-13T15:18:13Z,2014-07-30T15:29:59Z,,6612777,true,"Marriott International, Inc.",,66480446,,,SalesAccount,2014-08-13T15:18:13Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-06T03:00:00Z,2014-08-13T15:18:14Z,2014-07-30T03:37:15Z,,6603760,true,EX (Start Up),,66444166,,,Contact,2014-08-13T15:18:14Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-06T03:00:00Z,2014-08-13T15:18:14Z,2014-07-30T01:12:41Z,,6602923,true,,,66441139,,,Contact,2014-08-13T15:18:14Z
+SIZE CRUISE OP,Noreen Henry,2014-08-06T11:00:00Z,2014-08-07T14:53:31Z,2014-08-04T17:01:38Z,,6777894,true,,,64266116,,,SalesAccount,2014-08-07T14:53:31Z
+SIZING PPA - Follow up with Strat Ops,Noreen Henry,2014-08-06T11:00:00Z,2014-08-05T23:28:05Z,2014-08-04T16:36:23Z,,6777490,true,Clicksco,,64266084,,,SalesAccount,2014-08-05T23:28:05Z
+DRAFT CONTRACT -from Tim,Noreen Henry,2014-08-06T11:00:00Z,2014-08-07T14:53:14Z,2014-08-02T00:09:05Z,,6755575,true,,,65238482,,,SalesAccount,2014-08-07T14:53:14Z
+OPP SIZING/NEXT STEPS -send to Will next week and follow up when he is back from vc,Noreen Henry,2014-08-06T11:00:00Z,2014-08-19T13:04:24Z,2014-08-01T16:10:14Z,,6748504,true,,,64266124,,,SalesAccount,2014-08-19T13:04:24Z
+DATA REQUEST - follow up if not received (chris thought he would have by Monday),Noreen Henry,2014-08-06T11:00:00Z,2014-08-06T18:48:31Z,2014-07-29T17:35:12Z,,6593185,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-08-06T18:48:31Z
+MOCK UPS - follow up with design team and provide to John,Noreen Henry,2014-08-06T12:00:00Z,2014-08-07T18:53:52Z,2014-08-06T21:42:40Z,,6812008,true,,,65821528,,,SalesAccount,2014-08-07T18:53:52Z
+ROOM 77 - discuss opportunity with Rich,Noreen Henry,2014-08-06T12:00:00Z,2014-08-13T03:17:15Z,2014-08-05T23:17:32Z,,6797711,true,Dealbase,,64266085,,,SalesAccount,2014-08-13T03:17:15Z
+EAN/FEDERATED STRATEGY - get input from Damon,Noreen Henry,2014-08-06T12:00:00Z,2014-08-05T23:26:38Z,2014-08-05T15:44:51Z,,6793163,true,Federated Travel,,64266093,,,SalesAccount,2014-08-05T23:26:38Z
+FOLLOW - confirm call on Thursday,Noreen Henry,2014-08-06T12:00:00Z,2014-08-06T22:55:57Z,2014-08-04T19:14:19Z,,6780099,true,"Marriott International, Inc.",,66480446,,,SalesAccount,2014-08-06T22:55:57Z
+Model Tzoo Legacy SuperSearch Funnel,Lynne Hamilton,2014-08-06T12:30:00Z,2014-08-13T21:42:41Z,2014-08-04T20:13:37Z,,6781003,true,,,64266126,,,SalesAccount,2014-08-13T21:42:41Z
+Model Phantom card for PPA,Lynne Hamilton,2014-08-06T12:30:00Z,2014-08-13T21:42:38Z,2014-08-01T20:29:31Z,,6754105,true,,,64266126,,,SalesAccount,2014-08-13T21:42:38Z
+Follow up with Jason re: sizing,Jessica Jacobs,2014-08-06T13:00:00Z,2014-08-07T13:58:47Z,2014-08-05T16:11:11Z,,6793504,false,,,3892087,,BookIt.com - SSN - Hotel - OP - List Page,Deal,2014-08-07T13:58:47Z
+Follow up with Jason re: estimates,Jessica Jacobs,2014-08-06T14:00:00Z,2014-08-05T16:10:17Z,2014-08-05T16:09:45Z,,6793464,false,,,3892077,,BookIt.com - PPA - Hotel - OP - List Page,Deal,2014-08-05T16:10:17Z
+BB COMPETITIVE ADV:  work with CSS/DT/AP to refine talking points,Noreen Henry,2014-08-06T19:00:00Z,2014-08-11T18:09:21Z,2014-08-06T18:50:29Z,,6808606,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-08-11T18:09:21Z
+SEGMENTATION - work with JT/CSS to build deck,Noreen Henry,2014-08-06T19:00:00Z,2014-08-11T18:09:14Z,2014-08-06T18:49:59Z,,6808597,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-08-11T18:09:14Z
+OPP SIZING CALL- reschedule with Chris when RM is available,Noreen Henry,2014-08-06T19:00:00Z,2014-08-07T14:52:54Z,2014-08-06T18:49:22Z,,6808591,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-08-07T14:52:54Z
+Follow up on LMN property fill rate initiatives,Lynne Hamilton,2014-08-06T19:00:00Z,2014-08-08T14:45:50Z,2014-08-04T22:55:26Z,,6782727,true,lastminute.com,,64266103,,,SalesAccount,2014-08-08T14:45:50Z
+DALLAS MTG - schedule meeting when John is in town Aug 20-22,Noreen Henry,2014-08-06T22:00:00Z,2014-08-11T18:33:32Z,2014-08-06T21:43:04Z,,6812010,true,,,65821528,,,SalesAccount,2014-08-11T18:33:32Z
+Double check with Danny and Adam on XU API Questions,Jonathan Naymark,2014-08-06T23:00:00Z,2014-08-11T14:55:08Z,2014-08-05T22:57:28Z,,6797598,true,,,64266117,,,SalesAccount,2014-08-11T14:55:08Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-07T03:00:00Z,2014-09-05T21:09:16Z,2014-07-31T18:14:11Z,,6653937,true,,,4078278,,CheapOair UK - SCA - Flight - OP - List Page,Deal,2014-09-05T21:09:16Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-07T03:00:00Z,,2014-07-31T16:36:43Z,,6652782,true,,,3892386,,Travelzoo - PPA - Hotel - OP - Booking Engine,Deal,2014-07-31T16:36:43Z
+INTRO MEETING - schedule with mark,Noreen Henry,2014-08-07T11:00:00Z,2014-08-06T23:03:06Z,2014-07-31T22:18:48Z,,6658042,true,,,64266118,,,SalesAccount,2014-08-06T23:03:06Z
+BOOK TRAVEL - to NY for ShermansTravel meeting 8/13,Noreen Henry,2014-08-07T12:00:00Z,2014-08-07T18:52:51Z,2014-08-06T23:03:36Z,,6812852,true,,,64266118,,,SalesAccount,2014-08-07T18:52:51Z
+MOCK UPS - follow up with Dan to get copy - review internally to address any model concerns,Noreen Henry,2014-08-07T12:00:00Z,2014-08-11T23:08:47Z,2014-08-05T23:14:04Z,,6797696,true,Dealbase,,64266085,,,SalesAccount,2014-08-11T23:08:47Z
+CONTACT EAN - propose Federated as Test Case,Noreen Henry,2014-08-07T12:00:00Z,2014-08-11T21:08:26Z,2014-08-05T15:45:22Z,,6793171,true,Federated Travel,,64266093,,,SalesAccount,2014-08-11T21:08:26Z
+UPDATE ADDENDUM - to reflect cure period.  Add PPA,Noreen Henry,2014-08-07T12:00:00Z,2014-08-07T18:03:35Z,2014-08-05T14:53:36Z,,6792442,true,Clicksco,,64266084,,,SalesAccount,2014-08-07T18:03:35Z
+PPA PROOF POINTS - NH to get from PQ/CSS,Noreen Henry,2014-08-07T12:00:00Z,,2014-07-31T01:21:16Z,,6620694,true,Booking.com Affiliate Network,,64266076,,,SalesAccount,2014-08-06T22:07:38Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-08-07T15:00:00Z,,2014-08-05T16:56:38Z,,6794066,true,,,4133462,,Hipmunk - SCA - Hotel - OP - List Page,Deal,2014-08-05T16:56:38Z
+Present prelimiary optimization proposal to Dan R,Jessica Jacobs,2014-08-07T15:30:00Z,2014-08-07T20:03:33Z,2014-07-31T16:43:42Z,,6652842,false,,,3892155,,Hotwire - SCA - Hotel - OP - List Page,Deal,2014-08-07T20:03:33Z
+Work with Patrick to determine best details page placements for new Share Trips site UI,Jonathan Naymark,2014-08-07T20:00:00Z,2014-08-16T18:09:18Z,2014-08-05T22:37:53Z,,6797454,true,,,64266117,,,SalesAccount,2014-08-16T18:09:18Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-08T03:00:00Z,2014-08-13T15:18:16Z,2014-08-01T14:06:18Z,,6746359,true,Booking.com,,66662928,,,Contact,2014-08-13T15:18:16Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-08T03:00:00Z,2014-08-13T15:18:15Z,2014-08-01T13:58:48Z,,6746253,true,Bravofly Rumbo Group,,66662735,,,Contact,2014-08-13T15:18:15Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-08-08T03:00:00Z,2014-08-12T13:40:30Z,2014-07-18T15:24:08Z,,6430758,true,,,3892053,,AMOMA.com UK - SCA - Hotel - OP - Details Page,Deal,2014-08-12T13:40:30Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-08-08T03:00:00Z,2014-08-12T13:40:29Z,2014-07-18T15:24:08Z,,6430757,true,,,3892055,,AMOMA.com UK - SCA - Hotel - OP - List Page,Deal,2014-08-12T13:40:29Z
+PREP for INTRO CALL,Noreen Henry,2014-08-08T11:00:00Z,2014-08-08T15:59:43Z,2014-08-07T21:59:57Z,,6832295,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:13Z
+FOLLOWUP w/ronak - do we need EAN help,Noreen Henry,2014-08-08T11:00:00Z,2014-08-05T23:26:41Z,2014-08-02T01:42:07Z,,6755792,true,Federated Travel,,64266093,,,SalesAccount,2014-08-05T23:26:41Z
+cruis #s from Dan,Noreen Henry,2014-08-08T11:00:00Z,2014-08-04T17:01:22Z,2014-08-02T00:30:06Z,,6755674,true,,,64266116,,,SalesAccount,2014-08-04T20:40:40Z
+MOBILE TIMELINE: follow up with PQ to get timeline and advise Dan,Noreen Henry,2014-08-08T12:00:00Z,2014-08-13T03:17:32Z,2014-08-05T23:15:12Z,,6797703,true,Dealbase,,64266085,,,SalesAccount,2014-08-13T03:17:32Z
+Ask Ronak if the performance issue is related to the binding stuff we saw on Expedia,Jessica Jacobs,2014-08-08T14:00:00Z,2014-08-08T19:15:37Z,2014-08-07T19:58:45Z,,6830993,true,,,3892161,,Travelocity - SCA - Hotel - OP - List Page,Deal,2014-08-08T19:15:37Z
+Send mocks to Dan and offer to set up follow up call with Jake and Jessica to answer any of their questions,Jessica Jacobs,2014-08-08T15:00:00Z,2014-08-07T22:04:20Z,2014-08-07T20:04:14Z,,6831079,true,,,3892155,,Hotwire - SCA - Hotel - OP - List Page,Deal,2014-08-07T22:04:20Z
+Follow up with Ingrid on Mobile traffic,Jessica Jacobs,2014-08-08T16:00:00Z,2014-08-08T19:15:35Z,2014-08-07T20:12:55Z,,6831170,true,,,3892212,,KAYAK - SCA - Flight - Mobile App,Deal,2014-08-08T19:15:35Z
+OP Sizing Model - to Chris by EOD Fri,Noreen Henry,2014-08-08T16:00:00Z,2014-08-11T18:09:19Z,2014-08-06T21:54:32Z,,6812122,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-08-11T18:09:19Z
+CALL with meghan,Noreen Henry,2014-08-08T20:00:00Z,2014-08-08T20:23:58Z,2014-08-08T19:31:23Z,,6856962,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:13Z
+MOBILE - what do we support,Noreen Henry,2014-08-08T20:00:00Z,2014-08-13T03:17:48Z,2014-08-08T19:31:09Z,,6856961,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:13Z
+HANDOUT send to Darren,Noreen Henry,2014-08-08T20:00:00Z,2014-08-08T20:24:03Z,2014-08-08T19:30:18Z,,6856953,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:13Z
+NDA - send Darren and NDA,Noreen Henry,2014-08-08T20:00:00Z,2014-08-08T20:23:56Z,2014-08-08T19:29:49Z,,6856952,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:13Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-08-10T15:00:00Z,,2014-08-08T19:23:42Z,,6856919,true,,,4054114,,Travel Supermarket - SCA - Flight - OP - List Page,Deal,2014-08-08T19:23:42Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-11T03:00:00Z,2014-08-13T15:18:19Z,2014-08-04T22:31:07Z,,6782550,true,,,66892578,,,SalesAccount,2014-08-13T15:18:19Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-11T03:00:00Z,2014-08-13T15:18:21Z,2014-08-04T22:08:46Z,,6782433,true,CheapCaribbean.com,,66890045,,,SalesAccount,2014-08-25T20:09:41Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-11T03:00:00Z,2014-08-13T15:18:20Z,2014-08-04T19:42:12Z,,6780576,true,,,66886449,,,SalesAccount,2014-09-04T20:20:54Z
+"Meet with Adam, Jay, Angus to determine path towards launch",Jessica Jacobs,2014-08-11T13:00:00Z,2014-08-11T22:10:37Z,2014-08-07T14:08:16Z,,6822945,true,,,3892212,,KAYAK - SCA - Flight - Mobile App,Deal,2014-08-11T22:10:37Z
+SKDL CALL WITH ARIANE - when Malin back from vc,Noreen Henry,2014-08-11T13:00:00Z,2014-08-12T12:33:45Z,2014-08-01T13:52:02Z,,6746061,true,Expedia Affiliate Network,,64351774,,,SalesAccount,2014-08-12T12:33:45Z
+Follow up with Ronak to see if Exit overlays can launch,Jessica Jacobs,2014-08-11T16:00:00Z,2014-08-11T19:43:34Z,2014-08-07T22:03:40Z,,6832359,true,,,3892213,,KAYAK - SCA - Flight - IE11 XU Overlay,Deal,2014-08-11T19:43:34Z
+Test,Daniel Ackerman,2014-08-11T23:00:00Z,,2014-08-11T22:52:21Z,,6895140,true,,,3997972,,Webjet - SCA - Flight - OP - List Page,Deal,2014-08-11T22:52:21Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-12T03:00:00Z,,2014-08-05T16:56:07Z,,6794058,true,,,3892109,,eDreams.co.uk - SCA - Flight - OP - List Page,Deal,2014-08-05T16:56:07Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-12T03:00:00Z,,2014-08-05T16:56:06Z,,6794057,true,,,3892114,,Opodo - SCA - Flight - OP - List Page,Deal,2014-08-05T16:56:06Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-12T03:00:00Z,2014-08-05T16:05:07Z,2014-08-05T16:05:00Z,,6793419,true,,,4256066,,KAYAK - SCA - Flights - OP - Mobile Web,Deal,2014-08-05T16:05:07Z
+DATA REQUEST - work with RM to send,Noreen Henry,2014-08-12T12:00:00Z,2014-08-11T21:32:56Z,2014-08-08T19:30:50Z,,6856957,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:13Z
+PREP for INTRO MEETING,Noreen Henry,2014-08-12T12:00:00Z,2014-08-13T03:18:37Z,2014-08-06T23:04:11Z,,6812853,true,,,64266118,,,SalesAccount,2014-08-13T03:18:37Z
+FOLLOW UP - intro email - schedule a call,Noreen Henry,2014-08-12T22:00:00Z,2014-08-11T22:45:19Z,2014-08-08T21:10:13Z,,6857675,true,,,67170491,,,Contact,2014-08-11T22:45:19Z
+MOCK UPS - send to Chris,Noreen Henry,2014-08-13T15:00:00Z,2014-08-14T02:37:42Z,2014-08-13T14:20:19Z,,6919158,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-08-14T02:37:42Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-08-13T15:00:00Z,,2014-08-11T19:42:14Z,,6892106,true,,,3892194,,Hipmunk - SSN - Hotel - OP - List Page,Deal,2014-08-11T19:42:14Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-08-13T15:00:00Z,,2014-08-11T19:33:01Z,,6892002,true,,,3892213,,KAYAK - SCA - Flight - IE11 XU Overlay,Deal,2014-08-11T19:33:01Z
+Ask Sarah to setup daily placement report,Jonathan Naymark,2014-08-13T16:00:00Z,2014-08-14T15:15:16Z,2014-08-14T15:15:15Z,,6934579,true,AirTrade,,64266075,,,SalesAccount,2014-08-14T15:15:16Z
+Set up call with Maria Tan,Jonathan Naymark,2014-08-13T19:00:00Z,2014-08-13T19:35:30Z,2014-08-08T18:26:01Z,,6856351,true,AirTrade,,64266075,,,SalesAccount,2014-08-13T19:35:30Z
+Re-strategize on Hotel Path,Noreen Henry,2014-08-13T21:00:00Z,2014-08-14T12:53:59Z,2014-08-02T00:29:53Z,,6755673,true,,,64266116,,,SalesAccount,2014-08-14T12:53:59Z
+Pricing@ new process email,Lynne Hamilton,2014-08-13T22:00:00Z,2014-08-14T13:43:35Z,2014-08-13T21:44:26Z,,6926119,true,lastminute.com,,64266103,,,SalesAccount,2014-08-14T13:43:35Z
+Follow Up After Pub Crawl with Steve and Kristin,Jonathan Naymark,2014-08-14T00:00:00Z,2014-08-13T21:42:53Z,2014-08-11T23:56:27Z,,6895591,true,,,4078278,,CheapOair UK - SCA - Flight - OP - List Page,Deal,2014-08-13T21:42:53Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-14T03:00:00Z,2014-08-13T15:18:22Z,2014-08-07T21:55:39Z,,6832260,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:13Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-14T03:00:00Z,2014-08-13T15:18:24Z,2014-08-07T14:57:44Z,,6823629,true,Escapio GmbH,,67032730,,,SalesAccount,2014-09-07T20:27:22Z
+PPA ADDENDUM - check with PQ on any other language,Noreen Henry,2014-08-14T11:00:00Z,2014-08-14T20:16:39Z,2014-08-07T18:03:58Z,,6827670,true,Clicksco,,64266084,,,SalesAccount,2014-08-14T20:16:39Z
+MOCKUP deep dive on PPA call,Noreen Henry,2014-08-14T12:00:00Z,2014-08-14T18:36:28Z,2014-08-11T23:09:27Z,,6895258,true,Dealbase,,64266085,,,SalesAccount,2014-08-14T18:36:28Z
+PRICE MATCH CRITERIA - follow up with PQ to get copy and send to Dan,Noreen Henry,2014-08-14T12:00:00Z,2014-08-14T18:36:20Z,2014-08-05T23:14:39Z,,6797700,true,Dealbase,,64266085,,,SalesAccount,2014-08-14T18:36:20Z
+Email on pricing feed,Lynne Hamilton,2014-08-14T14:00:00Z,2014-08-15T14:36:14Z,2014-08-14T13:59:30Z,,6933644,true,lastminute.com,,64266103,,,SalesAccount,2014-08-15T14:36:14Z
+Resend Search Form metrics,Jonathan Naymark,2014-08-14T19:00:00Z,2014-08-14T18:02:23Z,2014-08-14T18:02:20Z,,6940393,true,,,64869609,,,Contact,2014-08-14T18:02:23Z
+Slides on HV / LV measurement,Lynne Hamilton,2014-08-14T22:00:00Z,2014-08-15T14:36:34Z,2014-08-13T21:43:38Z,,6926112,true,eDreams Odigeo,,64266088,,,SalesAccount,2014-08-15T14:36:35Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-15T03:00:00Z,2014-08-13T15:18:25Z,2014-08-08T21:07:11Z,,6857661,true,,,67170491,,,Contact,2014-08-13T15:18:25Z
+IMPLEMENTATION:  Set up imp call with AGW & AirTickets,Noreen Henry,2014-08-15T11:00:00Z,2014-08-14T20:17:06Z,2014-07-18T16:45:48Z,,6432001,true,AirTickets,,64266073,,,SalesAccount,2014-08-14T20:17:06Z
+Add E.co.uk to tableau by writing Pivotal Tracker story with entity_ID from Angus,Jessica Jacobs,2014-08-15T13:00:00Z,2014-08-15T14:07:57Z,2014-08-14T19:51:33Z,,6944961,true,"Expedia, Inc.",,64116451,,,SalesAccount,2014-08-15T14:07:57Z
+SCHEDULE CALL to discuss Use Case,Noreen Henry,2014-08-15T12:00:00Z,2014-08-18T18:22:34Z,2014-08-14T18:47:10Z,,6942273,true,Dealbase,,64266085,,,SalesAccount,2014-08-18T18:22:34Z
+PREP for call,Noreen Henry,2014-08-15T12:00:00Z,2014-08-18T14:43:02Z,2014-08-12T12:28:08Z,,6900599,true,,,67359877,,,SalesAccount,2014-08-20T19:12:24Z
+Send snapshot report of performance post launch,Jessica Jacobs,2014-08-15T13:00:00Z,2014-08-18T14:27:18Z,2014-07-31T16:34:29Z,,6652768,true,,,3892213,,KAYAK - SCA - Flight - IE11 XU Overlay,Deal,2014-08-18T14:27:18Z
+Weekly call notes - highlights,Lynne Hamilton,2014-08-15T15:00:00Z,2014-08-16T12:27:53Z,2014-08-15T14:37:33Z,,6955337,true,lastminute.com,,64266103,,,SalesAccount,2014-08-16T12:27:54Z
+Meeting notes,Lynne Hamilton,2014-08-15T15:00:00Z,2014-08-16T12:27:53Z,2014-08-15T14:36:48Z,,6955330,true,,,64266126,,,SalesAccount,2014-08-16T12:27:53Z
+Follow up with Adam re: Mobile API guidelines,Jessica Jacobs,2014-08-15T16:00:00Z,2014-08-18T16:31:01Z,2014-08-14T19:56:48Z,,6945031,true,KAYAK,,64266100,,,SalesAccount,2014-08-18T16:31:01Z
+Follow up with Raina on ads team response to BB buyout,Jessica Jacobs,2014-08-15T16:00:00Z,2014-08-18T14:27:24Z,2014-08-14T19:14:21Z,,6943322,true,"Expedia, Inc.",,64116451,,,SalesAccount,2014-08-18T14:27:24Z
+FOLLOW UP - intro email - schedule a call,Noreen Henry,2014-08-15T15:00:00Z,2014-08-20T19:54:15Z,2014-08-05T14:52:22Z,,6792426,true,CheapCaribbean.com,,66890045,,,SalesAccount,2014-08-25T20:09:41Z
+Send Maria additional placement options (intercard and xu),Jonathan Naymark,2014-08-15T16:00:00Z,2014-08-15T17:10:41Z,2014-08-14T15:16:31Z,,6934601,true,AirTrade,,64266075,,,SalesAccount,2014-08-15T17:10:41Z
+Follow-up with PPA metrics,Jonathan Naymark,2014-08-15T18:00:00Z,2014-08-16T18:09:20Z,2014-08-15T17:12:29Z,,6957350,true,Clicksco,,64266084,,,SalesAccount,2014-08-16T18:09:20Z
+FOLLOW UP - on intro emails,Noreen Henry,2014-08-15T19:00:00Z,2014-08-26T02:15:55Z,2014-08-04T18:57:04Z,,6779710,true,,,64266130,,,SalesAccount,2014-08-26T02:15:55Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-08-17T15:00:00Z,,2014-08-15T17:10:31Z,,6957304,true,,,3892385,,Travelzoo - SCA - Hotel - SF,Deal,2014-08-15T17:10:31Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-18T03:00:00Z,2014-08-13T15:18:26Z,2014-08-11T22:20:48Z,,6894921,true,,,67359877,,,SalesAccount,2014-08-20T19:12:24Z
+Follow up with Kirstin and Steve Toy re. UK Tags,Jonathan Naymark,2014-08-18T12:00:00Z,2014-08-18T17:56:44Z,2014-08-16T18:08:37Z,,6965659,true,Fareportal,,64266092,,,SalesAccount,2014-08-18T17:56:44Z
+Data Request - from StratOps to send to Holly,Noreen Henry,2014-08-18T12:00:00Z,2014-08-19T01:52:48Z,2014-08-15T21:56:47Z,,6960209,true,Escapio GmbH,,67032730,,,SalesAccount,2014-09-07T20:27:22Z
+Skdl call with Roger/Rm 77 - transition Shermans deal,Noreen Henry,2014-08-18T12:00:00Z,2014-08-18T16:06:20Z,2014-08-15T20:56:01Z,,6959744,true,,,64266118,,,SalesAccount,2014-08-18T16:06:20Z
+SKDL CALL WITH BRYAN & RH WK OF AUG 18TH,Noreen Henry,2014-08-18T14:00:00Z,2014-08-04T16:58:29Z,2014-08-01T14:09:44Z,,6746435,true,Booking.com,,66662928,,,Contact,2014-08-04T16:58:29Z
+Handout - send to Gon,Noreen Henry,2014-08-18T15:00:00Z,2014-08-18T15:41:41Z,2014-08-18T14:45:10Z,,6984248,true,,,67359877,,,SalesAccount,2014-08-20T19:12:24Z
+NDA - send to Gon,Noreen Henry,2014-08-18T15:00:00Z,2014-08-18T15:41:40Z,2014-08-18T14:44:58Z,,6984246,true,,,67359877,,,SalesAccount,2014-08-20T19:12:24Z
+PREP for INTRO CALL,Noreen Henry,2014-08-18T17:00:00Z,2014-08-20T14:27:22Z,2014-08-04T16:58:41Z,,6777840,true,Booking.com,,66662928,,,Contact,2014-08-20T14:27:22Z
+Help ClicksCo pick placement options for SCA,Jonathan Naymark,2014-08-18T18:00:00Z,2014-08-29T14:53:45Z,2014-08-15T17:12:18Z,,6957348,true,Clicksco,,64266084,,,SalesAccount,2014-08-29T14:53:45Z
+Check to ensure that logos are properly rendered,Jonathan Naymark,2014-08-18T23:00:00Z,2014-08-16T18:09:28Z,2014-08-05T22:36:43Z,,6797446,true,,,64266117,,,SalesAccount,2014-08-16T18:09:28Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-19T03:00:00Z,2014-08-13T15:18:27Z,2014-08-12T12:49:41Z,,6900884,true,Hotel Reservation Service (HRS),,67445279,,,SalesAccount,2014-08-13T15:18:27Z
+SCA Integration Docs,Noreen Henry,2014-08-19T12:00:00Z,2014-08-19T21:21:30Z,2014-08-19T02:57:08Z,,6992868,true,,,64266118,,,SalesAccount,2014-08-19T21:21:30Z
+Follow up with Steve Toy re. placement types and other loose ends,Jonathan Naymark,2014-08-19T12:00:00Z,2014-08-29T14:53:50Z,2014-08-18T21:09:13Z,,6989702,true,,,4078278,,CheapOair UK - SCA - Flight - OP - List Page,Deal,2014-08-29T14:53:50Z
+Integration Docs - send to Gon,Noreen Henry,2014-08-19T12:00:00Z,2014-08-19T15:26:36Z,2014-08-18T14:45:42Z,,6984252,true,,,67359877,,,SalesAccount,2014-08-20T19:12:24Z
+Data Request Template - send to Gon,Noreen Henry,2014-08-19T12:00:00Z,2014-08-19T15:26:37Z,2014-08-18T14:45:27Z,,6984250,true,,,67359877,,,SalesAccount,2014-08-20T19:12:24Z
+PREP for in person meeting,Noreen Henry,2014-08-19T12:00:00Z,2014-08-21T16:26:45Z,2014-08-11T18:42:45Z,,6891125,true,,,65821528,,,SalesAccount,2014-08-21T16:26:45Z
+PPA CONTRACT - work with Tim to draft and send copy to Dan,Noreen Henry,2014-08-19T12:00:00Z,2014-08-19T16:13:51Z,2014-08-05T23:16:56Z,,6797709,true,Dealbase,,64266085,,,SalesAccount,2014-08-19T16:13:51Z
+Follow-up to discuss Search Form Opportunity,Jonathan Naymark,2014-08-19T18:00:00Z,,2014-08-14T17:58:26Z,,6940335,true,,,64869609,,,Contact,2014-08-14T21:20:40Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-20T03:00:00Z,,2014-08-13T21:31:53Z,,6925762,true,,,3892085,,Dealbase - PPA - Hotel - OP - Details Page,Deal,2014-08-13T21:31:53Z
+Complete BD Sizing Template + Upload Deal Values,Robert Moore,2014-08-20T03:00:00Z,2014-08-13T15:18:28Z,2014-08-13T11:09:04Z,,6916724,true,Kea Panini SRL,,67617693,,,SalesAccount,2014-08-13T15:18:28Z
+NDA - follow up on signature,Noreen Henry,2014-08-20T12:00:00Z,2014-08-19T02:56:36Z,2014-08-18T19:30:39Z,,6988513,true,,,64266118,,,SalesAccount,2014-08-19T02:56:36Z
+Prep for SABRE meeting,Noreen Henry,2014-08-20T12:00:00Z,2014-08-25T19:51:52Z,2014-08-14T16:48:46Z,,6937526,true,,,64266116,,,SalesAccount,2014-08-25T19:51:52Z
+Work with Ronak to get eCPMs by browser for the test,Jessica Jacobs,2014-08-20T16:00:00Z,2014-08-21T17:29:31Z,2014-08-19T21:23:06Z,,7007104,true,,,3997789,,Expedia.com - SCA - Hotel - XU - Home Page,Deal,2014-08-21T17:29:31Z
+Set up phone call with Carolyn and Josh to discuss turning off PPA product,Jonathan Naymark,2014-08-20T16:00:00Z,2014-08-29T14:53:53Z,2014-08-18T15:49:56Z,,6985565,true,,,64266117,,,SalesAccount,2014-08-29T14:53:53Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-08-21T03:00:00Z,2014-08-12T13:40:31Z,2014-07-31T18:02:34Z,,6653791,true,,,3892142,,Expedia.ca - SCA - Flight - OP - List Page,Deal,2014-08-12T13:40:31Z
+ADDENDUM - follow up with Tim re review,Noreen Henry,2014-08-21T12:00:00Z,2014-08-20T19:55:13Z,2014-08-19T18:34:09Z,,7003607,true,eDreams Odigeo,,64266088,,,SalesAccount,2014-08-20T19:55:13Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-08-21T15:00:00Z,,2014-08-19T20:19:34Z,,7005622,true,,,4443745,,Cheaptickets - SCA - Flight - XU - List Page,Deal,2014-08-19T20:46:26Z
+Follow up with Patrick re: QL2 value proposition ,Jessica Jacobs,2014-08-21T16:30:00Z,2014-08-28T15:56:18Z,2014-07-31T16:45:14Z,,6652886,false,,,4033243,,Hotwire - PPA - Hotel - List Page,Deal,2014-08-28T15:56:18Z
+Send amendment redline + list,Lynne Hamilton,2014-08-21T20:30:00Z,2014-08-23T18:56:42Z,2014-08-21T14:03:02Z,,7041578,true,eDreams Odigeo,,64266088,,,SalesAccount,2014-08-23T18:56:42Z
+Share Travelport collateral,Noreen Henry,2014-08-21T22:00:00Z,,2014-07-31T21:28:39Z,,6657131,true,,,64266116,,,SalesAccount,2014-08-18T18:33:36Z
+write up notes from meeting,Noreen Henry,2014-08-22T11:00:00Z,,2014-08-13T15:21:14Z,,6920612,true,,,67170491,,,Contact,2014-08-19T21:49:57Z
+PREP for Intro Lunch,Noreen Henry,2014-08-22T12:00:00Z,2014-08-25T19:41:15Z,2014-08-20T19:54:37Z,,7032263,true,CheapCaribbean.com,,66890045,,,SalesAccount,2014-08-25T20:09:41Z
+Follow up with Angus to determine required parameter for test,Jessica Jacobs,2014-08-22T14:00:00Z,2014-08-21T17:29:42Z,2014-08-07T20:09:58Z,,6831123,true,,,3892217,,KAYAK - SCA - Flight - OP - List Page Backfill,Deal,2014-08-21T17:29:42Z
+Call notes 8/22,Lynne Hamilton,2014-08-22T15:00:00Z,2014-08-23T18:56:43Z,2014-08-22T14:59:37Z,,7057854,true,lastminute.com,,64266103,,,SalesAccount,2014-08-23T18:56:43Z
+CONTRACT - follow up with tim to get to John,Noreen Henry,2014-08-22T17:00:00Z,2014-08-25T19:52:57Z,2014-08-21T16:28:00Z,,7045098,true,,,65821528,,,SalesAccount,2014-08-25T19:52:57Z
+Follow up with Maria to ensure that they are properly receiving report and understand its metrics,Jonathan Naymark,2014-08-22T18:00:00Z,2014-08-29T14:53:58Z,2014-08-15T17:11:36Z,,6957340,true,AirTrade,,64266075,,,SalesAccount,2014-08-29T14:53:58Z
+Book Kick Off Meeting,Jonathan Naymark,2014-08-22T19:00:00Z,2014-08-29T14:54:00Z,2014-08-19T18:44:49Z,,7003710,true,,,4078278,,CheapOair UK - SCA - Flight - OP - List Page,Deal,2014-08-29T14:54:00Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-08-23T15:00:00Z,,2014-08-21T17:39:44Z,,7046264,true,,,3892193,,Gogobot - SCA - Hotel - XU - List Page,Deal,2014-08-21T17:39:49Z
+Follow up on Data Request & QQ -- to pull together commercials and contract,Noreen Henry,2014-08-25T12:00:00Z,2014-08-26T01:38:37Z,2014-08-19T15:27:58Z,,7000823,true,,,67359877,,,SalesAccount,2014-08-26T01:38:37Z
+Confirm meeting with finance re. Fareportal Aging Report,Jonathan Naymark,2014-08-25T12:35:00Z,2014-08-29T14:54:03Z,2014-08-22T20:25:21Z,,7061946,true,Fareportal,,64266092,,,SalesAccount,2014-08-29T14:54:03Z
+SKDL INTRO CALL - for when Francisco and Richard are back,Noreen Henry,2014-08-25T14:00:00Z,,2014-08-01T14:04:11Z,,6746334,true,Bravofly Rumbo Group,,66662735,,,Contact,2014-08-18T19:23:08Z
+Send slides w/ revenue per search + why we use booker rate,Lynne Hamilton,2014-08-25T15:00:00Z,,2014-08-20T14:49:33Z,,7016622,true,eDreams Odigeo,,64266088,,,SalesAccount,2014-08-20T14:49:58Z
+UPDATE ON AD HISTORY - prior to MC call from Jay,Noreen Henry,2014-08-25T16:00:00Z,2014-08-06T22:56:06Z,2014-07-30T15:33:38Z,,6612807,true,,,66480446,,,SalesAccount,2014-08-06T22:56:06Z
+Send RM details on LMN traffic,Lynne Hamilton,2014-08-25T20:00:00Z,2014-08-26T13:00:42Z,2014-08-25T19:16:24Z,,7092440,true,lastminute.com,,64266103,,,SalesAccount,2014-08-26T13:00:42Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-08-26T03:00:00Z,2014-08-20T15:13:51Z,2014-08-05T16:56:38Z,,6794067,true,,,4133462,,Hipmunk - SCA - Hotel - OP - List Page,Deal,2014-08-20T15:13:51Z
+PREP for Intro call,Noreen Henry,2014-08-26T18:00:00Z,2014-08-28T21:49:16Z,2014-08-26T17:41:59Z,,7163635,true,Five Star Alliance,,64351773,,,SalesAccount,2014-08-28T21:49:16Z
+Tell Raina the good news that we will be able to launch this week,Jessica Jacobs,2014-08-26T19:00:00Z,2014-09-02T14:31:11Z,2014-08-26T15:40:17Z,,7161121,true,,,3892171,,Travelocity.ca - SCA - Hotel - XU - List Page,Deal,2014-09-02T14:31:11Z
+PREP for PPA Call,Noreen Henry,2014-08-27T12:00:00Z,2014-08-28T13:27:22Z,2014-08-26T16:02:36Z,,7161576,true,,,67359877,,,SalesAccount,2014-08-28T13:27:22Z
+CONTRACT CALL with Josh to advise does not make sense to move forward,Noreen Henry,2014-08-27T12:00:00Z,2014-08-29T18:29:07Z,2014-08-26T02:31:01Z,,7149970,true,,,64266117,,,SalesAccount,2014-08-29T18:29:07Z
+CONTRACT - from Tim,Noreen Henry,2014-08-27T12:00:00Z,2014-08-28T13:27:23Z,2014-08-26T01:39:27Z,,7135969,true,,,67359877,,,SalesAccount,2014-08-28T13:27:23Z
+Travelzoo payment info (% for first month),Lynne Hamilton,2014-08-27T12:00:00Z,2014-09-02T16:40:52Z,2014-08-25T19:17:04Z,,7092446,true,,,64266126,,,SalesAccount,2014-09-02T16:40:52Z
+Send Meeting Notes to Tigran and Rebecca,Jonathan Naymark,2014-08-27T19:00:00Z,2014-08-29T14:54:05Z,2014-08-27T16:10:52Z,,7195408,true,,,64266111,,,SalesAccount,2014-08-29T14:54:05Z
+Follow up with Raina regarding choice of final designs,Jessica Jacobs,2014-08-27T20:00:00Z,2014-09-02T14:31:17Z,2014-08-19T22:21:36Z,,7007891,true,,,3892128,,Expedia.com - SCA - Hotel - OP - List Page,Deal,2014-09-02T14:31:17Z
+lastminute.com PPA sizing (where we are vs. expectations + where we can go),Lynne Hamilton,2014-08-27T21:00:00Z,2014-09-05T13:55:37Z,2014-08-22T14:03:15Z,,7057086,true,lastminute.com,,64266103,,,SalesAccount,2014-09-05T13:55:37Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-28T03:00:00Z,,2014-08-21T16:26:03Z,,7045068,true,,,4101030,,HotelReservations.com - PPA - Hotel - OP - List Page,Deal,2014-08-21T16:26:04Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-28T03:00:00Z,,2014-08-21T16:24:43Z,,7045056,true,,,4101029,,HotelReservations.com - SSN - Hotel - OP - Mobile Web,Deal,2014-08-21T16:24:46Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-28T03:00:00Z,,2014-08-21T16:24:23Z,,7045040,true,,,4101027,,HotelReservations.com - SSN - Hotel - OP - Details Page,Deal,2014-08-21T16:24:26Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-28T03:00:00Z,,2014-08-21T16:24:02Z,,7045014,true,,,4101026,,HotelReservations.com - SCA - Hotel - XU,Deal,2014-08-21T16:24:03Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-28T03:00:00Z,,2014-08-21T16:23:35Z,,7045011,true,,,4101021,,HotelReservations.com - PPA - Hotel - OP - Details Page,Deal,2014-08-21T16:23:37Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-08-28T03:00:00Z,,2014-08-21T16:23:23Z,,7045010,true,,,4101023,,HotelReservations.com - SSN - Hotel - OP - List Page,Deal,2014-08-21T16:23:26Z
+QUALIFYING Decision,Noreen Henry,2014-08-28T12:00:00Z,,2014-08-26T18:48:59Z,,7164985,true,,,66327018,,,SalesAccount,2014-09-07T21:11:16Z
+PPA call with Roomer,Noreen Henry,2014-08-28T12:00:00Z,2014-08-28T16:07:12Z,2014-08-26T01:39:52Z,,7136125,true,,,67359877,,,SalesAccount,2014-08-28T16:07:12Z
+PPA Qualifying Decision,Noreen Henry,2014-08-28T12:00:00Z,2014-08-26T16:01:44Z,2014-08-26T01:38:58Z,,7135782,true,,,67359877,,,SalesAccount,2014-08-26T16:01:44Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-08-29T03:00:00Z,2014-08-12T16:45:47Z,2014-08-08T19:23:42Z,,6856920,true,,,4054114,,Travel Supermarket - SCA - Flight - OP - List Page,Deal,2014-08-12T16:45:47Z
+MOCK UPS - send to Gon depending on decision,Noreen Henry,2014-08-29T12:00:00Z,2014-08-28T19:02:47Z,2014-08-28T16:15:48Z,,7209955,true,,,67359877,,,SalesAccount,2014-08-28T19:02:47Z
+PPA Use Case Deep Dive - skdl,Noreen Henry,2014-08-29T12:00:00Z,2014-08-28T22:27:07Z,2014-08-19T16:15:08Z,,7001544,true,Dealbase,,64266085,,,SalesAccount,2014-08-28T22:27:07Z
+PRE-CALL CHEAT SHEET - work with PQ on this,Noreen Henry,2014-08-29T12:00:00Z,,2014-08-06T21:43:39Z,,6812050,true,,,65821528,,,SalesAccount,2014-08-26T02:28:37Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-09-01T03:00:00Z,2014-08-12T16:46:25Z,2014-08-11T19:42:14Z,,6892107,true,,,3892194,,Hipmunk - SSN - Hotel - OP - List Page,Deal,2014-08-12T16:46:25Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-09-01T03:00:00Z,2014-08-12T13:40:17Z,2014-08-11T19:33:01Z,,6892003,true,,,3892213,,KAYAK - SCA - Flight - IE11 XU Overlay,Deal,2014-08-12T13:40:17Z
+DATA REQUEST - follow up on request for info to size biz,Noreen Henry,2014-09-01T12:00:00Z,,2014-08-19T01:53:39Z,,6992420,true,Escapio GmbH,,67032730,,,SalesAccount,2014-09-07T20:27:22Z
+Check in to initiate launch checklist,Jessica Jacobs,2014-09-01T20:00:00Z,,2014-07-11T18:35:33Z,,6281253,true,,,3988170,,Expedia.ca - SCA - Flight - XU,Deal,2014-07-11T18:35:33Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-02T03:00:00Z,,2014-08-26T14:35:13Z,,7159956,true,,,3892144,,Hotels.com - PPA - Hotel - OP - List Page,Deal,2014-08-26T14:35:13Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-02T03:00:00Z,,2014-08-26T14:35:09Z,,7159955,true,,,3892140,,Hotels.com - PPA - Hotel - OP - Details Page,Deal,2014-08-26T14:35:13Z
+SIGN ADDENDUM  & PPA- follow up with Kit,Noreen Henry,2014-09-02T11:00:00Z,2014-08-26T12:56:06Z,2014-08-04T16:36:46Z,,6777499,true,Clicksco,,64266084,,,SalesAccount,2014-08-26T12:56:06Z
+FOLLOW UP - proposal,Noreen Henry,2014-09-02T11:00:00Z,,2014-08-02T04:24:03Z,,6756331,true,LateRooms,,64266104,,,SalesAccount,2014-08-19T22:39:43Z
+Strat Session: Short Term Solution - and forward plan,Noreen Henry,2014-09-02T12:00:00Z,,2014-08-29T21:56:01Z,,7227375,true,,,64266098,,,SalesAccount,2014-08-29T21:56:01Z
+SPONSORSHIP - provide invoicing information (follow up with CK),Noreen Henry,2014-09-02T12:00:00Z,,2014-08-27T22:11:01Z,,7200076,true,Hotels.com,,65340712,,,SalesAccount,2014-08-27T22:11:01Z
+Integration Docs =- send once NDA is signed,Noreen Henry,2014-09-02T12:00:00Z,2014-08-26T22:49:35Z,2014-08-26T19:54:03Z,,7166058,true,Hotel Urbano,,68416522,,,SalesAccount,2014-08-26T22:55:03Z
+NDA - follow up on signature,Noreen Henry,2014-09-02T12:00:00Z,2014-08-26T22:49:36Z,2014-08-26T19:53:36Z,,7166055,true,Hotel Urbano,,68416522,,,SalesAccount,2014-08-26T22:55:03Z
+Mock Ups - from design,Noreen Henry,2014-09-02T12:00:00Z,2014-08-28T16:07:12Z,2014-08-26T02:07:02Z,,7146195,true,,,67359877,,,SalesAccount,2014-08-28T16:07:12Z
+CONTRACT - add API Guidelines,Noreen Henry,2014-09-02T12:00:00Z,2014-08-26T16:58:35Z,2014-08-14T20:14:06Z,,6946062,true,,,65238482,,,SalesAccount,2014-08-26T16:58:35Z
+PREP for call with Ariane,Noreen Henry,2014-09-02T12:00:00Z,2014-09-03T15:37:31Z,2014-08-12T12:35:13Z,,6900706,true,Expedia Affiliate Network,,64351774,,,SalesAccount,2014-09-03T15:37:31Z
+SIZING - follow up #2 - with Kam in a week if haven't heard back,Noreen Henry,2014-09-02T12:00:00Z,,2014-07-23T02:05:00Z,,6504973,true,,,64266107,,,SalesAccount,2014-08-19T22:24:17Z
+Follow up with Greg @ Cheap Air to see if we can persuade him to turn ads on again,Jonathan Naymark,2014-09-02T12:00:00Z,,2014-07-22T11:56:43Z,,6473312,true,,,3997784,,CheapAir - SCA - Flight - OP - List Page,Deal,2014-07-22T11:56:43Z
+Follow up with Ronak / Stewart to make sure Tablet integration work has begun,Jessica Jacobs,2014-09-02T14:00:00Z,2014-09-09T15:05:10Z,2014-08-18T14:32:46Z,,6984096,true,,,3892207,,KAYAK - SCA - Flight - Tablet XU,Deal,2014-09-09T15:05:10Z
+Connect with Greg once packages product is launched,Jonathan Naymark,2014-09-02T13:00:00Z,,2014-07-22T12:04:07Z,,6473378,true,,,3997784,,CheapAir - SCA - Flight - OP - List Page,Deal,2014-07-22T12:04:07Z
+Connect with Tigran to meet up at Eye for Travel,Jonathan Naymark,2014-09-02T16:00:00Z,2014-09-02T19:03:16Z,2014-08-27T16:10:30Z,,7195407,true,,,64266111,,,SalesAccount,2014-09-02T19:03:20Z
+INTERNAL ASSESSMENT of opp - follow up with lucy after,Noreen Henry,2014-09-02T22:00:00Z,2014-09-03T17:25:13Z,2014-08-28T21:49:51Z,,7214536,true,Five Star Alliance,,64351773,,,SalesAccount,2014-09-03T17:25:13Z
+FOLLOW UP on contract review,Noreen Henry,2014-09-03T12:00:00Z,2014-09-04T15:16:13Z,2014-08-25T19:53:26Z,,7092756,true,,,65821528,,,SalesAccount,2014-09-04T15:16:13Z
+FOLLOW UP - intro email - schedule a call,Noreen Henry,2014-09-03T12:00:00Z,2014-08-26T17:40:40Z,2014-08-04T21:53:02Z,,6782275,true,Five Star Alliance,,64351773,,,SalesAccount,2014-08-26T17:40:40Z
+NDA - follow up for signature,Noreen Henry,2014-09-03T12:00:00Z,,2014-07-30T12:09:26Z,,6607928,true,,,66428712,,,SalesAccount,2014-09-07T17:56:51Z
+Follow up with Karin on mocks,Jessica Jacobs,2014-09-03T21:00:00Z,2014-09-09T15:05:14Z,2014-08-26T15:34:41Z,,7161044,true,,,3892155,,Hotwire - SCA - Hotel - OP - List Page,Deal,2014-09-09T15:05:14Z
+DATA REQUEST - follow up on request for info to size biz,Noreen Henry,2014-09-03T20:00:00Z,,2014-08-12T17:34:27Z,,6904726,true,,,66428712,,,SalesAccount,2014-09-07T17:56:51Z
+Internationalization and Site Redesign - Check in on timelines with Josh and Joe,Jonathan Naymark,2014-09-03T20:00:00Z,2014-08-18T15:49:30Z,2014-07-16T19:20:49Z,,6353525,true,,,64266117,,,SalesAccount,2014-08-18T15:49:30Z
+Finish deck for kick off meeting,Jonathan Naymark,2014-09-04T12:00:00Z,2014-09-05T00:11:32Z,2014-09-03T14:45:16Z,,7342488,true,AirTickets,,64266073,,,SalesAccount,2014-09-05T00:11:32Z
+NY VISIT - confirm,Noreen Henry,2014-09-04T12:00:00Z,,2014-08-28T16:31:30Z,,7210132,true,,,67359877,,,SalesAccount,2014-09-02T13:09:44Z
+ADV - Intro DK,Noreen Henry,2014-09-04T12:00:00Z,,2014-08-28T16:30:59Z,,7210129,true,,,67359877,,,SalesAccount,2014-09-02T13:09:57Z
+INTEGRATION CALL - set up when know what prod,Noreen Henry,2014-09-04T12:00:00Z,,2014-08-28T16:30:23Z,,7210124,true,,,67359877,,,SalesAccount,2014-09-02T13:10:12Z
+CONTRACT - send to Roomer,Noreen Henry,2014-09-04T12:00:00Z,,2014-08-28T16:08:21Z,,7209865,true,,,67359877,,,SalesAccount,2014-09-02T13:32:10Z
+"Have danny send Kit the AD_IDs however, only after IP address has been sent to us for blocking purposes",Jonathan Naymark,2014-09-04T23:00:00Z,,2014-09-02T22:13:38Z,,7334528,true,Clicksco,,64266084,,,SalesAccount,2014-09-02T22:13:38Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-09-05T03:00:00Z,2014-08-20T15:13:50Z,2014-08-15T17:10:31Z,,6957305,true,,,3892385,,Travelzoo - SCA - Hotel - SF,Deal,2014-08-20T15:13:50Z
+MEETING REQ for when in London,Noreen Henry,2014-09-05T12:00:00Z,,2014-09-03T23:25:38Z,,7373784,true,lowcosttravelgroup,,69552899,,,Contact,2014-09-03T23:25:38Z
+FOLLOW UP - for EU visit,Noreen Henry,2014-09-05T12:00:00Z,,2014-08-29T22:47:49Z,,7227705,true,Booking.com Affiliate Network,,64266076,,,SalesAccount,2014-08-29T22:47:49Z
+Skds EU meeting - week of 21st,Noreen Henry,2014-09-05T12:00:00Z,,2014-08-29T21:57:07Z,,7227380,true,,,64266098,,,SalesAccount,2014-08-29T21:57:07Z
+TAGs:  follow up on tag implementations,Noreen Henry,2014-09-05T12:00:00Z,,2014-08-29T21:56:36Z,,7227376,true,,,64266098,,,SalesAccount,2014-08-29T21:56:36Z
+Contract - on hold - follow up next week,Noreen Henry,2014-09-05T12:00:00Z,,2014-08-19T16:14:45Z,,7001542,true,Dealbase,,64266085,,,SalesAccount,2014-08-28T22:27:44Z
+API LICENSE - get signature from Dan for interim,Noreen Henry,2014-09-05T12:00:00Z,,2014-08-05T23:16:21Z,,6797706,true,Dealbase,,64266085,,,SalesAccount,2014-08-28T22:28:00Z
+TripAdvisor file quality,Lynne Hamilton,2014-09-05T14:00:00Z,2014-09-05T16:01:52Z,2014-09-05T13:56:05Z,,7421026,true,lastminute.com,,64266103,,,SalesAccount,2014-09-05T16:01:52Z
+"Address Richards 3 questions:3. In the interim, we'll get you follow-up on: --details of our SLAs and how we ensure we don't impact site response times of our partners --details on rendering options and what we've found works best with our dozens of current partners --thoughts on the long-term vision for Property Price Ads and the strategic role it can play for our partners",Noreen Henry,2014-09-05T14:00:00Z,,2014-09-03T13:23:32Z,,7341152,true,Agoda Company Pte. Ltd,,68164157,,,Contact,2014-09-03T13:23:32Z
+Send Steve Toy follow-up note,Jonathan Naymark,2014-09-06T22:00:00Z,,2014-09-05T21:11:51Z,,7426468,true,,,4078278,,CheapOair UK - SCA - Flight - OP - List Page,Deal,2014-09-06T18:20:35Z
+Add to Launch Performance Tracker,Bhuwan Vashisht,2014-09-07T15:00:00Z,,2014-09-05T20:50:51Z,,7426246,true,,,4671374,,ebookers.ie - SSN - Hotel - OP - List Page,Deal,2014-09-05T20:50:51Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-09T03:00:00Z,,2014-09-02T14:56:03Z,,7328004,true,,,4453708,,RoomerTravel - SCA - Hotel - XU,Deal,2014-09-02T14:56:09Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-09T03:00:00Z,,2014-09-02T14:55:41Z,,7328001,true,,,4453703,,RoomerTravel - SCA - Hotel - OP - Details Page,Deal,2014-09-02T14:55:43Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-09T03:00:00Z,,2014-09-02T14:55:18Z,,7327999,true,,,4453689,,RoomerTravel - SCA - Hotel - OP - List Page,Deal,2014-09-02T14:55:25Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-09-09T03:00:00Z,2014-08-19T20:19:52Z,2014-08-19T20:19:34Z,,7005623,true,,,4443745,,Cheaptickets - SCA - Flight - XU - List Page,Deal,2014-08-19T20:46:26Z
+prep for call -- SCA search form focus,Noreen Henry,2014-09-09T12:00:00Z,,2014-09-07T16:04:09Z,,7446686,true,GraphicBomb Travel Ad Network,,69892059,,,Contact,2014-09-07T16:04:09Z
+FOLLOW UP - contract & next steps,Noreen Henry,2014-09-09T12:00:00Z,,2014-08-19T13:04:56Z,,6998105,true,,,64266124,,,SalesAccount,2014-09-02T17:51:42Z
+Remind Raina about Doorway page tag,Jessica Jacobs,2014-09-09T16:00:00Z,,2014-08-12T21:24:07Z,,6907864,true,"Expedia, Inc.",,64116451,,,SalesAccount,2014-09-09T15:05:36Z
+Follow up with Jason if have not heard back,Jessica Jacobs,2014-09-09T19:00:00Z,,2014-08-19T16:13:22Z,,7001513,true,,,3892087,,BookIt.com - SSN - Hotel - OP - List Page,Deal,2014-09-09T15:07:12Z
+Ensure we've received mock-up approval,Jonathan Naymark,2014-09-10T01:00:00Z,,2014-09-05T00:51:44Z,,7415482,true,AirTickets,,64266073,,,SalesAccount,2014-09-05T00:51:44Z
+Connect with Tigran about Tablet XU's,Jonathan Naymark,2014-09-10T17:00:00Z,,2014-08-27T16:11:14Z,,7195441,true,Oversee.net,,64266111,,,SalesAccount,2014-08-27T16:11:14Z
+Connect Optimizely lead with JT,Jonathan Naymark,2014-09-10T22:00:00Z,,2014-09-05T21:11:28Z,,7426463,true,,,4078278,,CheapOair UK - SCA - Flight - OP - List Page,Deal,2014-09-05T21:11:28Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-09-11T03:00:00Z,,2014-08-21T17:39:44Z,,7046265,true,,,3892193,,Gogobot - SCA - Hotel - XU - List Page,Deal,2014-08-21T17:39:49Z
+Follow-up to see if tags are implemented,Jonathan Naymark,2014-09-12T01:00:00Z,,2014-09-05T00:30:47Z,,7415295,true,AirTickets,,64266073,,,SalesAccount,2014-09-05T01:40:36Z
+WHITE LABEL - follow up with Roger/rm 77,Noreen Henry,2014-09-12T12:00:00Z,,2014-09-02T21:55:22Z,,7334191,true,,,64266118,,,SalesAccount,2014-09-02T21:55:22Z
+FOLLOW UP on interest,Noreen Henry,2014-09-12T12:00:00Z,,2014-08-29T19:34:39Z,,7226086,true,DirectRooms,,69167011,,,SalesAccount,2014-09-07T19:10:33Z
+SCA Test Follow up,Noreen Henry,2014-09-12T12:00:00Z,,2014-08-19T21:21:55Z,,7007068,true,,,64266118,,,SalesAccount,2014-09-02T21:54:31Z
+FOLLOW UP NDA/DATA REQUEST - w/ Elliott next week,Noreen Henry,2014-09-12T12:00:00Z,,2014-07-25T21:50:34Z,,6551417,true,,,65910813,,,SalesAccount,2014-09-08T12:30:47Z
+FOLLOW UP - on interested in SC-Car when we get closer to launching,Noreen Henry,2014-09-12T12:00:00Z,,2014-07-23T22:06:15Z,,6518777,true,CarTrawler,,64266083,,,SalesAccount,2014-07-23T22:06:15Z
+DATA REQUEST - follow up with Rand to complete,Noreen Henry,2014-09-12T12:00:00Z,,2014-07-23T21:58:25Z,,6518558,true,,,64266112,,,SalesAccount,2014-09-02T18:01:25Z
+NDA - follow up with Randy,Noreen Henry,2014-09-12T12:00:00Z,2014-09-04T20:30:59Z,2014-07-23T21:57:58Z,,6518555,true,,,64266112,,,SalesAccount,2014-09-04T20:30:59Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-15T03:00:00Z,,2014-09-08T12:57:27Z,,7455239,true,,,4452308,,Travel Supermarket - SCA - Hotel - XU,Deal,2014-09-08T12:57:36Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-15T03:00:00Z,,2014-09-08T12:56:43Z,,7455228,true,,,4452306,,Travel Supermarket - SCA - Hotel - OP - Mobile Web,Deal,2014-09-08T12:56:45Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-15T03:00:00Z,,2014-09-08T12:55:55Z,,7455222,true,,,4452302,,Travel Supermarket - SCA - Hotel - Top of Search Results,Deal,2014-09-08T12:55:59Z
+Develop Technical Integration documentation,Angus Glover Wilson,2014-09-15T03:00:00Z,,2014-09-08T12:55:34Z,,7455218,true,,,4452301,,Travel Supermarket - SCA - Flight - OP - Mobile Web,Deal,2014-09-08T12:55:43Z
+FOLLOW UP ON DATA REQUEST TEMPLATE,Noreen Henry,2014-09-15T11:00:00Z,2014-08-21T17:24:25Z,2014-07-28T19:04:12Z,,6577116,true,,,66327018,,,SalesAccount,2014-09-07T21:11:16Z
+Pull post-launch performance tracking,Jessica Jacobs,2014-09-15T13:00:00Z,,2014-09-02T15:28:19Z,,7328611,true,,,4620634,,Expedia.com - SCA - Flight - OP - List Page (IAB),Deal,2014-09-09T15:05:26Z
+DATA REQUEST - follow up with Darren to complete,Noreen Henry,2014-09-15T12:00:00Z,,2014-08-11T21:33:30Z,,6894309,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:14Z
+NDA - follow up next week re signature,Noreen Henry,2014-09-15T12:00:00Z,,2014-08-08T20:34:42Z,,6857488,true,Concur Technologies,,67057459,,,SalesAccount,2014-09-07T17:53:14Z
+FOLLOW UP - on NDA and Data Request,Noreen Henry,2014-09-15T12:00:00Z,,2014-07-24T21:17:28Z,,6533145,true,,,64266119,,,SalesAccount,2014-09-02T19:27:00Z
+FOLLOW UP - next week on Data Request and Interest,Noreen Henry,2014-09-16T11:00:00Z,,2014-07-29T20:41:31Z,,6595669,true,Expedia Affiliate Network,,64351774,,,SalesAccount,2014-09-02T21:47:43Z
+"Get time with Adam and Danny regarding rolling out with HV's getting Trip, rather than us",Jessica Jacobs,2014-09-19T14:00:00Z,,2014-08-19T22:15:41Z,,7007828,true,,,3997789,,Expedia.com - SCA - Hotel - XU - Home Page,Deal,2014-09-09T15:07:32Z
+Follow-up with Search Form Opportunity,Jonathan Naymark,2014-09-22T17:00:00Z,,2014-08-27T16:11:27Z,,7195446,true,Oversee.net,,64266111,,,SalesAccount,2014-08-27T16:11:27Z
+Reserve time with UX team as we sunset MFI and prepare for new UI,Jessica Jacobs,2014-09-22T21:00:00Z,,2014-07-11T19:21:55Z,,6281689,true,,,3988523,,Hotwire - SCA - Flight - OP - MFI,Deal,2014-07-11T19:21:55Z
+Book QBR,Jonathan Naymark,2014-09-22T22:00:00Z,,2014-09-05T21:11:38Z,,7426465,true,,,4078278,,CheapOair UK - SCA - Flight - OP - List Page,Deal,2014-09-05T21:11:38Z
+E.ca test scheduled to end,Jessica Jacobs,2014-09-24T22:00:00Z,,2014-08-11T20:08:16Z,,6892644,true,,,3892142,,Expedia.ca - SCA - Flight - OP - List Page,Deal,2014-08-11T20:08:16Z
+Update Traffic + GMR Estimates (post-launch),Kimberly Kim,2014-09-26T03:00:00Z,,2014-09-05T20:50:51Z,,7426247,true,,,4671374,,ebookers.ie - SSN - Hotel - OP - List Page,Deal,2014-09-05T20:50:52Z
+CONTRACT - send update to Juliana,Noreen Henry,2014-09-26T12:00:00Z,,2014-08-26T16:58:58Z,,7163103,true,,,65238482,,,SalesAccount,2014-09-03T18:57:28Z
+CONTRACT - follow up with Julianna on status,Noreen Henry,2014-09-26T12:00:00Z,,2014-08-14T20:14:53Z,,6946071,true,,,65238482,,,SalesAccount,2014-09-03T18:57:36Z
+Follow up with Brian on Flights team to determine success of test,Jessica Jacobs,2014-09-29T15:00:00Z,,2014-08-18T22:47:24Z,,6990749,true,,,3892127,,Expedia.com - SCA - Flight - OP - List Page,Deal,2014-08-18T22:47:24Z
+Leverage results of E.com Hotels On Page test to create launch proposal to present to Raina,Jessica Jacobs,2014-10-01T14:00:00Z,,2014-07-10T00:02:12Z,,6251863,true,,,3892115,,Expedia.ca - SCA - Hotel - OP - List Page,Deal,2014-08-19T15:32:20Z
+Leverage results of E.com Exit Units launch to create proposal for Raina to create launch timeline,Jessica Jacobs,2014-10-01T15:00:00Z,,2014-07-10T00:04:02Z,,6251865,true,,,3892129,,Expedia.co.uk - SCA - Flight - XU,Deal,2014-09-09T15:06:55Z
+FOLLOW UP ON PARTNER DECISION,Noreen Henry,2014-10-03T12:00:00Z,,2014-08-11T18:29:42Z,,6890915,true,"Groupon, Inc.",,65893409,,,SalesAccount,2014-09-05T21:13:40Z
+Follow up with ShareTrips on Booking Buddy and ClickTripz trials,Jonathan Naymark,2014-10-13T18:00:00Z,,2014-08-18T17:57:25Z,,6987237,true,,,64266117,,,SalesAccount,2014-08-18T17:57:25Z
+REVISIT SCH - Icebox -- when they are closer to launching,Noreen Henry,2014-10-15T11:00:00Z,,2014-08-13T11:29:49Z,,6916848,true,Kea Panini SRL,,67617693,,,SalesAccount,2014-08-13T11:29:49Z
+Follow-up with Theodoros to see what is the status on their new site design,Jonathan Naymark,2014-10-28T01:00:00Z,,2014-09-05T00:31:12Z,,7415298,true,AirTickets,,64266073,,,SalesAccount,2014-09-05T00:31:12Z
+INT'L Launch Skdl - communicate,Noreen Henry,2014-11-03T05:00:00Z,,2014-07-30T03:42:25Z,,6603841,true,EX (Start Up),,66444166,,,Contact,2014-07-30T03:42:25Z
+SCA- HOTEL - a reminder to see if ready to pitch Hotels,Noreen Henry,2014-11-03T11:00:00Z,,2014-08-01T02:13:25Z,,6722871,true,AirTickets,,64266073,,,SalesAccount,2014-08-02T04:03:39Z
+Reconnect in the fall/New Year to discuss new opportunites,Jonathan Naymark,2014-11-03T19:00:00Z,,2014-07-09T18:07:42Z,,6247763,true,CheapAir,,64297337,,,SalesAccount,2014-07-13T12:22:31Z
+RE-ENGAGE once migrated to new provider,Noreen Henry,2015-01-09T13:00:00Z,,2014-08-26T02:16:35Z,,7149903,true,,,64266130,,,SalesAccount,2014-08-26T02:16:35Z
+RE-ENGAGE when we get closer to launching in Brazil,Noreen Henry,2015-01-12T12:00:00Z,,2014-08-26T22:51:44Z,,7169364,true,Hotel Urbano,,68416522,,,SalesAccount,2014-08-26T22:55:03Z
+Check point on opportunity,Noreen Henry,2015-01-16T12:00:00Z,,2014-09-05T17:53:06Z,,7424149,true,,,3892398,,Trulia - Ads for Mortgages,Deal,2014-09-05T22:10:37Z
+RE-VISIT SCA & SSN in Q1 after their new platform launches,Noreen Henry,2015-01-30T11:00:00Z,,2014-08-25T19:48:47Z,,7092715,true,CheapCaribbean.com,,66890045,,,SalesAccount,2014-08-25T20:09:41Z
+FOLLOW UP - in 6 months,Noreen Henry,2015-02-02T12:00:00Z,,2014-08-12T13:00:12Z,,6901139,true,Hotel Reservation Service (HRS),,67445279,,,SalesAccount,2014-08-13T11:05:59Z
+KOREA ROLLOUT - update when we launch,Noreen Henry,2015-04-01T02:00:00Z,,2014-07-30T01:21:23Z,,6603040,true,,,66441139,,,Contact,2014-07-30T01:21:23Z
+Send Raina wedding gift,Jessica Jacobs,2015-05-25T13:00:00Z,,2014-08-07T12:52:54Z,,6820948,false,,,65071711,,,Contact,2014-08-07T12:52:54Z
+Send bday wishes!,Jessica Jacobs,2015-08-23T13:00:00Z,,2014-08-26T18:21:01Z,,7164413,true,"",Dan,65071713,Reeder,,Contact,2014-08-26T18:21:01Z
+"INPUT ACCOUNT INFO - just a reminder to update this with contact info, history, and any documents that have been presented to them so help with transitioning this account to me  thx!",Damon Tassone,,2014-08-29T21:54:09Z,2014-07-31T04:51:44Z,,6621861,false,,,64266098,,,SalesAccount,2014-08-29T21:54:09Z
+"Talk with Carolyn and oub team about details page sells, broadly",Jessica Jacobs,,,2014-07-17T16:16:53Z,,6412843,false,,,3892119,,Expedia.co.uk - SCA - Flight - OP - Details Page,Deal,2014-08-07T13:59:32Z
+"Can we make sure that contacts are associated with the appropriate publisher (e.g., pub = Expedia, Inc. and associated site = Hotwire)?",Lynne Hamilton,,2014-07-16T11:27:39Z,2014-07-16T11:21:23Z,,6329865,false,"",Jake,65299320,Hadary,,Contact,2014-07-16T11:27:39Z
+"Monitor build of Packages path; if going to launch in near term, pause this launch",Jessica Jacobs,,,2014-07-11T19:45:59Z,,6281837,false,,,3892139,,Hotels.com - SCA - Package - OP - List Page,Deal,2014-07-11T19:45:59Z
+Opportunity to expand to Expedia.com/Flights. Need to estimate incremental traffic and opportunity driven by this.,Jessica Jacobs,,,2014-07-11T18:31:11Z,,6281220,false,,,3892133,,Expedia.com - SCA - Flight - XU - Home Page,Deal,2014-07-11T18:31:11Z
+Follow up with Search Compare product team during Q4 product roadmap session,Jessica Jacobs,,,2014-07-10T00:59:29Z,,6252187,false,,,3892154,,Hotwire - SCA - Car - XU,Deal,2014-07-10T00:59:29Z
+Follow up with Search Compare product team during Q4 product roadmap session,Jessica Jacobs,,,2014-07-10T00:58:57Z,,6252185,false,,,3892149,,Hotwire - SCA - Car - OP - List Page,Deal,2014-07-10T00:58:57Z
+Revisit pitch following results of Hotels.com PPA pitch,Jessica Jacobs,,,2014-07-10T00:05:38Z,,6251896,false,,,3892118,,Expedia.com - PPA - Hotel - OP - Details Page,Deal,2014-07-10T00:05:38Z
+Revisit pitch following results of Hotels.com PPA pitch,Jessica Jacobs,,,2014-07-10T00:04:56Z,,6251874,false,,,3892120,,Expedia.com - PPA - Hotel - OP - List Page,Deal,2014-07-10T00:04:56Z
+Import your contacts at https://app.futuresimple.com/settings/imports,Robert Moore,,2014-06-25T21:13:32Z,2014-05-29T09:20:56Z,,5644511,false,,,,,,,2014-06-25T21:13:32Z

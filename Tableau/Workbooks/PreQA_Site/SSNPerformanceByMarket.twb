@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.2' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8100.14.0408.1805                -->
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource caption='performance' inline='true' name='vertica.41471.634368865743' version='8.2'>
+      <connection class='vertica' dbname='intent_media' odbc-connect-string-extras='ConnectionLoadBalance=1' odbc-native-protocol='yes' one-time-sql='' port='5433' server='production-vertica-cluster-1.internal.intentmedia.net' username='tableau'>
+        <relation name='TableauSQL' type='text'>select&#13;&#10;&#9;date(aggregation_level at timezone &apos;America/New_York&apos;) as Date,&#13;&#10;&#9;advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;hpa.hotel_property_id as &quot;Hotel Property ID&quot;,&#13;&#10;&#9;auction_position as &quot;Auction Position&quot;,&#13;&#10;&#9;sum(impression_count) as &quot;Impressions&quot;,&#13;&#10;&#9;sum(click_count) as &quot;Clicks&quot;,&#13;&#10;&#9;sum(click_conversion_count) as &quot;Click Conversions&quot;,&#13;&#10;&#9;sum(click_conversion_value_sum) as &quot;Click Conversion Value Sum&quot;,&#13;&#10;&#9;sum(actual_cpc_sum) as &quot;Spend&quot;,&#13;&#10;&#9;sum(click_room_nights_sum) as &quot;Click Room Nights Sum&quot;,&#13;&#10;&#9;sum(exposed_conversion_count) as &quot;Exposed Conversions&quot;,&#13;&#10;&#9;sum(exposed_conversion_value_sum) as &quot;Exposed Conversion Value Sum&quot;,&#13;&#10;&#9;sum(exposed_room_nights_sum) as &quot;Exposed Room Nights Sum&quot;&#13;&#10;from intent_media_production.advertiser_slot_performance_report_aggregations aspra&#13;&#10;left join intent_media_production.hotel_property_advertisers hpa on hpa.hotel_ssr_advertiser_id = aspra.advertiser_id&#13;&#10;where date(aggregation_level) = &apos;2013-04-01&apos;&#13;&#10;group by&#13;&#10;&#9;date(aggregation_level at timezone &apos;America/New_York&apos;), &#13;&#10;&#9;advertiser_id,&#13;&#10;&#9;hpa.hotel_property_id,&#13;&#10;&#9;auction_position</relation>
+      </connection>
+      <aliases enabled='yes' />
+      <column aggregation='Sum' datatype='integer' name='[Advertiser ID]' role='dimension' type='ordinal'>
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Auction Position]' role='dimension' type='ordinal'>
+      </column>
+      <column caption='Exposed ROI' datatype='real' name='[Calculation_0030722172523990]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Exposed Conversion Value Sum])/sum([Spend])' scope-isolation='false' />
+      </column>
+      <column caption='Clicked ROI' datatype='real' name='[Calculation_3930722172503391]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Click Conversion Value Sum])/sum([Spend])' scope-isolation='false' />
+      </column>
+      <column caption='CTR' datatype='real' default-format='p0.0%' name='[Calculation_4160716154430793]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Clicks])/sum([Impressions])' scope-isolation='false' />
+      </column>
+      <column caption='Impressions in Position 3' datatype='integer' name='[Calculation_4460722172824409]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Auction Position] = 3 THEN [Impressions] END' scope-isolation='false' />
+      </column>
+      <column caption='Impressions in Position 2' datatype='integer' name='[Calculation_7540722172807346]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Auction Position] = 2 THEN [Impressions] END' scope-isolation='false' />
+      </column>
+      <column caption='Impressions in Position 1' datatype='integer' name='[Calculation_7610722172741315]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Auction Position] = 1 THEN [Impressions] END' scope-isolation='false' />
+      </column>
+      <column caption='CPC' datatype='real' default-format='C1033%' name='[Calculation_8800722172122189]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Spend])/sum([Clicks])' scope-isolation='false' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Click Conversion Value Sum]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Exposed Conversion Value Sum]' role='measure' type='quantitative'>
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Hotel Property ID]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Spend]' role='measure' type='quantitative'>
+      </column>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='\\psf\Home\Documents\My Tableau Repository\Datasources\ssn_performance_by_market__performance.tde' schema='Extract' tablename='Extract' update-time='7/16/2013 7:14:36 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Calculation_4460722172824409]' formula='IF [Auction Position] = 3 THEN [Impressions] END' />
+            <calculation column='[Calculation_7540722172807346]' formula='IF [Auction Position] = 2 THEN [Impressions] END' />
+            <calculation column='[Calculation_7610722172741315]' formula='IF [Auction Position] = 1 THEN [Impressions] END' />
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='6689' timestamp-start='2013-07-16 19:14:36.247000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.475956' measure-ordering='alphabetic' measure-percentage='0.524044' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+    <datasource caption='hotel_properties_submarkets' inline='true' name='mysql.41471.630742928239' version='8.2'>
+      <connection class='mysql' dbname='intent_media_production' odbc-native-protocol='yes' port='3306' server='production-slave-db-server-1.internal.intentmedia.net' username='tableau'>
+        <relation name='TableauSQL' type='text'>select&#13;&#10;&#9;&#9;hps.hotel_property_id as `Hotel Property ID`,&#13;&#10;&#9;&#9;ifnull(imm.name,&apos;Other&apos;) as `Intent Media Market Name`,&#13;&#10;&#9;&#9;m.publisher_id as `Publisher ID`,&#13;&#10;&#9;&#9;mg.id as `Market Group ID`,&#13;&#10;&#9;&#9;ifnull(mg.name,&apos;Other&apos;) as `Market Group Name`,&#13;&#10;&#9;&#9;m.id as `Market ID`,&#13;&#10;&#9;&#9;m.name as `Market Name`,&#13;&#10;&#9;&#9;s.id as `Submarket ID`,&#13;&#10;&#9;&#9;s.name as `Submarket Name`&#13;&#10;&#9;from hotel_properties_submarkets hps&#13;&#10;&#9;left join hotel_property_submarket_overrides hpso on hpso.hotel_property_id = hps.hotel_property_id and hpso.submarket_id = hps.submarket_id&#13;&#10;&#9;left join hotel_property_advertisers hpa on hpa.hotel_property_id = hps.hotel_property_id&#13;&#10;&#9;left join entities e on e.id = hpa.hotel_ssr_advertiser_id&#13;&#10;&#9;left join submarkets s on s.id = hps.submarket_id&#13;&#10;&#9;left join markets m on m.id = s.market_id&#13;&#10;&#9;left join intent_media_markets_publisher_markets immpm on immpm.market_id = m.id&#13;&#10;&#9;left join intent_media_markets imm on imm.id = immpm.intent_media_market_id&#13;&#10;&#9;left join market_groups mg on mg.id = m.market_group_id&#13;&#10;&#9;where (hpso.override_action_type is null or hpso.override_action_type != &apos;REMOVE&apos;)&#13;&#10;&#9;&#9;and e.entity_type = &apos;HotelSsrAdvertiser&apos;&#13;&#10;&#9;&#9;and e.active = 1&#13;&#10;&#9;&#9;and e.first_auction_participation is not null&#13;&#10;union&#13;&#10;&#9;select&#13;&#10;&#9;&#9;hpso.hotel_property_id as `Hotel Property ID`,&#13;&#10;&#9;&#9;ifnull(imm.name,&apos;Other&apos;) as `Intent Media Market Name`,&#13;&#10;&#9;&#9;m.publisher_id as `Publisher ID`,&#13;&#10;&#9;&#9;mg.id as `Market Group ID`,&#13;&#10;&#9;&#9;ifnull(mg.name,&apos;Other&apos;) as `Market Group Name`,&#13;&#10;&#9;&#9;m.id as `Market ID`,&#13;&#10;&#9;&#9;m.name as `Market Name`,&#13;&#10;&#9;&#9;s.id as `Submarket ID`,&#13;&#10;&#9;&#9;s.name as `Submarket Name`&#13;&#10;&#9;from hotel_property_submarket_overrides hpso&#13;&#10;&#9;left join hotel_property_advertisers hpa on hpa.hotel_property_id = hpso.hotel_property_id&#13;&#10;&#9;left join entities e on e.id = hpa.hotel_ssr_advertiser_id&#9;&#13;&#10;&#9;left join submarkets s on s.id = hpso.submarket_id&#13;&#10;&#9;left join markets m on m.id = s.market_id&#13;&#10;&#9;left join intent_media_markets_publisher_markets immpm on immpm.market_id = m.id&#13;&#10;&#9;left join intent_media_markets imm on imm.id = immpm.intent_media_market_id&#13;&#10;&#9;left join market_groups mg on mg.id = m.market_group_id&#13;&#10;&#9;where hpso.override_action_type = &apos;ADD&apos;&#13;&#10;&#9;&#9;and e.entity_type = &apos;HotelSsrAdvertiser&apos;&#13;&#10;&#9;&#9;and e.active = 1&#13;&#10;&#9;&#9;and e.first_auction_participation is not null</relation>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Advertiser Count' datatype='integer' name='[Calculation_7970717114005624]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='COUNTD([Hotel Property ID])' scope-isolation='false' />
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Hotel Property ID]' role='dimension' type='ordinal'>
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Market Group ID]' role='dimension' type='ordinal'>
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Market ID]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Publisher ID]' role='dimension' type='ordinal'>
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Submarket ID]' role='dimension' type='ordinal'>
+      </column>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='\\psf\Home\Documents\My Tableau Repository\Datasources\ssn_performance_by_market__hotel_properties_submarkets.tde' schema='Extract' tablename='Extract' update-time='10/17/2014 3:20:08 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='1286493' timestamp-start='2014-10-17 15:20:07.817000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Data by Market'>
+      <layout-options>
+        <caption>
+          <formatted-text>
+            <run>need sold and active hotels&#10;&#10;when done, duplicate and add in submarket name</run>
+          </formatted-text>
+        </caption>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='hotel_properties_submarkets' name='mysql.41471.630742928239' />
+            <datasource caption='performance' name='vertica.41471.634368865743' />
+          </datasources>
+          <datasource-dependencies datasource='mysql.41471.630742928239'>
+            <column caption='Advertiser Count' datatype='integer' name='[Calculation_7970717114005624]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD([Hotel Property ID])' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Intent Media Market Name]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Market Name]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[Intent Media Market Name]' derivation='None' name='[none:Intent Media Market Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Market Name]' derivation='None' name='[none:Market Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_7970717114005624]' derivation='User' name='[usr:Calculation_7970717114005624:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='vertica.41471.634368865743'>
+            <column caption='CTR' datatype='real' default-format='p0.0%' name='[Calculation_4160716154430793]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Clicks])/sum([Impressions])' scope-isolation='false' />
+            </column>
+            <column caption='Impressions in Position 3' datatype='integer' name='[Calculation_4460722172824409]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Auction Position] = 3 THEN [Impressions] END' scope-isolation='false' />
+            </column>
+            <column caption='Impressions in Position 2' datatype='integer' name='[Calculation_7540722172807346]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Auction Position] = 2 THEN [Impressions] END' scope-isolation='false' />
+            </column>
+            <column caption='Impressions in Position 1' datatype='integer' name='[Calculation_7610722172741315]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Auction Position] = 1 THEN [Impressions] END' scope-isolation='false' />
+            </column>
+            <column caption='CPC' datatype='real' default-format='C1033%' name='[Calculation_8800722172122189]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Spend])/sum([Clicks])' scope-isolation='false' />
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Click Conversion Value Sum]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Click Conversions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Click Room Nights Sum]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Clicks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Exposed Conversion Value Sum]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Exposed Conversions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Exposed Room Nights Sum]' role='measure' type='quantitative'>
+            </column>
+            <column aggregation='Sum' datatype='integer' name='[Hotel Property ID]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='integer' name='[Impressions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Spend]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Hotel Property ID]' derivation='None' name='[none:Hotel Property ID:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Spend]' derivation='Sum' name='[pcto:sum:Spend:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' type='PctTotal' />
+            </column-instance>
+            <column-instance column='[Calculation_4460722172824409]' derivation='Sum' name='[sum:Calculation_4460722172824409:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_7540722172807346]' derivation='Sum' name='[sum:Calculation_7540722172807346:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_7610722172741315]' derivation='Sum' name='[sum:Calculation_7610722172741315:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Click Conversion Value Sum]' derivation='Sum' name='[sum:Click Conversion Value Sum:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Click Conversions]' derivation='Sum' name='[sum:Click Conversions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Click Room Nights Sum]' derivation='Sum' name='[sum:Click Room Nights Sum:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Clicks]' derivation='Sum' name='[sum:Clicks:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Exposed Conversion Value Sum]' derivation='Sum' name='[sum:Exposed Conversion Value Sum:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Exposed Conversions]' derivation='Sum' name='[sum:Exposed Conversions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Exposed Room Nights Sum]' derivation='Sum' name='[sum:Exposed Room Nights Sum:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Impressions]' derivation='Sum' name='[sum:Impressions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Spend]' derivation='Sum' name='[sum:Spend:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_4160716154430793]' derivation='User' name='[usr:Calculation_4160716154430793:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_8800722172122189]' derivation='User' name='[usr:Calculation_8800722172122189:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[mysql.41471.630742928239].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[mysql.41471.630742928239].[usr:Calculation_7970717114005624:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Calculation_7610722172741315:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Calculation_7540722172807346:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Calculation_4460722172824409:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Impressions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[usr:Calculation_4160716154430793:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Clicks:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[usr:Calculation_8800722172122189:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Spend:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Click Conversions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Click Room Nights Sum:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Click Conversion Value Sum:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Exposed Conversions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Exposed Room Nights Sum:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[sum:Exposed Conversion Value Sum:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41471.634368865743].[pcto:sum:Spend:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[mysql.41471.630742928239].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[mysql.41471.630742928239].[usr:Calculation_7970717114005624:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Calculation_7610722172741315:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Calculation_7540722172807346:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Calculation_4460722172824409:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Impressions:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[usr:Calculation_4160716154430793:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Clicks:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[usr:Calculation_8800722172122189:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Spend:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Click Conversions:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Click Room Nights Sum:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Click Conversion Value Sum:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Exposed Conversions:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Exposed Room Nights Sum:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[sum:Exposed Conversion Value Sum:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41471.634368865743].[pcto:sum:Spend:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <filter class='categorical' column='[mysql.41471.630742928239].[none:Intent Media Market Name:nk]'>
+            <groupfilter function='member' level='[none:Intent Media Market Name:nk]' member='&quot;Atlanta&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[vertica.41471.634368865743].[none:Hotel Property ID:ok]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:Hotel Property ID:ok]' />
+              <groupfilter function='member' level='[none:Hotel Property ID:ok]' member='%null%' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[mysql.41471.630742928239].[:Measure Names]</column>
+            <column>[mysql.41471.630742928239].[none:Intent Media Market Name:nk]</column>
+            <column>[vertica.41471.634368865743].[none:Hotel Property ID:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[mysql.41471.630742928239].[:Measure Names]' value='70' />
+            <format attr='text-format' field='[vertica.41471.634368865743].[pcto:sum:Spend:qk]' value='p0.0%' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='height' field='[mysql.41471.630742928239].[:Measure Names]' value='48' />
+            <format attr='width' field='[mysql.41471.630742928239].[none:Market Name:nk]' value='220' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' field='[mysql.41471.630742928239].[:Measure Names]' value='center' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[mysql.41471.630742928239].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([mysql.41471.630742928239].[none:Intent Media Market Name:nk] / [mysql.41471.630742928239].[none:Market Name:nk])</rows>
+        <cols>[mysql.41471.630742928239].[:Measure Names]</cols>
+        <join-lod-include-overrides>
+          <column>[vertica.41471.634368865743].[Hotel Property ID]</column>
+        </join-lod-include-overrides>
+        <subtotals>
+          <column>[mysql.41471.630742928239].[none:Intent Media Market Name:nk]</column>
+        </subtotals>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Data by Market'>
+      <cards>
+        <edge name='left'>
+          <strip size='241'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='32'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[mysql.41471.630742928239].[none:Intent Media Market Name:nk]' type='filter' />
+          </strip>
+        </edge>
+        <edge name='bottom'>
+          <strip size='186'>
+            <card type='caption' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[mysql.41471.630742928239].[none:Hotel Property ID:ok]</field>
+          <field>[mysql.41471.630742928239].[none:Intent Media Market Name:nk]</field>
+          <field>[mysql.41471.630742928239].[none:Market Group Name:nk]</field>
+          <field>[mysql.41471.630742928239].[none:Market Name:nk]</field>
+          <field>[mysql.41471.630742928239].[none:Publisher ID:ok]</field>
+          <field>[mysql.41471.630742928239].[none:Submarket Name:nk]</field>
+          <field>[mysql.41471.630742928239].[usr:Calculation_8850717114221109:nk]</field>
+          <field>[vertica.41471.634368865743].[none:Advertiser ID:ok]</field>
+          <field>[vertica.41471.634368865743].[none:Hotel Property ID:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='152' name='Data by Market' width='192'>
+      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
+      SUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

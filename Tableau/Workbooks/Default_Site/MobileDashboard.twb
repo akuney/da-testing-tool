@@ -1,0 +1,505 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.2' xml:base='http://production-tableau-server-1.internal.intentmedia.net' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8100.14.0914.1345                -->
+  <repository-location id='MobileDashboard_vBeta' path='/workbooks' revision='1.7' />
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='8.2'>
+      <aliases enabled='yes' />
+      <column caption='Aggregated By' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Day&quot;'>
+        <calculation class='tableau' formula='&quot;Day&quot;' />
+        <members>
+          <member value='&quot;Day&quot;' />
+          <member value='&quot;Week&quot;' />
+          <member value='&quot;Month&quot;' />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption='mobile_classification' inline='true' name='excel.41784.759522870372' version='8.2'>
+      <connection auto-extract='yes' class='excel' driver='Ace12' filename='//tsclient/data/Tableau/data/mobile_classification.xlsx' header='yes' imex='1' server-oauth='' workgroup-auth-mode='as-is'>
+        <relation name='Sheet1$' table='[Sheet1$]' type='table' />
+      </connection>
+      <column datatype='string' hidden='true' name='[F3]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <extract count='-1' enabled='false' units='records'>
+        <connection class='dataengine' dbname='Z:\Users\yoojong.bang\Documents\My Tableau Repository\Datasources\mobile_dashboard__classification.tde' schema='Extract' tablename='Extract' update-time='5/27/2014 1:52:48 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='55' timestamp-start='2014-05-27 13:52:48.332000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+    <datasource caption='mobile_data' inline='true' name='vertica.41781.466698344906' version='8.2'>
+      <connection class='vertica' dbname='intent_media' expected-driver-version='7.0' odbc-connect-string-extras='ConnectionLoadBalance=1' odbc-native-protocol='yes' one-time-sql='' port='5433' server='production-vertica-cluster-with-failover.internal.intentmedia.net' server-oauth='' username='tableau' workgroup-auth-mode='prompt'>
+        <relation name='TableauSQL' type='text'>select&#13;&#10;&#9;display_name,&#13;&#10;&#9;product,&#13;&#10;&#9;ad_unit_id,&#13;&#10;&#9;requested_at_date_in_et,&#13;&#10;&#9;outcome_type,&#13;&#10;&#9;os,&#13;&#10;&#9;browser_family,&#13;&#10;&#9;browser,&#13;&#10;&#9;ad_unit_name,&#13;&#10;&#9;ad_unit_active,&#13;&#10;&#9;unique_visitors,&#13;&#10;&#9;page_views,&#13;&#10;&#9;served_page_views,&#13;&#10;&#9;interactions,&#13;&#10;&#9;clicks,&#13;&#10;&#9;revenue&#13;&#10;from&#13;&#10;/* SCA */&#13;&#10;(&#13;&#10;&#9;select&#13;&#10;&#9;&#9;s.display_name,&#13;&#10;&#9;&#9;case au.product_category_type&#13;&#10;&#9;&#9;&#9;when &apos;FLIGHTS&apos; then &apos;SCA Flights&apos;&#13;&#10;&#9;&#9;&#9;when &apos;HOTELS&apos; then &apos;SCA Hotels&apos;&#13;&#10;&#9;&#9;&#9;when &apos;CARS&apos; then &apos;SCA Cars&apos;&#13;&#10;&#9;&#9;&#9;else &apos;Other&apos;&#13;&#10;&#9;&#9;end as product,&#13;&#10;&#9;&#9;au.id as ad_unit_id,&#13;&#10;&#9;&#9;ac_c.requested_at_date_in_et,&#13;&#10;&#9;&#9;ac_c.outcome_type,&#13;&#10;&#9;&#9;ac_c.os,&#13;&#10;&#9;&#9;ac_c.browser_family,&#13;&#10;&#9;&#9;ac_c.browser,&#13;&#10;&#9;&#9;au.name as ad_unit_name,&#13;&#10;&#9;&#9;au.active as ad_unit_active,&#13;&#10;&#9;&#9;count(distinct ac_c.publisher_user_id) as unique_visitors,&#13;&#10;&#9;&#9;count(ac_c.request_id) as page_views,&#13;&#10;&#9;&#9;count(case when ac_c.outcome_type = &apos;SERVED&apos; then ac_c.request_id end) as served_page_views,&#13;&#10;&#9;&#9;sum(interactions) as interactions,&#13;&#10;&#9;&#9;sum(clicks) as clicks,&#13;&#10;&#9;&#9;sum(revenue) as revenue&#13;&#10;&#9;from&#13;&#10;&#9;(&#13;&#10;&#9;&#9;select&#13;&#10;&#9;&#9;&#9;ac.request_id,&#13;&#10;&#9;&#9;&#9;min(ac.requested_at_date_in_et) as requested_at_date_in_et,&#13;&#10;&#9;&#9;&#9;min(ac.publisher_user_id) as publisher_user_id,&#13;&#10;&#9;&#9;&#9;min(ac.site_id) as site_id,&#13;&#10;&#9;&#9;&#9;min(ac.ad_unit_id) as ad_unit_id,&#13;&#10;&#9;&#9;  min(ac.ad_unit_type) as ad_unit_type,&#13;&#10;&#9;&#9;  min(ac.outcome_type) as outcome_type,&#13;&#10;&#9;&#9;  min(ac.positions_filled) as positions_filled,&#13;&#10;&#9;&#9;  min(ac.browser_family) as browser_family,&#13;&#10;&#9;&#9;  min(ac.browser) as browser,&#13;&#10;&#9;&#9;  min(ac.os_family) as os_family,&#13;&#10;&#9;&#9;  min(ac.os) as os,&#13;&#10;&#9;&#9;  count(distinct c.ad_call_request_id) as interactions,&#13;&#10;&#9;&#9;  count(c.request_id) as clicks,&#13;&#10;&#9;&#9;  sum(c.actual_cpc) as revenue&#13;&#10;&#9;&#9;from intent_media_log_data_production.ad_calls ac&#13;&#10;&#9;&#9;left join intent_media_log_data_production.clicks c&#13;&#10;&#9;&#9;on ac.request_id = c.ad_call_request_id&#13;&#10;&#9;&#9;and c.requested_at_date_in_et &gt;&gt;= date(current_timestamp at timezone &apos;America/New_York&apos;) - interval &apos;90 days&apos;&#13;&#10;&#9;&#9;and c.ip_address_blacklisted = 0&#13;&#10;&#9;&#9;and c.fraudulent = 0&#13;&#10;&#9;&#9;where ac.requested_at_date_in_et &gt;&gt;= date(current_timestamp at timezone &apos;America/New_York&apos;) - interval &apos;90 days&apos;&#13;&#10;&#9;&#9;  and ac.ip_address_blacklisted = 0&#13;&#10;&#9;&#9;  and ac.ad_unit_type = &apos;CT&apos;&#13;&#10;&#9;&#9;group by&#13;&#10;&#9;&#9;&#9;ac.request_id&#13;&#10;&#9;) ac_c&#13;&#10;&#9;inner join intent_media_production.sites s on ac_c.site_id = s.id&#13;&#10;&#9;inner join intent_media_production.ad_units au on ac_c.ad_unit_id = au.id&#13;&#10;&#9;group by 1,2,3,4,5,6,7,8,9,10&#13;&#10;) sca&#13;&#10;union all&#13;&#10;/* SSN */&#13;&#10;(&#13;&#10;&#9;select&#13;&#10;&#9;&#9;s.display_name,&#13;&#10;&#9;&#9;case au.product_category_type&#13;&#10;&#9;&#9;&#9;when &apos;HOTELS&apos; then &apos;SSN Hotels&apos;&#13;&#10;&#9;&#9;&#9;else &apos;Other&apos;&#13;&#10;&#9;&#9;end as product,&#13;&#10;&#9;&#9;au.id as ad_unit_id,&#13;&#10;&#9;&#9;ac_c.requested_at_date_in_et,&#13;&#10;&#9;&#9;ac_c.outcome_type,&#13;&#10;&#9;&#9;ac_c.os,&#13;&#10;&#9;&#9;ac_c.browser_family,&#13;&#10;&#9;&#9;ac_c.browser,&#13;&#10;&#9;&#9;au.name as ad_unit_name,&#13;&#10;&#9;&#9;au.active as ad_unit_active,&#13;&#10;&#9;&#9;count(distinct ac_c.publisher_user_id) as unique_visitors,&#13;&#10;&#9;&#9;count(ac_c.request_id) as page_views,&#13;&#10;&#9;&#9;count(case when ac_c.positions_filled &gt;&gt; 0 then ac_c.request_id end) as served_page_views,&#13;&#10;&#9;&#9;sum(interactions) as interactions,&#13;&#10;&#9;&#9;sum(clicks) as clicks,&#13;&#10;&#9;&#9;sum(revenue) as revenue&#13;&#10;&#9;from&#13;&#10;&#9;(&#13;&#10;&#9;&#9;select&#13;&#10;&#9;&#9;&#9;ac.request_id,&#13;&#10;&#9;&#9;&#9;min(ac.requested_at_date_in_et) as requested_at_date_in_et,&#13;&#10;&#9;&#9;&#9;min(ac.publisher_user_id) as publisher_user_id,&#13;&#10;&#9;&#9;&#9;min(ac.site_id) as site_id,&#13;&#10;&#9;&#9;&#9;min(ac.ad_unit_id) as ad_unit_id,&#13;&#10;&#9;&#9;  min(ac.ad_unit_type) as ad_unit_type,&#13;&#10;&#9;&#9;  min(ac.outcome_type) as outcome_type,&#13;&#10;&#9;&#9;  min(ac.positions_filled) as positions_filled,&#13;&#10;&#9;&#9;  min(ac.browser_family) as browser_family,&#13;&#10;&#9;&#9;  min(ac.browser) as browser,&#13;&#10;&#9;&#9;  min(ac.os_family) as os_family,&#13;&#10;&#9;&#9;  min(ac.os) as os,&#13;&#10;&#9;&#9;  count(distinct c.ad_call_request_id) as interactions,&#13;&#10;&#9;&#9;  count(c.request_id) as clicks,&#13;&#10;&#9;&#9;  sum(c.actual_cpc) as revenue&#13;&#10;&#9;&#9;from intent_media_log_data_production.ad_calls ac&#13;&#10;&#9;&#9;left join intent_media_log_data_production.clicks c&#13;&#10;&#9;&#9;on ac.request_id = c.ad_call_request_id&#13;&#10;&#9;&#9;and c.requested_at_date_in_et &gt;&gt;= date(current_timestamp at timezone &apos;America/New_York&apos;) - interval &apos;90 days&apos;&#13;&#10;&#9;&#9;and c.ip_address_blacklisted = 0&#13;&#10;&#9;&#9;and c.fraudulent = 0&#13;&#10;&#9;&#9;where ac.requested_at_date_in_et &gt;&gt;= date(current_timestamp at timezone &apos;America/New_York&apos;) - interval &apos;90 days&apos;&#13;&#10;&#9;&#9;  and ac.ip_address_blacklisted = 0&#13;&#10;&#9;&#9;  and ac.ad_unit_type = &apos;SSR&apos;&#13;&#10;&#9;&#9;  and ac.outcome_type = &apos;SERVED&apos;&#13;&#10;&#9;&#9;group by&#13;&#10;&#9;&#9;&#9;ac.request_id&#13;&#10;&#9;) ac_c&#13;&#10;&#9;inner join intent_media_production.sites s on ac_c.site_id = s.id&#13;&#10;&#9;inner join intent_media_production.ad_units au on ac_c.ad_unit_id = au.id&#13;&#10;&#9;group by 1,2,3,4,5,6,7,8,9,10&#13;&#10;)&#13;&#10;union all&#13;&#10;/* PPA */&#13;&#10;(&#13;&#10;&#9;select&#13;&#10;&#9;&#9;s.display_name,&#13;&#10;&#9;&#9;case au.product_category_type&#13;&#10;&#9;&#9;&#9;when &apos;HOTELS&apos; then &apos;PPA Hotels&apos;&#13;&#10;&#9;&#9;&#9;else &apos;Other&apos;&#13;&#10;&#9;&#9;end as product,&#13;&#10;&#9;&#9;au.id as ad_unit_id,&#13;&#10;&#9;&#9;ac_c.requested_at_date_in_et,&#13;&#10;&#9;&#9;ac_c.outcome_type,&#13;&#10;&#9;&#9;ac_c.os,&#13;&#10;&#9;&#9;ac_c.browser_family,&#13;&#10;&#9;&#9;ac_c.browser,&#13;&#10;&#9;&#9;au.name as ad_unit_name,&#13;&#10;&#9;&#9;au.active as ad_unit_active,&#13;&#10;&#9;&#9;count(distinct ac_c.publisher_user_id) as unique_visitors,&#13;&#10;&#9;&#9;count(ac_c.request_id) as page_views,&#13;&#10;&#9;&#9;count(case when ac_c.positions_filled &gt;&gt; 0 then ac_c.request_id end) as served_page_views,&#13;&#10;&#9;&#9;sum(interactions) as interactions,&#13;&#10;&#9;&#9;sum(clicks) as clicks,&#13;&#10;&#9;&#9;sum(revenue) as revenue&#13;&#10;&#9;from&#13;&#10;&#9;(&#13;&#10;&#9;&#9;select&#13;&#10;&#9;&#9;&#9;ac.request_correlation_id as request_id,&#13;&#10;&#9;&#9;&#9;min(ac.requested_at_date_in_et) as requested_at_date_in_et,&#13;&#10;&#9;&#9;&#9;min(ac.publisher_user_id) as publisher_user_id,&#13;&#10;&#9;&#9;&#9;min(ac.site_id) as site_id,&#13;&#10;&#9;&#9;&#9;min(ac.ad_unit_id) as ad_unit_id,&#13;&#10;&#9;&#9;  min(ac.ad_unit_type) as ad_unit_type,&#13;&#10;&#9;&#9;  min(ac.outcome_type) as outcome_type,&#13;&#10;&#9;&#9;  min(ac.positions_filled) as positions_filled,&#13;&#10;&#9;&#9;  min(ac.browser_family) as browser_family,&#13;&#10;&#9;&#9;  min(ac.browser) as browser,&#13;&#10;&#9;&#9;  min(ac.os_family) as os_family,&#13;&#10;&#9;&#9;  min(ac.os) as os,&#13;&#10;&#9;&#9;  count(distinct c.ad_call_request_id) as interactions,&#13;&#10;&#9;&#9;  count(c.request_id) as clicks,&#13;&#10;&#9;&#9;  sum(c.actual_cpc) as revenue&#13;&#10;&#9;&#9;from intent_media_log_data_production.ad_calls ac&#13;&#10;&#9;&#9;left join intent_media_log_data_production.clicks c&#13;&#10;&#9;&#9;on ac.request_id = c.ad_call_request_id&#13;&#10;&#9;&#9;and c.requested_at_date_in_et &gt;&gt;= date(current_timestamp at timezone &apos;America/New_York&apos;) - interval &apos;90 days&apos;&#13;&#10;&#9;&#9;and c.ip_address_blacklisted = 0&#13;&#10;&#9;&#9;and c.fraudulent = 0&#13;&#10;&#9;&#9;where ac.requested_at_date_in_et &gt;&gt;= date(current_timestamp at timezone &apos;America/New_York&apos;) - interval &apos;90 days&apos;&#13;&#10;&#9;&#9;  and ac.ip_address_blacklisted = 0&#13;&#10;&#9;&#9;  and ac.ad_unit_type = &apos;META&apos;&#13;&#10;&#9;&#9;group by&#13;&#10;&#9;&#9;&#9;ac.request_correlation_id&#13;&#10;&#9;) ac_c&#13;&#10;&#9;inner join intent_media_production.sites s on ac_c.site_id = s.id&#13;&#10;&#9;inner join intent_media_production.ad_units au on ac_c.ad_unit_id = au.id&#13;&#10;&#9;group by 1,2,3,4,5,6,7,8,9,10&#13;&#10;)&#13;&#10;</relation>
+        <refresh increment-key='' incremental-updates='false'>
+        </refresh>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[:Measure Names]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;[vertica.41781.466698344906].[sum:Calculation_4530807171305712:qk]&quot;' value='interactions' />
+        </aliases>
+      </column>
+      <column caption='Date Axis' datatype='date' name='[Calculation_1470813161609121]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;WHEN &quot;Day&quot; THEN [requested_at_date_in_et]&#13;&#10;WHEN &quot;Week&quot; THEN [Calculation_8390813152520886]&#13;&#10;WHEN &quot;Month&quot; THEN [Calculation_5590813161350411]&#13;&#10;END' scope-isolation='false' />
+      </column>
+      <column caption='Aggregated Date' datatype='integer' name='[Calculation_2910522185657315]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 1] = &apos;Day&apos; THEN DATEPART(&apos;day&apos;,[requested_at_date_in_et])&#13;&#10;ELSEIF [Parameters].[Parameter 1] = &apos;Week&apos; THEN DATEPART(&apos;week&apos;,[requested_at_date_in_et])&#13;&#10;ELSEIF [Parameters].[Parameter 1] = &apos;Month&apos; THEN DATEPART(&apos;month&apos;,[requested_at_date_in_et])&#13;&#10;END' scope-isolation='false' />
+      </column>
+      <column caption='revised_interactions' datatype='integer' name='[Calculation_4530807171305712]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='if [product] = &quot;SSN&quot; then null else [interactions] end' scope-isolation='false' />
+      </column>
+      <column caption='Date of Month' datatype='date' name='[Calculation_5590813161350411]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='DATE(DATETRUNC(&apos;month&apos;,[requested_at_date_in_et]))' scope-isolation='false' />
+      </column>
+      <column caption='Date of Week' datatype='date' name='[Calculation_8390813152520886]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='DATE(DATETRUNC(&apos;week&apos;, [requested_at_date_in_et]))' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='integer' name='[ad_unit_id]' role='dimension' type='ordinal'>
+      </column>
+      <column caption='site' datatype='string' name='[display_name]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Date' datatype='date' name='[requested_at_date_in_et]' role='dimension' type='ordinal'>
+      </column>
+      <column caption='click_revenue' datatype='real' default-format='c&quot;$&quot;#,##0.00;(&quot;$&quot;#,##0.00)' name='[revenue]' role='measure' type='quantitative'>
+      </column>
+      <column-instance column='[Calculation_4530807171305712]' derivation='Sum' name='[sum:Calculation_4530807171305712:qk]' pivot='key' type='quantitative' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='E:\MS_Tableau_Repository\mobile_dashboard__mobile_data.tde' schema='Extract' tablename='Extract' update-time='3/24/2015 6:34:53 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Calculation_4530807171305712]' formula='if [product] = &quot;SSN&quot; then null else [interactions] end' />
+            <calculation column='[Calculation_5590813161350411]' formula='DATE(DATETRUNC(&apos;month&apos;,[requested_at_date_in_et]))' />
+            <calculation column='[Calculation_8390813152520886]' formula='DATE(DATETRUNC(&apos;week&apos;, [requested_at_date_in_et]))' />
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh increment-key='' incremental-updates='false'>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='2358417' timestamp-start='2015-03-24 18:34:53.397000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.460199' measure-ordering='alphabetic' measure-percentage='0.419154' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column caption='Aggregated By' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Day&quot;'>
+          <calculation class='tableau' formula='&quot;Day&quot;' />
+          <members>
+            <member value='&quot;Day&quot;' />
+            <member value='&quot;Week&quot;' />
+            <member value='&quot;Month&quot;' />
+          </members>
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='vertica.41781.466698344906'>
+      <datasources>
+        <datasource caption='mobile_data' name='vertica.41781.466698344906' />
+      </datasources>
+      <datasource-dependencies datasource='vertica.41781.466698344906'>
+        <column datatype='boolean' name='[ad_unit_active]' role='dimension' type='nominal'>
+        </column>
+        <column datatype='string' name='[ad_unit_name]' role='dimension' type='nominal'>
+        </column>
+        <column caption='site' datatype='string' name='[display_name]' role='dimension' type='nominal'>
+        </column>
+        <column-instance column='[ad_unit_active]' derivation='None' name='[none:ad_unit_active:nk]' pivot='key' type='nominal' />
+        <column-instance column='[ad_unit_name]' derivation='None' name='[none:ad_unit_name:nk]' pivot='key' type='nominal' />
+        <column-instance column='[display_name]' derivation='None' name='[none:display_name:nk]' pivot='key' type='nominal' />
+        <column-instance column='[requested_at_date_in_et]' derivation='None' name='[none:requested_at_date_in_et:qk]' pivot='key' type='quantitative' />
+        <column caption='Date' datatype='date' name='[requested_at_date_in_et]' role='dimension' type='ordinal'>
+        </column>
+      </datasource-dependencies>
+      <filter class='categorical' column='[vertica.41781.466698344906].[none:ad_unit_active:nk]'>
+        <groupfilter function='member' level='[none:ad_unit_active:nk]' member='true' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[vertica.41781.466698344906].[none:ad_unit_name:nk]'>
+        <groupfilter function='empty-level' member='[none:ad_unit_name:nk]' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[vertica.41781.466698344906].[none:display_name:nk]'>
+        <groupfilter function='level-members' level='[none:display_name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='quantitative' column='[vertica.41781.466698344906].[none:requested_at_date_in_et:qk]' included-values='all'>
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='CSV Download - Browser Breakdown'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='mobile_data' name='vertica.41781.466698344906' />
+            <datasource name='Parameters' />
+            <datasource caption='mobile_classification' name='excel.41784.759522870372' />
+          </datasources>
+          <datasource-dependencies datasource='excel.41784.759522870372'>
+            <column-instance column='[os_type]' derivation='None' name='[none:os_type:nk]' pivot='key' type='nominal' />
+            <column datatype='string' name='[os]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[os_type]' role='dimension' type='nominal'>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='vertica.41781.466698344906'>
+            <column caption='Date Axis' datatype='date' name='[Calculation_1470813161609121]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;WHEN &quot;Day&quot; THEN [requested_at_date_in_et]&#13;&#10;WHEN &quot;Week&quot; THEN [Calculation_8390813152520886]&#13;&#10;WHEN &quot;Month&quot; THEN [Calculation_5590813161350411]&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column caption='revised_interactions' datatype='integer' name='[Calculation_4530807171305712]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='if [product] = &quot;SSN&quot; then null else [interactions] end' scope-isolation='false' />
+            </column>
+            <column datatype='boolean' name='[ad_unit_active]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[ad_unit_name]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[browser]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[browser_family]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='integer' name='[clicks]' role='measure' type='quantitative'>
+            </column>
+            <column caption='site' datatype='string' name='[display_name]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[Calculation_1470813161609121]' derivation='None' name='[none:Calculation_1470813161609121:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[ad_unit_active]' derivation='None' name='[none:ad_unit_active:nk]' pivot='key' type='nominal' />
+            <column-instance column='[ad_unit_name]' derivation='None' name='[none:ad_unit_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[browser]' derivation='None' name='[none:browser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[browser_family]' derivation='None' name='[none:browser_family:nk]' pivot='key' type='nominal' />
+            <column-instance column='[display_name]' derivation='None' name='[none:display_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[product]' derivation='None' name='[none:product:nk]' pivot='key' type='nominal' />
+            <column-instance column='[requested_at_date_in_et]' derivation='None' name='[none:requested_at_date_in_et:qk]' pivot='key' type='quantitative' />
+            <column datatype='integer' name='[page_views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[product]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Date' datatype='date' name='[requested_at_date_in_et]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='click_revenue' datatype='real' default-format='c&quot;$&quot;#,##0.00;(&quot;$&quot;#,##0.00)' name='[revenue]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[served_page_views]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Calculation_4530807171305712]' derivation='Sum' name='[sum:Calculation_4530807171305712:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[clicks]' derivation='Sum' name='[sum:clicks:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[page_views]' derivation='Sum' name='[sum:page_views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[revenue]' derivation='Sum' name='[sum:revenue:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[served_page_views]' derivation='Sum' name='[sum:served_page_views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[unique_visitors]' derivation='Sum' name='[sum:unique_visitors:qk]' pivot='key' type='quantitative' />
+            <column datatype='integer' name='[unique_visitors]' role='measure' type='quantitative'>
+            </column>
+          </datasource-dependencies>
+          <filter class='categorical' column='[vertica.41781.466698344906].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:unique_visitors:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:page_views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:served_page_views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:Calculation_4530807171305712:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:clicks:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:revenue:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[vertica.41781.466698344906].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:unique_visitors:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:page_views:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:served_page_views:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:Calculation_4530807171305712:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:clicks:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:click_revenue:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <slices>
+            <column>[vertica.41781.466698344906].[:Measure Names]</column>
+            <column>[vertica.41781.466698344906].[none:requested_at_date_in_et:qk]</column>
+            <column>[vertica.41781.466698344906].[none:ad_unit_active:nk]</column>
+            <column>[vertica.41781.466698344906].[none:ad_unit_name:nk]</column>
+            <column>[vertica.41781.466698344906].[none:display_name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[vertica.41781.466698344906].[:Measure Names]' value='100' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[vertica.41781.466698344906].[none:ad_unit_name:nk]' value='260' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[vertica.41781.466698344906].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([vertica.41781.466698344906].[none:display_name:nk] / ([vertica.41781.466698344906].[none:product:nk] / ([vertica.41781.466698344906].[none:ad_unit_name:nk] / ([vertica.41781.466698344906].[none:Calculation_1470813161609121:ok] / ([excel.41784.759522870372].[none:os_type:nk] / ([vertica.41781.466698344906].[none:browser_family:nk] / [vertica.41781.466698344906].[none:browser:nk]))))))</rows>
+        <cols>[vertica.41781.466698344906].[:Measure Names]</cols>
+        <join-lod-include-overrides>
+          <column>[excel.41784.759522870372].[os]</column>
+        </join-lod-include-overrides>
+      </table>
+    </worksheet>
+    <worksheet name='CSV Download - Browser Family Breakdown'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='mobile_data' name='vertica.41781.466698344906' />
+            <datasource name='Parameters' />
+            <datasource caption='mobile_classification' name='excel.41784.759522870372' />
+          </datasources>
+          <datasource-dependencies datasource='excel.41784.759522870372'>
+            <column-instance column='[os_type]' derivation='None' name='[none:os_type:nk]' pivot='key' type='nominal' />
+            <column datatype='string' name='[os]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[os_type]' role='dimension' type='nominal'>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='vertica.41781.466698344906'>
+            <column caption='Date Axis' datatype='date' name='[Calculation_1470813161609121]' role='dimension' type='ordinal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1]&#13;&#10;WHEN &quot;Day&quot; THEN [requested_at_date_in_et]&#13;&#10;WHEN &quot;Week&quot; THEN [Calculation_8390813152520886]&#13;&#10;WHEN &quot;Month&quot; THEN [Calculation_5590813161350411]&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column caption='revised_interactions' datatype='integer' name='[Calculation_4530807171305712]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='if [product] = &quot;SSN&quot; then null else [interactions] end' scope-isolation='false' />
+            </column>
+            <column datatype='boolean' name='[ad_unit_active]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[ad_unit_name]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[browser_family]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='integer' name='[clicks]' role='measure' type='quantitative'>
+            </column>
+            <column caption='site' datatype='string' name='[display_name]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[Calculation_1470813161609121]' derivation='None' name='[none:Calculation_1470813161609121:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[ad_unit_active]' derivation='None' name='[none:ad_unit_active:nk]' pivot='key' type='nominal' />
+            <column-instance column='[ad_unit_name]' derivation='None' name='[none:ad_unit_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[browser_family]' derivation='None' name='[none:browser_family:nk]' pivot='key' type='nominal' />
+            <column-instance column='[display_name]' derivation='None' name='[none:display_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[product]' derivation='None' name='[none:product:nk]' pivot='key' type='nominal' />
+            <column-instance column='[requested_at_date_in_et]' derivation='None' name='[none:requested_at_date_in_et:qk]' pivot='key' type='quantitative' />
+            <column datatype='integer' name='[page_views]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[product]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Date' datatype='date' name='[requested_at_date_in_et]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='click_revenue' datatype='real' default-format='c&quot;$&quot;#,##0.00;(&quot;$&quot;#,##0.00)' name='[revenue]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[served_page_views]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Calculation_4530807171305712]' derivation='Sum' name='[sum:Calculation_4530807171305712:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[clicks]' derivation='Sum' name='[sum:clicks:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[page_views]' derivation='Sum' name='[sum:page_views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[revenue]' derivation='Sum' name='[sum:revenue:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[served_page_views]' derivation='Sum' name='[sum:served_page_views:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[unique_visitors]' derivation='Sum' name='[sum:unique_visitors:qk]' pivot='key' type='quantitative' />
+            <column datatype='integer' name='[unique_visitors]' role='measure' type='quantitative'>
+            </column>
+          </datasource-dependencies>
+          <filter class='categorical' column='[vertica.41781.466698344906].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:unique_visitors:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:page_views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:served_page_views:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:Calculation_4530807171305712:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:clicks:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41781.466698344906].[sum:revenue:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[vertica.41781.466698344906].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:unique_visitors:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:page_views:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:served_page_views:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:Calculation_4530807171305712:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:clicks:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41781.466698344906].[sum:click_revenue:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <slices>
+            <column>[vertica.41781.466698344906].[:Measure Names]</column>
+            <column>[vertica.41781.466698344906].[none:requested_at_date_in_et:qk]</column>
+            <column>[vertica.41781.466698344906].[none:ad_unit_active:nk]</column>
+            <column>[vertica.41781.466698344906].[none:ad_unit_name:nk]</column>
+            <column>[vertica.41781.466698344906].[none:display_name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[vertica.41781.466698344906].[:Measure Names]' value='115' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[vertica.41781.466698344906].[none:ad_unit_name:nk]' value='232' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='3'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[vertica.41781.466698344906].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([vertica.41781.466698344906].[none:display_name:nk] / ([vertica.41781.466698344906].[none:product:nk] / ([vertica.41781.466698344906].[none:ad_unit_name:nk] / ([vertica.41781.466698344906].[none:Calculation_1470813161609121:ok] / ([excel.41784.759522870372].[none:os_type:nk] / [vertica.41781.466698344906].[none:browser_family:nk])))))</rows>
+        <cols>[vertica.41781.466698344906].[:Measure Names]</cols>
+        <join-lod-include-overrides>
+          <column>[excel.41784.759522870372].[os]</column>
+        </join-lod-include-overrides>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='43' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='CSV Download - Browser Family Breakdown'>
+      <cards>
+        <edge name='left'>
+          <strip size='221'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='dropdown' param='[vertica.41781.466698344906].[none:ad_unit_active:nk]' type='filter' />
+            <card mode='compact' param='[Parameters].[Parameter 1]' type='parameter' />
+            <card param='[vertica.41781.466698344906].[none:requested_at_date_in_et:qk]' show-null-ctrls='false' type='filter' />
+            <card mode='checkdropdown' param='[vertica.41781.466698344906].[none:ad_unit_name:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel.41781.474168946763].[none:os_type:nk]</field>
+          <field>[vertica.41781.466698344906].[:Measure Names]</field>
+          <field>[vertica.41781.466698344906].[none:Calculation_1470813161609121:ok]</field>
+          <field>[vertica.41781.466698344906].[none:ad_unit_active:nk]</field>
+          <field>[vertica.41781.466698344906].[none:ad_unit_id:ok]</field>
+          <field>[vertica.41781.466698344906].[none:ad_unit_name:nk]</field>
+          <field>[vertica.41781.466698344906].[none:browser:nk]</field>
+          <field>[vertica.41781.466698344906].[none:browser_family:nk]</field>
+          <field>[vertica.41781.466698344906].[none:outcome_type:nk]</field>
+          <field>[vertica.41781.466698344906].[none:product:nk]</field>
+          <field>[vertica.41781.466698344906].[none:requested_at_date_in_et:qk]</field>
+          <field>[vertica.41781.466698344906].[none:site:nk]</field>
+          <field>[vertica.41781.466698344906].[twk:requested_at_date_in_et:ok]</field>
+          <field>[vertica.41781.466698344906].[tyr:requested_at_date_in_et:ok]</field>
+          <field>[vertica.41781.466698344906].[yr:Calculation_1470813161609121:ok]</field>
+          <field>[vertica.41781.466698344906].[yr:requested_at_date_in_et:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='CSV Download - Browser Breakdown'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='dropdown' param='[vertica.41781.466698344906].[none:ad_unit_active:nk]' type='filter' />
+            <card mode='compact' param='[Parameters].[Parameter 1]' type='parameter' />
+            <card param='[vertica.41781.466698344906].[none:requested_at_date_in_et:qk]' show-null-ctrls='false' type='filter' />
+            <card mode='checkdropdown' param='[vertica.41781.466698344906].[none:ad_unit_name:nk]' type='filter' values='relevant' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel.41781.474168946763].[none:os_type:nk]</field>
+          <field>[vertica.41781.466698344906].[:Measure Names]</field>
+          <field>[vertica.41781.466698344906].[none:Calculation_1470813161609121:ok]</field>
+          <field>[vertica.41781.466698344906].[none:ad_unit_id:ok]</field>
+          <field>[vertica.41781.466698344906].[none:ad_unit_name:nk]</field>
+          <field>[vertica.41781.466698344906].[none:browser:nk]</field>
+          <field>[vertica.41781.466698344906].[none:browser_family:nk]</field>
+          <field>[vertica.41781.466698344906].[none:product:nk]</field>
+          <field>[vertica.41781.466698344906].[none:requested_at_date_in_et:qk]</field>
+          <field>[vertica.41781.466698344906].[none:site:nk]</field>
+          <field>[vertica.41781.466698344906].[tyr:requested_at_date_in_et:ok]</field>
+          <field>[vertica.41781.466698344906].[yr:Calculation_1470813161609121:ok]</field>
+          <field>[vertica.41781.466698344906].[yr:requested_at_date_in_et:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+  </thumbnails>
+</workbook>

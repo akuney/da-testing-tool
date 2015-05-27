@@ -1,0 +1,532 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.2' xml:base='http://production-tableau-server-1.internal.intentmedia.net' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8100.14.0408.1805                -->
+  <repository-location id='PercentTargeted' path='/t/PreQA/workbooks' revision='1.1' site='PreQA' />
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource caption='opportunity' inline='true' name='vertica.41746.510589594909' version='8.2'>
+      <connection class='vertica' dbname='intent_media' expected-driver-version='7.0' odbc-connect-string-extras='ConnectionLoadBalance=1' odbc-native-protocol='yes' one-time-sql='' port='5433' server='production-vertica-cluster-1.internal.intentmedia.net' server-oauth='' username='tableau' workgroup-auth-mode='prompt'>
+        <relation name='TableauSQL' type='text'>select&#13;&#10;&#9;date_in_et as Date,&#13;&#10;&#9;advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;e.name as &quot;Advertiser&quot;,&#13;&#10;&#9;sum(served_ad_call_count) as &quot;Served Ad Calls&quot;,&#13;&#10;&#9;sum(impression_count) as Impressions,&#13;&#10;&#9;sum(filtered_ad_count) as &quot;Filtered Ad Count&quot;&#13;&#10;from intent_media_production.air_ct_advertiser_od_opportunity_aggregations acaooa&#13;&#10;left join intent_media_production.entities e on e.id = acaooa.advertiser_id&#13;&#10;where date_in_et &gt;&gt;= (date(current_timestamp at timezone &apos;America/New_York&apos;) - interval &apos;30 days&apos;)&#13;&#10;&#9;and date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;        and e.active = 1&#13;&#10;        and e.entity_type = &apos;AftAdvertiser&apos;&#13;&#10;group by&#13;&#10;&#9;date_in_et,&#13;&#10;&#9;advertiser_id,&#13;&#10;&#9;e.name</relation>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Advertiser ID]' role='dimension' type='ordinal'>
+      </column>
+      <column caption='Percent Targeted ' datatype='real' default-format='p0.0%' name='[Calculation_1180417121705015]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Calculation_5840417121631694])/SUM([Served Ad Calls])' scope-isolation='false' />
+      </column>
+      <column caption='Untargeted Ads' datatype='integer' name='[Calculation_1960417123015100]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Served Ad Calls] - [Filtered Ad Count] - [Impressions]' scope-isolation='false' />
+      </column>
+      <column caption='Filtered Ads + Impression' datatype='integer' name='[Calculation_5840417121631694]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Filtered Ad Count] + [Impressions]' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Filtered Ad Count]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Impressions]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='integer' name='[Served Ad Calls]' role='measure' type='quantitative'>
+      </column>
+      <column-instance column='[Calculation_1960417123015100]' derivation='Sum' name='[sum:Calculation_1960417123015100:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_5840417121631694]' derivation='Sum' name='[sum:Calculation_5840417121631694:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Filtered Ad Count]' derivation='Sum' name='[sum:Filtered Ad Count:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Impressions]' derivation='Sum' name='[sum:Impressions:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Served Ad Calls]' derivation='Sum' name='[sum:Served Ad Calls:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1180417121705015]' derivation='User' name='[usr:Calculation_1180417121705015:qk]' pivot='key' type='quantitative' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='\\psf\Home\Documents\My Tableau Repository\Datasources\opportunity.tde' schema='Extract' tablename='Extract' update-time='4/17/2014 5:25:54 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Calculation_1960417123015100]' formula='[Served Ad Calls] - [Filtered Ad Count] - [Impressions]' />
+            <calculation column='[Calculation_5840417121631694]' formula='[Filtered Ad Count] + [Impressions]' />
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='3224' timestamp-start='2014-04-17 17:25:53.452000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#67bf5c'>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Impressions:qk]&quot;</bucket>
+            </map>
+            <map to='#729ece'>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Calculation_1960417123015100:qk]&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Served Ad Calls:qk]&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;[vertica.41746.510589594909].[usr:Calculation_1180417121705015:qk]&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Number of Records:qk]&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Calculation_5840417121631694:qk]&quot;</bucket>
+            </map>
+            <map to='#ff9e4a'>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Filtered Ad Count:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='vertica.41746.510589594909'>
+      <datasources>
+        <datasource caption='opportunity' name='vertica.41746.510589594909' />
+      </datasources>
+      <datasource-dependencies datasource='vertica.41746.510589594909'>
+        <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+        </column>
+        <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+        </column>
+        <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Date]' derivation='None' name='[none:Date:qk]' pivot='key' type='quantitative' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[vertica.41746.510589594909].[none:Advertiser:nk]'>
+        <groupfilter function='member' level='[none:Advertiser:nk]' member='&quot;Expedia-Ads&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='quantitative' column='[vertica.41746.510589594909].[none:Date:qk]' included-values='all'>
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='Data'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='opportunity' name='vertica.41746.510589594909' />
+          </datasources>
+          <datasource-dependencies datasource='vertica.41746.510589594909'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Percent Targeted ' datatype='real' default-format='p0.0%' name='[Calculation_1180417121705015]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Calculation_5840417121631694])/SUM([Served Ad Calls])' scope-isolation='false' />
+            </column>
+            <column caption='Filtered Ads + Impression' datatype='integer' name='[Calculation_5840417121631694]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Filtered Ad Count] + [Impressions]' scope-isolation='false' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='integer' name='[Filtered Ad Count]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Impressions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Served Ad Calls]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='None' name='[none:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_5840417121631694]' derivation='Sum' name='[sum:Calculation_5840417121631694:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Filtered Ad Count]' derivation='Sum' name='[sum:Filtered Ad Count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Impressions]' derivation='Sum' name='[sum:Impressions:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Served Ad Calls]' derivation='Sum' name='[sum:Served Ad Calls:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1180417121705015]' derivation='User' name='[usr:Calculation_1180417121705015:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[vertica.41746.510589594909].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41746.510589594909].[sum:Served Ad Calls:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41746.510589594909].[sum:Filtered Ad Count:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41746.510589594909].[sum:Impressions:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41746.510589594909].[sum:Calculation_5840417121631694:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41746.510589594909].[usr:Calculation_1180417121705015:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[vertica.41746.510589594909].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Served Ad Calls:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Filtered Ad Count:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Impressions:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Calculation_5840417121631694:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41746.510589594909].[usr:Calculation_1180417121705015:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <slices>
+            <column>[vertica.41746.510589594909].[:Measure Names]</column>
+            <column>[vertica.41746.510589594909].[none:Date:qk]</column>
+            <column>[vertica.41746.510589594909].[none:Advertiser:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[vertica.41746.510589594909].[:Measure Names]' value='81' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[vertica.41746.510589594909].[none:Advertiser:nk]' value='168' />
+            <format attr='height' field='[vertica.41746.510589594909].[:Measure Names]' value='36' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' field='[vertica.41746.510589594909].[:Measure Names]' value='center' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[vertica.41746.510589594909].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[vertica.41746.510589594909].[none:Advertiser:nk]</rows>
+        <cols>[vertica.41746.510589594909].[:Measure Names]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Graph'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='opportunity' name='vertica.41746.510589594909' />
+          </datasources>
+          <datasource-dependencies datasource='vertica.41746.510589594909'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Untargeted Ads' datatype='integer' name='[Calculation_1960417123015100]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Served Ad Calls] - [Filtered Ad Count] - [Impressions]' scope-isolation='false' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='integer' name='[Filtered Ad Count]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Impressions]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='None' name='[none:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1960417123015100]' derivation='Sum' name='[sum:Calculation_1960417123015100:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Filtered Ad Count]' derivation='Sum' name='[sum:Filtered Ad Count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Impressions]' derivation='Sum' name='[sum:Impressions:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[vertica.41746.510589594909].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41746.510589594909].[sum:Calculation_1960417123015100:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41746.510589594909].[sum:Filtered Ad Count:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[vertica.41746.510589594909].[sum:Impressions:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[vertica.41746.510589594909].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Calculation_1960417123015100:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Filtered Ad Count:qk]&quot;</bucket>
+              <bucket>&quot;[vertica.41746.510589594909].[sum:Impressions:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <slices>
+            <column>[vertica.41746.510589594909].[:Measure Names]</column>
+            <column>[vertica.41746.510589594909].[none:Advertiser:nk]</column>
+            <column>[vertica.41746.510589594909].[none:Date:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[vertica.41746.510589594909].[:Measure Names]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[vertica.41746.510589594909].[Multiple Values]</rows>
+        <cols>[vertica.41746.510589594909].[none:Date:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Data'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[vertica.41746.510589594909].[none:Advertiser:nk]' type='filter' />
+            <card param='[vertica.41746.510589594909].[none:Date:qk]' show-null-ctrls='false' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[vertica.41746.510589594909].[none:Advertiser:nk]</field>
+          <field>[vertica.41746.510589594909].[none:Date:qk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Graph'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+            <card pane-specification-id='0' param='[vertica.41746.510589594909].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[vertica.41746.510589594909].[none:Advertiser:nk]' type='filter' />
+            <card param='[vertica.41746.510589594909].[none:Date:qk]' show-null-ctrls='false' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[vertica.41746.510589594909].[:Measure Names]</field>
+          <field>[vertica.41746.510589594909].[none:Advertiser:nk]</field>
+          <field>[vertica.41746.510589594909].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='60' name='Data' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAAA8CAIAAAC/7iIyAAAAA3NCSVQICAjb4U/gAAAACXBI
+      WXMAAA7EAAAOxAGVKw4bAAAEgUlEQVR4nO3bb0wbdRzH8S8DS1iDxBgrOtgGQkAg/BvNABsy
+      hezB/EMwW2MNy0rGZDrpZElhuCW6MMZYHWzMJcAgqaERrTENRsg6g8N5oSUFFioYKp3AoInW
+      1UkIVkgrPigssAWFfYe65PN6dlx7v9/BO/e7o+A3Pz9PAPdrw389AXi4ISBgQUDAgoCABQEB
+      CwICFgQELAgIWBAQsCAgYEFAwIKAgAUBAQsCAhYEBCwICDhGERBw3PbDXyQCgxcBAQuWMGBB
+      QMDgMGAJAw7cAwEPljBgQUDAgoCABQEBCwICFgQELAgIWBAQsCAgYEFAwIKAgAUBAQsCAhYE
+      BCwICFgQELAgIGBBQMCCgIAFAQFLwEo7hoeH/815wEMK/5UBLFjCgAUBAQsCAhYEBCxrCshh
+      UMuXURscD2AOljrfkRwGtVxeZ1nNW9yC5nW5vKDR6l1hlqs7DLCt+Bi/Iplar5Kuw0yINuVp
+      9HmreqW7z3TdQ+QxmYf2Jyb6r8tsYFXWHtBy09dOF31oTXy7Qf30F++82y5WVFeGGRQaIVYq
+      +9UqOEmSraoqkgZ7neam6oudE7OBkrRXi9/Miwn2Tlw5W93S6yRJtvQp37EcBnVJa7har5JO
+      W7Una66M/u4JfDRhz3vHXglf3ojrqtHiid+x41ZXl9G0N1EWREQLb5kTxcmSFy9Ljs4zVdpe
+      52zAxoidR44rE4OZJwv3Wvs9kKBZuoIFZx1QxlN/y7lTDW2uyD2HFn/WE49sq9TqKnL8Omvr
+      BbfLeKFmIKFcp9cdl060nm61el3GxqbeoJfO6LSVCX/a7xpiSF/7zdbDWn1rRY5oUGfov2u3
+      q8dko/gMRe4LWzzXTX1uIvJaW2s7nMmHLrU0Kh93TPpe19/W3OtMPqzTqbc7Oy51jK75VOGf
+      PYAlLHt39mcnjN9NiTOP5Ny5VCSlp4f4+4fERVO72Wrp+8VG4tQQEYli9l3Q7yMiS5eNwuSZ
+      W0X+lJ6edL576b2UyzE5O3PrW2EkbLNYTEREljq5RlgY/OUf39faiKipqISIaLzuVMezFUk3
+      RmYWx8zcHvb5OBFR6lvauqzOy1Xlgn2GZodHblPEY2s+Xfh77Kcwr/2TeuNMZG5u6mx3Q7N5
+      euHLA2bzlHfO9v0IBaQkSqNjn6TxbtOEd9p8rkBe/OkoRUbF0GRP99icd8psHlh+yJ8mxjwU
+      miCNFN20+8KSqvQ+qlTrV5d/DpCqPvJt1yq2kO3qNUfoM9HihTHHunt8VyC3oFGqGpwZ5Wdr
+      C5KI3H/Mcs8V7rX2K5CgkQt3NmT5uSNtrkhF6Wt5G5+wFzc1NKfHP0dEFLVh8JjyvJPCdx09
+      KAsK9pYWjn/wcZlC7y9JKyzbHUH+m98oHKxuKc3/UpItjSL6bckIsTsVyRZt/X6lJC0lRkzD
+      P9hJGuXb5R0ym2YCUjK2Bfm2N2U9H9Oq/Vq4maco2XWj5uKBvaI4WXIYjRNRkOzgUfvJmhP5
+      7Z5ASVph2Yuh9/tNgpWtw2dhljq5Rli/ZzX4X8EvEoEFn8YDy1/sGK0KpIYIpwAAAABJRU5E
+      rkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='Graph' width='192'>
+      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
+      YII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

@@ -1,0 +1,2350 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.2' xml:base='http://production-tableau-server-1.internal.intentmedia.net' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8100.14.0408.1805                -->
+  <repository-location derived-from='http://production-tableau-server-1.internal.intentmedia.net/t/UnderlyingData/workbooks/ExternalAfTAdvertiserReportforAdvertisers?rev=1.4' id='ExternalSCAAdvertiserReportforAdvertisers' path='/t/UnderlyingData/workbooks' revision='1.1' site='UnderlyingData' />
+  <preferences>
+  </preferences>
+  <style-theme name='modern' />
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='8.2'>
+      <aliases enabled='yes' />
+      <column caption='Show in Local Currency' datatype='boolean' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='true'>
+        <calculation class='tableau' formula='true' />
+        <members>
+          <member value='true' />
+          <member value='false' />
+        </members>
+      </column>
+      <column caption='Auction Type Parameter' datatype='string' name='[Parameter 2]' param-domain-type='list' role='measure' type='nominal' value='&quot;Total&quot;'>
+        <calculation class='tableau' formula='&quot;Total&quot;' />
+        <members>
+          <member value='&quot;Total&quot;' />
+          <member value='&quot;Non-Precheck&quot;' />
+          <member value='&quot;Precheck&quot;' />
+        </members>
+      </column>
+      <column caption='Product Category' datatype='string' name='[Product Category]' param-domain-type='list' role='measure' type='nominal' value='&quot;Total&quot;'>
+        <calculation class='tableau' formula='&quot;Total&quot;' />
+        <members>
+          <member value='&quot;Total&quot;' />
+          <member value='&quot;Flights&quot;' />
+          <member value='&quot;Hotels&quot;' />
+          <member value='&quot;PPA&quot;' />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption='currency_exchange_rates' inline='true' name='mysql.41786.675401643515' version='8.2'>
+      <connection class='mysql' dbname='intent_media_production' odbc-native-protocol='yes' port='3306' server='production-slave-db-server-1.internal.intentmedia.net' server-oauth='' username='tableau' workgroup-auth-mode='prompt'>
+        <relation name='TableauSQL' type='text'>select&#13;&#10;&#9;d.from_currency as &quot;Local Currency&quot;,&#13;&#10;&#9;max(d.exchange_rate) as &quot;Exchange Rate to USD&quot;&#13;&#10;from&#13;&#10;(&#13;&#10;&#9;select&#13;&#10;&#9;&#9;from_currency,&#13;&#10;&#9;&#9;max(quote_time) as quote_time&#13;&#10;&#9;from daily_currency_exchange_rates&#13;&#10;&#9;group by&#13;&#10;&#9;  from_currency&#13;&#10;) latest&#13;&#10;left join daily_currency_exchange_rates d&#13;&#10;  on d.from_currency = latest.from_currency&#13;&#10;  and d.quote_time = latest.quote_time&#13;&#10;group by&#13;&#10;  d.from_currency&#13;&#10;&#13;&#10;union&#13;&#10;&#13;&#10;select&#13;&#10;    &apos;USD&apos; as &quot;Local Currency&quot;,&#13;&#10;    1.0 as &quot;Exchange Rate to USD&quot;</relation>
+      </connection>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='\\psf\Home\Documents\My Tableau Repository\Datasources\currency_exchange_rates.tde' schema='Extract' tablename='Extract' update-time='2/26/2015 9:11:06 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='158' timestamp-start='2015-02-26 21:11:06.419000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+    <datasource caption='external_aft_advertiser_report_for_advertisers' inline='true' name='external_aft_advertiser_report_for_advertisers (copy)' version='8.2'>
+      <connection class='vertica' dbname='intent_media' expected-driver-version='7.0' odbc-connect-string-extras='ConnectionLoadBalance=1' odbc-native-protocol='yes' one-time-sql='' port='5433' server='production-vertica-cluster-1.internal.intentmedia.net' server-oauth='' username='tableau' workgroup-auth-mode='prompt'>
+        <relation name='TableauSQL' type='text'>select&#13;&#10;&#9;&apos;Flights&apos; as &quot;Product Category Type&quot;,&#13;&#10;&#9;c.precheck_eligibility_type as &quot;Precheck Type&quot;,&#13;&#10;&#9;e.name as &quot;Advertiser&quot;,&#13;&#10;&#9;e.alternate_reporting_currency as &quot;Local Currency&quot;,&#13;&#10;&#9;performance.*,&#13;&#10;&#9;revenue_metrics.Impressions,&#13;&#10;&#9;revenue_metrics.Clicks,&#13;&#10;&#9;revenue_metrics.Spend,&#13;&#10;&#9;revenue_metrics.&quot;Click Conversions&quot;,&#13;&#10;&#9;revenue_metrics.&quot;View Conversions&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Click Revenue&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Exposed Revenue&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Auction Position Sum&quot;&#13;&#10;from&#13;&#10;(&#13;&#10;&#9;select&#13;&#10;&#9;&#9;aggregation_level_date_in_et as Date,&#13;&#10;&#9;&#9;campaign_id as &quot;Campaign ID&quot;,&#13;&#10;&#9;&#9;advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;&#9;sum(impression_count + filtered_ad_count) as &quot;Pages Served&quot;&#13;&#10;&#9;from intent_media_production.air_ct_impression_share_report_aggregations&#13;&#10;&#9;group by&#13;&#10;&#9;  aggregation_level_date_in_et,&#13;&#10;&#9;  campaign_id,&#13;&#10;&#9;  advertiser_id&#13;&#10;) performance&#13;&#10;left join&#13;&#10;(&#13;&#10;&#9;select&#13;&#10;&#9;&#9;acapra.date_in_et as Date,&#13;&#10;&#9;&#9;acapra.campaign_id as &quot;Campaign ID&quot;,&#13;&#10;&#9;&#9;acapra.advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;&#9;sum(acapra.impression_count) as Impressions,&#13;&#10;&#9;&#9;sum(acapra.click_count) as Clicks,&#13;&#10;&#9;&#9;sum(acapra.actual_cpc_sum) as Spend,&#13;&#10;&#9;&#9;sum(acapra.click_conversion_count) as &quot;Click Conversions&quot;,&#13;&#10;&#9;&#9;sum(acapra.exposed_conversion_count) as &quot;View Conversions&quot;,&#13;&#10;&#9;&#9;sum(acapra.click_conversion_value_sum) as &quot;Click Revenue&quot;,&#13;&#10;&#9;&#9;sum(acapra.exposed_conversion_value_sum) as &quot;Exposed Revenue&quot;,&#13;&#10;&#9;&#9;sum(acapra.auction_position_sum) as &quot;Auction Position Sum&quot;&#13;&#10;&#9;from intent_media_production.air_ct_advertiser_performance_report_aggregations acapra&#13;&#10;&#9;group by&#13;&#10;&#9;  acapra.&quot;date_in_et&quot;,&#13;&#10;&#9;  acapra.campaign_id,&#13;&#10;&#9;  acapra.&quot;advertiser_id&quot;&#13;&#10;) revenue_metrics&#13;&#10;on performance.Date = revenue_metrics.Date&#13;&#10;  and performance.&quot;Campaign ID&quot; = revenue_metrics.&quot;Campaign ID&quot;&#13;&#10;  and performance.&quot;Advertiser ID&quot; = revenue_metrics.&quot;Advertiser ID&quot;&#13;&#10;left join intent_media_production.entities e on performance.&quot;Advertiser ID&quot; = e.id&#13;&#10;left join intent_media_production.campaigns c on performance.&quot;Campaign ID&quot; = c.id&#13;&#10;&#13;&#10;union&#13;&#10;&#13;&#10;select&#13;&#10;&#9;&apos;Hotels&apos; as &quot;Product Category Type&quot;,&#13;&#10;&#9;c.precheck_eligibility_type as &quot;Precheck Type&quot;,&#13;&#10;&#9;e.name as &quot;Advertiser&quot;,&#13;&#10;&#9;e.alternate_reporting_currency as &quot;Local Currency&quot;,&#13;&#10;&#9;performance.*,&#13;&#10;&#9;revenue_metrics.Impressions,&#13;&#10;&#9;revenue_metrics.Clicks,&#13;&#10;&#9;revenue_metrics.Spend,&#13;&#10;&#9;revenue_metrics.&quot;Click Conversions&quot;,&#13;&#10;&#9;revenue_metrics.&quot;View Conversions&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Click Revenue&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Exposed Revenue&quot;,&#13;&#10;&#9;revenue_metrics.&quot;Auction Position Sum&quot;&#13;&#10;from&#13;&#10;(&#13;&#10;&#9;select&#13;&#10;&#9;&#9;aggregation_level_date_in_et as Date,&#13;&#10;&#9;&#9;campaign_id as &quot;Campaign ID&quot;,&#13;&#10;&#9;&#9;advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;&#9;sum(impression_count + filtered_ad_count) as &quot;Pages Served&quot;&#13;&#10;&#9;from intent_media_production.hotel_ct_impression_share_report_aggregations&#13;&#10;&#9;group by&#13;&#10;&#9;  aggregation_level_date_in_et,&#13;&#10;&#9;  campaign_id,&#13;&#10;&#9;  advertiser_id&#13;&#10;) performance&#13;&#10;left join&#13;&#10;(&#13;&#10;&#9;select&#13;&#10;&#9;&#9;acapra.date_in_et as Date,&#13;&#10;&#9;&#9;acapra.campaign_id as &quot;Campaign ID&quot;,&#13;&#10;&#9;&#9;acapra.advertiser_id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;&#9;sum(acapra.impression_count) as Impressions,&#13;&#10;&#9;&#9;sum(acapra.click_count) as Clicks,&#13;&#10;&#9;&#9;sum(acapra.actual_cpc_sum) as Spend,&#13;&#10;&#9;&#9;sum(acapra.click_conversion_count) as &quot;Click Conversions&quot;,&#13;&#10;&#9;&#9;sum(acapra.exposed_conversion_count) as &quot;View Conversions&quot;,&#13;&#10;&#9;&#9;sum(acapra.click_conversion_value_sum) as &quot;Click Revenue&quot;,&#13;&#10;&#9;&#9;sum(acapra.exposed_conversion_value_sum) as &quot;Exposed Revenue&quot;,&#13;&#10;&#9;&#9;sum(acapra.auction_position_sum) as &quot;Auction Position Sum&quot;&#13;&#10;&#9;from intent_media_production.hotel_ct_advertiser_performance_report_aggregations acapra&#13;&#10;&#9;group by&#13;&#10;&#9;  acapra.&quot;date_in_et&quot;,&#13;&#10;&#9;  acapra.campaign_id,&#13;&#10;&#9;  acapra.&quot;advertiser_id&quot;&#13;&#10;) revenue_metrics&#13;&#10;on performance.Date = revenue_metrics.Date&#13;&#10;  and performance.&quot;Campaign ID&quot; = revenue_metrics.&quot;Campaign ID&quot;&#13;&#10;  and performance.&quot;Advertiser ID&quot; = revenue_metrics.&quot;Advertiser ID&quot;&#13;&#10;left join intent_media_production.entities e on performance.&quot;Advertiser ID&quot; = e.id&#13;&#10;left join intent_media_production.campaigns c on performance.&quot;Campaign ID&quot; = c.id&#13;&#10;&#13;&#10;union&#13;&#10;&#13;&#10;select&#13;&#10;&#9;&apos;PPA&apos; as &quot;Product Category Type&quot;,&#13;&#10;&#9;campaigns.precheck_eligibility_type as &quot;Precheck Type&quot;,&#13;&#10;&#9;entities.name as &quot;Advertiser&quot;,&#13;&#10;&#9;entities.alternate_reporting_currency as &quot;Local Currency&quot;,&#13;&#10;&#9;acapra.date_in_et as Date,&#13;&#10;&#9;campaigns.id as &quot;Campaign ID&quot;,&#13;&#10;&#9;entities.id as &quot;Advertiser ID&quot;,&#13;&#10;&#9;sum(acapra.filtered_ad_count + acapra.impression_count) as &quot;Pages Served&quot;,&#13;&#10;&#9;sum(acapra.impression_count) as Impressions,&#13;&#10;&#9;sum(acapra.click_count) as Clicks,&#13;&#10;&#9;sum(acapra.actual_cpc_sum) as Spend,&#13;&#10;&#9;cast(null as int) as &quot;Click Conversions&quot;,&#13;&#10;&#9;cast(null as int) as &quot;View Conversions&quot;,&#13;&#10;&#9;cast(null as float) as &quot;Click Revenue&quot;,&#13;&#10;&#9;cast(null as float) as &quot;Exposed Revenue&quot;,&#13;&#10;&#9;sum(acapra.auction_position_sum) as &quot;Auction Position Sum&quot;&#13;&#10;from intent_media_production.hotel_meta_advertiser_performance_aggregations acapra&#13;&#10;left join intent_media_production.entities on acapra.advertiser_id = entities.id&#13;&#10;left join intent_media_production.ad_groups on acapra.ad_group_id = ad_groups.id&#13;&#10;left join intent_media_production.campaigns on ad_groups.campaign_id = campaigns.id&#13;&#10;where acapra.date_in_et &lt;&lt; date(current_timestamp at timezone &apos;America/New_York&apos;)&#13;&#10;  and acapra.date_in_et &gt;&gt; &apos;2014-01-14&apos;&#13;&#10;group by&#13;&#10;  campaigns.precheck_eligibility_type,&#13;&#10;  entities.name,&#13;&#10;  entities.alternate_reporting_currency,&#13;&#10;  acapra.date_in_et,&#13;&#10;  campaigns.id,&#13;&#10;  entities.id</relation>
+      </connection>
+      <aliases enabled='yes' />
+      <column aggregation='Sum' datatype='integer' name='[Advertiser ID]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Average Position]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Auction Position Sum])/sum([Impressions Nulled])' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[CPC]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Spend])/sum([Clicks Nulled])' />
+      </column>
+      <column datatype='real' default-format='p0.00%' name='[CTR]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='sum([Clicks])/sum([Impressions Nulled])' />
+      </column>
+      <column caption='Auction Type' datatype='string' name='[Calculation_1690831223822531]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='CASE [Precheck Type]&#13;&#10;WHEN &quot;PRECHECKS_ONLY&quot; THEN &quot;Precheck&quot;&#13;&#10;ELSE &quot;Non-Precheck&quot;&#13;&#10;END' scope-isolation='false' />
+      </column>
+      <column caption='CPC in Chosen Currency' datatype='real' name='[Calculation_2810521161310689]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_8420521161226455]/sum([Clicks Nulled])' scope-isolation='false' />
+      </column>
+      <column caption='Filter For Auction Type' datatype='string' name='[Calculation_4371013120446543]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] THEN &quot;Keep&quot;&#13;&#10;ELSE &quot;Remove&quot;&#13;&#10;END' scope-isolation='false' />
+      </column>
+      <column caption='Filtered Ads Nulled' datatype='integer' name='[Calculation_5210102160009994]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF SUM([Pages Served])- SUM([Impressions]) &gt; 0 THEN SUM([Pages Served])- SUM([Impressions]) END' scope-isolation='false' />
+      </column>
+      <column caption='Spend in Local Currency' datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Calculation_5210521161207151]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Spend])/SUM([mysql.41786.675401643515].[Exchange Rate to USD])' scope-isolation='false' />
+      </column>
+      <column caption='Filtered Ads' datatype='integer' name='[Calculation_6100110125516732]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Pages Served])-SUM([Impressions])' scope-isolation='false' />
+      </column>
+      <column caption='CPC in Local Currency' datatype='real' default-format='n#,##0.000;-#,##0.000' name='[Calculation_6490521161253154]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_5210521161207151]/sum([Clicks Nulled])' scope-isolation='false' />
+      </column>
+      <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+      </column>
+      <column caption='Currency' datatype='string' name='[Calculation_7000527163150921]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 1] THEN [Local Currency] ELSE &quot;USD&quot; END' scope-isolation='false' />
+      </column>
+      <column caption='Spend in Chosen Currency' datatype='real' name='[Calculation_8420521161226455]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 1] THEN [Calculation_5210521161207151] ELSE SUM([Spend]) END' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Clicks Nulled]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Clicks]&gt;0 THEN [Clicks] END' />
+      </column>
+      <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+      </column>
+      <column datatype='real' default-format='p0.0%' name='[Impression Share]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Impressions Nulled])/(SUM([Impressions Nulled]) + [Calculation_5210102160009994])' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Impressions Nulled]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Impressions]&gt;0 THEN [Impressions] END' />
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Spend Nulled]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Spend]&gt;0 THEN [Spend] END' />
+      </column>
+      <column datatype='real' default-format='C1033%' name='[Spend]' role='measure' type='quantitative'>
+      </column>
+      <column-instance column='[Impressions Nulled]' derivation='Sum' name='[sum:Impressions Nulled:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_6100110125516732]' derivation='User' name='[usr:Calculation_6100110125516732:qk]' pivot='key' type='quantitative' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='\\psf\Home\Documents\My Tableau Repository\Datasources\external_aft_advertiser_report_for_advertisers.tde' schema='Extract' tablename='Extract' update-time='2/26/2015 9:09:16 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Calculation_1690831223822531]' formula='CASE [Precheck Type]&#13;&#10;WHEN &quot;PRECHECKS_ONLY&quot; THEN &quot;Precheck&quot;&#13;&#10;ELSE &quot;Non-Precheck&quot;&#13;&#10;END' />
+            <calculation column='[Clicks Nulled]' formula='IF [Clicks]&gt;0 THEN [Clicks] END' />
+            <calculation column='[Impressions Nulled]' formula='IF [Impressions]&gt;0 THEN [Impressions] END' />
+            <calculation column='[Number of Records]' formula='1' />
+            <calculation column='[Spend Nulled]' formula='IF [Spend]&gt;0 THEN [Spend] END' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='166736' timestamp-start='2015-02-26 21:09:16.199000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.266078' measure-ordering='alphabetic' measure-percentage='0.581337' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#006ba4'>
+              <bucket>&quot;[external_aft_advertiser_report_for_advertisers (copy)].[sum:Impressions Nulled:qk]&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_6100110125516732:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column caption='Show in Local Currency' datatype='boolean' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='true'>
+          <calculation class='tableau' formula='true' />
+          <members>
+            <member value='true' />
+            <member value='false' />
+          </members>
+        </column>
+        <column caption='Auction Type Parameter' datatype='string' name='[Parameter 2]' param-domain-type='list' role='measure' type='nominal' value='&quot;Total&quot;'>
+          <calculation class='tableau' formula='&quot;Total&quot;' />
+          <members>
+            <member value='&quot;Total&quot;' />
+            <member value='&quot;Non-Precheck&quot;' />
+            <member value='&quot;Precheck&quot;' />
+          </members>
+        </column>
+        <column caption='Product Category' datatype='string' name='[Product Category]' param-domain-type='list' role='measure' type='nominal' value='&quot;Total&quot;'>
+          <calculation class='tableau' formula='&quot;Total&quot;' />
+          <members>
+            <member value='&quot;Total&quot;' />
+            <member value='&quot;Flights&quot;' />
+            <member value='&quot;Hotels&quot;' />
+            <member value='&quot;PPA&quot;' />
+          </members>
+        </column>
+      </datasource-dependencies>
+      <datasource-dependencies datasource='mysql.41786.675401643515'>
+        <column datatype='real' name='[Exchange Rate to USD]' role='measure' type='quantitative'>
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='external_aft_advertiser_report_for_advertisers (copy)'>
+      <datasources>
+        <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+      </datasources>
+      <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+        <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+        </column>
+        <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+        </column>
+        <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+        </column>
+        <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+        </column>
+        <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]'>
+        <groupfilter function='level-members' level='[none:Advertiser:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]'>
+        <groupfilter function='member' level='[none:Calculation_6891001115040643:nk]' member='&quot;keep&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]'>
+        <groupfilter function='member' level='[none:Date Filter:nk]' member='&quot;Included&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]'>
+        <groupfilter function='member' level='[none:Product Category Filter:nk]' member='&quot;Keep&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='Average Position'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Average Position]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Auction Position Sum])/sum([Impressions Nulled])' />
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='Week-Trunc' name='[twk:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Average Position]' derivation='User' name='[usr:Average Position:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:qk]' scope='rows' value='true' />
+            <encoding attr='space' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:qk]' field-type='quantitative' max='5.0' min='1.0' range-type='fixed' reverse='true' scope='rows' type='space' />
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='true' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <reference-line axis-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' formula='constant' id='refline0' label-type='automatic' scope='per-table' value='#2014-01-01 00:00:00#' value-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[external_aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:qk]</rows>
+        <cols>[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]</cols>
+        <show-full-range>
+          <column>[external_aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='CPC'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+            <datasource caption='currency_exchange_rates' name='mysql.41786.675401643515' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column caption='CPC in Chosen Currency' datatype='real' name='[Calculation_2810521161310689]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_8420521161226455]/sum([Clicks Nulled])' scope-isolation='false' />
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column caption='Currency' datatype='string' name='[Calculation_7000527163150921]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 1] THEN [Local Currency] ELSE &quot;USD&quot; END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='string' name='[Local Currency]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_7000527163150921]' derivation='None' name='[none:Calculation_7000527163150921:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Local Currency]' derivation='None' name='[none:Local Currency:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='Week-Trunc' name='[twk:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_2810521161310689]' derivation='User' name='[usr:Calculation_2810521161310689:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='mysql.41786.675401643515'>
+            <column datatype='string' name='[Local Currency]' role='dimension' type='nominal'>
+            </column>
+          </datasource-dependencies>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='true' />
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_2810521161310689:qk]' scope='rows' value='CPC' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_2810521161310689:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_2810521161310689:qk]' scope='rows' value='true' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_7000527163150921:nk]' value='-90' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[external_aft_advertiser_report_for_advertisers (copy)].[none:Local Currency:nk]' />
+            </encodings>
+            <reference-line axis-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' formula='constant' id='refline0' label-type='automatic' scope='per-table' value='#2014-01-01 00:00:00#' value-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_7000527163150921:nk] * [external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_2810521161310689:qk])</rows>
+        <cols>[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]</cols>
+        <join-lod-include-overrides>
+          <column>[mysql.41786.675401643515].[Local Currency]</column>
+        </join-lod-include-overrides>
+        <show-full-range>
+          <column>[external_aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='CSV Download' tab-color='#d6f2f8'>
+      <repository-location id='CSVDownload' path='/t/UnderlyingData/workbooks/ExternalAfTAdvertiserReportforAdvertisers' revision='' site='UnderlyingData' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+            <datasource caption='currency_exchange_rates' name='mysql.41786.675401643515' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Average Position]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Auction Position Sum])/sum([Impressions Nulled])' />
+            </column>
+            <column datatype='real' default-format='C1033%' name='[CPC]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Spend])/sum([Clicks Nulled])' />
+            </column>
+            <column datatype='real' default-format='p0.00%' name='[CTR]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Clicks])/sum([Impressions Nulled])' />
+            </column>
+            <column caption='Auction Type' datatype='string' name='[Calculation_1690831223822531]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Precheck Type]&#13;&#10;WHEN &quot;PRECHECKS_ONLY&quot; THEN &quot;Precheck&quot;&#13;&#10;ELSE &quot;Non-Precheck&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column caption='Spend in Local Currency' datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Calculation_5210521161207151]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Spend])/SUM([mysql.41786.675401643515].[Exchange Rate to USD])' scope-isolation='false' />
+            </column>
+            <column caption='CPC in Local Currency' datatype='real' default-format='n#,##0.000;-#,##0.000' name='[Calculation_6490521161253154]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_5210521161207151]/sum([Clicks Nulled])' scope-isolation='false' />
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='integer' name='[Clicks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='integer' name='[Impressions]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Local Currency]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Product Category Type]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='C1033%' name='[Spend]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1690831223822531]' derivation='None' name='[none:Calculation_1690831223822531:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='None' name='[none:Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Local Currency]' derivation='None' name='[none:Local Currency:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Type]' derivation='None' name='[none:Product Category Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Clicks]' derivation='Sum' name='[sum:Clicks:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Impressions]' derivation='Sum' name='[sum:Impressions:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Spend]' derivation='Sum' name='[sum:Spend:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Average Position]' derivation='User' name='[usr:Average Position:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[CPC]' derivation='User' name='[usr:CPC:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[CTR]' derivation='User' name='[usr:CTR:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Calculation_5210521161207151]' derivation='User' name='[usr:Calculation_5210521161207151:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Calculation_6490521161253154]' derivation='User' name='[usr:Calculation_6490521161253154:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='border-color' value='#b0b0b0' />
+            <format attr='border-width' value='1' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='col-levels' value='15' />
+            <format attr='row-levels' value='15' />
+            <format attr='row-horiz-levels' value='15' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='off' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='pane'>
+                <format attr='aspect' value='1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([external_aft_advertiser_report_for_advertisers (copy)].[none:Date:ok] / ([external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Type:nk] / ([external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk] / ([external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_1690831223822531:nk] / ([external_aft_advertiser_report_for_advertisers (copy)].[sum:Impressions:ok] / ([external_aft_advertiser_report_for_advertisers (copy)].[sum:Clicks:ok] / ([external_aft_advertiser_report_for_advertisers (copy)].[usr:Average Position:ok] / ([external_aft_advertiser_report_for_advertisers (copy)].[usr:CTR:ok] / ([external_aft_advertiser_report_for_advertisers (copy)].[usr:CPC:ok] / ([external_aft_advertiser_report_for_advertisers (copy)].[sum:Spend:ok] / ([external_aft_advertiser_report_for_advertisers (copy)].[none:Local Currency:nk] / ([external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_6490521161253154:ok] / [external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_5210521161207151:ok]))))))))))))</rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+    <worksheet name='CTR'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='p0.00%' name='[CTR]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='sum([Clicks])/sum([Impressions Nulled])' />
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='Week-Trunc' name='[twk:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[CTR]' derivation='User' name='[usr:CTR:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='true' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <reference-line axis-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' formula='constant' id='refline0' label-type='automatic' scope='per-table' value='#2014-01-01 00:00:00#' value-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[external_aft_advertiser_report_for_advertisers (copy)].[usr:CTR:qk]</rows>
+        <cols>[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]</cols>
+        <show-full-range>
+          <column>[external_aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Clicks'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='integer' name='[Clicks]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Clicks]' derivation='Sum' name='[sum:Clicks:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date]' derivation='Week-Trunc' name='[twk:Date:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='true' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <reference-line axis-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' formula='constant' id='refline0' label-type='automatic' scope='per-table' value='#2014-01-01 00:00:00#' value-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[external_aft_advertiser_report_for_advertisers (copy)].[sum:Clicks:qk]</rows>
+        <cols>[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]</cols>
+        <show-full-range>
+          <column>[external_aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Impression Share'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='real' default-format='p0.0%' name='[Impression Share]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Impressions Nulled])/(SUM([Impressions Nulled]) + [Calculation_5210102160009994])' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='Week-Trunc' name='[twk:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Impression Share]' derivation='User' name='[usr:Impression Share:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Impression Share:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Impression Share:qk]' scope='rows' value='true' />
+            <encoding attr='space' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Impression Share:qk]' field-type='quantitative' max='1.0' min='0.0' range-type='fixed' scope='rows' type='space' />
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='true' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <reference-line axis-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' formula='constant' id='refline0' label-type='automatic' scope='per-table' value='#2014-01-01 00:00:00#' value-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[external_aft_advertiser_report_for_advertisers (copy)].[usr:Impression Share:qk]</rows>
+        <cols>[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]</cols>
+        <show-full-range>
+          <column>[external_aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Impressions over Pages Available'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Filtered Ads' datatype='integer' name='[Calculation_6100110125516732]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Pages Served])-SUM([Impressions])' scope-isolation='false' />
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='integer' name='[Impressions Nulled]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Impressions]&gt;0 THEN [Impressions] END' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Impressions Nulled]' derivation='Sum' name='[sum:Impressions Nulled:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date]' derivation='Week-Trunc' name='[twk:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_6100110125516732]' derivation='User' name='[usr:Calculation_6100110125516732:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[external_aft_advertiser_report_for_advertisers (copy)].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_6100110125516732:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[external_aft_advertiser_report_for_advertisers (copy)].[sum:Impressions Nulled:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[external_aft_advertiser_report_for_advertisers (copy)].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_6100110125516732:qk]&quot;</bucket>
+              <bucket>&quot;[external_aft_advertiser_report_for_advertisers (copy)].[sum:Impressions Nulled:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[:Measure Names]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='true' />
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[Multiple Values]' scope='rows' value='Pages' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[Multiple Values]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[Multiple Values]' scope='rows' value='true' />
+            <format attr='width' field='[external_aft_advertiser_report_for_advertisers (copy)].[Multiple Values]' value='52' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[external_aft_advertiser_report_for_advertisers (copy)].[:Measure Names]' />
+            </encodings>
+            <reference-line axis-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' formula='constant' id='refline0' label-type='automatic' scope='per-table' value='#2014-01-01 00:00:00#' value-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[external_aft_advertiser_report_for_advertisers (copy)].[Multiple Values]</rows>
+        <cols>[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]</cols>
+        <show-full-range>
+          <column>[external_aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Spend'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;</run>
+            <run bold='true'>Sheet Name</run>
+            <run bold='true'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+            <datasource caption='currency_exchange_rates' name='mysql.41786.675401643515' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Filter For Auction Type' datatype='string' name='[Calculation_4371013120446543]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] THEN &quot;Keep&quot;&#13;&#10;ELSE &quot;Remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column caption='Currency' datatype='string' name='[Calculation_7000527163150921]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 1] THEN [Local Currency] ELSE &quot;USD&quot; END' scope-isolation='false' />
+            </column>
+            <column caption='Spend in Chosen Currency' datatype='real' name='[Calculation_8420521161226455]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 1] THEN [Calculation_5210521161207151] ELSE SUM([Spend]) END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='string' name='[Local Currency]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_4371013120446543]' derivation='None' name='[none:Calculation_4371013120446543:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_7000527163150921]' derivation='None' name='[none:Calculation_7000527163150921:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Local Currency]' derivation='None' name='[none:Local Currency:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='Week-Trunc' name='[twk:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_8420521161226455]' derivation='User' name='[usr:Calculation_8420521161226455:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_4371013120446543:nk]'>
+            <groupfilter function='member' level='[none:Calculation_4371013120446543:nk]' member='&quot;Keep&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_4371013120446543:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' scope='cols' value='true' />
+            <format attr='title' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_8420521161226455:qk]' scope='rows' value='Spend' />
+            <format attr='subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_8420521161226455:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_8420521161226455:qk]' scope='rows' value='true' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_7000527163150921:nk]' value='-90' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <lod column='[external_aft_advertiser_report_for_advertisers (copy)].[none:Local Currency:nk]' />
+            </encodings>
+            <reference-line axis-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' formula='constant' id='refline0' label-type='automatic' scope='per-table' value='#2014-01-01 00:00:00#' value-column='[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#297a98' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_7000527163150921:nk] * [external_aft_advertiser_report_for_advertisers (copy)].[usr:Calculation_8420521161226455:qk])</rows>
+        <cols>[external_aft_advertiser_report_for_advertisers (copy)].[twk:Date:qk]</cols>
+        <show-full-range>
+          <column>[external_aft_advertiser_report_for_advertisers (copy)].[Date]</column>
+          <column>[mysql.41093.559649826391].[Date]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Title'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontsize='18'>&lt;[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]&gt; &lt;[Parameters].[Parameter 2]&gt; Topline&#10;</run>
+            <run fontsize='14'>&lt;[Parameters].[Product Category]&gt;&#10;&#10;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='external_aft_advertiser_report_for_advertisers' name='external_aft_advertiser_report_for_advertisers (copy)' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='external_aft_advertiser_report_for_advertisers (copy)'>
+            <column datatype='string' name='[Advertiser]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Precheck Filter for CSV' datatype='string' name='[Calculation_6891001115040643]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 2] = &quot;Total&quot; then &quot;keep&quot;&#13;&#10;ELSEIF [Parameters].[Parameter 2] = [Calculation_1690831223822531] then &quot;keep&quot;&#13;&#10;ELSE &quot;remove&quot;&#13;&#10;END' scope-isolation='false' />
+            </column>
+            <column datatype='string' name='[Date Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Date]&lt;DATEADD(&apos;week&apos;,-52,DATETRUNC(&apos;week&apos;,NOW())) THEN &quot;Excluded&quot;&#13;&#10;ELSEIF [Date]&gt;=DATETRUNC(&apos;week&apos;,NOW()) THEN &quot;Excluded&quot;&#13;&#10;ELSE &quot;Included&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Product Category Filter]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Product Category]&#13;&#10;WHEN &quot;Total&quot; THEN &quot;Keep&quot;&#13;&#10;ELSE IF [Product Category Type] = [Parameters].[Product Category] THEN &quot;Keep&quot; ELSE &quot;Remove&quot; END&#13;&#10;END' />
+            </column>
+            <column-instance column='[Advertiser]' derivation='None' name='[none:Advertiser:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_6891001115040643]' derivation='None' name='[none:Calculation_6891001115040643:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date Filter]' derivation='None' name='[none:Date Filter:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Category Filter]' derivation='None' name='[none:Product Category Filter:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <slices>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Date Filter:nk]</column>
+            <column>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='title'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows></rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Topline' tab-color='#d6f2f8'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;[Parameters].[Advertiser]&gt; &lt;Sheet Name&gt;&#10;</run>
+            <run fontsize='14'>&lt;[Parameters].[Product Category]&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location id='Topline' path='/t/UnderlyingData/workbooks/ExternalAfTAdvertiserReportforAdvertisers' revision='' site='UnderlyingData' />
+      <style>
+      </style>
+      <size maxheight='1600' maxwidth='1200' minheight='1600' minwidth='1200' />
+      <zones>
+        <zone h='100000' id='1' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='28' param='horz' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='100000' id='12' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+              <zone fixed-size='53' h='4063' id='26' is-fixed='true' name='Title' show-title='true' w='100000' x='0' y='0'>
+                <layout-cache type-h='fixed' type-w='cell' />
+              </zone>
+              <zone h='95937' id='9' param='horz' type='layout-flow' w='100000' x='0' y='4063'>
+                <zone h='95937' id='7' type='layout-basic' w='99667' x='0' y='4063'>
+                  <zone h='23984' id='17' name='Impression Share' show-title='true' w='49833' x='49834' y='4063'>
+                  </zone>
+                  <zone h='23984' id='18' name='Impressions over Pages Available' show-title='true' w='49834' x='0' y='4063'>
+                  </zone>
+                  <zone h='23984' id='20' name='CTR' show-title='true' w='49834' x='0' y='52032'>
+                  </zone>
+                  <zone h='23985' id='21' name='Average Position' show-title='true' w='49834' x='0' y='28047'>
+                  </zone>
+                  <zone h='23984' id='22' name='CPC' show-title='true' w='49833' x='49834' y='52032'>
+                  </zone>
+                  <zone h='23985' id='23' name='Clicks' show-title='true' w='49833' x='49834' y='28047'>
+                  </zone>
+                  <zone h='23984' id='24' name='Spend' show-title='true' w='49834' x='0' y='76016'>
+                  </zone>
+                  <zone h='23984' id='25' type='empty' w='49833' x='49834' y='76016'>
+                  </zone>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='schema' source-height='44' />
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Title'>
+      <cards>
+        <edge name='left'>
+          <strip size='236'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Impressions over Pages Available'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[Parameters].[Product Category]</field>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[:Measure Names]</field>
+          <field>[aft_advertiser_report_for_advertisers (copy)].[none:Product Category Filter:nk]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Filter:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Impression Share'>
+      <cards>
+        <edge name='left'>
+          <strip size='242'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Filter:nk]</field>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Average Position'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Clicks'>
+      <cards>
+        <edge name='left'>
+          <strip size='235'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='CTR'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='CPC'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_7000527163150921:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Local Currency:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Spend'>
+      <cards>
+        <edge name='left'>
+          <strip size='214'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[aft_advertiser_report_for_advertisers].[none:Product Category Type:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_1690831223822531:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_4371013120446543:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_7000527163150921:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Local Currency:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Precheck Type:nk]</field>
+          <field>[mysql.41093.559649826391].[none:Advertiser Name:nk]</field>
+          <field>[mysql.41093.559649826391].[yr:Date:ok]</field>
+          <field>[mysql.41106.750487395831].[none:Advertiser:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date Filter:nk]</field>
+          <field>[mysql.41106.750487395831].[none:Date:qk]</field>
+          <field>[mysql.41106.750487395831].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='0' name='Topline'>
+      <zones>
+        <zone name='Title'>
+          <viewpoint>
+            <zoom type='fit-width' />
+          </viewpoint>
+        </zone>
+        <zone name='Impression Share'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Impressions over Pages Available'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='CTR'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Average Position'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='CPC'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Clicks'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Spend'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+      </zones>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='1' name='CSV Download'>
+      <cards>
+        <edge name='left'>
+          <strip size='239'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='compact' param='[Parameters].[Product Category]' type='parameter' />
+            <card param='[external_aft_advertiser_report_for_advertisers (copy)].[none:Advertiser:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_1690831223822531:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6171001114745656:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Calculation_6891001115040643:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Local Currency:nk]</field>
+          <field>[external_aft_advertiser_report_for_advertisers (copy)].[none:Precheck Type:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='144' name='Title' width='174'>
+      iVBORw0KGgoAAAANSUhEUgAAAK4AAACQCAIAAAAeHsdkAAAAA3NCSVQICAjb4U/gAAAACXBI
+      WXMAAA7EAAAOxAGVKw4bAAAC0klEQVR4nO3dMWhVVxzH8fNKHFoRyWZxCQWhgxTExWpFHCIi
+      mGAHqYpgUoyUUodCF8Wpg2ODi1QwCFZtjCS5ghEVwajBRTpYh9J2EOEVQaFghgTeg9vBXyBD
+      Bx3k6ePzGS6cAxf+cL+cM95GXdcFSvmg0wPwrpACIQVCCoQUCCkQUiCkQEiBkAIhBUIKhBQI
+      KRBSIKRASIGQAiEFQgqEFAgpEFIgpEBIgZACIQVCCoQUCCkQUiCkQEiBkAIhBUIKhBQIKRBS
+      IKRASIGQAiEFQgqEFAgpEFIgejo9wJupqqrTI3St9yyFUsrg4GCnR+hOLghCCoQUCCkQUiCk
+      QEiBkAIhBUIKhBQIKRBSIKRASIGQAiEFQgqEFAgpEFIgpEBIgZACIQVCCoQUCCkQUiCkQEiB
+      kAIhBUIKhBQIKRBSIKRASIGQAiEFQgqEFAgpEFLoUu3Z7z9ubB79O8vrR5Yt/p8UulP71sXJ
+      gW8/+eXy76/9ihS60nx14cbegyf3fHrm/P2lvdaj0f7eRqN3/f6xP9qllH9nj29ds7LR6F0/
+      Mv60LYXuNH9z6tHQvi9WDR7+8vrkbPvV5sPxF4f+bC3cO/Dk66Njzfbsj1+NrTv9pLUws/vu
+      8LFqvpT6vTI9Pd3pEd59z87uWt7FRweuvKxnRkoZqlp1Xdd//fR5GZl59Vz+mlOh6zSrX3/7
+      4d7SB27dOXL750vNUkoZvzj+vL34eOLyg/6Nn/Vt2LTm6sTU8/bi45ObGzvONF0QXad57crc
+      wPZNS8ueLf0Dc+cm/iml7Fz9YMvqD7de6Dt7anhtz7YT1XfPvulbsbRRGnVdd3DuN1VVlX9H
+      vSVOBUIKhBQIKRBSIKRASIGQAiEFQgqEFAgpEFIgpEBIgZACIQVCCoQUCCkQUiCkQEiBkAIh
+      BUIKhBQIKRBSIKRASIGQAiEFQgqEFAgpEFIgpEBIgZACIQVCCsR/TeZrYEiED4sAAAAASUVO
+      RK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='Impressions over Pages Available' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='Impression Share' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAAA3NCSVQICAjb4U/gAAAACXBI
+      WXMAAA7EAAAOxAGVKw4bAAANz0lEQVR4nO3d23Mb12HH8bO7WGBxW1xJgKR4M++iZMoSZcly
+      ZcWjSLYz8iSO09atp3UnyfSh/0mn07+hT6mbTGrHrRq3jiQrjumQkmBSvEgkwStI4g4SIO7Y
+      Wx6kELSIVUUdhyQmv88TxTkEzoJfHSzBwwWjaRoBeF7sYU8A6puh5mdHP/9fxuZaT2RFJd1y
+      4kIpGsyUpcRm+cRAV3OTP5VKiaL4jHcQCoXa2tq+vQnD0VI7ILPJMLOwJpkYoyyvrK0bssWS
+      mhdZ+asvvnz3H34qilJDQ8Mz3kE8Hn/2wVB3agfU2T/U0kei8YyJFG0unyY3SqzNZmI6ImGb
+      kaQPeI5whNUOSHQ3EEK8nidXDo/H8yefEdQVnEQDFQQEVBAQUEFAQAUBARUEBFQQEFBBQEAF
+      AQEVBARUEBBQQUBABQEBldq/jSeEjN6+Ueb46Hr46g/eDdy8rhlFXuBa2o/3tPsOcn5wxOkG
+      pKrqxL0Rr6cpnMyUipqkZEuxrXCy3OA4XygUDnKKcJTpBtTe2XGsfygZ2fDbeMPxLl97v1RI
+      R+NbTqdTkqSDnCIcZboBtXT2EkLamn2EEI/rFCGE2PwNjf6DmhjUB5xEAxUEBFQQEFBBQEAF
+      AQEVBARUEBBQQUBABQEBFQQEVBAQUEFAQAUBARUEBFR0t3OsBGfymjEdi5298OrsxKjZ7pUZ
+      zuVw+BtxiSCo0g3owfRkOBG3Gl2O9t7QcjSZf8ipcmPXacHIYUci7NDfUNbSZm1oS8djToET
+      Hcbj569VMhvBEHYkwjcwz3Gd6EQi8ezXzZyZmRkcHNzvXUC9wEk0UEFAQAUBARUEBFQQEFBB
+      QEAFAQEVBARUEBBQQUBABQEBFQQEVBAQUEFAQAUBARXdDWVzE7+/93ClsJW+9v4Ho9d/UWaM
+      DM+9ePbSQAcuUgZVuiuQ0WA4c/pFhmibmaxGDC5/s4VTb352I51OY0sr7NBdgZo6B40WQbS7
+      HU6777uX7e5GRSpnszlsaYXddAMSrBZCSHNzEyHEarEQQghvsTz6AOCPcBINVBAQUEFAQAUB
+      ARUEBFQQEFBBQEAFAQEVBARUEBBQQUBABQEBFQQEVBAQUNHfkTgdyEpsJBR6/a1rE7/7zGB2
+      MybO52vtOIa3/YYq3YCmJ6YLcolnLMvRVGarnNtckvO5jXjeaTNhRyLs0A3o7PmzW2Umk4j5
+      bLzS5m3qHqrkEusRXGQTvgEX2QQq1ZNoTdM2YpsLq9FDnA3UnWpAn96+8+//dXs1kj7E2UDd
+      qQaUTG1tb2c6m8VDnA3Unccn0YqiXn3t7PseF8syhzshqC+PVyCOY/0Nrlw2u+8zavjzVn0K
+      W5y++y//+s93F2KHOBuoO9WABKt98OSZbr/zEGcDdacakIFjQwtzyUzxEGcDdWfXL1NZ80Bv
+      u7L/1xXhz1k1oLWlmdVkwWLkDnE2UHeqAWVlji+nVYIf42EfqgFtp8LdfSc3czgHgn2o/jb+
+      7R99UCmXeZPpEGcDdae6Aq0+DHz4y19FNvOHOBuoO9WAGKItzIxH//hj/PrK/NzS6uTEpKJp
+      C7PT0Uh4eS2ymc4c0jzhiKo+hTk8/lNnzja7rY/+uRCck2QlFtnkvM1LU7PRdMpkYFoHzr/U
+      34YdibCjGtDDB1OTX99pPvFKs8tKCBk68+ra6oLX19LiFvnjvUOORq2cim8z2JEIu1UD6m5v
+      NdudbvHxCuRyu13ulx997Bx8kRBCiL/9oKcHR92uV6KN5raWY0YDXkiEfdj1OtBWcmp2OpHB
+      +Q3sQzUgs1UcOnWu2+84xNlA3akGZDTyxe2tTLFyiLOBulMNSK5ImiZPTD04xNlA3akGVCnm
+      1qOpwb7eQ5wN1J1dAclqc2u7VeAPcTZQd6oBbWYLjS47y+J6HbAP1RcSz128fIjzgDqF9Qao
+      ICCggoCACgICKggIqOheoUxT5URyKxFP9A8OhBZmbU53ocI4bILTgct3QNVTLrI5NvLbSaPF
+      yDgbF8enw1sps4ltP35hqPcYdiTCDt2nMJY1WpwuxmAQWJXn1b+4/L2Tg/1rS4tOpxNvvQs7
+      cI1EoIKTaKCCgIAKAgIqCAioICCggoCACgICKggIqCAgoIKAgAoCAioICKggIKCCgIAKAgIq
+      ujsSp0ZvBubXM/HkOz/+x5GPfpZXVJnhX7vy9vFO/0HOD4443RXILHoVqcCxbCaTZTmue+h8
+      T7v3V7/8KJ1OY0sr7NDdkShVKhrDqops4HlVlgy8SdNUWZZNJhN2JMIO3acw3mgkhBDeQAgh
+      3KMLJ3IchysowjfgJBqoICCggoCACgICKggIqCAgoIKAgAoCAioICKggIKCCgIAKAgIqCAio
+      ICCgorudIzgzkdeM28n4uYuvPQx8Jdi9Csu5Ha4mv/cg5wdHnG5A/qamW7d/U8xq8y8k10PJ
+      VDHIypL3hVNmwYAdibBDf0/05ERr91B4ecltNmy7TSf6365shxdDW3jbb9gNF9kEKjiJBioI
+      CKggIKCCgIAKAgIqCAioICCggoCACgICKggIqCAgoIKAgAoCAioICKjoBqQqUq5QDIcjqkaS
+      sUgut51KZwvF4kFODo4+3Q1law/vfDG7UY4nX/vh30zfuJHIZjmeGzr/3RNdzdhQBjt0VyBf
+      S4fX7dQYRquUWFYdvnjlRH/n2JcjLMsyDHOQU4SjDDsSgQpOooEKAgIqCAioICCggoCACgIC
+      KggIqCAgoIKAgAoCAioICKggIKCCgICK7n4gQoiqlMdGA2fOvzJ//45Z9EiEczlEX4Nnv/eh
+      aep/X//E5vA5eJkx2GxeFylubxfkvKR1tPqbG5wf/sf1v//gvWxy/eNPPhccrKehfTm0cfVc
+      +8M1yxuXX6Q4OviTe1pA2djKSjBob+teWQonctMGTfF1n7m6/4CmJyeS68FPR6YvDQ2kl67n
+      PD3NZvJgYv7Sj354byr47luvO2zmYqlEGMbi8RrUraJEXKIpuLiY3MQ7RB91TwvI6vYLdqvD
+      yNlFw8C5a5XMenB16znu44XOzs6uf3ozWxDtVoZc2c6VTDz35ttsJZcqGD2EkCtvXkmn025R
+      HH7phFO0mqyiKlcsZlOpKD/nYcFB2feGsnQ6XS6XWfbxyVOhULBYLE+MURRFkiRBEAghlUrF
+      +Oj9e/XHy7KsKIrJZNp7dzXHS5Kkadrum336+EqlwjAMz/NPfF7TtFKpZDabn/h8uVzmOM5g
+      ePJ/l6Zp5XL50XHtViqVeJ7f+47EqqpKkrT3uIrFoslk2nkMdyiKoijK3uMqFApms3nvRlBZ
+      llVV3Ts+n89brVayx6O9yHsfh1wuZ7PZao5nGGbv47B7/NNWoJqcTuf/O0aSJFmW935j9FQq
+      FVVV935j9JTLZUJIzeBqKpVKLMvWDK6mYrFoMBj2PtB6CoWC0Wjc+0DryefzgiA8+1tg53I5
+      i8WyNzg9giDYbLZn33lsMplEUXzGwU+M//Z+ClMrI7c/XwknCCE8z5vN5lQ0ND27eD9wt1BR
+      9L4kEkkSQoxGoyAIcrmwHo3eGR0tSWrt8XJxI7b16ABMJtPGSjC4sjYeCFSU2otoIZ24eeNW
+      KltitXK+LBNNezA5ns6XdQ5AGbl9IxiKEKJks1me58MrwfnFlUBgXFZr334mvhHZzM3Nz1ss
+      FoPBQDRteiKQLVZqDta08tzscjA4r6qa1WrlOG5tcXZheTUQmFD0nwTWQyFN02w2G8uymip/
+      Hfha0jlYQkgmEc4UZEKI3W5nGDJxdzQajczML+uNX5qdKxYzC6HoTg2qVAhHN2sOXpydK+Q2
+      lzYShJBH44uZeDSZ2vcKpEsuJDNM9POP/21qpe/0cP/xwe7WhtCdL2OxYDRteOPyS3u/Qilv
+      3/7NrUgs6vVwHacu97qUkYdr/U5+NVXo89dYUeV88v8+u7uVjvvMlfbht062Or789UfRLeLv
+      Odkk1lhdUitTy/FK9tcfLoXCCuv4q/ffGx8dnYsU33njQq0DkO7cCQwV8z//+bJVy1248l5f
+      m2NibJwUEtGuwWPOGrcfmpqbycUXFhMdwiebRt/f/uW18d9/tZgi3798psbNa9lf/Ox/FGHz
+      0umBiZnIxe+/0+1yTo5Nyvl4W99gg63Gaqdp6tcjn97SfJpRZcrlq8M9v7v7oL3/hMdacynV
+      xqfus6oy92A9zQs/+bu/dgjMh/95vbmpqa+3s+a3+f5XN8cCnqwmfby5faHPK/ZdLax/EU56
+      3vnBq3sH3/vtZ8TmyTBMNrU53N3YePINdfFWIGb+9lYg1pBLh+0NbafOvuz3iJqmLT+8b/K0
+      dHV0d/d31vyKwNg9s81oEZ2tL/SZjZzX39rsFKaWYj577eea0bGAaCWiw9Xe0y/w7PT42LHe
+      001eu6bWXrEE0f2d77zacqz9zOkzHped503dvV19PR16B3D+4usd7cfOvTzs9zWaTPz0+B2n
+      x6MabAam9u3bPQ08Y770ynFJ4UVXo8vh6Orp7u9t07l9/kSvt6t/OJOVnFZLa4tv4t6Yp8FD
+      eDvL1F5UlGKKdfbE5qcYk9DW2uFqammwC3rnrJqqKDJTLGbS2bKvqc1l4cYm5s6/NGC22fWe
+      KTsGhy02wU3KdndjPE362hweb7Otdp2kd2hYsJodSsnR0JTcVntaxNau442Nvuf5qww4SNub
+      W4LTaWSf6YRGU0rprOJy1jiDfuqXabF4wudrfLbBaiyR8jU+/rMcBARU/gByYUWzisO0VwAA
+      AABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='Average Position' width='192'>
+      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
+      TkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='Clicks' width='192'>
+      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
+      gg==
+    </thumbnail>
+    <thumbnail height='192' name='CTR' width='192'>
+      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
+      CBBQ5f8BIcbRQfg0FaYAAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='CPC' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAAA3NCSVQICAjb4U/gAAAACXBI
+      WXMAAB2HAAAdhwGP5fFlAAAVcUlEQVR4nO3dd3Qc1b0H8N/Mzmwv0hat2kqWrGZLcrcs4yLJ
+      uBd42MY24RE4IZwk8JID55ATSPJITgiBhAcEQip5hIfj5IFtDMbduFuWbVlukouKZfWy0q62
+      a9vMfX/Iz5DgGI9GK+16f59/PN4y+ztnv7oze+/cOxQhBBAaLgYAMENo2Jihf2w2282HeJ58
+      661Lw9vdksnKtRXZI1AXihEMAFAUZTQabz4U5kjrgHR4u/MT+Rd3he569FgXgGKbsAA9tMjy
+      3ZXpCgkAQGFe4vfuzyjLVQHA7GlJxUlsJOpDUU5AgFR6FeV0727wzcqQA8CCQp1jkAsRSElW
+      z8hSaWXYmMUjAd86LaGDIS4YIixDAVBaOb35SM/kvIRvr0jXKNkZudoUbUgr4yNXK4pCzJ2/
+      1GPzZlSMy6XIf+9om5WnPtc++MTS9K4u1+93debm6U2D3m4X6wpgOxRfBASI8PzrHzYPbVsb
+      3NDgvvlUY4O9cYQLQ7EBGwwkCgYIiYIBQqJggJAoGCAkCgYIiYIBQqIICxBNU8wX3sEyFAUA
+      AFKGGsmiUOwQ0JFISyRPr85gKXhvR0uvj1SUmAtMUteAL6hQJMrpAat7c/VA5ApF0UlAC6Q2
+      KNsa+/9W7ZicpgCAmTkaHqDfFdp8oGPbaRvD0BKK0NgSxRkBAQqHeJlcopTR/hAPAKHB0Du7
+      OjLTNVkZ2vsnqbecsulVnJLFwdT4IiBAvgFvUKlaME5W3RGYla/ddcH55ErL5WvOismJEhm7
+      oEjX52E8QTwrjy8CzoEAYPPBzqGNU/UuAKhvdgDA8UbPiJeFYgU2GEgUDBASBQOERMEAIVEw
+      QEgUDBASBQOERBEWoHSzsjhdMbTNSiWlExK0Ukoqk8yeoFMI61FCdwkBAWLk0nWl+sJCY4GB
+      AYB15SkyhppXqFtfkUqAfmhuUsSKRNFLyGBqgrzluuPYVXemQQpA5aWpMpOVeiXDctzJKw5g
+      GZxYGIeEjIW5A8nJqvxURZ8rJGUoq92/70y/Ss0CK7EkySWEx4mFcUjAmUvQG6hsDSbLyHkr
+      NylTselIz6LihI9PWAcpZtHkhG0nrJGrEkUtYae+F+oHLgAAwPnrXgDYfKwXAAC4LTc2UNzB
+      Iw4SBQOERMEAIVEwQEgUDBASBQOERMEAIVGE9QMtLjXrae7DE/08QFamdkmhtq7R0RWgFxZq
+      9lb1tjrCEaoSRS0BLZDWoDJTwbYQM8nMAsDMPE1jm7eu3VdWpDt6yVVelBCxIlH0EtACKZWM
+      bSBo5ahUuQQgVN/qCQf4r5WbnRyUFmh9Dh8OpsYhAS2QrW+wqNC4rFh7zR7OSZFnmpXZKQqv
+      L6yQ0jZXWCFncDA1DglogUL+4B/2dsko0ufm9AR2VvWm66UdfX6KodMTpe19/shViaKWsJNo
+      lyc0tGH3hAGg1eoHAAjxLVZMT5zCIw4SBQOERMEAIVEwQEgUDBASBQOERBEWILlMopHfeAvL
+      0kYtq5bRFEXpNSyujhifhKzSykieWmXhCGze29bp4ctnmZMpvrbFlZ2jV9LEZfdtP+eIXKEo
+      OglbpbWlybalxlGYKgeAZA2r0ErTDLLiTJVGyfj8YSXLSyV4C/r4IiBAIT+nVrEJKtbr5wDg
+      5MX+d/d2pqeonA7/n/d0jrNoGAku8xt3BBzCBp0+G6UrMZNN9aFZeRovYb65xHD8rJVTKb65
+      OPVIjdXll/jDmKD4ImwsbMfx7qGNUw1uAKhrHFqaPnClCc9+4hT+jEeiYICQKBggJAoGCImC
+      AUKiYICQKBggJIqwAOVlau/JVQ9tGw2KlbNMxWlyANAnypNUmMV4JOBbZxWyJYUqQ5qu2MQA
+      wD3FiXabv8sRYljJN1Zk5OrZiBWJopeAnmiVTtrR4T7rZIoSpbV9YZ8vnGRWTUhXeFlpfatb
+      o2BStB6cWBhvBLRAXmcww6KdlqXqdoS0CgkX5uuuuxmppLPPbzbIUw0ynFgYh4RMLBwM7K7z
+      GKV8XV84P01+7pq7NEf9v0d7nX7+QrNbzoUiVyWKWsIGUxtaXQ0AAHClYxAA9tQEhh53uQKu
+      ES4MxQY84iBRMEBIFAwQEgUDhETBACFRMEBIFAwQEkVYP9CKOSlmGdl4qCdEICtTt7xYc6nJ
+      6aDY0mxV5TlrbVcgQlWiqCWgBVLolEYInO7lZllkADA1V9Pb52/oGvS6/O8e6J5dmBixIlH0
+      EjIaL5N4PCGHN6SUSQCgtsFxqtmzZq65pS/wUHnyZzX9uEprHBJwCPPYfVllFgsPW/e3F2Wq
+      MiyaBBZcnuB3VmdzDq9ZL69qCuNgarwRECA+zL39STtLE7eftwUGL7X5EtWMwxPSqBwsDcEQ
+      tj3xSNhJtD/IDS3H6gvwAGB3hwDA6cFx+PiFRxwkCgYIiYIBQqJggJAoGCAkCgYIiYIBQqII
+      6AeiaPrb92VoGPLO9raBIJkz0zzDzNbUO0CjnJmpqLtq23/FE7lCUXQS0AKpDEpbu/3Ds67p
+      GXIAKEhR+MIQDPEFJvaNbW0ZFm3EikTRS0ALRHigKYqmKY4HANhd2d0zEHpicQpHACgAABxM
+      jUMCAuSzexWllvvTyLt7HLPyNAqtcvUcWV293c3Knnkgo/pCH85MjUNCWiBC/rKzbWj7VIMb
+      wH34xjOemjrbSBeGYgM2GEgUDBASBQOERMEAIVEwQEgUDBASBQOEbq3X6fnpx0cDofDtXyYs
+      QIlaabLu88U0pTKJiqUYhh6fopAMp0gUvTadvOQPhX+2/XiYu93ogqBVWqWPL0xesyAtdWhF
+      X4p6/P6saSmyDQvTJo7Tri/Vi6wYRQ+7d/BSZ9+LD5TlmhNf3VPF8f8yQwICZDAqLl+27a1z
+      5ZqkAFAxw9TU4gKAAE8VZ6p9vpBBGVZJcSzsbrC5+soD0/NZRvL1OZPUMunvDtbw5NY3MxWy
+      SqsvbNLLkhOlTl8YKEjSSWfkJ0zP1Zrl8OtP2lJS1a6AxB/COxbGPLc/ePJa56KJWQBAU9ST
+      C6a7/cH3Ky+SW2VIQIDcNm9HmE2hQ3U2UpKj/uCzjnd2d3xSY99b63y4LGlPdX+IoziCAYp5
+      n5yrX1o8XsbeGCeV0PT3l5U29g58VFP/5QwJm1h44HTv0MbpRg8A9Pf7+gHA4Wy87hRbNYoO
+      g8HwZ5dafvvI0i8+yEokL9w397kth9Ry6ZKi7C8+hT/j0T/YU3ttfn6GSvbPN66QsczPV5d9
+      fLa+srH9i49jgNDngmHu0/ONa6bn3/JZlUz68tqKd49dON/We/NBDBD63OH61qmZZp1S/q9e
+      kKCUv/JgxRv7TtX33LgCDAOEbuB4fkv1lQ2zCm//MpNG9dLq8pc+rWy1OQEDhG46ea0z25Ro
+      VCu+8pXpeu0L9839z4+O9Dq9GCAEAMAT8reTl/59dhFF3VFHTI5Z/+zS0ue2HMQAIQCAC229
+      BrUiLVFz52+ZZEn6Vvk0Yf1AayvSTDLy7r6uAA8AMK3YGOhxUnp1eb7m5HnrmTa/oL2hKEEI
+      2VhV+2TF9Dtsfm6alZ0qoAVSJqrkg76DLYFZGXIAMJlUcws0eiVTUaize8K0BBuzWFXfY5PQ
+      9PgkwevsUhQl4FuXsLTfH/YFeDlLAwXfWZkuY5kpOZpEBb37TP/UXB1OLIxFhJCNJ+q+fk+x
+      0OZniIBDmNfmG1eeOZ4i7+9snz5e/fLGhpxcvdnvM4J0/XyztduNEwtjUZvN5fYHitJMw3u7
+      kFVaOe71LddpIGEerM0ejoerV21XCZDrHSxDhcK3Hu5HUW5jVe3Dd/zj68uEnUTzPBk6RA1d
+      pHZzaBbTE6N6nJ52u2vGuJRh7wGPOHHt7ycvbSiZKKGHHwMMUPwa8A7WdfbNy8sQsxMMUPz6
+      sPrKA9PyGXH9LxigOOXxB6uaOhcVZoncDwYoTn1yrmHZpM+vWx02DFA88ofC+y9dXzk5V/yu
+      MEDxaE/ttXn5li9ftzoMAgJE0fTTD2Y9vz7LKL/R6fTgsnFzM2QAsH75uDkWmfhq0CgIhbnt
+      5xrXTi8Ykb0JCJDaqOpssm067ZhqUQBAcb5eEgxRQE0q0FNBvONTzDhc3zblttetCiLgHIoL
+      8wzLSFkqFOKBgrKiBI2SSabDYa1Ko2TMfLDZ2YWDqVGO4/nN1ZdfWlMxUjsUskrrgJdOsCxL
+      Iu/udczK1by9tTktXWsI+S/29qZbtImBQRxMjX6nmrvu8LrVOyTkVxyBTftuzAk61eAGgM4O
+      VycAAHS0uzpGqiIUMTwhm6rqnl9xz7CHTr8MG4w4crHdKvS61a+EAYoXhJCNJ2ofGe6FY/8K
+      BiheNPTaKYrKEX7d6u1hgOICIeT9ytphX7d6GxiguNBud7kGA8Xpw7xu9TYwQHc/h8//ix2V
+      I372M0TsYCyKZoSQYw3tfzxy9qkFM0qyUyPxEcICZNLLdQxpsgaG/iuTMyqK9xF6Qpricos7
+      wEWgQDRcHn/wtb2ngmHu948s0yoiNVIpIEASGftoeVJ/gKJOdDQOcEBRj64ad/18lyJJa3MG
+      HylL+vNBa4SqRIIQQs60dL+5v/qxuZPunTAuEkeumwQESJOoaG4aOOWUFJlkjQO+e0uSrjQ5
+      FBRsr+yZNMHQZR3EiYXRYDAYfvtAdY/T++bXFhnUykh/nIAADXqCpkJtpoy2d/ooCuQsPTlb
+      wzokbqXKRIU+Pe8mBMfCxhIhpK6z79XdJ9fOKHh2aWlEG56bBAQo4PGfs6pSZeHt3aGZOdqd
+      x7uP6uRGCVdQYEjSyhYWkv11uNTmmAmGuXeOnLvS3f/LBxekJKhH7XOFnUSfrr2xsNnpRhcA
+      uJ1+N8D1Ez0jXxe6Y4SQJuvAyztOLC7KeutrS2h6VFdaxp/xsS3M8RuraquaOn9y/7xMo270
+      C8BTllhFCGm1OZ/66x5CyO8eWTom6YG7vgWqaek+1tD+2NxJOoVsdE4qRwfH81vPXN1de+35
+      FffkJRvGsJK7uQU629rz9oEz44y6727a+17lxcG74sJtQkiP0/P03/f3urx/fHT52KYH7uIW
+      6Hxb71ufVf/X+nuNauWKSTnbztY/8d6utTMKVkzOZWN2MTVCyImmzj8cqvn+stmTLEljXQ7A
+      3doCXWy3/nrfqVfX3WtUKwGAZSTrSib+8dFlvS7vE3/ZefhqK8/H3no0hJBdF6/9tar2t48s
+      jZL0wF0ZoLrOvtf2nvzVuntNmn/oh1XJpN8qn/bahoWnmjuf3Lj7XGvPLe9fFJ0IIZtOXjp0
+      tfWNhxZFbmBrGIQFaO5U07rZhpvnohnp6nEJjMmofHxJWro2Km56ebmr/1e7q3754IIkreqW
+      LzCoFT9Yfs+PVs39sPrKsx8cuGYdiP4YcTz/mwNnrvc5XllbIRc9m31kCQiQTKMo0JHrAaYk
+      TQoASpV0Q3mKRcv8W4lh83Hr8tKxb1Svdtte2Xnil2srknVf0RVr0WtfXlvx+Pwpb+w7/eL2
+      4z1OT9TGKMRxP/+0kqaoH62aI3IplkgQUJBcydjt/i5bIEHFAMA3lqV39wcsJjkX4lzecJhQ
+      YzuY2tBj/8WOypfXVqQk3Omsg4mpxt88vHhRUdaPth5+67Nqp88fbTHyBUM/+PBgnln/1ILp
+      dFR2QwgIkGfAn5NnWD5Zd60vmJkk21XV2+flAiHeB/SKElN4MDiGEwubrPYXPz3+0ppyoXNW
+      KIqaPT79T48tz082/Memfe+fqPV/1Y2uR43D53/m7/uXFGU/VFoYtZ1Y1Jf/5sIcKfle1S1f
+      naiVqhloHwiadWyvIySTS6Q87+Wo3BT5tU5fmMDXy9RPr5sU+bL/QXPfwE8+Pvbz1WWZBlG9
+      scEwt7Xm6q4LTaunFywpylZImTH82rqdnuc2H/xOxfTS8WljVcOdEBagrzT6AWrpd7yw7cjP
+      HigbZ0wYkR16/MEPTl+ubOrQymVzctPn5VmStKrRPHwQMvQncfSHK+dMTDWO2ucOT3Sd0gvV
+      ZnO+sO3oT++fP1LpAQC1XPr4/CmPz5/S4/Qcb+x4ZecJtz84NTO5LD+jIMXA0HREmyVCyIV2
+      62t7T/5iTXmGuAZ1dMRwgNrtrh9/dOSF++Zmj/RkuSHJOvXaGQVrZxT4gqGalp5PzjW8utue
+      ZdTNy8+YlZWqlktHPElD18C/d/zi6xsW/VMnVtSK1QB1Drh/vPXwj1fNyTHrI/1ZSik7L88y
+      L8/CE9LYaz9a3/bB6csyRjJ7fPr8/IzUBLWYdZZvIoR8er5xb13zmw8v0sijqKvw9mIyQF0O
+      9w+3Hnp+5WgPRNMUlZ9syE82PFE2td/tq7rW+db+6n6Przg9qSw/ozDNJGMkw2uWeELer6y9
+      0t3/+oaF4he+HE2xVOuQHqfnh1sO/2D57IKUsTzBNGqUq6bkrpqSGwiFL7RbD15p+d3BGgBI
+      12tzkhLzkvU5SXqtQsbQ1FdGiuP5N/dX+0Phl9aUMyPRmI2mGAtQr8v73JZDzy6dNTF15Gfp
+      Do+MZUqyU4em7QXDXLvd1WQdON3ctanqktsfUMukmUZdnlmfl2zI0GvlLPNPl5wGw9yL24+n
+      JWqeWVwStZ09txFLAepz+57bfPCZxSVF6WM/bHJLUkYyPilxfFLikqJsACAEHD5/i83R2GPf
+      Un2lze4KcVyyTp1tSshLNuSZ9Qop85NtR+fmWdbOmBCD4QEQFCCKoh5bbtFQ/J92dfh5KJ1i
+      mpmpOHW+T5KoLhmnPHnOeqp1MHKFAsD/VF783sKZky3miH7KCKIoSFTJE1XJUzOShx7heL7L
+      4WnuG2jose0439jpcH9j3uSFE8UuFz+GBARIn6xxdgycDsmmpEpPdgQbmx2Eh1SDVKqXNff6
+      002ySAfo2aWlEd3/KJDQtEWvtei1ZfmZY13LyBBwykbTVDhMOJ5IaAoA3L5wl9WXZFRqZXRH
+      v1+tYnFmahwS0ALZejzZszMmAP+nHc6SXLUpWZuVyHR1ukEnmTtB19LmxFVa45CwW17+esv1
+      oe3TjR5o9Pz/MwMjXRWKGdhgIFEwQEgUDBASBQOERMEAIVEwQEgUDBASRViAMlNVUzNvXCmn
+      UrHzixKUDCgUzLyiRI00NgcDkTgCAsTIpQ9MTxifa5hoZACgpEDnC9NrSw3ry1MoipqdN5L3
+      gEGxQsgtLxNkra3Oqka3RS8FgEM1/empysEQyU1TWpIUBjWDY2FxSECAfK5gWqp6YrrS6gop
+      pPS8yfrTF/pNenl3v/9IrV2tluJYWBwSMBYW9AUOX/ObpeRCb7goU3mlfXD+BO2WY71hli2b
+      oP3oBK4yHo+EXZFY1+ioAwCAiy1eAPiocugCIG7bCf9IF4ZiAx5xkCgYICQKBgiJggFCovwf
+      eo77U/JQK4MAAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='Spend' width='192'>
+      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
+      AV/M64w1YdOtAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='Topline' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAAA3NCSVQICAjb4U/gAAAACXBI
+      WXMAAA7EAAAOxAGVKw4bAAAgAElEQVR4nO2deXxb1Zn3n6Orq82ytXuT7XiN4z37BiFp2cJW
+      2pRlaOmUgVLmbd/SjbbDZzotLZ3ydt62TFtaJiVAgBZKE0IawppAFrKSxNkX77u179LV3c/8
+      IcdWbNmxLVuyzf3+4Y90da7u0b0/P+c55zznOQhjDBISk0WW7gpIzG4kAUkkhTzdFfhUE/V0
+      /+oPLzz06L8VGlU7Xntu2U0bdmz74JGH7wOAXTteO9jYBADWysUP3/e5y2fgxsaTixcvHvyG
+      157beOsDj+hIuHhi7+tv7QUAyMx54vv/Z+S13J0X9110mMCTXbW2utg8VT9BskDpZMdrz7/7
+      7rvP/XU7AOz42yabx7tx02uxj0ora9Wcq8nFLa6ttHdd+tVT/7n70Kkz+7fd9rn7Dp9u+vuL
+      z/7qN7/3UdzfNm0McgAA5rzixWX67R+fWbdqaTTg/uN///9Xtr4rArz80nObnvntzj2feDov
+      vvHu3s6WC25/9Pk//+HFZ3+37b2Pscj+5bln/mfz67w4yZ8gCSiN4Ne2vr3plRd2vPbSyMdX
+      VllXX1VWVFa1pK7iq1+6r6S64RfffcBLGDKzzCYyGlZY+hvff+ODI4PlLfnF1yxfqM8pWLd6
+      2ZOPPRRQ5H/896dfff/EH3/1pNpa/vNHH+gLCQDQ2XrR5ad+98ufqHIKv/PdRz/8+7PPbtn9
+      1uZfv/jWocn9BklAacPb/smxFte3vv5Nf9fpfWf7Ri8o+iPcunXrCowqMsucoTUKgb6XX34t
+      RAuCICQ8weP2LL9mbc38eW6vF0jNmuvW5WbKwmycSk2F923YoNcIPq+3oGT+vV95sLYke3K/
+      QhJQ2jjReOanTz+3d+/el/701OkTn1TWLtZq1EsX1w0WMOYUlhbmAMh//dR/fPWeL5Tf9PDq
+      mvKlxeiD0/1lhWZzYWmGkqhdvFRJDJQnNfqFVeUA8Pgvfrvxp4+cDZq/tuF6wMKPv/1g1R3f
+      XFSWV1VeXFxeZdFrli5ZCgBLlyy9/b6va8PtOz5qLCspnNyvQNI40NxmxeLFexobNdP2/ZKA
+      JJJCasJmGVzQ9sQTP7rjjnt37DocO2I7f+jwJUfs9bY//9mT2vpIFmg24tm4ce8jj9z5sx89
+      FmRhXraOMldDb+O+4z3337lu/de/bkphVSQLNHuhMrKr/+VzKzFprCrJ7Q2TZgKolFdCEtBs
+      RL1kSRVA1vJq49428aEHv8hR4Wpr1qr162pqF6tTWxWpCZNICskCSSSFJCCJpBiYjQ8Ew+mt
+      h8QkUCoVKqWCZliGYdNVhwEB8XziWZXUEep76aPmr975mauXjHoPNLmuXVg5oa9/9lc/c4SZ
+      ex7+fnXRqJ3crjMfv33G9437B2MnwNvddPpsi7Jo4eq6glDf2UNd+ObV9Vu3/vWuu748oatP
+      E6RcBABRFNP4+GZMPBAfPbl/2wf/eEkt0+aUlYU7j3GyHIMJrOacf7z9wd33fWnLlu0//+kP
+      fvyTp375sx/tPXZhy4t/MuSXejsb/Zx25QJ9U0D32yd/uP3lPzaeb9HrjLmFBQ5f+IMd29ff
+      eMM5u7jx6R/3dveAWtV07vgvv/O7tbduaOvv0dDE8ZP71955z6E3X//af/zmlmsXvrlzV5cn
+      +g7p8jBYk1329gu/Xbr6epYRC5Dh0ae/Xbn0mk9Odxw+UKmXO776+fU5S2/7rx9/K913Lf3M
+      LB/omvW31lYsyVJjDEgmQypj/m3Xr0aE0mItbSg1HD1vX15jPXS4ETAGAIRk1sqGVdVldUtX
+      tJ046GcBYwyAlt905/Y337t5ZaWMVOs0yi9suJcEsBRV/+evnzHSXRpTjscTkMkIwBhjpNNl
+      r1y16MDBQyLt9TLkTSsqvKqCN3fszYceeVa22+MFgN6mRkqu87s9ACCTEQCAMej1uvTeqxnC
+      QDfe4w2kuyZX8Petr99z173T9OW2lpO/3/TqdXfcf8u1DdN0idSgVik1GhUVpaNRJl11GBAQ
+      RdHpqoHEpCFJOUnKOY7nOD5ddZjYQGJ3d7dGMxQaEIlEACAjI2Pq6yUxDkiS1OmGt6Q8HTrV
+      1BOyteaWzKdYqCnU7T/do0fhrMKKohyT2+2Of4IA4HK5LBbLpOswMSdao9GYzUPx2DHxxR+R
+      SCVut3vkQYZHnV3HFPbo+2cDq+vMRB/ZL1B6rWLfh7vX33p7xpVPEACcTmcyT3DG9MIkpogM
+      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
+      gg==
+    </thumbnail>
+    <thumbnail height='192' name='CSV Download' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
